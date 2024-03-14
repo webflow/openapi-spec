@@ -107,7 +107,8 @@ paths:
       x-fern-sdk-method-name: introspect
       operationId: introspect
       summary: Authorization Info
-      description: Information about the authorization token
+      description: |
+        Information about the authorization token </br></br> Access to this endpoint requires a bearer token from a Data Client App.
       tags:
         - Meta
       responses:
@@ -231,7 +232,8 @@ paths:
             - 'authorized_user:read'
       operationId: resolve
       summary: Resolve ID Token
-      description: 'Information about the authorized user derived from the resolved ID Token <br><br> Required Scope | `authorized_user:read`'
+      description: |
+        Information about the authorized user derived from the resolved ID Token  <br><br> Access to this endpoint requires a bearer token from a Data Client App. Required Scope | `authorized_user:read`
       tags:
         - Meta
       requestBody:
@@ -4380,7 +4382,7 @@ paths:
       operationId: get-page-custom-code
       summary: Get Custom Code
       description: |
-        Get all registered scripts that have been applied to a specific Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Required scope | `custom_code:read`
+        Get all registered scripts that have been applied to a specific Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:read`
       tags:
         - Custom Code - Pages
         - Custom Code
@@ -4482,7 +4484,7 @@ paths:
       operationId: delete-page-custom-code
       summary: Delete Custom Code
       description: |
-        Delete the custom code block that an app has created for a page </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Required scope | `custom_code:write`
+        Delete the custom code block that an app has created for a page </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:write`
       tags:
         - Custom Code - Pages
         - Custom Code
@@ -4530,7 +4532,7 @@ paths:
       operationId: add-custom-code-to-page
       summary: Add/Update Custom Code
       description: |
-        Add a registered script to a Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Required scope | `custom_code:write`
+        Add a registered script to a Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:write`
       tags:
         - Custom Code - Pages
         - Custom Code
@@ -4687,7 +4689,8 @@ paths:
             - 'custom_code:read'
       operationId: get-site-custom-code
       summary: Get Custom Code
-      description: 'Get all registered scripts that have been applied to a specific Site. Required scope | `custom_code:read`'
+      description: |
+        Get all registered scripts that have been applied to a specific Site.  </br></br> Access to this endpoint requires a bearer token from a Data Client App.       Required scope | `custom_code:read`
       tags:
         - Custom Code - Sites
         - Custom Code
@@ -4788,7 +4791,8 @@ paths:
             - 'custom_code:write'
       operationId: delete-site-custom-code
       summary: Delete Custom Code
-      description: Delete the custom code block that an app created for a Site
+      description: |
+        Delete the custom code block that an app created for a Site </br></br> Access to this endpoint requires a bearer token from a Data Client App.       Required scope | `custom_code:write`
       tags:
         - Custom Code - Sites
         - Custom Code
@@ -4836,7 +4840,7 @@ paths:
       operationId: add-custom-code-tosite
       summary: Add/Update Custom Code
       description: |
-        Add a registered script to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>  Required scope | `custom_code:write`
+        Add a registered script to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App.         Required scope | `custom_code:write`
       tags:
         - Custom Code - Sites
         - Custom Code
@@ -4992,7 +4996,7 @@ paths:
       operationId: get-scripts
       summary: Get Registered Scripts
       description: |
-        List of scripts registered to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets.         </br></br>  Required scope | `custom_code:read`
+        List of scripts registered to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets.     Access to this endpoint requires a bearer token from a Data Client App.     </br></br>  Required scope | `custom_code:read`
       tags:
         - Custom Code
         - Registered Scripts
@@ -5110,7 +5114,7 @@ paths:
       operationId: post-hosted-script
       summary: Register Script - Hosted
       description: |
-        Add a script to a Site's Custom Code registry. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets.     </br></br>  Required scope | `custom_code:write`
+        Add a script to a Site's Custom Code registry. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets.   Access to this endpoint requires a bearer token from a Data Client App.   </br></br>  Required scope | `custom_code:write`
       tags:
         - Custom Code
         - Registered Scripts
@@ -5234,7 +5238,7 @@ paths:
       operationId: post-inline-scripts
       summary: Register Script - Inline
       description: |
-        Add a script to a Site's Custom Code registry. Inline scripts can be between 1 and 2000 characters. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>  Required scope | `custom_code:write`
+        Add a script to a Site's Custom Code registry. Inline scripts can be between 1 and 2000 characters. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>  Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:write`
       tags:
         - Custom Code
         - Registered Scripts
@@ -5358,7 +5362,8 @@ paths:
             - 'custom_code:read'
       operationId: get-site-custom-code-blocks
       summary: List Custom Code Blocks
-      description: 'Get all instances of Custom Code applied to a Site or Pages. Required scope | `custom_code:read`'
+      description: |
+        Get all instances of Custom Code applied to a Site or Pages.  </br></br> Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:read`
       tags:
         - Custom Code
       parameters:
@@ -6459,7 +6464,8 @@ paths:
       x-fern-sdk-method-name: list
       operationId: list-webhooks
       summary: List Webhooks
-      description: List all App-created Webhooks registered for a given site
+      description: |
+        List all App-created Webhooks registered for a given site </br></br> Required scope | `sites:read`
       tags:
         - Webhooks
       parameters:
@@ -6582,7 +6588,8 @@ paths:
       x-fern-sdk-method-name: create
       operationId: create-webhook
       summary: Create Webhook
-      description: 'Create a new Webhook, to be notified when Webflow resources change. Limit of 75 registrations per `triggerType`, per site.'
+      description: |
+        Create a new Webhook, to be notified when Webflow resources change. Limit of 75 registrations per `triggerType`, per site. </br></br> Access to this endpoint requires a bearer token from a Data Client App. The only exceptions are for creating webhooks with `site_publish` or `form_submission` triggers, which can be done with Site Tokens </br> Required scope | `sites:write`
       tags:
         - Webhooks
       parameters:
