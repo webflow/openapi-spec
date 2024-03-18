@@ -48,31 +48,30 @@ paths:
           content:
             application/json:
               schema:
-                AuthorizedUser:
-                  example:
-                    id: 545bbecb7bdd6769632504a7
-                    email: some@email.com
-                    firstName: Some
-                    lastName: One
-                  properties:
-                    id:
-                      type: string
-                      format: objectid
-                      description: The unique id of the user
-                      example: 545bbecb7bdd6769632504a7
-                    email:
-                      type: string
-                      format: email
-                      description: The user's email address
-                      example: someone@email.com
-                    firstName:
-                      type: string
-                      description: The user's first name
-                      example: Some
-                    lastName:
-                      type: string
-                      description: The user's last name
-                      example: One
+                example:
+                  id: 545bbecb7bdd6769632504a7
+                  email: some@email.com
+                  firstName: Some
+                  lastName: One
+                properties:
+                  id:
+                    type: string
+                    format: objectid
+                    description: The unique id of the user
+                    example: 545bbecb7bdd6769632504a7
+                  email:
+                    type: string
+                    format: email
+                    description: The user's email address
+                    example: someone@email.com
+                  firstName:
+                    type: string
+                    description: The user's first name
+                    example: Some
+                  lastName:
+                    type: string
+                    description: The user's last name
+                    example: One
         '401':
           description: Provided access token is invalid or does not have access to requested resource
         '403':
@@ -116,106 +115,105 @@ paths:
           content:
             application/json:
               schema:
-                Authorization:
-                  example:
-                    authorization:
-                      id: 55818d58616600637b9a5786
-                      createdOn: '2016-10-03T23:12:00.755Z'
-                      lastUsed: '2016-10-10T21:41:12.736Z'
-                      grantType: authorization_code
-                      rateLimit: 60
-                      scope: 'assets:read,assets:write'
+                example:
+                  authorization:
+                    id: 55818d58616600637b9a5786
+                    createdOn: '2016-10-03T23:12:00.755Z'
+                    lastUsed: '2016-10-10T21:41:12.736Z'
+                    grantType: authorization_code
+                    rateLimit: 60
+                    scope: 'assets:read,assets:write'
+                    authorizedTo:
+                      siteIds:
+                        - 62f3b1f7eafac55d0c64ef91
+                      workspaceIds:
+                        - 52f3b1f7eafac55d0c64ef91
+                      userIds:
+                        - 545bbecb7bdd6769632504a7
+                  application:
+                    id: 55131cd036c09f7d07883dfc
+                    description: My Amazing App
+                    homepage: 'https://webflow.com'
+                    displayName: My Amazing App
+                properties:
+                  authorization:
+                    type: object
+                    description: The Authorization object
+                    properties:
+                      id:
+                        type: string
+                        format: objectid
+                        example: 55818d58616600637b9a5786
+                        description: The unique id of the Authorization instance
+                      createdOn:
+                        type: string
+                        format: date-time
+                        example: '2016-10-03T23:12:00.755Z'
+                        description: The date the Authorization was created
+                      lastUsed:
+                        type: string
+                        format: date-time
+                        example: '2016-10-10T21:41:12.736Z'
+                        description: The date the Authorization was last used
+                      grantType:
+                        type: string
+                        example: authorization_code
+                        description: The grant type of the Authorization
+                      rateLimit:
+                        type: integer
+                        format: int32
+                        example: 60
+                        description: The default rate limit for the Authorization (requests/min)
+                      scope:
+                        type: string
+                        example: 'custom_code:read sites:read'
+                        description: Comma separted list of OAuth scopes corresponding to the Authorization
                       authorizedTo:
-                        siteIds:
-                          - 62f3b1f7eafac55d0c64ef91
-                        workspaceIds:
-                          - 52f3b1f7eafac55d0c64ef91
-                        userIds:
-                          - 545bbecb7bdd6769632504a7
-                    application:
-                      id: 55131cd036c09f7d07883dfc
-                      description: My Amazing App
-                      homepage: 'https://webflow.com'
-                      displayName: My Amazing App
-                  properties:
-                    authorization:
-                      type: object
-                      description: The Authorization object
+                        type: object
+                        example:
+                          siteIds:
+                            - 62f3b1f7eafac55d0c64ef91
+                          workspaceIds:
+                            - ' 72f3b1f7eafac55d0c64ef91'
+                          userIds:
+                            - 545bbecb7bdd6769632504a7
+                        properties:
+                          siteIds:
+                            type: array
+                            description: Array of Sites this app is authorized to
+                            example:
+                              - 62f3b1f7eafac55d0c64ef91
+                          workspaceIds:
+                            type: array
+                            description: Array of Workspaces this app is authorized to
+                            example:
+                              - 72f3b1f7eafac55d0c64ef91
+                          userIds:
+                            type: array
+                            description: Array of Users this app is authorized to
+                            example:
+                              - 545bbecb7bdd6769632504a7
+                  application:
+                    Application:
                       properties:
                         id:
                           type: string
                           format: objectid
-                          example: 55818d58616600637b9a5786
-                          description: The unique id of the Authorization instance
-                        createdOn:
+                          example: 55131cd036c09f7d07883dfc
+                          description: Unique identifier for the Application
+                        description:
                           type: string
-                          format: date-time
-                          example: '2016-10-03T23:12:00.755Z'
-                          description: The date the Authorization was created
-                        lastUsed:
+                          example: OAuth Testing Application
+                          description: Application description provided by the developer
+                        homepage:
                           type: string
-                          format: date-time
-                          example: '2016-10-10T21:41:12.736Z'
-                          description: The date the Authorization was last used
-                        grantType:
+                          format: uri
+                          example: 'https://webflow.com'
+                          description: Application homepage URL provided by the developer
+                        displayName:
                           type: string
-                          example: authorization_code
-                          description: The grant type of the Authorization
-                        rateLimit:
-                          type: integer
-                          format: int32
-                          example: 60
-                          description: The default rate limit for the Authorization (requests/min)
-                        scope:
-                          type: string
-                          example: 'custom_code:read sites:read'
-                          description: Comma separted list of OAuth scopes corresponding to the Authorization
-                        authorizedTo:
-                          type: object
-                          example:
-                            siteIds:
-                              - 62f3b1f7eafac55d0c64ef91
-                            workspaceIds:
-                              - ' 72f3b1f7eafac55d0c64ef91'
-                            userIds:
-                              - 545bbecb7bdd6769632504a7
-                          properties:
-                            siteIds:
-                              type: array
-                              description: Array of Sites this app is authorized to
-                              example:
-                                - 62f3b1f7eafac55d0c64ef91
-                            workspaceIds:
-                              type: array
-                              description: Array of Workspaces this app is authorized to
-                              example:
-                                - 72f3b1f7eafac55d0c64ef91
-                            userIds:
-                              type: array
-                              description: Array of Users this app is authorized to
-                              example:
-                                - 545bbecb7bdd6769632504a7
-                    application:
-                      Application:
-                        properties:
-                          id:
-                            type: string
-                            format: objectid
-                            example: 55131cd036c09f7d07883dfc
-                            description: Unique identifier for the Application
-                          description:
-                            type: string
-                            example: OAuth Testing Application
-                            description: Application description provided by the developer
-                          homepage:
-                            type: string
-                            format: uri
-                            example: 'https://webflow.com'
-                            description: Application homepage URL provided by the developer
-                          displayName:
-                            type: string
-                            example: Test App
-                            description: Application name provided by the developer
+                          example: Test App
+                          description: Application name provided by the developer
         '401':
           description: Provided access token is invalid or does not have access to requested resource
         4XX:
@@ -543,22 +541,33 @@ paths:
             application/json:
               schema:
                 type: object
-                required:
-                  - id
                 properties:
-                  id:
-                    type: string
-                    format: objectid
-                    example: 589a331aa51e760df7ccb89d
-                    description: Unique identifier for the Domain
-                    readOnly: true
-                  url:
-                    type: string
-                    example: test-api-domain.com
-                    description: The registered Domain name
+                  customDomains:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          example: 589a331aa51e760df7ccb89d
+                          description: Unique identifier for the Domain
+                          readOnly: true
+                        url:
+                          type: string
+                          example: test-api-domain.com
+                          description: The registered Domain name
+                      example:
+                        id: 589a331aa51e760df7ccb89d
+                        url: test-api-domain.com
                 example:
-                  id: 589a331aa51e760df7ccb89d
-                  url: test-api-domain.com
+                  customDomains:
+                    - id: 589a331aa51e760df7ccb89d
+                      url: test-api-domain.com
+                    - id: 589a331aa51e760df7ccb89e
+                      url: www.test-api-domain.com
         '401':
           description: Provided access token is invalid or does not have access to requested resource
         '403':
