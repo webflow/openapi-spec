@@ -6487,86 +6487,132 @@ paths:
           content:
             application/json:
               schema:
-                description: A list of active Webhooks
-                type: array
-                items:
-                  example:
-                    id: 582266e0cd48de0f0e3c6d8b
-                    triggerType: form_submission
-                    siteId: 562ac0395358780a1f5e6fbd
-                    workspaceId: 4f4e46fd476ea8c507000001
-                    createdOn: '2022-11-08T23:59:28.572Z'
-                    lastTriggered: '2023-02-08T23:59:28.572Z'
-                    filter: null
-                    url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
-                  properties:
-                    id:
-                      type: string
-                      format: objectid
-                      example: 57ca0a9e418c504a6e1acbb6
-                      description: Unique identifier for the Webhook registration
-                    workspaceId:
-                      type: string
-                      format: objectid
-                      example: 580e63e98c9a982ac9b8b741
-                      description: Unique identifier for the Workspace the Webhook is registered in
-                    siteId:
-                      type: string
-                      format: objectid
-                      example: 562ac0395358780a1f5e6fbd
-                      description: Unique identifier for the Site the Webhook is registered in
-                    triggerType:
-                      type: string
-                      example: form_submission
-                      description: |
-                        * `form_submission` - Sends the [form_submission](#form_submission) event
-                        * `site_publish` - Sends a [site_publish](#site_publish) event
-                        * `page_created` - Send the [page_created](#page_created) event
-                        * `page_metadata_updated` - Sends the [page_metadata_updated](#page_metadata_updated) event
-                        * `page_deleted` - Sends the [page_deleted](#page_deleted) event
-                        * `ecomm_new_order` - Sends the new [ecomm_new_order](#ecomm_new_order) event
-                        * `ecomm_order_changed` - Sends the [ecomm_order_changed](#ecomm_order_changed) event
-                        * `ecomm_inventory_changed` - Sends the [ecomm_inventory_changed](#ecomm_inventory_changed) event
-                        * `user_account_added` - Sends the [user_account_added](#user_account_added) event
-                        * `user_account_updated` - Sends the [user_account_updated](#user_account_updated) event
-                        * `user_account_deleted` - Sends the [user_account_deleted](#user_account_deleted) event
-                        * `collection_item_created` - Sends the [collection_item_created](#collection_item_created) event
-                        * `collection_item_changed` - Sends the [collection_item_changed](#collection_item_changed) event
-                        * `collection_item_deleted` - Sends the [collection_item_deleted](#collection_item_deleted) event
-                        * `collection_item_unpublished` - Sends the [collection_item_unpublished](#collection_item_unpublished) event
-                      enum:
-                        - form_submission
-                        - site_publish
-                        - page_created
-                        - page_metadata_updated
-                        - page_deleted
-                        - ecomm_new_order
-                        - ecomm_order_changed
-                        - ecomm_inventory_changed
-                        - user_account_added
-                        - user_account_updated
-                        - user_account_deleted
-                        - collection_item_created
-                        - collection_item_changed
-                        - collection_item_deleted
-                        - collection_item_unpublished
-                    filter:
-                      description: Filter for selecting which events you want Webhooks to be sent for. Only supported for form_submission trigger types.
-                      type: object
-                    lastTriggered:
-                      type: string
-                      format: date-time
-                      example: '2016-09-06T21:12:22.148Z'
-                      description: Date the Webhook instance was last triggered
-                    createdOn:
-                      type: string
-                      format: date-time
-                      example: '2016-09-02T23:26:22.241Z'
-                      description: Date the Webhook registration was created
-                    url:
-                      type: string
-                      example: 'https://example.com/webhook'
-                      description: URL to send the Webhook payload to
+                example:
+                  webhooks:
+                    - id: 57ca0a9e418c504a6e1acbb6
+                      triggerType: form_submission
+                      siteId: 562ac0395358780a1f5e6fbd
+                      workspaceId: 4f4e46fd476ea8c507000001
+                      filter:
+                        name: Email Form
+                      createdOn: '2016-09-02T23:26:22.241Z'
+                      lastTriggered: '2023-02-08T23:59:28.572Z'
+                      url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
+                    - id: 578d85cce0c47cd2865f4cf2
+                      triggerType: form_submission
+                      siteId: 562ac0395358780a1f5e6fbd
+                      workspaceId: 4f4e46fd476ea8c507000001
+                      filter:
+                        name: Email Form
+                      createdOn: '2016-07-19T01:43:40.585Z'
+                      lastTriggered: '2023-02-08T23:59:28.572Z'
+                      url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
+                    - id: 578d85cce0c47cd2865f4cf3
+                      triggerType: form_submission
+                      siteId: 562ac0395358780a1f5e6fbd
+                      workspaceId: 4f4e46fd476ea8c507000001
+                      filter:
+                        name: Email Form
+                      createdOn: '2016-07-19T01:43:40.605Z'
+                      lastTriggered: '2023-02-08T23:59:28.572Z'
+                      url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
+                properties:
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+                  webhooks:
+                    type: array
+                    items:
+                      example:
+                        id: 582266e0cd48de0f0e3c6d8b
+                        triggerType: form_submission
+                        siteId: 562ac0395358780a1f5e6fbd
+                        workspaceId: 4f4e46fd476ea8c507000001
+                        createdOn: '2022-11-08T23:59:28.572Z'
+                        lastTriggered: '2023-02-08T23:59:28.572Z'
+                        filter: null
+                        url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          example: 57ca0a9e418c504a6e1acbb6
+                          description: Unique identifier for the Webhook registration
+                        workspaceId:
+                          type: string
+                          format: objectid
+                          example: 580e63e98c9a982ac9b8b741
+                          description: Unique identifier for the Workspace the Webhook is registered in
+                        siteId:
+                          type: string
+                          format: objectid
+                          example: 562ac0395358780a1f5e6fbd
+                          description: Unique identifier for the Site the Webhook is registered in
+                        triggerType:
+                          type: string
+                          example: form_submission
+                          description: |
+                            * `form_submission` - Sends the [form_submission](#form_submission) event
+                            * `site_publish` - Sends a [site_publish](#site_publish) event
+                            * `page_created` - Send the [page_created](#page_created) event
+                            * `page_metadata_updated` - Sends the [page_metadata_updated](#page_metadata_updated) event
+                            * `page_deleted` - Sends the [page_deleted](#page_deleted) event
+                            * `ecomm_new_order` - Sends the new [ecomm_new_order](#ecomm_new_order) event
+                            * `ecomm_order_changed` - Sends the [ecomm_order_changed](#ecomm_order_changed) event
+                            * `ecomm_inventory_changed` - Sends the [ecomm_inventory_changed](#ecomm_inventory_changed) event
+                            * `user_account_added` - Sends the [user_account_added](#user_account_added) event
+                            * `user_account_updated` - Sends the [user_account_updated](#user_account_updated) event
+                            * `user_account_deleted` - Sends the [user_account_deleted](#user_account_deleted) event
+                            * `collection_item_created` - Sends the [collection_item_created](#collection_item_created) event
+                            * `collection_item_changed` - Sends the [collection_item_changed](#collection_item_changed) event
+                            * `collection_item_deleted` - Sends the [collection_item_deleted](#collection_item_deleted) event
+                            * `collection_item_unpublished` - Sends the [collection_item_unpublished](#collection_item_unpublished) event
+                          enum:
+                            - form_submission
+                            - site_publish
+                            - page_created
+                            - page_metadata_updated
+                            - page_deleted
+                            - ecomm_new_order
+                            - ecomm_order_changed
+                            - ecomm_inventory_changed
+                            - user_account_added
+                            - user_account_updated
+                            - user_account_deleted
+                            - collection_item_created
+                            - collection_item_changed
+                            - collection_item_deleted
+                            - collection_item_unpublished
+                        filter:
+                          description: Filter for selecting which events you want Webhooks to be sent for. Only supported for form_submission trigger types.
+                          type: object
+                        lastTriggered:
+                          type: string
+                          format: date-time
+                          example: '2016-09-06T21:12:22.148Z'
+                          description: Date the Webhook instance was last triggered
+                        createdOn:
+                          type: string
+                          format: date-time
+                          example: '2016-09-02T23:26:22.241Z'
+                          description: Date the Webhook registration was created
+                        url:
+                          type: string
+                          example: 'https://example.com/webhook'
+                          description: URL to send the Webhook payload to
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
