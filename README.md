@@ -6,8 +6,8 @@ This repository contains [OpenAPI](https://www.openapis.org/) specifications for
 
 Files can be found in the `openapi` directory:
 
-- openapi.yml: OpenAPI 3.1 spec matching the [public Webflow API.](https://docs.developers.webflow.com/data/v2.0.0/reference/introduction)
-- openapi-beta.yml: OpenAPI 3.1 spec matching the [beta Webflow API.](https://docs.developers.webflow.com/data/v2.0.0-beta/reference/introduction)
+- v2.yml: OpenAPI 3.1 spec matching the [public Webflow API.](https://docs.developers.webflow.com/data/v2.0.0/reference/introduction)
+- v2-beta.yml: OpenAPI 3.1 spec matching the [beta Webflow API.](https://docs.developers.webflow.com/data/v2.0.0-beta/reference/introduction)
 
 
 ## Project Status
