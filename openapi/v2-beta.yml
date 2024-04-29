@@ -453,7 +453,7 @@ paths:
         5XX:
           description: We had a problem with our server. Try again later.
   '/workspaces/{workspace_id}/sites':
-    patch:
+    post:
       x-fern-sdk-group-name: sites
       x-fern-sdk-method-name: create
       security:
@@ -461,7 +461,7 @@ paths:
             - 'sites:write'
       operationId: create-site
       summary: Create Site
-      description: 'Create a site </br></br>  Required scope | `workspace:write`'
+      description: 'Create a site. This endpoint requires an Enterprise workspace. </br></br>  Required scope | `workspace:write`'
       tags:
         - Sites
       parameters:
@@ -1363,7 +1363,7 @@ paths:
             - 'sites:write'
       operationId: update-site
       summary: Update Site
-      description: 'Update a site </br></br>  Required scope | `sites:write`'
+      description: 'Update a site. This endpoint requires an Enterprise workspace. </br></br>  Required scope | `sites:write`'
       tags:
         - Sites
       parameters:
@@ -1688,7 +1688,7 @@ paths:
             - 'sites:write'
       operationId: delete-site
       summary: Delete Site
-      description: 'Delete a site </br></br>  Required scope | `sites:write`'
+      description: 'Delete a site. This endpoint requires an Enterprise workspace. </br></br>  Required scope | `sites:write`'
       tags:
         - Sites
       parameters:
