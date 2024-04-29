@@ -1148,7 +1148,7 @@ paths:
                     offset: 0
                     limit: 25
         '403':
-          description: Unauthorized request
+          description: Forbidden request
           content:
             application/json:
               schema:
@@ -20268,6 +20268,8 @@ components:
             'users:read': read users on the site
             'site_activity:read': read site activity logs
             'users:write': modify users on the site
+            'workspace:read': read workspace resource data
+            'workspace:write': write workspace resource data
           authorizationUrl: 'https://webflow.com/oauth/authorize'
           tokenUrl: 'https://api.webflow.com/oauth/token'
     ApiKey:

@@ -452,6 +452,339 @@ paths:
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         5XX:
           description: We had a problem with our server. Try again later.
+  '/workspaces/{workspace_id}/sites':
+    patch:
+      x-fern-sdk-group-name: sites
+      x-fern-sdk-method-name: create
+      security:
+        - OAuth2:
+            - 'sites:write'
+      operationId: create-site
+      summary: Create Site
+      description: 'Create a site </br></br>  Required scope | `workspace:write`'
+      tags:
+        - Sites
+      parameters:
+        - name: workspace_id
+          in: path
+          description: Unique identifier for a Workspace
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                required:
+                  - name
+                name:
+                  type: string
+                  example: Super Cool Site
+                  description: The name of the site
+                templateName:
+                  type: string
+                  example: Business Template
+                  description: The workspace or marketplace template to use
+                parentFolderId:
+                  type: string
+                  nullable: true
+                  example: a9c420f9347c2139b248e913
+                  description: The parent folder ID of the site
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                example:
+                  id: 42e98c9a982ac9b8b742
+                  workspaceId: 42e63e98c9a982ac9b8b742
+                  displayName: The Hitchhiker's Guide to the Galaxy
+                  shortName: hitchhikers-guide
+                  previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
+                  timeZone: Magrathea/FactoryFloor
+                  createdOn: '1979-10-12T12:00:00.000Z'
+                  lastUpdated: '2023-04-02T12:42:00.000Z'
+                  lastPublished: '2023-04-02T12:42:00.000Z'
+                  parentFolderId: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                  customDomains:
+                    - id: 589a331aa51e760df7ccb89d
+                      url: hitchhikersguide.galaxy
+                    - id: 589a331aa51e760df7ccb89e
+                      url: heartofgold.spaceship
+                  locales:
+                    value:
+                      primary:
+                        id: 653fd9af6a07fc9cfd7a5e57
+                        cmsLocaleId: 653ad57de882f528b32e810e
+                        enabled: false
+                        displayName: English (United States)
+                        displayImageId: null
+                        redirect: true
+                        subdirectory: ''
+                        tag: en-US
+                      secondary:
+                        - id: 653fd9af6a07fc9cfd7a5e56
+                          cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                          enabled: true
+                          displayName: French (France)
+                          displayImageId: null
+                          subdirectory: fr-fr
+                          tag: fr-FR
+                        - id: 654112a3a525b2739d97664c
+                          cmsLocaleId: 654112a3a525b2739d97664f
+                          enabled: true
+                          displayName: Spanish (Mexico)
+                          displayImageId: null
+                          subdirectory: es-mx
+                          tag: es-MX
+                required:
+                  - id
+                readOnly: null
+                properties:
+                  id:
+                    type: string
+                    format: objectid
+                    description: Unique identifier for the Site
+                    example: 580e63e98c9a982ac9b8b741
+                  workspaceId:
+                    type: string
+                    format: objectid
+                    description: Unique identifier for the Workspace
+                    example: 580e63e98c9a982ac9b8b741
+                  createdOn:
+                    type: string
+                    format: date-time
+                    description: Date the Site was created
+                    example: '2016-10-24T19:41:29.156Z'
+                  displayName:
+                    type: string
+                    description: Name given to Site
+                    example: api_docs_sample_json
+                  shortName:
+                    type: string
+                    description: Slugified version of name
+                    example: api-docs-sample-json
+                  lastPublished:
+                    type: string
+                    format: date-time
+                    description: Date the Site was last published
+                    example: '2016-10-24T19:43:17.271Z'
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    description: Date the Site was last updated
+                    example: '2016-10-24T19:43:17.271Z'
+                  previewUrl:
+                    type: string
+                    format: uri
+                    description: URL of a generated image for the given Site
+                    example: 'https://d1otoma47x30pg.cloudfront.net/580e63e98c9a982ac9b8b741/201610241243.png'
+                  timeZone:
+                    type: string
+                    description: Site timezone set under Site Settings
+                    example: America/Los_Angeles
+                  parentFolderId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: The ID of the parent folder the Site exists in
+                    example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                  customDomains:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          example: 589a331aa51e760df7ccb89d
+                          description: Unique identifier for the Domain
+                          readOnly: true
+                        url:
+                          type: string
+                          example: test-api-domain.com
+                          description: The registered Domain name
+                      example:
+                        id: 589a331aa51e760df7ccb89d
+                        url: test-api-domain.com
+                  locales:
+                    type: object
+                    properties:
+                      primary:
+                        description: The primary locale for the site or application.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: The unique identifier for the locale.
+                            example: 653fd9af6a07fc9cfd7a5e57
+                          cmsLocaleId:
+                            type: string
+                            description: A CMS-specific identifier for the locale.
+                            example: 653ad57de882f528b32e810e
+                          enabled:
+                            type: boolean
+                            description: Indicates if the locale is enabled.
+                            example: false
+                          displayName:
+                            type: string
+                            description: 'The display name of the locale, typically in English.'
+                            example: English (United States)
+                          displayImageId:
+                            type: string
+                            description: 'An optional ID for an image associated with the locale, nullable.'
+                            nullable: true
+                            example: null
+                          redirect:
+                            type: boolean
+                            description: Determines if requests should redirect to the locale's subdirectory.
+                            example: true
+                          subdirectory:
+                            type: string
+                            description: 'The subdirectory path for the locale, used in URLs.'
+                            example: ''
+                          tag:
+                            type: string
+                            description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
+                            example: en-US
+                      secondary:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: The unique identifier for the locale.
+                              example: 653fd9af6a07fc9cfd7a5e57
+                            cmsLocaleId:
+                              type: string
+                              description: A CMS-specific identifier for the locale.
+                              example: 653ad57de882f528b32e810e
+                            enabled:
+                              type: boolean
+                              description: Indicates if the locale is enabled.
+                              example: false
+                            displayName:
+                              type: string
+                              description: 'The display name of the locale, typically in English.'
+                              example: English (United States)
+                            displayImageId:
+                              type: string
+                              description: 'An optional ID for an image associated with the locale, nullable.'
+                              nullable: true
+                              example: null
+                            redirect:
+                              type: boolean
+                              description: Determines if requests should redirect to the locale's subdirectory.
+                              example: true
+                            subdirectory:
+                              type: string
+                              description: 'The subdirectory path for the locale, used in URLs.'
+                              example: ''
+                            tag:
+                              type: string
+                              description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
+                              example: en-US
+                        description: A list of secondary locales available for the site or application.
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '403':
+          description: Forbidden request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - allOf:
+                      - example:
+                          code: not_authorized
+                          message: Request not authorized
+                          externalReference: null
+                          details: []
+                        properties:
+                          code:
+                            type: string
+                            description: Error code
+                            example: not_authorized
+                          message:
+                            type: string
+                            description: Error message
+                            example: Request not authorized
+                          externalReference:
+                            type: string
+                            description: Link to more information
+                          details:
+                            type: array
+                            description: Array of errors
+                            items:
+                              type:
+                                - string
+                                - object
+                      - description: The request is missing the required scopes.
+                      - properties:
+                          code:
+                            type: string
+                            description: Error code
+                            enum:
+                              - missing_scopes
+                          type: string
+                  - allOf:
+                      - example:
+                          code: not_authorized
+                          message: Request not authorized
+                          externalReference: null
+                          details: []
+                        properties:
+                          code:
+                            type: string
+                            description: Error code
+                            example: not_authorized
+                          message:
+                            type: string
+                            description: Error message
+                            example: Request not authorized
+                          externalReference:
+                            type: string
+                            description: Link to more information
+                          details:
+                            type: array
+                            description: Array of errors
+                            items:
+                              type:
+                                - string
+                                - object
+                      - description: Error response for non-enterprise plan workspaces.
+                      - properties:
+                          code:
+                            type: string
+                            description: Error code
+                            enum:
+                              - missing_scopes
+                          type: string
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+        '500':
+          description: We had a problem with our server. Try again later.
   /sites:
     get:
       x-fern-sdk-group-name: sites
@@ -1023,6 +1356,446 @@ paths:
                 type: number
         '500':
           description: We had a problem with our server. Try again later.
+    patch:
+      x-fern-sdk-group-name: sites
+      x-fern-sdk-method-name: update
+      security:
+        - OAuth2:
+            - 'sites:write'
+      operationId: update-site
+      summary: Update Site
+      description: 'Update a site </br></br>  Required scope | `sites:write`'
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Super Cool Site
+                  description: The name of the site
+                parentFolderId:
+                  type: string
+                  nullable: true
+                  example: a9c420f9347c2139b248e913
+                  description: The parent folder ID of the site
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                example:
+                  id: 42e98c9a982ac9b8b742
+                  workspaceId: 42e63e98c9a982ac9b8b742
+                  displayName: The Hitchhiker's Guide to the Galaxy
+                  shortName: hitchhikers-guide
+                  previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
+                  timeZone: Magrathea/FactoryFloor
+                  createdOn: '1979-10-12T12:00:00.000Z'
+                  lastUpdated: '2023-04-02T12:42:00.000Z'
+                  lastPublished: '2023-04-02T12:42:00.000Z'
+                  parentFolderId: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                  customDomains:
+                    - id: 589a331aa51e760df7ccb89d
+                      url: hitchhikersguide.galaxy
+                    - id: 589a331aa51e760df7ccb89e
+                      url: heartofgold.spaceship
+                  locales:
+                    value:
+                      primary:
+                        id: 653fd9af6a07fc9cfd7a5e57
+                        cmsLocaleId: 653ad57de882f528b32e810e
+                        enabled: false
+                        displayName: English (United States)
+                        displayImageId: null
+                        redirect: true
+                        subdirectory: ''
+                        tag: en-US
+                      secondary:
+                        - id: 653fd9af6a07fc9cfd7a5e56
+                          cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                          enabled: true
+                          displayName: French (France)
+                          displayImageId: null
+                          subdirectory: fr-fr
+                          tag: fr-FR
+                        - id: 654112a3a525b2739d97664c
+                          cmsLocaleId: 654112a3a525b2739d97664f
+                          enabled: true
+                          displayName: Spanish (Mexico)
+                          displayImageId: null
+                          subdirectory: es-mx
+                          tag: es-MX
+                required:
+                  - id
+                readOnly: null
+                properties:
+                  id:
+                    type: string
+                    format: objectid
+                    description: Unique identifier for the Site
+                    example: 580e63e98c9a982ac9b8b741
+                  workspaceId:
+                    type: string
+                    format: objectid
+                    description: Unique identifier for the Workspace
+                    example: 580e63e98c9a982ac9b8b741
+                  createdOn:
+                    type: string
+                    format: date-time
+                    description: Date the Site was created
+                    example: '2016-10-24T19:41:29.156Z'
+                  displayName:
+                    type: string
+                    description: Name given to Site
+                    example: api_docs_sample_json
+                  shortName:
+                    type: string
+                    description: Slugified version of name
+                    example: api-docs-sample-json
+                  lastPublished:
+                    type: string
+                    format: date-time
+                    description: Date the Site was last published
+                    example: '2016-10-24T19:43:17.271Z'
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    description: Date the Site was last updated
+                    example: '2016-10-24T19:43:17.271Z'
+                  previewUrl:
+                    type: string
+                    format: uri
+                    description: URL of a generated image for the given Site
+                    example: 'https://d1otoma47x30pg.cloudfront.net/580e63e98c9a982ac9b8b741/201610241243.png'
+                  timeZone:
+                    type: string
+                    description: Site timezone set under Site Settings
+                    example: America/Los_Angeles
+                  parentFolderId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: The ID of the parent folder the Site exists in
+                    example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                  customDomains:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          example: 589a331aa51e760df7ccb89d
+                          description: Unique identifier for the Domain
+                          readOnly: true
+                        url:
+                          type: string
+                          example: test-api-domain.com
+                          description: The registered Domain name
+                      example:
+                        id: 589a331aa51e760df7ccb89d
+                        url: test-api-domain.com
+                  locales:
+                    type: object
+                    properties:
+                      primary:
+                        description: The primary locale for the site or application.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: The unique identifier for the locale.
+                            example: 653fd9af6a07fc9cfd7a5e57
+                          cmsLocaleId:
+                            type: string
+                            description: A CMS-specific identifier for the locale.
+                            example: 653ad57de882f528b32e810e
+                          enabled:
+                            type: boolean
+                            description: Indicates if the locale is enabled.
+                            example: false
+                          displayName:
+                            type: string
+                            description: 'The display name of the locale, typically in English.'
+                            example: English (United States)
+                          displayImageId:
+                            type: string
+                            description: 'An optional ID for an image associated with the locale, nullable.'
+                            nullable: true
+                            example: null
+                          redirect:
+                            type: boolean
+                            description: Determines if requests should redirect to the locale's subdirectory.
+                            example: true
+                          subdirectory:
+                            type: string
+                            description: 'The subdirectory path for the locale, used in URLs.'
+                            example: ''
+                          tag:
+                            type: string
+                            description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
+                            example: en-US
+                      secondary:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: The unique identifier for the locale.
+                              example: 653fd9af6a07fc9cfd7a5e57
+                            cmsLocaleId:
+                              type: string
+                              description: A CMS-specific identifier for the locale.
+                              example: 653ad57de882f528b32e810e
+                            enabled:
+                              type: boolean
+                              description: Indicates if the locale is enabled.
+                              example: false
+                            displayName:
+                              type: string
+                              description: 'The display name of the locale, typically in English.'
+                              example: English (United States)
+                            displayImageId:
+                              type: string
+                              description: 'An optional ID for an image associated with the locale, nullable.'
+                              nullable: true
+                              example: null
+                            redirect:
+                              type: boolean
+                              description: Determines if requests should redirect to the locale's subdirectory.
+                              example: true
+                            subdirectory:
+                              type: string
+                              description: 'The subdirectory path for the locale, used in URLs.'
+                              example: ''
+                            tag:
+                              type: string
+                              description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
+                              example: en-US
+                        description: A list of secondary locales available for the site or application.
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '403':
+          description: Forbidden request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - allOf:
+                      - example:
+                          code: not_authorized
+                          message: Request not authorized
+                          externalReference: null
+                          details: []
+                        properties:
+                          code:
+                            type: string
+                            description: Error code
+                            example: not_authorized
+                          message:
+                            type: string
+                            description: Error message
+                            example: Request not authorized
+                          externalReference:
+                            type: string
+                            description: Link to more information
+                          details:
+                            type: array
+                            description: Array of errors
+                            items:
+                              type:
+                                - string
+                                - object
+                      - description: The request is missing the required scopes.
+                      - properties:
+                          code:
+                            type: string
+                            description: Error code
+                            enum:
+                              - missing_scopes
+                          type: string
+                  - allOf:
+                      - example:
+                          code: not_authorized
+                          message: Request not authorized
+                          externalReference: null
+                          details: []
+                        properties:
+                          code:
+                            type: string
+                            description: Error code
+                            example: not_authorized
+                          message:
+                            type: string
+                            description: Error message
+                            example: Request not authorized
+                          externalReference:
+                            type: string
+                            description: Link to more information
+                          details:
+                            type: array
+                            description: Array of errors
+                            items:
+                              type:
+                                - string
+                                - object
+                      - description: Error response for non-enterprise plan sites.
+                      - properties:
+                          code:
+                            type: string
+                            description: Error code
+                            enum:
+                              - missing_scopes
+                          type: string
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+        '500':
+          description: We had a problem with our server. Try again later.
+    delete:
+      x-fern-sdk-group-name: sites
+      x-fern-sdk-method-name: delete
+      security:
+        - OAuth2:
+            - 'sites:write'
+      operationId: delete-site
+      summary: Delete Site
+      description: 'Delete a site </br></br>  Required scope | `sites:write`'
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      responses:
+        '204':
+          description: Request was successful. No Content is returned.
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '403':
+          description: Forbidden request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - allOf:
+                      - example:
+                          code: not_authorized
+                          message: Request not authorized
+                          externalReference: null
+                          details: []
+                        properties:
+                          code:
+                            type: string
+                            description: Error code
+                            example: not_authorized
+                          message:
+                            type: string
+                            description: Error message
+                            example: Request not authorized
+                          externalReference:
+                            type: string
+                            description: Link to more information
+                          details:
+                            type: array
+                            description: Array of errors
+                            items:
+                              type:
+                                - string
+                                - object
+                      - description: The request is missing the required scopes.
+                      - properties:
+                          code:
+                            type: string
+                            description: Error code
+                            enum:
+                              - missing_scopes
+                          type: string
+                  - allOf:
+                      - example:
+                          code: not_authorized
+                          message: Request not authorized
+                          externalReference: null
+                          details: []
+                        properties:
+                          code:
+                            type: string
+                            description: Error code
+                            example: not_authorized
+                          message:
+                            type: string
+                            description: Error message
+                            example: Request not authorized
+                          externalReference:
+                            type: string
+                            description: Link to more information
+                          details:
+                            type: array
+                            description: Array of errors
+                            items:
+                              type:
+                                - string
+                                - object
+                      - description: Error response for non-enterprise plan sites.
+                      - properties:
+                          code:
+                            type: string
+                            description: Error code
+                            enum:
+                              - missing_scopes
+                          type: string
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+        '500':
+          description: We had a problem with our server. Try again later.
   '/sites/{site_id}/custom_domains':
     get:
       x-fern-sdk-group-name: sites
@@ -1380,7 +2153,7 @@ paths:
                     offset: 0
                     limit: 25
         '403':
-          description: Unauthorized request
+          description: Forbidden request
           content:
             application/json:
               schema:
@@ -20540,6 +21313,8 @@ components:
             'users:read': read users on the site
             'site_activity:read': read site activity logs
             'users:write': modify users on the site
+            'workspace:read': read workspace resource data
+            'workspace:write': write workspace resource data
           authorizationUrl: 'https://webflow.com/oauth/authorize'
           tokenUrl: 'https://api.webflow.com/oauth/token'
     ApiKey:
