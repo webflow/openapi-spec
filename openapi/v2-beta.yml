@@ -475,13 +475,12 @@ paths:
             format: objectid
             default: null
       requestBody:
-        required: true
         content:
           application/json:
             schema:
+              required:
+                - name
               properties:
-                required:
-                  - name
                 name:
                   type: string
                   example: Super Cool Site
