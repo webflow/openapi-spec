@@ -4446,6 +4446,139 @@ paths:
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/{item_id}/live':
+    get:
+      x-fern-sdk-group-name:
+        - collections
+        - items
+      x-fern-sdk-method-name: get-item-live
+      security:
+        - OAuth2:
+            - 'CMS:read'
+      operationId: get-item-live
+      summary: Get Collection Item (Live)
+      description: 'Get details of a selected Collection live Item. </br></br> Required scope | `CMS:read`'
+      tags:
+        - Items
+        - Collections
+        - Sites
+      parameters:
+        - name: collection_id
+          in: path
+          description: Unique identifier for a Collection
+          example: 580e63fc8c9a982ac9b8b745
+          required: true
+          schema:
+            type: string
+            format: objectid
+        - name: item_id
+          in: path
+          description: Unique identifier for an Item
+          example: 580e64008c9a982ac9b8b754
+          required: true
+          schema:
+            type: string
+            format: objectid
+        - name: cmsLocaleId
+          in: query
+          allowEmptyValue: true
+          description: Unique identifier for a CMS Locale. These UID is different from the Site locale identifier and is listed as `cmsLocaleId` in the Sites response. Applicable when using localization.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                required:
+                  - id
+                properties:
+                  id:
+                    type: string
+                    readOnly: true
+                    example: 580e64008c9a982ac9b8b754
+                    description: Unique identifier for the Item
+                  cmsLocaleId:
+                    type: string
+                    example: 653ad57de882f528b32e810e
+                    description: Identifier for the locale of the CMS item
+                  lastPublished:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: 2023-03-17T18:47:35.560Z
+                    description: The date the item was last published
+                  lastUpdated:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: 2023-03-17T18:47:35.560Z
+                    description: The date the item was last updated
+                  createdOn:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: 2023-03-17T18:47:35.560Z
+                    description: The date the item was created
+                  isArchived:
+                    type: boolean
+                    default: false
+                    description: Boolean determining if the Item is set to archived
+                  isDraft:
+                    type: boolean
+                    default: false
+                    description: Boolean determining if the Item is set to draft
+                  fieldData:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Name of the Item
+                      slug:
+                        type: string
+                        description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                    additionalProperties: true
+                    example:
+                      date: 2022-11-18T00:00:00.000Z
+                      featured: false
+                      name: My new item
+                      slug: my-new-item
+                      color: '#db4b68'
+                example:
+                  id: 42b720ef280c7a7a3be8cabe
+                  cmsLocaleId: 653ad57de882f528b32e810e
+                  lastPublished: '2022-11-29T16:22:43.159Z'
+                  lastUpdated: '2022-11-17T17:19:43.282Z'
+                  createdOn: '2022-11-17T17:11:57.148Z'
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    date: '2022-11-18T00:00:00.000Z'
+                    featured: true
+                    name: Pan Galactic Gargle Blaster Recipe
+                    slug: pan-galactic-gargle-blaster
+                    color: '#db4b68'
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+        '500':
+          description: We had a problem with our server. Try again later.
     patch:
       x-fern-sdk-group-name:
         - collections
