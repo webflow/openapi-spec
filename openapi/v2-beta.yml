@@ -2467,7 +2467,7 @@ paths:
                     readOnly: true
                     description: The date the collection was last updated
                   fields:
-                    type: object
+                    type: array
                     description: The list of fields in the Collection
                     readOnly: true
                     items:
@@ -2624,7 +2624,7 @@ paths:
                     readOnly: true
                     description: The date the collection was last updated
                   fields:
-                    type: object
+                    type: array
                     description: The list of fields in the Collection
                     readOnly: true
                     items:
