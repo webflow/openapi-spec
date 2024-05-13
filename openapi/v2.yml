@@ -13461,7 +13461,6 @@ paths:
               - fulfilled
               - disputed
               - unfulfilled
-              - null
         - in: query
           example: 0
           allowEmptyValue: true
