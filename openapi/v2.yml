@@ -5638,7 +5638,7 @@ paths:
                           default: false
                         displayName:
                           type: string
-                          description: User-facing name for the script
+                          description: User-facing name for the script. Must be between 1 and 50 alphanumeric characters
                         hostedLocation:
                           type: string
                           description: URI for an externally hosted script location
@@ -5760,7 +5760,7 @@ paths:
                   description: 'A Semantic Version (SemVer) string, denoting the version of the script'
                 displayName:
                   type: string
-                  description: User-facing name for the script
+                  description: User-facing name for the script. Must be between 1 and 50 alphanumeric characters
               examples:
                 - displayName: CMS Slider
                   hostedLocation: 'https://cdn.jsdelivr.net/.../cmsslider.js'
@@ -5785,7 +5785,7 @@ paths:
                     default: false
                   displayName:
                     type: string
-                    description: User-facing name for the script
+                    description: User-facing name for the script. Must be between 1 and 50 alphanumeric characters
                   hostedLocation:
                     type: string
                     description: URI for an externally hosted script location
@@ -5884,7 +5884,7 @@ paths:
                   description: 'A Semantic Version (SemVer) string, denoting the version of the script'
                 displayName:
                   type: string
-                  description: User-facing name for the script
+                  description: User-facing name for the script. Must be between 1 and 50 alphanumeric characters
               example:
                 displayName: Alert
                 sourceCode: alert('hello world');
@@ -5908,7 +5908,7 @@ paths:
                     default: false
                   displayName:
                     type: string
-                    description: User-facing name for the script
+                    description: User-facing name for the script. Must be between 1 and 50 alphanumeric characters
                   hostedLocation:
                     type: string
                     description: URI for an externally hosted script location
