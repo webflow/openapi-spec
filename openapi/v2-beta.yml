@@ -5626,6 +5626,22 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
       responses:
         '200':
           description: Request was successful
