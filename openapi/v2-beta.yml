@@ -5090,195 +5090,6 @@ paths:
         '500':
           description: We had a problem with our server. Try again later.
   '/pages/{page_id}':
-    get:
-      x-fern-sdk-group-name: pages
-      x-fern-sdk-method-name: get-metadata
-      security:
-        - OAuth2:
-            - 'page:read'
-      operationId: get-page-metadata
-      summary: Get Page Metadata
-      description: 'Get metadata information for a single page </br></br> Required scope | `pages:read`'
-      tags:
-        - Pages
-      parameters:
-        - name: page_id
-          in: path
-          description: Unique identifier for a Page
-          example: 63c720f9347c2139b248e552
-          required: true
-          schema:
-            type: string
-            format: objectid
-            default: null
-        - name: locale
-          in: query
-          allowEmptyValue: true
-          example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Request was successful
-          content:
-            application/json:
-              schema:
-                description: The Page object
-                type: object
-                required:
-                  - pageId
-                example:
-                  id: 6390c49774a71f0e3c1a08ee
-                  siteId: 6390c49674a71f84b51a08d8
-                  title: Blog Categories Template
-                  slug: detail_blog-category
-                  collectionId: 6390c49774a71f12831a08e3
-                  createdOn: '2018-10-14T21:55:49.063Z'
-                  lastUpdated: '2022-12-07T16:51:37.571Z'
-                  archived: false
-                  draft: false
-                  canBranch: true
-                  isMembersOnly: false
-                  seo:
-                    title: CoffeeStyle eCommerce - Webflow HTML website template
-                    description: This Webflow template offers a quick start into an e-commerce / memberships site
-                  openGraph:
-                    title: CoffeeStyle eCommerce - Webflow HTML website template
-                    titleCopied: true
-                    description: This Webflow template offers a quick start into an e-commerce / memberships site
-                    descriptionCopied: true
-                  locale: 653fd9af6a07fc9cfd7a5e57
-                  publishedPath: /heart-of-gold
-                properties:
-                  id:
-                    type: string
-                    format: objectid
-                    readOnly: true
-                    description: Unique identifier for the Page
-                    example: 63499e4e6e9ed5abbfe42b69
-                  siteId:
-                    type: string
-                    format: objectid
-                    readOnly: true
-                    description: Unique identifier for the Site
-                    example: 580e63e98c9a982ac9b8b741
-                  title:
-                    type: string
-                    description: Title of the Page
-                    example: My New Page
-                  slug:
-                    type: string
-                    description: slug of the Page (derived from title)
-                    example: my-new-page
-                  parentId:
-                    type: string
-                    format: objectid
-                    description: Identifier of the parent folder
-                    readOnly: true
-                    example: 6419db964a9c435aa3af6251
-                  collectionId:
-                    type: string
-                    format: objectid
-                    readOnly: true
-                    description: 'Unique identifier for a linked Collection, value will be null if the Page is not part of a Collection.'
-                    example: 6390c49774a71f12831a08e3
-                  createdOn:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                    description: The date the Page was created
-                    example: '2016-10-24T19:42:38.929Z'
-                  lastUpdated:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                    description: The date the Page was most recently updated
-                    example: '2016-10-24T19:42:38.929Z'
-                  archived:
-                    type: boolean
-                    description: Whether the Page has been archived
-                    default: false
-                    example: false
-                  draft:
-                    type: boolean
-                    description: Whether the Page is a draft
-                    default: false
-                    example: false
-                  canBranch:
-                    type: boolean
-                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
-                    readOnly: true
-                    default: false
-                    example: false
-                  isMembersOnly:
-                    type: boolean
-                    description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                    readOnly: true
-                    default: false
-                    example: false
-                  seo:
-                    type: object
-                    description: SEO-related fields for the Page
-                    properties:
-                      title:
-                        type: string
-                        description: The Page title shown in search engine results
-                        example: CoffeeStyle eCommerce - Webflow HTML website template
-                      description:
-                        type: string
-                        description: The Page description shown in search engine results
-                        example: This Webflow template offers a quick start into an ecommerce / memberships site
-                  openGraph:
-                    type: object
-                    description: Open Graph fields for the Page
-                    properties:
-                      title:
-                        type: string
-                        description: The title supplied to Open Graph annotations
-                        example: My snazzy Open Graph title
-                      titleCopied:
-                        type: boolean
-                        description: Indicates the Open Graph title was copied from the SEO title
-                        readOnly: true
-                        default: true
-                      description:
-                        type: string
-                        description: The description supplied to Open Graph annotations
-                        example: My informative Open Graph description
-                      descriptionCopied:
-                        type: boolean
-                        description: Indicates the Open Graph description was copied from the SEO description
-                        readOnly: true
-                        default: true
-                  locale:
-                    description: Unique ID of the page locale
-                    type: string
-                    format: objectid
-                    example: 653fd9af6a07fc9cfd7a5e57
-                  publishedPath:
-                    description: HTML path of the published page
-                    type: string
-                    example: /heart-of-gold
-        '400':
-          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
-        '401':
-          description: Provided access token is invalid or does not have access to requested resource
-        '404':
-          description: Requested resource not found
-        '429':
-          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
-          headers:
-            X-RateLimit-Remaining:
-              description: Contains the number of available requests remaining in the current minute
-              schema:
-                type: number
-            X-RateLimit-Limit:
-              description: Contains your current overall rate limit per minute
-              schema:
-                type: number
-        '500':
-          description: We had a problem with our server. Try again later.
     put:
       security:
         - OAuth2:
@@ -5466,7 +5277,7 @@ paths:
                     titleCopied: true
                     description: This Webflow template offers a quick start into an e-commerce / memberships site
                     descriptionCopied: true
-                  locale: 653fd9af6a07fc9cfd7a5e57
+                  localeId: 653fd9af6a07fc9cfd7a5e57
                   publishedPath: /heart-of-gold
                 properties:
                   id:
@@ -5518,11 +5329,13 @@ paths:
                     description: Whether the Page has been archived
                     default: false
                     example: false
+                    readOnly: true
                   draft:
                     type: boolean
                     description: Whether the Page is a draft
                     default: false
                     example: false
+                    readOnly: true
                   canBranch:
                     type: boolean
                     description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
@@ -5569,13 +5382,14 @@ paths:
                         description: Indicates the Open Graph description was copied from the SEO description
                         readOnly: true
                         default: true
-                  locale:
+                  localeId:
                     description: Unique ID of the page locale
                     type: string
                     format: objectid
+                    nullable: true
                     example: 653fd9af6a07fc9cfd7a5e57
                   publishedPath:
-                    description: HTML path of the published page
+                    description: Relative path of the published page URL
                     type: string
                     example: /heart-of-gold
         '400':
