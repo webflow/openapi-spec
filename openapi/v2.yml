@@ -38,7 +38,7 @@ paths:
         - OAuth2:
             - 'authorized_user:read'
       operationId: authorized_by
-      summary: Authorization User Info
+      summary: Get Authorization User Info
       description: 'Information about the Authorized User <br><br> Required Scope | `authorized_user:read`'
       tags:
         - Meta
@@ -104,9 +104,8 @@ paths:
       x-fern-sdk-group-name: token
       x-fern-sdk-method-name: introspect
       operationId: introspect
-      summary: Authorization Info
-      description: |
-        Information about the authorization token </br></br> Access to this endpoint requires a bearer token from a Data Client App.
+      summary: Get Authorization Info
+      description: "Information about the authorization token <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>    \n"
       tags:
         - Meta
       responses:
@@ -532,8 +531,6 @@ paths:
                             redirect: true
                             subdirectory: /gl
                             tag: Pan-Galactic Gargle Blaster
-        '400':
-          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
           description: Provided access token is invalid or does not have access to requested resource
         '404':
@@ -549,7 +546,26 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
-        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        4XX:
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        5XX:
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}':
     get:
@@ -789,6 +805,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/custom_domains':
@@ -864,6 +897,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/publish':
@@ -875,7 +925,7 @@ paths:
             - 'sites:write'
       operationId: site-publish
       summary: Publish site
-      description: 'Publish a site to one more more domains. </br></br>  Required scope | `sites:write`'
+      description: "Publish a site to one more more domains. </br></br>  Required scope | `sites:write` <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\"><h2 class=\"callout-heading\"><span class=\"callout-icon\">\U0001F4D8</span><p>Endpoint-specific rate limit</p></h2><p>This endpoint has a limit of one successful publish queue per minute.</p></blockquote>"
       tags:
         - Sites
       parameters:
@@ -1017,6 +1067,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
   '/sites/{site_id}/activity_logs':
     get:
       x-fern-sdk-group-name:
@@ -1232,6 +1299,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/collections':
@@ -1357,6 +1441,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -1508,7 +1609,7 @@ paths:
                             - Phone
                             - Number
                             - DateTime
-                            - Boolean
+                            - Switch
                             - Color
                             - ExtFileRef
                           description: Choose these appropriate field type for your collection data
@@ -1538,6 +1639,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}':
@@ -1665,7 +1783,7 @@ paths:
                             - Phone
                             - Number
                             - DateTime
-                            - Boolean
+                            - Switch
                             - Color
                             - ExtFileRef
                           description: Choose these appropriate field type for your collection data
@@ -1695,6 +1813,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -1736,6 +1871,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/fields':
@@ -1787,7 +1939,7 @@ paths:
                     - Phone
                     - Number
                     - DateTime
-                    - Boolean
+                    - Switch
                     - Color
                     - File
                   description: Choose these appropriate field type for your collection data
@@ -1853,7 +2005,7 @@ paths:
                       - Phone
                       - Number
                       - DateTime
-                      - Boolean
+                      - Switch
                       - Color
                       - ExtFileRef
                     description: Choose these appropriate field type for your collection data
@@ -1883,6 +2035,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/fields/{field_id}':
@@ -1985,7 +2154,7 @@ paths:
                       - Phone
                       - Number
                       - DateTime
-                      - Boolean
+                      - Switch
                       - Color
                       - ExtFileRef
                     description: Choose these appropriate field type for your collection data
@@ -2015,6 +2184,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -2066,6 +2252,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items':
@@ -2115,6 +2318,56 @@ paths:
           required: false
           schema:
             type: number
+        - name: name
+          in: query
+          allowEmptyValue: true
+          description: The name of the item(s)
+          schema:
+            type: string
+        - name: slug
+          in: query
+          allowEmptyValue: true
+          description: The slug of the item
+          schema:
+            type: string
+        - name: lastPublished
+          in: query
+          allowEmptyValue: true
+          description: The last published date of the item(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+          style: deepObject
+          explode: true
+        - name: sortBy
+          in: query
+          allowEmptyValue: true
+          description: Sort results by the provided value
+          required: false
+          schema:
+            type: string
+            enum:
+              - lastPublished
+              - name
+              - slug
+        - name: sortOrder
+          in: query
+          allowEmptyValue: true
+          description: Sorts the results by asc or desc
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
       responses:
         '200':
           description: Request was successful
@@ -2245,6 +2498,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -2257,7 +2527,7 @@ paths:
             - 'CMS:write'
       operationId: create-item
       summary: Create Collection Item
-      description: 'Create Item in a Collection.</br></br> To create items across multiple locales, <a href="https://developers.webflow.com/data/reference/create-item-for-multiple-locales"> please use this endpoint.</a> </br></br> Required scope | `CMS:write`'
+      description: '<style>.rm-Markdown.markdown-body a{color: #146EF5 !important;}</style> Create Item in a Collection.</br></br> To create items across multiple locales, <a href="https://developers.webflow.com/data/reference/create-item-for-multiple-locales"> please use the bulk item endpoint.</a> </br></br> Required scope | <code>CMS:write</code>'
       tags:
         - Items
         - Collections
@@ -2439,6 +2709,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/live':
@@ -2451,7 +2738,7 @@ paths:
         - OAuth2:
             - 'CMS:read'
       operationId: list-collection-items-live
-      summary: List Collection Items (Live)
+      summary: List Live Collection Items
       description: 'List of all live Items within a Collection. </br></br> Required scope | `CMS:read`'
       tags:
         - Items
@@ -2488,6 +2775,56 @@ paths:
           required: false
           schema:
             type: number
+        - name: name
+          in: query
+          allowEmptyValue: true
+          description: The name of the item(s)
+          schema:
+            type: string
+        - name: slug
+          in: query
+          allowEmptyValue: true
+          description: The slug of the item
+          schema:
+            type: string
+        - name: lastPublished
+          in: query
+          allowEmptyValue: true
+          description: The last published date of the item(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+          style: deepObject
+          explode: true
+        - name: sortBy
+          in: query
+          allowEmptyValue: true
+          description: Sort results by the provided value
+          required: false
+          schema:
+            type: string
+            enum:
+              - lastPublished
+              - name
+              - slug
+        - name: sortOrder
+          in: query
+          allowEmptyValue: true
+          description: Sorts the results by asc or desc
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
       responses:
         '200':
           description: Request was successful
@@ -2618,6 +2955,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -2629,7 +2983,7 @@ paths:
         - OAuth2:
             - 'CMS:write'
       operationId: create-item-live
-      summary: Create Collection Item (Live)
+      summary: Create Live Collection Item
       description: 'Create live Item in a Collection. This Item will be published to the live site. </br></br> To create items across multiple locales, <a href="https://developers.webflow.com/data/reference/create-item-for-multiple-locales"> please use this endpoint.</a> </br></br> Required scope | `CMS:write`'
       tags:
         - Items
@@ -2812,6 +3166,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/bulk':
@@ -2824,7 +3195,7 @@ paths:
         - OAuth2:
             - 'cms:write'
       operationId: create-item-for-multiple-locales
-      summary: Create item for multiple locales
+      summary: Create Item for Multiple Locales
       description: 'Create single Item in a Collection with multiple corresponding locales. </br></br> Required scope | `CMS:write`'
       tags:
         - Items
@@ -3037,6 +3408,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/{item_id}':
@@ -3171,6 +3559,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -3373,6 +3778,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -3433,6 +3855,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/{item_id}/live':
@@ -3445,7 +3884,7 @@ paths:
         - OAuth2:
             - 'CMS:read'
       operationId: get-item-live
-      summary: Get Collection Item (Live)
+      summary: Get Live Collection Item
       description: 'Get details of a selected Collection live Item. </br></br> Required scope | `CMS:read`'
       tags:
         - Items
@@ -3567,6 +4006,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -3578,7 +4034,7 @@ paths:
         - OAuth2:
             - 'CMS:write'
       operationId: update-item-live
-      summary: Update Collection Item (Live)
+      summary: Update Live Collection Item
       description: 'Update a selected live Item in a Collection. The updates for this Item will be published to the live site. </br></br> Required scope | `CMS:write`'
       tags:
         - Items
@@ -3769,6 +4225,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -3781,7 +4254,7 @@ paths:
             - 'CMS:write'
       operationId: delete-item-live
       summary: Delete Collection Item (Live)
-      description: 'Delete a live Item from a Collection. The Item will be unpublished from the live site. This endpoint does not currently support bulk deletion. </br></br> Required scope | `CMS:write`'
+      description: 'Remove a live item from the site. Removing a published item will unpublish the item from the live site and set it to draft. This endpoint does not currently support bulk deletion.</br></br> Required scope | `CMS:write`'
       tags:
         - Items
         - Collections
@@ -3829,6 +4302,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/publish':
@@ -3841,7 +4331,7 @@ paths:
         - OAuth2:
             - 'cms:write'
       operationId: publish-item
-      summary: Publish Item
+      summary: Publish Collection Item
       description: 'Publish an item or multiple items. </br></br> Required scope | `cms:write`'
       tags:
         - Items
@@ -3914,6 +4404,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/pages':
@@ -4177,6 +4684,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/pages/{page_id}':
@@ -4370,6 +4894,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     put:
@@ -4691,6 +5232,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/pages/{page_id}/dom':
@@ -4852,6 +5410,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -4950,6 +5525,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/pages/{page_id}/custom_code':
@@ -4963,8 +5555,7 @@ paths:
             - 'custom_code:read'
       operationId: get-page-custom-code
       summary: Get Custom Code
-      description: |
-        Get all registered scripts that have been applied to a specific Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:read`
+      description: "Get all registered scripts that have been applied to a specific Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote> Required scope | `custom_code:read`\n"
       tags:
         - Custom Code - Pages
         - Custom Code
@@ -5069,6 +5660,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -5081,8 +5689,7 @@ paths:
             - 'custom_code:write'
       operationId: delete-page-custom-code
       summary: Delete Custom Code
-      description: |
-        Delete the custom code block that an app has created for a page </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:write`
+      description: "Delete the custom code block that an app has created for a page </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote> Required scope | `custom_code:write`\n"
       tags:
         - Custom Code - Pages
         - Custom Code
@@ -5117,6 +5724,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     put:
@@ -5129,8 +5753,7 @@ paths:
             - 'custom_code:write'
       operationId: add-custom-code-to-page
       summary: Add/Update Custom Code
-      description: |
-        Add a registered script to a Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:write`
+      description: "Add a registered script to a Page.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote> Required scope | `custom_code:write`\n"
       tags:
         - Custom Code - Pages
         - Custom Code
@@ -5291,6 +5914,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/custom_code':
@@ -5304,8 +5944,7 @@ paths:
             - 'custom_code:read'
       operationId: get-site-custom-code
       summary: Get Custom Code
-      description: |
-        Get all registered scripts that have been applied to a specific Site.  </br></br> Access to this endpoint requires a bearer token from a Data Client App.       Required scope | `custom_code:read`
+      description: "Get all registered scripts that have been applied to a specific Site.  <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     Required scope | `custom_code:read`\n"
       tags:
         - Custom Code - Sites
         - Custom Code
@@ -5409,6 +6048,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -5421,8 +6077,7 @@ paths:
             - 'custom_code:write'
       operationId: delete-site-custom-code
       summary: Delete Custom Code
-      description: |
-        Delete the custom code block that an app created for a Site </br></br> Access to this endpoint requires a bearer token from a Data Client App.       Required scope | `custom_code:write`
+      description: "Delete the custom code block that an app created for a Site </br></br> <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     Required scope | `custom_code:write`\n"
       tags:
         - Custom Code - Sites
         - Custom Code
@@ -5457,6 +6112,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     put:
@@ -5469,8 +6141,7 @@ paths:
             - 'custom_code:write'
       operationId: add-custom-code-tosite
       summary: Add/Update Custom Code
-      description: |
-        Add a registered script to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>   Access to this endpoint requires a bearer token from a Data Client App.         Required scope | `custom_code:write`
+      description: "Add a registered script to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     Required scope | `custom_code:write`\n"
       tags:
         - Custom Code - Sites
         - Custom Code
@@ -5628,6 +6299,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/registered_scripts':
@@ -5639,8 +6327,7 @@ paths:
             - 'custom_code:read'
       operationId: get-scripts
       summary: Get Registered Scripts
-      description: |
-        List of scripts registered to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets.     Access to this endpoint requires a bearer token from a Data Client App.     </br></br>  Required scope | `custom_code:read`
+      description: "List of scripts registered to a Site.  </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets. <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     Required scope | `custom_code:read`\n"
       tags:
         - Custom Code
         - Registered Scripts
@@ -5747,6 +6434,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/registered_scripts/hosted':
@@ -5758,8 +6462,7 @@ paths:
             - 'custom_code:write'
       operationId: post-hosted-script
       summary: Register Script - Hosted
-      description: |
-        Add a script to a Site's Custom Code registry. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets.   Access to this endpoint requires a bearer token from a Data Client App.   </br></br>  Required scope | `custom_code:write`
+      description: "Add a script to a Site's Custom Code registry. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  Additionally, Scripts can be remotely hosted, or registered as inline snippets.   <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     </br></br>  Required scope | `custom_code:write`\n"
       tags:
         - Custom Code
         - Registered Scripts
@@ -5871,6 +6574,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/registered_scripts/inline':
@@ -5882,8 +6602,7 @@ paths:
             - 'custom_code:write'
       operationId: post-inline-scripts
       summary: Register Script - Inline
-      description: |
-        Add a script to a Site's Custom Code registry. Inline scripts can be between 1 and 2000 characters. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>  Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:write`
+      description: "Add a script to a Site's Custom Code registry. Inline scripts can be between 1 and 2000 characters. </br></br>  In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered  to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate `custom_code` endpoints.  </br></br>  <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     Required scope | `custom_code:write`\n"
       tags:
         - Custom Code
         - Registered Scripts
@@ -5994,6 +6713,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/custom_code/blocks':
@@ -6007,8 +6743,7 @@ paths:
             - 'custom_code:read'
       operationId: get-site-custom-code-blocks
       summary: List Custom Code Blocks
-      description: |
-        Get all instances of Custom Code applied to a Site or Pages.  </br></br> Access to this endpoint requires a bearer token from a Data Client App. Required scope | `custom_code:read`
+      description: "Get all instances of Custom Code applied to a Site or Pages.  <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     Required scope | `custom_code:read`\n"
       tags:
         - Custom Code
       parameters:
@@ -6172,6 +6907,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/assets':
@@ -6214,14 +6966,6 @@ paths:
                           format: objectid
                           example: 55131cd036c09f7d07883dfc
                           description: Unique identifier for this asset
-                        originalFileName:
-                          type: string
-                          example: image.png
-                          description: Original file name at the time of upload
-                        displayName:
-                          type: string
-                          example: example-image-123.png
-                          description: Display name of the asset
                         contentType:
                           type: string
                           example: image/png
@@ -6236,21 +6980,29 @@ paths:
                           format: objectid
                           example: 62749158efef318abc8d5a0f
                           description: Unique identifier for the site that hosts this asset
-                        createdOn:
-                          type: string
-                          format: date-time
-                          example: '2016-09-02T23:26:22.241Z'
-                          description: Date the asset metadata was created
-                        lastUpdated:
-                          type: string
-                          format: date-time
-                          example: '2016-09-06T21:12:22.148Z'
-                          description: Date the asset metadata was last updated
                         hostedUrl:
                           type: string
                           format: uri
                           example: example.com/hostedimage.png
                           description: Link to the asset
+                        originalFileName:
+                          type: string
+                          example: image.png
+                          description: Original file name at the time of upload
+                        displayName:
+                          type: string
+                          example: example-image-123.png
+                          description: Display name of the asset
+                        lastUpdated:
+                          type: string
+                          format: date-time
+                          example: '2016-09-06T21:12:22.148Z'
+                          description: Date the asset metadata was last updated
+                        createdOn:
+                          type: string
+                          format: date-time
+                          example: '2016-09-02T23:26:22.241Z'
+                          description: Date the asset metadata was created
                         variants:
                           type: array
                           items:
@@ -6285,6 +7037,10 @@ paths:
                               error:
                                 type: string
                                 description: Any associated validation errors
+                        altText:
+                          type: string
+                          example: A red chair
+                          description: The visual description of the asset
                 example:
                   assets:
                     - id: 63e5889e7fe4eafa7384cea4
@@ -6322,6 +7078,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -6494,6 +7267,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/assets/{asset_id}':
@@ -6529,14 +7319,6 @@ paths:
                     format: objectid
                     example: 55131cd036c09f7d07883dfc
                     description: Unique identifier for this asset
-                  originalFileName:
-                    type: string
-                    example: image.png
-                    description: Original file name at the time of upload
-                  displayName:
-                    type: string
-                    example: example-image-123.png
-                    description: Display name of the asset
                   contentType:
                     type: string
                     example: image/png
@@ -6551,21 +7333,29 @@ paths:
                     format: objectid
                     example: 62749158efef318abc8d5a0f
                     description: Unique identifier for the site that hosts this asset
-                  createdOn:
-                    type: string
-                    format: date-time
-                    example: '2016-09-02T23:26:22.241Z'
-                    description: Date the asset metadata was created
-                  lastUpdated:
-                    type: string
-                    format: date-time
-                    example: '2016-09-06T21:12:22.148Z'
-                    description: Date the asset metadata was last updated
                   hostedUrl:
                     type: string
                     format: uri
                     example: example.com/hostedimage.png
                     description: Link to the asset
+                  originalFileName:
+                    type: string
+                    example: image.png
+                    description: Original file name at the time of upload
+                  displayName:
+                    type: string
+                    example: example-image-123.png
+                    description: Display name of the asset
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    example: '2016-09-06T21:12:22.148Z'
+                    description: Date the asset metadata was last updated
+                  createdOn:
+                    type: string
+                    format: date-time
+                    example: '2016-09-02T23:26:22.241Z'
+                    description: Date the asset metadata was created
                   variants:
                     type: array
                     items:
@@ -6600,6 +7390,10 @@ paths:
                         error:
                           type: string
                           description: Any associated validation errors
+                  altText:
+                    type: string
+                    example: A red chair
+                    description: The visual description of the asset
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
@@ -6617,6 +7411,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -6665,14 +7476,6 @@ paths:
                     format: objectid
                     example: 55131cd036c09f7d07883dfc
                     description: Unique identifier for this asset
-                  originalFileName:
-                    type: string
-                    example: image.png
-                    description: Original file name at the time of upload
-                  displayName:
-                    type: string
-                    example: example-image-123.png
-                    description: Display name of the asset
                   contentType:
                     type: string
                     example: image/png
@@ -6687,21 +7490,29 @@ paths:
                     format: objectid
                     example: 62749158efef318abc8d5a0f
                     description: Unique identifier for the site that hosts this asset
-                  createdOn:
-                    type: string
-                    format: date-time
-                    example: '2016-09-02T23:26:22.241Z'
-                    description: Date the asset metadata was created
-                  lastUpdated:
-                    type: string
-                    format: date-time
-                    example: '2016-09-06T21:12:22.148Z'
-                    description: Date the asset metadata was last updated
                   hostedUrl:
                     type: string
                     format: uri
                     example: example.com/hostedimage.png
                     description: Link to the asset
+                  originalFileName:
+                    type: string
+                    example: image.png
+                    description: Original file name at the time of upload
+                  displayName:
+                    type: string
+                    example: example-image-123.png
+                    description: Display name of the asset
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    example: '2016-09-06T21:12:22.148Z'
+                    description: Date the asset metadata was last updated
+                  createdOn:
+                    type: string
+                    format: date-time
+                    example: '2016-09-02T23:26:22.241Z'
+                    description: Date the asset metadata was created
                   variants:
                     type: array
                     items:
@@ -6736,6 +7547,10 @@ paths:
                         error:
                           type: string
                           description: Any associated validation errors
+                  altText:
+                    type: string
+                    example: A red chair
+                    description: The visual description of the asset
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
@@ -6753,6 +7568,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -6795,6 +7627,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/asset_folders':
@@ -6928,6 +7777,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -7039,6 +7905,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/asset_folders/{asset_folder_id}':
@@ -7133,6 +8016,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/webhooks':
@@ -7304,6 +8204,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -7311,8 +8228,7 @@ paths:
       x-fern-sdk-method-name: create
       operationId: create-webhook
       summary: Create Webhook
-      description: |
-        Create a new Webhook, to be notified when Webflow resources change. Limit of 75 registrations per `triggerType`, per site. </br></br> Access to this endpoint requires a bearer token from a Data Client App. The only exceptions are for creating webhooks with `site_publish` or `form_submission` triggers, which can be done with Site Tokens </br> Required scope | `sites:write`
+      description: "Create a new Webhook, to be notified when Webflow resources change. Limit of 75 registrations per `triggerType`, per site. <blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"https://developers.webflow.com/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>     Required scope | `sites:write`\n"
       tags:
         - Webhooks
       parameters:
@@ -7484,6 +8400,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/webhooks/{webhook_id}':
@@ -7604,6 +8537,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -7643,6 +8593,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/forms':
@@ -7909,6 +8876,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/forms/{form_id}':
@@ -8084,6 +9068,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/forms/{form_id}/submissions':
@@ -8218,6 +9219,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/form_submissions/{form_submission_id}':
@@ -8308,6 +9326,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -8410,6 +9445,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/users':
@@ -8876,6 +9928,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/users/{user_id}':
@@ -9116,6 +10185,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -9397,6 +10483,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     delete:
@@ -9520,6 +10623,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/users/invite':
@@ -9848,6 +10968,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/accessgroups':
@@ -10069,6 +11206,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/products':
@@ -10571,6 +11725,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     post:
@@ -11416,6 +12587,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/products/{product_id}':
@@ -11888,6 +13076,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -12622,6 +13827,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/products/{product_id}/skus':
@@ -13042,6 +14264,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/products/{product_id}/skus/{sku_id}':
@@ -13460,6 +14699,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/orders':
@@ -14838,6 +16094,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/orders/{order_id}':
@@ -15860,6 +17133,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -16905,6 +18195,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/orders/{order_id}/fulfill':
@@ -17938,6 +19245,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/orders/{order_id}/unfulfill':
@@ -18960,6 +20284,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/orders/{order_id}/refund':
@@ -19998,6 +21339,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/{item_id}/inventory':
@@ -20131,6 +21489,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
     patch:
@@ -20288,6 +21663,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/ecommerce/settings':
@@ -20413,6 +21805,23 @@ paths:
               description: Contains your current overall rate limit per minute
               schema:
                 type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
         '500':
           description: We had a problem with our server. Try again later.
 components:
