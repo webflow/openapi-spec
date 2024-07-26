@@ -5434,7 +5434,11 @@ paths:
         - OAuth2:
             - 'page:write'
       summary: Update Page Content
-      description: 'Update static content on a static page. This endpoint supports sending 1000 nodes per request. </br></br> Required scope | `pages:write`'
+      description: |
+        This endpoint allows for updating static content on a static page within a secondary locale. It is designed specifically for localized pages and can handle up to 1000 nodes per request.
+        <blockquote class="callout callout_info"><p><strong>Note:</strong>This endpoint is specifically for localized pages. Ensure that the locale specified is a valid secondary locale for the site.</p></blockquote>
+
+        Required scope | `pages:write`
       operationId: update-static-content
       tags:
         - Pages
@@ -21871,10 +21875,12 @@ webhooks:
         content:
           application/json:
             schema:
+              description: The Webhook payload for when a form is submitted
               properties:
                 triggerType:
-                  type: string
                   description: The type of event that triggered the request
+                  type: string
+                  readOnly: true
                   example: form_submission
                 payload:
                   type: object
@@ -21899,19 +21905,28 @@ webhooks:
                       type: string
                       description: The timestamp the form was submitted
                       example: '2022-09-14T12:35:16.117Z'
+                    id:
+                      type: string
+                      description: the ID of the event
+                      example: 6321ca84df3949bfc6752327
                     formId:
                       type: string
                       format: objectid
-                      description: The id of the form submission
+                      description: The ID of the form submission
                       example: 6321ca84df3949bfc6752327
               example:
-                name: Sample Form
-                site: 62749158efef318abc8d5a0f
-                data:
-                  name: Some One
-                  email: some.one@home.com
-                d: '2022-09-14T12:35:16.117Z'
-                id: 6321ca84df3949bfc6752327
+                triggerType: form_submission
+                payload:
+                  name: Contact Us
+                  siteId: 65427cf400e02b306eaa049c
+                  data:
+                    First Name: Zaphod
+                    Last Name: Beeblebrox
+                    email: zaphod@heartofgold.ai
+                    Phone Number: 15550000000
+                  submittedAt: '2022-09-14T12:35:16.117Z'
+                  id: 6321ca84df3949bfc6752327
+                  formId: 65429eadebe8a9f3a30f62d0
   site_publish:
     post:
       operationId: site_publish
@@ -21923,21 +21938,27 @@ webhooks:
         content:
           application/json:
             schema:
+              description: The Webhook payload for when a Site is published
               properties:
+                triggerType:
+                  description: null
+                  type: string
+                  readOnly: true
+                  example: site_publish
                 payload:
                   type: object
                   description: The payload of data sent from Webflow
                   properties:
-                    site:
-                      description: The site id that was published
+                    siteId:
+                      description: The ID of the site that was published
                       type: string
                       format: objectid
                       example: 62749158efef318abc8d5a0f
-                    publishTime:
+                    publishedOn:
                       description: The timestamp of the publish event
                       type: string
                       format: date-time
-                      example: 1653619272801
+                      example: 2024-07-26T16:43:20.440Z
                     domains:
                       description: The domains that were published
                       type: array
@@ -21948,16 +21969,17 @@ webhooks:
                     publishedBy:
                       type: object
                       description: The name and id of the user who published the site
+                      example:
+                        displayName: Zaphod BeebleBrox
                   example:
                     triggerType: site_publish
                     payload:
                       site: 62749158efef318abc8d5a0f
-                      publishTime: 1653619272801
+                      publishTime: 2024-07-26T16:43:20.440Z
                       domains:
                         - my-website.webflow.io
                       publishedBy:
-                        name: Some One
-                        id: 123460a7b6c16def4527122d
+                        displayName: Zaphod BeebleBrox
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -24426,19 +24448,43 @@ webhooks:
         content:
           application/json:
             schema:
-              properties:
-                deleted:
-                  type: number
-                  description: The number of items deleted
-                  example: 1
-                itemId:
-                  type: string
-                  format: objectid
-                  description: The id of the collection item that was deleted
-                  example: 6321ca84df3949bfc6752327
+              properties: null
+              triggerType:
+                description: The type of event that triggered the request
+                type: string
+                readOnly: true
+                example: collection_item_deleted
+              payload:
+                description: The payload of data sent from Webflow
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: objectid
+                    description: The ID of the collection item that was deleted
+                    example: 6321ca84df3949bfc6752327
+                  siteId:
+                    type: string
+                    format: objectid
+                    description: The ID of the site
+                    example: 65427cf400e02b306eaa049c
+                  workspaceId:
+                    type: string
+                    format: objectid
+                    description: The ID of the workspace
+                    example: 625860a7a6c16d624927122f
+                  collectionId:
+                    type: string
+                    format: objectid
+                    description: The ID of the collection
+                    example: 664243617fcc8b464b23c4ee
               example:
-                deleted: 1
-                itemId: 6321ca84df3949bfc6752327
+                triggerType: 'collection_item_deleted,'
+                payload:
+                  id: 66424365e972c886137a1cf1
+                  siteId: 65427cf400e02b306eaa049c
+                  workspaceId: 625860a7a6c16d624927122f
+                  collectionId: 664243617fcc8b464b23c4ee
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -24454,19 +24500,43 @@ webhooks:
         content:
           application/json:
             schema:
-              properties:
-                deleted:
-                  type: number
-                  description: The number of items deleted
-                  example: 1
-                itemId:
-                  type: string
-                  format: objectid
-                  description: The id of the collection item that was deleted
-                  example: 6321ca84df3949bfc6752327
+              properties: null
+              triggerType:
+                description: The type of event that triggered the request
+                type: string
+                readOnly: true
+                example: collection_item_deleted
+              payload:
+                description: The payload of data sent from Webflow
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: objectid
+                    description: The ID of the collection item that was deleted
+                    example: 6321ca84df3949bfc6752327
+                  siteId:
+                    type: string
+                    format: objectid
+                    description: The ID of the site
+                    example: 65427cf400e02b306eaa049c
+                  workspaceId:
+                    type: string
+                    format: objectid
+                    description: The ID of the workspace
+                    example: 625860a7a6c16d624927122f
+                  collectionId:
+                    type: string
+                    format: objectid
+                    description: The ID of the collection
+                    example: 664243617fcc8b464b23c4ee
               example:
-                deleted: 1
-                itemId: 6321ca84df3949bfc6752327
+                triggerType: 'collection_item_deleted,'
+                payload:
+                  id: 66424365e972c886137a1cf1
+                  siteId: 65427cf400e02b306eaa049c
+                  workspaceId: 625860a7a6c16d624927122f
+                  collectionId: 664243617fcc8b464b23c4ee
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -24484,21 +24554,37 @@ webhooks:
               description: The Webhook payload for when a Page is created
               type: object
               properties:
-                siteId:
+                triggerType:
                   type: string
-                  format: objectid
-                  example: 562ac0395358780a1f5e6fbd
-                pageId:
-                  type: string
-                  format: objectid
-                  example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
-                pageTitle:
-                  type: string
-                  example: My New Page
-                createdAt:
-                  type: string
-                  format: date-time
-                  example: '2022-12-07T16:51:37.571Z'
+                  description: The type of event that triggered the request
+                  readOnly: true
+                  example: page_created
+              payload:
+                type: object
+                description: The payload of data sent from Webflow
+                properties:
+                  siteId:
+                    type: string
+                    format: objectid
+                    example: 562ac0395358780a1f5e6fbd
+                  pageId:
+                    type: string
+                    format: objectid
+                    example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                  pageTitle:
+                    type: string
+                    example: My New Page
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: '2022-12-07T16:51:37.571Z'
+              example:
+                triggerType: page_created
+                payload:
+                  siteId: 65427cf400e02b306eaa049c
+                  pageId: 66a3cfb276641574f5d58311
+                  pageTitle: Heart of Gold Specs
+                  createdOn: 2024-07-26T16:32:50.903Z
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -24516,21 +24602,37 @@ webhooks:
               description: The Webhook payload for when a Page's metadata is updated
               type: object
               properties:
-                siteId:
+                triggerType:
+                  description: The type of event that triggered the request
                   type: string
-                  format: objectid
-                  example: 562ac0395358780a1f5e6fbd
-                pageId:
-                  type: string
-                  format: objectid
-                  example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
-                pageTitle:
-                  type: string
-                  example: My New Page
-                lastUpdated:
-                  type: string
-                  format: date-time
-                  example: '2022-12-07T16:51:37.571Z'
+                  readOnly: true
+                  example: page_metadata_updated
+                payload:
+                  description: The payload of data sent from Webflow
+                  type: object
+                  properties:
+                    siteId:
+                      type: string
+                      format: objectid
+                      example: 562ac0395358780a1f5e6fbd
+                    pageId:
+                      type: string
+                      format: objectid
+                      example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                    pageTitle:
+                      type: string
+                      example: My New Page
+                    lastUpdated:
+                      type: string
+                      format: date-time
+                      example: '2022-12-07T16:51:37.571Z'
+                example:
+                  triggerType: page_metadata_updated
+                  payload:
+                    siteId: 65427cf400e02b306eaa049c
+                    pageId: 66a3cfb276641574f5d58311
+                    pageTitle: Heart of Gold Specs
+                    lastUpdated: 2024-07-26T16:32:50.903Z
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -24548,21 +24650,36 @@ webhooks:
               description: The Webhook payload for when a Page is deleted
               type: object
               properties:
-                siteId:
+                triggerType:
+                  description: The type of event that triggered the request
                   type: string
-                  format: objectid
-                  example: 562ac0395358780a1f5e6fbd
-                pageId:
-                  type: string
-                  format: objectid
-                  example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
-                pageTitle:
-                  type: string
-                  example: My New Page
-                deletedAt:
-                  type: string
-                  format: date-time
-                  example: '2022-12-07T16:51:37.571Z'
+                  readOnly: true
+                payload:
+                  description: The payload of data sent from Webflow
+                  type: object
+                  properties:
+                    siteId:
+                      type: string
+                      format: objectid
+                      example: 562ac0395358780a1f5e6fbd
+                    pageId:
+                      type: string
+                      format: objectid
+                      example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                    pageTitle:
+                      type: string
+                      example: My New Page
+                    deletedOn:
+                      type: string
+                      format: date-time
+                      example: '2022-12-07T16:51:37.571Z'
+              example:
+                triggerType: page_deleted
+                payload:
+                  siteId: 65427cf400e02b306eaa049c
+                  pageId: 66a3cfb276641574f5d58311
+                  pageTitle: Heart of Gold Specs
+                  deletedOn: 2024-07-26T16:32:50.903Z
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
