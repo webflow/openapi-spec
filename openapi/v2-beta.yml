@@ -540,7 +540,6 @@ paths:
                           tag: es-MX
                 required:
                   - id
-                readOnly: null
                 properties:
                   id:
                     type: string
@@ -731,7 +730,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -864,7 +862,6 @@ paths:
                                 tag: es-MX
                       required:
                         - id
-                      readOnly: null
                       properties:
                         id:
                           type: string
@@ -1217,7 +1214,6 @@ paths:
                           tag: es-MX
                 required:
                   - id
-                readOnly: null
                 properties:
                   id:
                     type: string
@@ -1487,7 +1483,6 @@ paths:
                           tag: es-MX
                 required:
                   - id
-                readOnly: null
                 properties:
                   id:
                     type: string
@@ -1678,7 +1673,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -1711,7 +1705,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
         '404':
           description: Requested resource not found
         '429':
@@ -1810,7 +1803,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -1843,7 +1835,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
         '404':
           description: Requested resource not found
         '429':
@@ -2404,7 +2395,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -2437,7 +2427,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
         '404':
           description: Requested resource not found
         '429':
@@ -9090,20 +9079,11 @@ paths:
                         url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
                       properties:
                         id:
+                          readOnly: true
                           type: string
                           format: objectid
                           example: 57ca0a9e418c504a6e1acbb6
                           description: Unique identifier for the Webhook registration
-                        workspaceId:
-                          type: string
-                          format: objectid
-                          example: 580e63e98c9a982ac9b8b741
-                          description: Unique identifier for the Workspace the Webhook is registered in
-                        siteId:
-                          type: string
-                          format: objectid
-                          example: 562ac0395358780a1f5e6fbd
-                          description: Unique identifier for the Site the Webhook is registered in
                         triggerType:
                           type: string
                           example: form_submission
@@ -9139,23 +9119,42 @@ paths:
                             - collection_item_changed
                             - collection_item_deleted
                             - collection_item_unpublished
+                        url:
+                          type: string
+                          example: 'https://example.com/webhook'
+                          description: URL to send the Webhook payload to
+                        workspaceId:
+                          readOnly: true
+                          type: string
+                          format: objectid
+                          example: 580e63e98c9a982ac9b8b741
+                          description: Unique identifier for the Workspace the Webhook is registered in
+                        siteId:
+                          readOnly: true
+                          type: string
+                          format: objectid
+                          example: 562ac0395358780a1f5e6fbd
+                          description: Unique identifier for the Site the Webhook is registered in
                         filter:
-                          description: Filter for selecting which events you want Webhooks to be sent for. Only supported for form_submission trigger types.
+                          description: 'Only supported for the `form_submission` trigger type. Filter for the form you want Webhooks to be sent for. '
                           type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the form you'd like to recieve notifications for.
+                              example: My Form
                         lastTriggered:
+                          readOnly: true
                           type: string
                           format: date-time
                           example: '2016-09-06T21:12:22.148Z'
                           description: Date the Webhook instance was last triggered
                         createdOn:
+                          readOnly: true
                           type: string
                           format: date-time
                           example: '2016-09-02T23:26:22.241Z'
                           description: Date the Webhook registration was created
-                        url:
-                          type: string
-                          example: 'https://example.com/webhook'
-                          description: URL to send the Webhook payload to
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
@@ -9216,11 +9215,22 @@ paths:
         content:
           application/json:
             schema:
-              description: The request to create a Webhook
-              required:
-                - triggerType
-                - url
+              example:
+                id: 582266e0cd48de0f0e3c6d8b
+                triggerType: form_submission
+                siteId: 562ac0395358780a1f5e6fbd
+                workspaceId: 4f4e46fd476ea8c507000001
+                createdOn: '2022-11-08T23:59:28.572Z'
+                lastTriggered: '2023-02-08T23:59:28.572Z'
+                filter: null
+                url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
               properties:
+                id:
+                  readOnly: true
+                  type: string
+                  format: objectid
+                  example: 57ca0a9e418c504a6e1acbb6
+                  description: Unique identifier for the Webhook registration
                 triggerType:
                   type: string
                   example: form_submission
@@ -9258,17 +9268,40 @@ paths:
                     - collection_item_unpublished
                 url:
                   type: string
-                  format: uri
-                  example: 'https://api.mydomain.com/webhook'
-                  description: |
-                    The server URI that Webflow will call when your Webhook is triggered
+                  example: 'https://example.com/webhook'
+                  description: URL to send the Webhook payload to
+                workspaceId:
+                  readOnly: true
+                  type: string
+                  format: objectid
+                  example: 580e63e98c9a982ac9b8b741
+                  description: Unique identifier for the Workspace the Webhook is registered in
+                siteId:
+                  readOnly: true
+                  type: string
+                  format: objectid
+                  example: 562ac0395358780a1f5e6fbd
+                  description: Unique identifier for the Site the Webhook is registered in
                 filter:
+                  description: 'Only supported for the `form_submission` trigger type. Filter for the form you want Webhooks to be sent for. '
                   type: object
-                  example:
-                    name: Email Form
-                  description: |
-                    Filter for selecting which events you want Webhooks to be triggered for.
-                    ** Only available for `form_submission` trigger types. **
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the form you'd like to recieve notifications for.
+                      example: My Form
+                lastTriggered:
+                  readOnly: true
+                  type: string
+                  format: date-time
+                  example: '2016-09-06T21:12:22.148Z'
+                  description: Date the Webhook instance was last triggered
+                createdOn:
+                  readOnly: true
+                  type: string
+                  format: date-time
+                  example: '2016-09-02T23:26:22.241Z'
+                  description: Date the Webhook registration was created
       responses:
         '201':
           description: Request was successful
@@ -9286,20 +9319,11 @@ paths:
                   url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
                 properties:
                   id:
+                    readOnly: true
                     type: string
                     format: objectid
                     example: 57ca0a9e418c504a6e1acbb6
                     description: Unique identifier for the Webhook registration
-                  workspaceId:
-                    type: string
-                    format: objectid
-                    example: 580e63e98c9a982ac9b8b741
-                    description: Unique identifier for the Workspace the Webhook is registered in
-                  siteId:
-                    type: string
-                    format: objectid
-                    example: 562ac0395358780a1f5e6fbd
-                    description: Unique identifier for the Site the Webhook is registered in
                   triggerType:
                     type: string
                     example: form_submission
@@ -9335,23 +9359,42 @@ paths:
                       - collection_item_changed
                       - collection_item_deleted
                       - collection_item_unpublished
+                  url:
+                    type: string
+                    example: 'https://example.com/webhook'
+                    description: URL to send the Webhook payload to
+                  workspaceId:
+                    readOnly: true
+                    type: string
+                    format: objectid
+                    example: 580e63e98c9a982ac9b8b741
+                    description: Unique identifier for the Workspace the Webhook is registered in
+                  siteId:
+                    readOnly: true
+                    type: string
+                    format: objectid
+                    example: 562ac0395358780a1f5e6fbd
+                    description: Unique identifier for the Site the Webhook is registered in
                   filter:
-                    description: Filter for selecting which events you want Webhooks to be sent for. Only supported for form_submission trigger types.
+                    description: 'Only supported for the `form_submission` trigger type. Filter for the form you want Webhooks to be sent for. '
                     type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the form you'd like to recieve notifications for.
+                        example: My Form
                   lastTriggered:
+                    readOnly: true
                     type: string
                     format: date-time
                     example: '2016-09-06T21:12:22.148Z'
                     description: Date the Webhook instance was last triggered
                   createdOn:
+                    readOnly: true
                     type: string
                     format: date-time
                     example: '2016-09-02T23:26:22.241Z'
                     description: Date the Webhook registration was created
-                  url:
-                    type: string
-                    example: 'https://example.com/webhook'
-                    description: URL to send the Webhook payload to
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
@@ -9423,20 +9466,11 @@ paths:
                   url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
                 properties:
                   id:
+                    readOnly: true
                     type: string
                     format: objectid
                     example: 57ca0a9e418c504a6e1acbb6
                     description: Unique identifier for the Webhook registration
-                  workspaceId:
-                    type: string
-                    format: objectid
-                    example: 580e63e98c9a982ac9b8b741
-                    description: Unique identifier for the Workspace the Webhook is registered in
-                  siteId:
-                    type: string
-                    format: objectid
-                    example: 562ac0395358780a1f5e6fbd
-                    description: Unique identifier for the Site the Webhook is registered in
                   triggerType:
                     type: string
                     example: form_submission
@@ -9472,23 +9506,42 @@ paths:
                       - collection_item_changed
                       - collection_item_deleted
                       - collection_item_unpublished
+                  url:
+                    type: string
+                    example: 'https://example.com/webhook'
+                    description: URL to send the Webhook payload to
+                  workspaceId:
+                    readOnly: true
+                    type: string
+                    format: objectid
+                    example: 580e63e98c9a982ac9b8b741
+                    description: Unique identifier for the Workspace the Webhook is registered in
+                  siteId:
+                    readOnly: true
+                    type: string
+                    format: objectid
+                    example: 562ac0395358780a1f5e6fbd
+                    description: Unique identifier for the Site the Webhook is registered in
                   filter:
-                    description: Filter for selecting which events you want Webhooks to be sent for. Only supported for form_submission trigger types.
+                    description: 'Only supported for the `form_submission` trigger type. Filter for the form you want Webhooks to be sent for. '
                     type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the form you'd like to recieve notifications for.
+                        example: My Form
                   lastTriggered:
+                    readOnly: true
                     type: string
                     format: date-time
                     example: '2016-09-06T21:12:22.148Z'
                     description: Date the Webhook instance was last triggered
                   createdOn:
+                    readOnly: true
                     type: string
                     format: date-time
                     example: '2016-09-02T23:26:22.241Z'
                     description: Date the Webhook registration was created
-                  url:
-                    type: string
-                    example: 'https://example.com/webhook'
-                    description: URL to send the Webhook payload to
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
@@ -10850,7 +10903,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -11107,7 +11159,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -11405,7 +11456,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -11545,7 +11595,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -11818,7 +11867,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -12128,7 +12176,6 @@ paths:
                             description: Error code
                             enum:
                               - missing_scopes
-                          type: string
                   - allOf:
                       - example:
                           code: not_authorized
@@ -12445,8 +12492,6 @@ paths:
                                     - service-professional
                                     - service-repair
                                     - service-training
-                                    - standard-exempt
-                                    - standard-taxable
                                 default-sku:
                                   type: string
                                   format: objectid
@@ -12917,8 +12962,6 @@ paths:
                                     - service-professional
                                     - service-repair
                                     - service-training
-                                    - standard-exempt
-                                    - standard-taxable
                                 default-sku:
                                   type: string
                                   format: objectid
@@ -13323,8 +13366,6 @@ paths:
                               - service-professional
                               - service-repair
                               - service-training
-                              - standard-exempt
-                              - standard-taxable
                           default-sku:
                             type: string
                             format: objectid
@@ -13812,8 +13853,6 @@ paths:
                               - service-professional
                               - service-repair
                               - service-training
-                              - standard-exempt
-                              - standard-taxable
                           default-sku:
                             type: string
                             format: objectid
@@ -14349,8 +14388,6 @@ paths:
                             - service-professional
                             - service-repair
                             - service-training
-                            - standard-exempt
-                            - standard-taxable
                         default-sku:
                           type: string
                           format: objectid
@@ -14705,8 +14742,6 @@ paths:
                           - service-professional
                           - service-repair
                           - service-training
-                          - standard-exempt
-                          - standard-taxable
                       default-sku:
                         type: string
                         format: objectid
@@ -22905,7 +22940,7 @@ webhooks:
               description: The Webhook payload for when a Site is published
               properties:
                 triggerType:
-                  description: null
+                  description: The type of event that triggered the request
                   type: string
                   example: site_publish
                 payload:
@@ -22934,15 +22969,15 @@ webhooks:
                       description: The name and id of the user who published the site
                       example:
                         displayName: Zaphod BeebleBrox
-                  example:
-                    triggerType: site_publish
-                    payload:
-                      site: 62749158efef318abc8d5a0f
-                      publishTime: 2024-07-26T16:43:20.440Z
-                      domains:
-                        - my-website.webflow.io
-                      publishedBy:
-                        displayName: Zaphod BeebleBrox
+              example:
+                triggerType: site_publish
+                payload:
+                  site: 62749158efef318abc8d5a0f
+                  publishTime: 2024-07-26T16:43:20.440Z
+                  domains:
+                    - my-website.webflow.io
+                  publishedBy:
+                    displayName: Zaphod BeebleBrox
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -25411,35 +25446,35 @@ webhooks:
         content:
           application/json:
             schema:
-              properties: null
-              triggerType:
-                description: The type of event that triggered the request
-                type: string
-                example: collection_item_deleted
-              payload:
-                description: The payload of data sent from Webflow
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: objectid
-                    description: The ID of the collection item that was deleted
-                    example: 6321ca84df3949bfc6752327
-                  siteId:
-                    type: string
-                    format: objectid
-                    description: The ID of the site
-                    example: 65427cf400e02b306eaa049c
-                  workspaceId:
-                    type: string
-                    format: objectid
-                    description: The ID of the workspace
-                    example: 625860a7a6c16d624927122f
-                  collectionId:
-                    type: string
-                    format: objectid
-                    description: The ID of the collection
-                    example: 664243617fcc8b464b23c4ee
+              properties:
+                triggerType:
+                  description: The type of event that triggered the request
+                  type: string
+                  example: collection_item_deleted
+                payload:
+                  description: The payload of data sent from Webflow
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: objectid
+                      description: The ID of the collection item that was deleted
+                      example: 6321ca84df3949bfc6752327
+                    siteId:
+                      type: string
+                      format: objectid
+                      description: The ID of the site
+                      example: 65427cf400e02b306eaa049c
+                    workspaceId:
+                      type: string
+                      format: objectid
+                      description: The ID of the workspace
+                      example: 625860a7a6c16d624927122f
+                    collectionId:
+                      type: string
+                      format: objectid
+                      description: The ID of the collection
+                      example: 664243617fcc8b464b23c4ee
               example:
                 triggerType: 'collection_item_deleted,'
                 payload:
@@ -25462,35 +25497,35 @@ webhooks:
         content:
           application/json:
             schema:
-              properties: null
-              triggerType:
-                description: The type of event that triggered the request
-                type: string
-                example: collection_item_deleted
-              payload:
-                description: The payload of data sent from Webflow
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: objectid
-                    description: The ID of the collection item that was deleted
-                    example: 6321ca84df3949bfc6752327
-                  siteId:
-                    type: string
-                    format: objectid
-                    description: The ID of the site
-                    example: 65427cf400e02b306eaa049c
-                  workspaceId:
-                    type: string
-                    format: objectid
-                    description: The ID of the workspace
-                    example: 625860a7a6c16d624927122f
-                  collectionId:
-                    type: string
-                    format: objectid
-                    description: The ID of the collection
-                    example: 664243617fcc8b464b23c4ee
+              properties:
+                triggerType:
+                  description: The type of event that triggered the request
+                  type: string
+                  example: collection_item_deleted
+                payload:
+                  description: The payload of data sent from Webflow
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: objectid
+                      description: The ID of the collection item that was deleted
+                      example: 6321ca84df3949bfc6752327
+                    siteId:
+                      type: string
+                      format: objectid
+                      description: The ID of the site
+                      example: 65427cf400e02b306eaa049c
+                    workspaceId:
+                      type: string
+                      format: objectid
+                      description: The ID of the workspace
+                      example: 625860a7a6c16d624927122f
+                    collectionId:
+                      type: string
+                      format: objectid
+                      description: The ID of the collection
+                      example: 664243617fcc8b464b23c4ee
               example:
                 triggerType: 'collection_item_deleted,'
                 payload:
@@ -25519,25 +25554,25 @@ webhooks:
                   type: string
                   description: The type of event that triggered the request
                   example: page_created
-              payload:
-                type: object
-                description: The payload of data sent from Webflow
-                properties:
-                  siteId:
-                    type: string
-                    format: objectid
-                    example: 562ac0395358780a1f5e6fbd
-                  pageId:
-                    type: string
-                    format: objectid
-                    example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
-                  pageTitle:
-                    type: string
-                    example: My New Page
-                  createdAt:
-                    type: string
-                    format: date-time
-                    example: '2022-12-07T16:51:37.571Z'
+                payload:
+                  type: object
+                  description: The payload of data sent from Webflow
+                  properties:
+                    siteId:
+                      type: string
+                      format: objectid
+                      example: 562ac0395358780a1f5e6fbd
+                    pageId:
+                      type: string
+                      format: objectid
+                      example: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                    pageTitle:
+                      type: string
+                      example: My New Page
+                    createdOn:
+                      type: string
+                      format: date-time
+                      example: '2022-12-07T16:51:37.571Z'
               example:
                 triggerType: page_created
                 payload:
@@ -25585,13 +25620,13 @@ webhooks:
                       type: string
                       format: date-time
                       example: '2022-12-07T16:51:37.571Z'
-                example:
-                  triggerType: page_metadata_updated
-                  payload:
-                    siteId: 65427cf400e02b306eaa049c
-                    pageId: 66a3cfb276641574f5d58311
-                    pageTitle: Heart of Gold Specs
-                    lastUpdated: 2024-07-26T16:32:50.903Z
+              example:
+                triggerType: page_metadata_updated
+                payload:
+                  siteId: 65427cf400e02b306eaa049c
+                  pageId: 66a3cfb276641574f5d58311
+                  pageTitle: Heart of Gold Specs
+                  lastUpdated: 2024-07-26T16:32:50.903Z
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
