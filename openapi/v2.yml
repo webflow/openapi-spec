@@ -21897,6 +21897,8 @@ components:
             'users:write': modify users on the site
             'workspace:read': read workspace resource data
             'workspace:write': write workspace resource data
+            'site_config:read': read site configuration data
+            'site_config:write': write site configuration data
           authorizationUrl: 'https://webflow.com/oauth/authorize'
           tokenUrl: 'https://api.webflow.com/oauth/token'
     ApiKey:

@@ -2227,6 +2227,111 @@ paths:
                     example: []
         '500':
           description: We had a problem with our server. Try again later.
+  '/sites/{site_id}/robots_txt':
+    get:
+      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-method-name: get
+      security:
+        - OAuth2:
+            - 'site_config:read'
+      operationId: get-robots-txt
+      summary: Get robots.txt
+      description: Retrieve the robots.txt configuration for various user agents.
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The robots.txt file for a given site
+                properties:
+                  rules:
+                    type: array
+                    description: List of rules for user agents.
+                    items:
+                      type: object
+                      properties:
+                        userAgent:
+                          type: string
+                          description: The user agent the rules apply to.
+                          example: googlebot
+                        allows:
+                          type: array
+                          description: List of paths allowed for this user agent.
+                          items:
+                            type: string
+                            description: Allowed path for the user agent.
+                            example: /public
+                        disallows:
+                          type: array
+                          description: List of paths disallowed for this user agent.
+                          items:
+                            type: string
+                            description: Disallowed path for the user agent.
+                            example: /checkout
+                      required:
+                        - userAgent
+                  sitemap:
+                    type: string
+                    description: URL to the sitemap.
+                    example: 'https://heartofgold.ship/sitemap.xml'
+                example:
+                  rules:
+                    - userAgent: googlebot
+                      allows: []
+                      disallows:
+                        - /vogon-poetry
+                        - /total-perspective-vortex
+                  sitemap: 'https://heartofgold.ship/sitemap.xml'
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
   '/sites/{site_id}/activity_logs':
     get:
       x-fern-sdk-group-name:
@@ -22855,6 +22960,8 @@ components:
             'users:write': modify users on the site
             'workspace:read': read workspace resource data
             'workspace:write': write workspace resource data
+            'site_config:read': read site configuration data
+            'site_config:write': write site configuration data
           authorizationUrl: 'https://webflow.com/oauth/authorize'
           tokenUrl: 'https://api.webflow.com/oauth/token'
     ApiKey:
