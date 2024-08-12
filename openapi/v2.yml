@@ -8767,6 +8767,7 @@ paths:
                       siteDomainId: 6419db964a9c436a4baf6248
                       pageId: 6419db964a9c43f6a3af6348
                       pageName: Home
+                      formElementId: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                       workspaceId: 580e63fc8c9a982ac9b8b744
                   pagination:
                     limit: 25
@@ -8801,6 +8802,7 @@ paths:
                         siteDomainId: 6419db964a9c436a4baf6248
                         pageId: 6419db964a9c43f6a3af6348
                         pageName: Home
+                        formElementId: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                         workspaceId: 580e63fc8c9a982ac9b8b744
                       description: A Webflow form
                       properties:
@@ -8898,6 +8900,10 @@ paths:
                           type: string
                           description: The user-visible name of the Page where the Form is placed
                           example: Home
+                        formElementId:
+                          type: string
+                          description: The unique id of the Form element
+                          example: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                         workspaceId:
                           type: string
                           format: objectid
@@ -9012,6 +9018,7 @@ paths:
                   siteDomainId: 6419db964a9c436a4baf6248
                   pageId: 6419db964a9c43f6a3af6348
                   pageName: Home
+                  formElementId: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                   workspaceId: 580e63fc8c9a982ac9b8b744
                 properties:
                   displayName:
@@ -9108,6 +9115,10 @@ paths:
                     type: string
                     description: The user-visible name of the Page where the Form is placed
                     example: Home
+                  formElementId:
+                    type: string
+                    description: The unique id of the Form element
+                    example: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                   workspaceId:
                     type: string
                     format: objectid
