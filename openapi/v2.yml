@@ -9231,7 +9231,7 @@ paths:
                     offset: 0
                     total: 2
                 properties:
-                  submissions:
+                  formSubmissions:
                     type: array
                     items:
                       example:
