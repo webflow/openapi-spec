@@ -8902,6 +8902,7 @@ paths:
                           example: Home
                         formElementId:
                           type: string
+                          nullable: true
                           description: The unique id of the Form element
                           example: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                         workspaceId:
@@ -9117,6 +9118,7 @@ paths:
                     example: Home
                   formElementId:
                     type: string
+                    nullable: true
                     description: The unique id of the Form element
                     example: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                   workspaceId:
@@ -21984,6 +21986,11 @@ webhooks:
                       format: objectid
                       description: The ID of the form submission
                       example: 6321ca84df3949bfc6752327
+                    formElementId:
+                      type: string
+                      nullable: true
+                      description: The unique id of the Form element
+                      example: 4e038d2c-6a1e-4953-7be9-a59a2b453177
               example:
                 triggerType: form_submission
                 payload:
@@ -21997,6 +22004,7 @@ webhooks:
                   submittedAt: '2022-09-14T12:35:16.117Z'
                   id: 6321ca84df3949bfc6752327
                   formId: 65429eadebe8a9f3a30f62d0
+                  formElementId: 4e038d2c-6a1e-4953-7be9-a59a2b453177
   site_publish:
     post:
       operationId: site_publish
