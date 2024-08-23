@@ -1151,7 +1151,8 @@ paths:
             - 'sites:read'
       operationId: get-site
       summary: Get Site
-      description: 'Get a site by site id </br></br>  Required scope | `sites:read`'
+      description: |
+        Get a site by site id </br></br>  Required scope | `sites:read`
       tags:
         - Sites
       parameters:
@@ -2236,7 +2237,10 @@ paths:
             - 'site_config:read'
       operationId: get-robots-txt
       summary: Get robots.txt
-      description: Retrieve the robots.txt configuration for various user agents.
+      description: |
+        Retrieve the robots.txt configuration for various user agents.
+
+        Required scope: `site_config:read`
       tags:
         - Sites
       parameters:
@@ -2296,6 +2300,840 @@ paths:
                         - /vogon-poetry
                         - /total-perspective-vortex
                   sitemap: 'https://heartofgold.ship/sitemap.xml'
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    put:
+      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-method-name: put
+      security:
+        - OAuth2:
+            - 'site_config:write'
+      operationId: replace-robots-txt
+      summary: Replace robots.txt
+      description: |
+        Replace the `robots.txt` configuration for various user agents.
+
+        Required scope | `site_config:write`
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The robots.txt file for a given site
+              properties:
+                rules:
+                  type: array
+                  description: List of rules for user agents.
+                  items:
+                    type: object
+                    properties:
+                      userAgent:
+                        type: string
+                        description: The user agent the rules apply to.
+                        example: googlebot
+                      allows:
+                        type: array
+                        description: List of paths allowed for this user agent.
+                        items:
+                          type: string
+                          description: Allowed path for the user agent.
+                          example: /public
+                      disallows:
+                        type: array
+                        description: List of paths disallowed for this user agent.
+                        items:
+                          type: string
+                          description: Disallowed path for the user agent.
+                          example: /checkout
+                    required:
+                      - userAgent
+                sitemap:
+                  type: string
+                  description: URL to the sitemap.
+                  example: 'https://heartofgold.ship/sitemap.xml'
+              example:
+                rules:
+                  - userAgent: googlebot
+                    allows: []
+                    disallows:
+                      - /vogon-poetry
+                      - /total-perspective-vortex
+                sitemap: 'https://heartofgold.ship/sitemap.xml'
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The robots.txt file for a given site
+                properties:
+                  rules:
+                    type: array
+                    description: List of rules for user agents.
+                    items:
+                      type: object
+                      properties:
+                        userAgent:
+                          type: string
+                          description: The user agent the rules apply to.
+                          example: googlebot
+                        allows:
+                          type: array
+                          description: List of paths allowed for this user agent.
+                          items:
+                            type: string
+                            description: Allowed path for the user agent.
+                            example: /public
+                        disallows:
+                          type: array
+                          description: List of paths disallowed for this user agent.
+                          items:
+                            type: string
+                            description: Disallowed path for the user agent.
+                            example: /checkout
+                      required:
+                        - userAgent
+                  sitemap:
+                    type: string
+                    description: URL to the sitemap.
+                    example: 'https://heartofgold.ship/sitemap.xml'
+                example:
+                  rules:
+                    - userAgent: googlebot
+                      allows: []
+                      disallows:
+                        - /vogon-poetry
+                        - /total-perspective-vortex
+                  sitemap: 'https://heartofgold.ship/sitemap.xml'
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    patch:
+      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-method-name: patch
+      security:
+        - OAuth2:
+            - 'site_config:write'
+      operationId: update-robots-txt
+      summary: Update robots.txt
+      description: |
+        Update the `robots.txt` configuration for various user agents.
+
+        Required scope | `site_config:write`
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The robots.txt file for a given site
+              properties:
+                rules:
+                  type: array
+                  description: List of rules for user agents.
+                  items:
+                    type: object
+                    properties:
+                      userAgent:
+                        type: string
+                        description: The user agent the rules apply to.
+                        example: googlebot
+                      allows:
+                        type: array
+                        description: List of paths allowed for this user agent.
+                        items:
+                          type: string
+                          description: Allowed path for the user agent.
+                          example: /public
+                      disallows:
+                        type: array
+                        description: List of paths disallowed for this user agent.
+                        items:
+                          type: string
+                          description: Disallowed path for the user agent.
+                          example: /checkout
+                    required:
+                      - userAgent
+                sitemap:
+                  type: string
+                  description: URL to the sitemap.
+                  example: 'https://heartofgold.ship/sitemap.xml'
+              example:
+                rules:
+                  - userAgent: googlebot
+                    allows: []
+                    disallows:
+                      - /vogon-poetry
+                      - /total-perspective-vortex
+                sitemap: 'https://heartofgold.ship/sitemap.xml'
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The robots.txt file for a given site
+                properties:
+                  rules:
+                    type: array
+                    description: List of rules for user agents.
+                    items:
+                      type: object
+                      properties:
+                        userAgent:
+                          type: string
+                          description: The user agent the rules apply to.
+                          example: googlebot
+                        allows:
+                          type: array
+                          description: List of paths allowed for this user agent.
+                          items:
+                            type: string
+                            description: Allowed path for the user agent.
+                            example: /public
+                        disallows:
+                          type: array
+                          description: List of paths disallowed for this user agent.
+                          items:
+                            type: string
+                            description: Disallowed path for the user agent.
+                            example: /checkout
+                      required:
+                        - userAgent
+                  sitemap:
+                    type: string
+                    description: URL to the sitemap.
+                    example: 'https://heartofgold.ship/sitemap.xml'
+                example:
+                  rules:
+                    - userAgent: googlebot
+                      allows: []
+                      disallows:
+                        - /vogon-poetry
+                        - /total-perspective-vortex
+                  sitemap: 'https://heartofgold.ship/sitemap.xml'
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    delete:
+      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-method-name: delete
+      security:
+        - OAuth2:
+            - 'site_config:write'
+      operationId: delete-robots-txt
+      summary: Delete robots.txt
+      description: |
+        Remove specific rules for a user-agent in your `robots.txt` file. To delete all rules for a user-agent, provide an empty rule set. This will remove the user-agent's entry entirely, leaving it subject to your site's default crawling behavior.
+
+        **Note:** Deleting a user-agent with no rules will make the user-agent's access unrestricted unless other directives apply.
+
+        Required scope: `site_config:write`
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The robots.txt file for a given site
+              properties:
+                rules:
+                  type: array
+                  description: List of rules for user agents.
+                  items:
+                    type: object
+                    properties:
+                      userAgent:
+                        type: string
+                        description: The user agent the rules apply to.
+                        example: googlebot
+                      allows:
+                        type: array
+                        description: List of paths allowed for this user agent.
+                        items:
+                          type: string
+                          description: Allowed path for the user agent.
+                          example: /public
+                      disallows:
+                        type: array
+                        description: List of paths disallowed for this user agent.
+                        items:
+                          type: string
+                          description: Disallowed path for the user agent.
+                          example: /checkout
+                    required:
+                      - userAgent
+                sitemap:
+                  type: string
+                  description: URL to the sitemap.
+                  example: 'https://heartofgold.ship/sitemap.xml'
+              example:
+                rules:
+                  - userAgent: googlebot
+                    allows: []
+                    disallows:
+                      - /vogon-poetry
+                      - /total-perspective-vortex
+                sitemap: 'https://heartofgold.ship/sitemap.xml'
+            example:
+              rules:
+                - userAgent: '*'
+                  allows: []
+                  disallows:
+                    - /bubbles
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The robots.txt file for a given site
+                properties:
+                  rules:
+                    type: array
+                    description: List of rules for user agents.
+                    items:
+                      type: object
+                      properties:
+                        userAgent:
+                          type: string
+                          description: The user agent the rules apply to.
+                          example: googlebot
+                        allows:
+                          type: array
+                          description: List of paths allowed for this user agent.
+                          items:
+                            type: string
+                            description: Allowed path for the user agent.
+                            example: /public
+                        disallows:
+                          type: array
+                          description: List of paths disallowed for this user agent.
+                          items:
+                            type: string
+                            description: Disallowed path for the user agent.
+                            example: /checkout
+                      required:
+                        - userAgent
+                  sitemap:
+                    type: string
+                    description: URL to the sitemap.
+                    example: 'https://heartofgold.ship/sitemap.xml'
+                example:
+                  rules:
+                    - userAgent: googlebot
+                      allows: []
+                      disallows:
+                        - /vogon-poetry
+                        - /total-perspective-vortex
+                  sitemap: 'https://heartofgold.ship/sitemap.xml'
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+  '/sites/{site_id}/redirects':
+    get:
+      x-fern-sdk-group-name: redirects
+      x-fern-sdk-method-name: get
+      security:
+        - OAuth2:
+            - 'sites:read'
+      operationId: get-redirects
+      summary: Get URL redirects
+      description: |
+        Fetch a list of all URL redirect rules configured for a specific site. 
+
+        Use this endpoint to review, audit, or manage the redirection rules that control how traffic is rerouted on your site.
+
+
+        Required scope: `sites:read`
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Site redirects response
+                properties:
+                  redirects:
+                    type: array
+                    description: List of redirects for a given site
+                    items:
+                      type: object
+                      description: 'A single redirection rule, specifying a source URL and a destination URL.'
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of the specific redirect rule
+                          example: 66c4cb9a20cac35ed19500e6
+                          readOnly: true
+                        fromUrl:
+                          type: string
+                          description: The source URL path that will be redirected.
+                          example: /mostly-harmless
+                        toUrl:
+                          type: string
+                          description: The target URL path where the user or client will be redirected.
+                          example: /earth
+                      example:
+                        id: 42e1a2b7aa1a13f768a0042a
+                        fromUrl: /mostly-harmless
+                        toUrl: /earth
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+                example:
+                  redirects:
+                    - id: 42e1a2b7aa1a13f768a0042a
+                      fromUrl: /mostly-harmless
+                      toUrl: /earth
+                    - id: 6x9e7f8d9a4b1c2d3e4f5678
+                      fromUrl: /babel-fish
+                      toUrl: /translate
+                  pagination:
+                    limit: 100
+                    offset: 0
+                    total: 2
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    post:
+      x-fern-sdk-group-name: redirects
+      x-fern-sdk-method-name: post
+      security:
+        - OAuth2:
+            - 'sites:write'
+      operationId: create-redirect
+      summary: Create a URL redirect
+      description: |
+        Add a new URL redirection rule to a site. 
+
+        This endpoint allows you to define a source path (`fromUrl`) and its corresponding destination path (`toUrl`), which will dictate how traffic is rerouted on your site. This is useful for managing site changes, restructuring URLs, or handling outdated links.
+
+        Required scope: `sites:write`
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: 'A single redirection rule, specifying a source URL and a destination URL.'
+              properties:
+                id:
+                  type: string
+                  description: The ID of the specific redirect rule
+                  example: 66c4cb9a20cac35ed19500e6
+                  readOnly: true
+                fromUrl:
+                  type: string
+                  description: The source URL path that will be redirected.
+                  example: /mostly-harmless
+                toUrl:
+                  type: string
+                  description: The target URL path where the user or client will be redirected.
+                  example: /earth
+              example:
+                id: 42e1a2b7aa1a13f768a0042a
+                fromUrl: /mostly-harmless
+                toUrl: /earth
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'A single redirection rule, specifying a source URL and a destination URL.'
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the specific redirect rule
+                    example: 66c4cb9a20cac35ed19500e6
+                    readOnly: true
+                  fromUrl:
+                    type: string
+                    description: The source URL path that will be redirected.
+                    example: /mostly-harmless
+                  toUrl:
+                    type: string
+                    description: The target URL path where the user or client will be redirected.
+                    example: /earth
+                example:
+                  id: 42e1a2b7aa1a13f768a0042a
+                  fromUrl: /mostly-harmless
+                  toUrl: /earth
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+  '/sites/{site_id}/redirects/{redirect_id}':
+    delete:
+      x-fern-sdk-group-name: redirects
+      x-fern-sdk-method-name: delete
+      security:
+        - OAuth2:
+            - 'sites:write'
+      operationId: delete-redirects
+      summary: Delete URL redirects
+      description: |
+        Remove a URL redirection rule from a site. 
+
+        This is useful for cleaning up outdated or unnecessary redirects, ensuring that your site's routing behavior remains efficient and up-to-date.
+
+        Required scope: `sites:write`
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: redirect_id
+          in: path
+          description: Unique identifier site rediect
+          example: 66c4cb9a20cac35ed19500e6
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Site redirects response
+                properties:
+                  redirects:
+                    type: array
+                    description: List of redirects for a given site
+                    items:
+                      type: object
+                      description: 'A single redirection rule, specifying a source URL and a destination URL.'
+                      properties:
+                        id:
+                          type: string
+                          description: The ID of the specific redirect rule
+                          example: 66c4cb9a20cac35ed19500e6
+                          readOnly: true
+                        fromUrl:
+                          type: string
+                          description: The source URL path that will be redirected.
+                          example: /mostly-harmless
+                        toUrl:
+                          type: string
+                          description: The target URL path where the user or client will be redirected.
+                          example: /earth
+                      example:
+                        id: 42e1a2b7aa1a13f768a0042a
+                        fromUrl: /mostly-harmless
+                        toUrl: /earth
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+                example:
+                  redirects:
+                    - id: 42e1a2b7aa1a13f768a0042a
+                      fromUrl: /mostly-harmless
+                      toUrl: /earth
+                    - id: 6x9e7f8d9a4b1c2d3e4f5678
+                      fromUrl: /babel-fish
+                      toUrl: /translate
+                  pagination:
+                    limit: 100
+                    offset: 0
+                    total: 2
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
