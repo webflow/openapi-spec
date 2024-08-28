@@ -3476,7 +3476,6 @@ paths:
                       type: object
                       required:
                         - id
-                        - fields
                       properties:
                         id:
                           type: string
@@ -6611,7 +6610,7 @@ paths:
                       description: The Page object
                       type: object
                       required:
-                        - pageId
+                        - id
                       example:
                         id: 6596da6045e56dee495bcbba
                         siteId: 6258612d1ee792848f805dcf
@@ -6821,7 +6820,7 @@ paths:
               description: The Page object
               type: object
               required:
-                - pageId
+                - id
               example:
                 id: 6596da6045e56dee495bcbba
                 siteId: 6258612d1ee792848f805dcf
@@ -6954,7 +6953,7 @@ paths:
                 description: The Page object
                 type: object
                 required:
-                  - pageId
+                  - id
                 example:
                   id: 6390c49774a71f0e3c1a08ee
                   siteId: 6390c49674a71f84b51a08d8
