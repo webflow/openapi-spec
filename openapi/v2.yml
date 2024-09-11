@@ -4492,6 +4492,8 @@ paths:
                         titleCopied: false
                         description: Dive deep into the mysteries of the universe with your guide to everything galactic.
                         descriptionCopied: false
+                      localeId: 653fd9af6a07fc9cfd7a5e57
+                      publishedPath: /en-us/guide-to-the-galaxy
                     - id: 6596da6045e56dee495bcbad
                       siteId: 6258612d1ee792848f805dcf
                       parentId: null
@@ -4511,6 +4513,8 @@ paths:
                         titleCopied: false
                         description: 'Join the galaxy in celebrating Towel Day, the day dedicated to carrying towels everywhere in memory of Douglas Adams.'
                         descriptionCopied: false
+                      localeId: 653fd9af6a07fc9cfd7a5e57
+                      publishedPath: /en-us/towel-day
                   pagination:
                     limit: 20
                     offset: 0
@@ -4543,6 +4547,8 @@ paths:
                           titleCopied: false
                           description: Dive deep into the mysteries of the universe with your guide to everything galactic.
                           descriptionCopied: false
+                        localeId: 653fd9af6a07fc9cfd7a5e57
+                        publishedPath: /en-us/guide-to-the-galaxy
                       properties:
                         id:
                           type: string
@@ -4646,6 +4652,18 @@ paths:
                               description: Indicates the Open Graph description was copied from the SEO description
                               readOnly: true
                               default: true
+                        localeId:
+                          description: Unique ID of the page locale
+                          type: string
+                          format: objectid
+                          nullable: true
+                          readOnly: true
+                          example: 653fd9af6a07fc9cfd7a5e57
+                        publishedPath:
+                          description: Relative path of the published page URL
+                          type: string
+                          readOnly: true
+                          example: /heart-of-gold
                   pagination:
                     description: Pagination object
                     type: object
@@ -4738,27 +4756,27 @@ paths:
                 required:
                   - id
                 example:
-                  id: 6390c49774a71f0e3c1a08ee
-                  siteId: 6390c49674a71f84b51a08d8
-                  title: Blog Categories Template
-                  slug: detail_blog-category
-                  collectionId: 6390c49774a71f12831a08e3
-                  createdOn: '2018-10-14T21:55:49.063Z'
-                  lastUpdated: '2022-12-07T16:51:37.571Z'
+                  id: 6596da6045e56dee495bcbba
+                  siteId: 6258612d1ee792848f805dcf
+                  parentId: null
+                  collectionId: null
+                  title: Guide to the Galaxy
+                  slug: guide-to-the-galaxy
+                  createdOn: '2024-03-11T10:42:00.000Z'
+                  lastUpdated: '2024-03-11T10:42:42.000Z'
                   archived: false
                   draft: false
                   canBranch: true
-                  isMembersOnly: false
                   seo:
-                    title: CoffeeStyle eCommerce - Webflow HTML website template
-                    description: This Webflow template offers a quick start into an e-commerce / memberships site
+                    title: The Ultimate Hitchhiker's Guide to the Galaxy
+                    description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
                   openGraph:
-                    title: CoffeeStyle eCommerce - Webflow HTML website template
-                    titleCopied: true
-                    description: This Webflow template offers a quick start into an e-commerce / memberships site
-                    descriptionCopied: true
+                    title: Explore the Cosmos with The Ultimate Guide
+                    titleCopied: false
+                    description: Dive deep into the mysteries of the universe with your guide to everything galactic.
+                    descriptionCopied: false
                   localeId: 653fd9af6a07fc9cfd7a5e57
-                  publishedPath: /heart-of-gold
+                  publishedPath: /en-us/guide-to-the-galaxy
                 properties:
                   id:
                     type: string
@@ -4867,10 +4885,12 @@ paths:
                     type: string
                     format: objectid
                     nullable: true
+                    readOnly: true
                     example: 653fd9af6a07fc9cfd7a5e57
                   publishedPath:
                     description: Relative path of the published page URL
                     type: string
+                    readOnly: true
                     example: /heart-of-gold
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
@@ -4962,6 +4982,8 @@ paths:
                   titleCopied: false
                   description: Dive deep into the mysteries of the universe with your guide to everything galactic.
                   descriptionCopied: false
+                localeId: 653fd9af6a07fc9cfd7a5e57
+                publishedPath: /en-us/guide-to-the-galaxy
               properties:
                 id:
                   type: string
@@ -5065,6 +5087,18 @@ paths:
                       description: Indicates the Open Graph description was copied from the SEO description
                       readOnly: true
                       default: true
+                localeId:
+                  description: Unique ID of the page locale
+                  type: string
+                  format: objectid
+                  nullable: true
+                  readOnly: true
+                  example: 653fd9af6a07fc9cfd7a5e57
+                publishedPath:
+                  description: Relative path of the published page URL
+                  type: string
+                  readOnly: true
+                  example: /heart-of-gold
       responses:
         '200':
           description: Request was successful
@@ -5076,27 +5110,27 @@ paths:
                 required:
                   - id
                 example:
-                  id: 6390c49774a71f0e3c1a08ee
-                  siteId: 6390c49674a71f84b51a08d8
-                  title: Blog Categories Template
-                  slug: detail_blog-category
-                  collectionId: 6390c49774a71f12831a08e3
-                  createdOn: '2018-10-14T21:55:49.063Z'
-                  lastUpdated: '2022-12-07T16:51:37.571Z'
+                  id: 6596da6045e56dee495bcbba
+                  siteId: 6258612d1ee792848f805dcf
+                  parentId: null
+                  collectionId: null
+                  title: Guide to the Galaxy
+                  slug: guide-to-the-galaxy
+                  createdOn: '2024-03-11T10:42:00.000Z'
+                  lastUpdated: '2024-03-11T10:42:42.000Z'
                   archived: false
                   draft: false
                   canBranch: true
-                  isMembersOnly: false
                   seo:
-                    title: CoffeeStyle eCommerce - Webflow HTML website template
-                    description: This Webflow template offers a quick start into an e-commerce / memberships site
+                    title: The Ultimate Hitchhiker's Guide to the Galaxy
+                    description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
                   openGraph:
-                    title: CoffeeStyle eCommerce - Webflow HTML website template
-                    titleCopied: true
-                    description: This Webflow template offers a quick start into an e-commerce / memberships site
-                    descriptionCopied: true
+                    title: Explore the Cosmos with The Ultimate Guide
+                    titleCopied: false
+                    description: Dive deep into the mysteries of the universe with your guide to everything galactic.
+                    descriptionCopied: false
                   localeId: 653fd9af6a07fc9cfd7a5e57
-                  publishedPath: /heart-of-gold
+                  publishedPath: /en-us/guide-to-the-galaxy
                 properties:
                   id:
                     type: string
@@ -5205,10 +5239,12 @@ paths:
                     type: string
                     format: objectid
                     nullable: true
+                    readOnly: true
                     example: 653fd9af6a07fc9cfd7a5e57
                   publishedPath:
                     description: Relative path of the published page URL
                     type: string
+                    readOnly: true
                     example: /heart-of-gold
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
