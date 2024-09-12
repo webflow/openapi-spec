@@ -552,7 +552,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -810,7 +810,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -902,7 +902,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -1072,7 +1072,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -1302,7 +1302,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -1443,7 +1443,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -1641,7 +1641,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -1815,7 +1815,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -1873,7 +1873,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -2037,7 +2037,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -2186,7 +2186,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -2254,7 +2254,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -2500,7 +2500,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -2711,7 +2711,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -2957,7 +2957,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -3168,7 +3168,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -3410,7 +3410,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -3561,7 +3561,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -3780,7 +3780,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -3857,7 +3857,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -4008,7 +4008,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -4227,7 +4227,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -4304,7 +4304,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -4406,7 +4406,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -4704,7 +4704,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -4916,7 +4916,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -5270,7 +5270,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -5448,7 +5448,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -5567,7 +5567,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -5702,7 +5702,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -5766,7 +5766,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -5956,7 +5956,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -6090,7 +6090,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -6154,7 +6154,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -6341,7 +6341,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -6476,7 +6476,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -6616,7 +6616,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -6755,7 +6755,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -6949,7 +6949,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -7120,7 +7120,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -7309,7 +7309,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -7453,7 +7453,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -7610,7 +7610,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -7669,7 +7669,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -7819,7 +7819,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -7947,7 +7947,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -8058,7 +8058,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -8256,7 +8256,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -8496,7 +8496,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -8643,7 +8643,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -8699,7 +8699,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -8989,7 +8989,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -9187,7 +9187,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -9354,7 +9354,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -9461,7 +9461,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -9580,7 +9580,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -10062,7 +10062,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -10318,7 +10318,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -10615,7 +10615,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -10754,7 +10754,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -11098,7 +11098,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -11335,7 +11335,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -11852,7 +11852,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -12710,7 +12710,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -13197,7 +13197,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -13944,7 +13944,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -14381,7 +14381,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -14816,7 +14816,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -16211,7 +16211,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -17250,7 +17250,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -18312,7 +18312,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -19362,7 +19362,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -20401,7 +20401,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -21456,7 +21456,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -21606,7 +21606,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -21780,7 +21780,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
@@ -21922,7 +21922,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: too many reqeusts
+                    example: too many requests
                   code:
                     type: string
                     example: too_many_requests
