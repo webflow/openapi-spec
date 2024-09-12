@@ -18,6 +18,7 @@ tags:
   - name: Assets
   - name: Forms
   - name: Pages
+  - name: Components
   - name: Collections
   - name: Items
   - name: Users
@@ -6824,7 +6825,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: locale_id
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -7234,10 +7235,26 @@ paths:
                         alt: 'Marvin, the Paranoid Android'
                         assetId: 659595234426a9fcbad57043
                       attributes: {}
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                      type: component-instance
+                      componentId: 6258612d1ee792848f805dcf
+                      properties:
+                        - id: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                          type: Plain Text
+                          text:
+                            html: null
+                            text: Don't Panic!
+                          attributes: {}
+                        - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                          type: Rich Text
+                          text:
+                            html: <div><p>Always know where your towel is.</p></div>
+                            text: null
+                          attributes: {}
                   pagination:
-                    limit: 3
+                    limit: 4
                     offset: 0
-                    total: 3
+                    total: 4
                 properties:
                   pageId:
                     type: string
@@ -7258,6 +7275,38 @@ paths:
                           enum:
                             - text
                             - image
+                            - component-instance
+                        componentId:
+                          type: string
+                          description: Component ID
+                        properties:
+                          type: array
+                          items:
+                            description: |
+                              Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              type:
+                                type: string
+                                enum:
+                                  - Plain Text
+                                  - Rich Text
+                                  - Alt Text
+                              label:
+                                type: string
+                              text:
+                                description: |
+                                  Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                                type: object
+                                properties:
+                                  html:
+                                    type: string
+                                    nullable: true
+                                  text:
+                                    type: string
+                                    nullable: true
                         text:
                           description: |
                             Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
@@ -7265,6 +7314,7 @@ paths:
                           properties:
                             html:
                               type: string
+                              nullable: true
                             text:
                               type: string
                               nullable: true
@@ -7337,93 +7387,478 @@ paths:
                     example: []
         '500':
           description: We had a problem with our server. Try again later.
-    post:
+  '/sites/{site_id}/components':
+    get:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: list
       security:
         - OAuth2:
-            - 'page:write'
-      summary: Update Page Content
-      description: |
-        This endpoint allows for updating static content on a static page within a secondary locale. It is designed specifically for localized pages and can handle up to 1000 nodes per request.
-        <blockquote class="callout callout_info"><p><strong>Note:</strong>This endpoint is specifically for localized pages. Ensure that the locale specified is a valid secondary locale for the site.</p></blockquote>
-
-        Required scope | `pages:write`
-      operationId: update-static-content
+            - 'components:read'
+      operationId: list-components
+      summary: List Components
+      description: 'List of all components for a site </br></br> Required scope | `components:read`'
       tags:
-        - Pages
+        - Components
       parameters:
-        - name: page_id
+        - name: site_id
           in: path
-          description: Unique identifier for a Page
-          example: 63c720f9347c2139b248e552
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
           required: true
           schema:
             type: string
             format: objectid
             default: null
-        - name: locale
-          in: query
-          required: true
-          description: The locale identifier.
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
           schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: |
-                The DOM (Document Object Model) schema represents the content structure of a web page. It captures various content nodes, such as text and images, along with their associated attributes. Each node has a unique identifier and can be of different types like text or image. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
-              type: object
-              properties:
-                nodes:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      nodeId:
-                        type: string
-                        description: Node UUID
-                        example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      text:
-                        type: string
-                        description: 'HTML content of the node, including the HTML tag. The HTML tags must be the same as what''s returned from the Get Content endpoint.'
-                        example: <h1>Hello world</h1>
-                    required:
-                      - nodeId
-                      - text
-                  minItems: 1
-                  maxItems: 1000
-              required:
-                - nodes
-              example:
-                nodes:
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                    text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                    text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
-                    text: '<img alt=''Marvin, the Paranoid Android'' src=''path/to/image/with/assetId/659595234426a9fcbad57043''/>'
+            type: number
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
       responses:
         '200':
           description: Request was successful
           content:
             application/json:
               schema:
+                description: List of Components on a site.
                 type: object
+                example:
+                  components:
+                    - id: 6596da6045e56dee495bcbba
+                      name: Primary Button
+                      group: Buttons
+                      description: A default button component that can be used across the site
+                    - id: 658205daa3e8206a523b5ad4
+                      name: Secondary Button
+                      group: Buttons
+                      description: A secondary button component that can be used across the site
+                    - id: 6258612d1ee792848f805dcf
+                      name: Card
+                      group: null
+                      description: null
+                    - id: 68a2b1d1ee792848f805dcf
+                      name: Nav
+                      group: null
+                      description: null
+                      readonly: true
+                  pagination:
+                    limit: 20
+                    offset: 0
+                    total: 4
                 properties:
-                  errors:
+                  components:
                     type: array
-                    description: 'A list of error messages, if any.'
                     items:
-                      type: string
-                    example: []
-                required:
-                  - errors
+                      description: The Component object
+                      type: object
+                      required:
+                        - id
+                      example:
+                        id: 6258612d1ee792848f805dcf
+                        name: Primary Button
+                        group: Buttons
+                        description: A default button component that can be used across the site
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          description: Unique identifier for the Component
+                          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+                        name:
+                          type: string
+                          description: Component Name
+                          readOnly: true
+                          example: My Button Component
+                        group:
+                          type: string
+                          description: The group that the component belongs to
+                          readOnly: true
+                          example: Buttons
+                        description:
+                          type: string
+                          description: Component Description
+                          readOnly: true
+                          example: A button component that can be used across the site
+                        readonly:
+                          type: boolean
+                          description: Components that cannot be updated within this Site are set to readonly. Workspace Libraries are a good example.
+                          optional: true
+                          readOnly: true
+                          example: true
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
           description: Provided access token is invalid or does not have access to requested resource
-        '403':
-          description: Provided access token does not have access rights to this content.
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+  '/sites/{site_id}/components/{component_id}/dom':
+    get:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: get-content
+      security:
+        - OAuth2:
+            - 'components:read'
+      operationId: get-component-content
+      summary: Get Component Content
+      description: 'Get component content from a component. </br> If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale</br></br> Required scope | `components:read`'
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: component_id
+          in: path
+          description: Unique identifier for a Component
+          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+          required: true
+          schema:
+            type: string
+            default: null
+        - name: locale_id
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  The Component DOM (Document Object Model) schema represents the content structure of a component. It captures various content nodes, such as text and images, along with their associated attributes. Each node has a unique identifier and can be of different types like text, image, or component-instance. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
+                type: object
+                example:
+                  componentId: 8505ba55-ef72-629e-f85c-33e4b703d48b
+                  nodes:
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                      type: text
+                      text:
+                        html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                        text: The Hitchhiker's Guide to the Galaxy
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                      type: text
+                      text:
+                        html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                        text: null
+                  pagination:
+                    limit: 2
+                    offset: 0
+                    total: 2
+                properties:
+                  componentId:
+                    type: string
+                    description: Component ID
+                  nodes:
+                    type: array
+                    items:
+                      description: |
+                        A generic representation of a content element within the Document Object Model (DOM). Each node has a unique identifier and a specific type that determines its content structure and attributes.
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Node UUID
+                          readOnly: true
+                        type:
+                          type: string
+                          enum:
+                            - text
+                            - image
+                            - component-instance
+                        text:
+                          description: |
+                            Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                          type: object
+                          properties:
+                            html:
+                              type: string
+                              nullable: true
+                            text:
+                              type: string
+                              nullable: true
+                        image:
+                          description: |
+                            Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
+                          type: object
+                          properties:
+                            alt:
+                              type: string
+                              nullable: true
+                            assetId:
+                              type: string
+                        attributes:
+                          type: object
+                          description: The custom attributes of the node
+                          additionalProperties:
+                            type: string
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many reqeusts
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+  '/sites/{site_id}/components/{component_id}/properties':
+    get:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: get-properties
+      security:
+        - OAuth2:
+            - 'components:read'
+      operationId: get-component-properties
+      summary: Get Component Properties
+      description: 'Get component content from a component''s properties. </br> If you do not provide a Locale ID in your request, the response will return any properties that can be localized from the Primary locale</br></br> Required scope | `components:read`'
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: component_id
+          in: path
+          description: Unique identifier for a Component
+          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+          required: true
+          schema:
+            type: string
+            default: null
+        - name: locale_id
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  The Component Properties schema represents a list of properties that store text content. Each property has a unique identifier and can be of different types like plain text or rich text. The schema also provides pagination details for scenarios where there more properties than the limit.
+                type: object
+                example:
+                  componentId: 658205daa3e8206a523b5ad4
+                  properties:
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                      label: Title
+                      type: Plain Text
+                      text:
+                        html: null
+                        text: The Hitchhiker's Guide to the Galaxy
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                      label: Content
+                      type: Rich Text
+                      text:
+                        html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                        text: null
+                  pagination:
+                    limit: 2
+                    offset: 0
+                    total: 2
+                properties:
+                  componentId:
+                    type: string
+                    description: Component ID
+                  properties:
+                    type: array
+                    items:
+                      description: |
+                        Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                          enum:
+                            - Plain Text
+                            - Rich Text
+                            - Alt Text
+                        label:
+                          type: string
+                        text:
+                          description: |
+                            Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                          type: object
+                          properties:
+                            html:
+                              type: string
+                              nullable: true
+                            text:
+                              type: string
+                              nullable: true
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
         '404':
           description: Requested resource not found
         '429':
@@ -23853,6 +24288,7 @@ components:
             'forms:write': write form data
             'pages:read': read pages on the site
             'pages:write': write to pages on the site
+            'components:read': read component data
             'sites:read': read sites on the site
             'sites:write': modify pages on the site
             'users:read': read users on the site

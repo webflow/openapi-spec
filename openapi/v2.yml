@@ -21954,6 +21954,7 @@ components:
             'forms:write': write form data
             'pages:read': read pages on the site
             'pages:write': write to pages on the site
+            'components:read': read component data
             'sites:read': read sites on the site
             'sites:write': modify pages on the site
             'users:read': read users on the site
