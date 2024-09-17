@@ -8023,7 +8023,12 @@ paths:
             - 'components:read'
       operationId: get-component-content
       summary: Get Component Content
-      description: 'Get component content from a component. </br> If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale</br></br> Required scope | `components:read`'
+      description: |
+        Get static content from a component definition. To retrieve dynamic content set by component properties, use the [Get Component Properties endpoint](https://docs.developers.webflow.com/data/v2.0.0-beta/reference/get-component-properties).
+
+        If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.
+
+        Required scope | `components:read`
       tags:
         - Components
       parameters:
@@ -8201,7 +8206,12 @@ paths:
             - 'components:read'
       operationId: get-component-properties
       summary: Get Component Properties
-      description: 'Get component content from a component''s properties. </br> If you do not provide a Locale ID in your request, the response will return any properties that can be localized from the Primary locale</br></br> Required scope | `components:read`'
+      description: |
+        Get properties of a component definition.
+
+        If you do not provide a Locale ID in your request, the response will return any properties that can be localized from the Primary locale.
+
+        Required scope | `components:read`
       tags:
         - Components
       parameters:
