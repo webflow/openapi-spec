@@ -28,6 +28,7 @@ tags:
   - name: Settings
   - name: Webhooks
   - name: Site Activity
+  - name: Site Administration
   - name: Custom Code
   - name: Custom Code - Sites
   - name: Custom Code - Pages
@@ -3039,6 +3040,125 @@ paths:
         '500':
           description: We had a problem with our server. Try again later.
   '/sites/{site_id}/redirects/{redirect_id}':
+    patch:
+      x-fern-sdk-group-name: redirects
+      x-fern-sdk-method-name: patch
+      security:
+        - OAuth2:
+            - 'sites:write'
+      operationId: update-redirect
+      summary: Update URL redirect
+      description: |
+        Update a URL redirection rule from a site. 
+
+        Required scope: `sites:write`
+      tags:
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: redirect_id
+          in: path
+          description: Unique identifier site rediect
+          example: 66c4cb9a20cac35ed19500e6
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: 'A single redirection rule, specifying a source URL and a destination URL.'
+              properties:
+                id:
+                  type: string
+                  description: The ID of the specific redirect rule
+                  example: 66c4cb9a20cac35ed19500e6
+                  readOnly: true
+                fromUrl:
+                  type: string
+                  description: The source URL path that will be redirected.
+                  example: /mostly-harmless
+                toUrl:
+                  type: string
+                  description: The target URL path where the user or client will be redirected.
+                  example: /earth
+              example:
+                id: 42e1a2b7aa1a13f768a0042a
+                fromUrl: /mostly-harmless
+                toUrl: /earth
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'A single redirection rule, specifying a source URL and a destination URL.'
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the specific redirect rule
+                    example: 66c4cb9a20cac35ed19500e6
+                    readOnly: true
+                  fromUrl:
+                    type: string
+                    description: The source URL path that will be redirected.
+                    example: /mostly-harmless
+                  toUrl:
+                    type: string
+                    description: The target URL path where the user or client will be redirected.
+                    example: /earth
+                example:
+                  id: 42e1a2b7aa1a13f768a0042a
+                  fromUrl: /mostly-harmless
+                  toUrl: /earth
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
     delete:
       x-fern-sdk-group-name: redirects
       x-fern-sdk-method-name: delete
@@ -3135,6 +3255,194 @@ paths:
                     limit: 100
                     offset: 0
                     total: 2
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+  '/sites/{site_id}/well_known':
+    put:
+      x-fern-sdk-group-name: well_known
+      x-fern-sdk-method-name: put
+      security:
+        - OAuth2:
+            - 'site_config:write'
+      operationId: set-well-known
+      summary: Set a well-known file
+      description: |
+        Upload a supported well-known file to a site. 
+
+        Currently, Webflow supports the following well-known files:
+        - `apple-app-site-association.txt`
+        - `apple-developer-merchantid-domain-association.txt`
+
+
+        Required Scope: `site_config:write`
+      tags:
+        - Sites
+        - Site Administration
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                fileName:
+                  type: string
+                  description: The name of the file
+                  examples:
+                    example1:
+                      summary: Apple App Site Association
+                      value: apple-app-site-association.txt
+                    example2:
+                      summary: Apple Developer Merchant ID Domain Association
+                      value: apple-developer-merchantid-domain-association.txt
+                fileData:
+                  type: string
+                  description: The contents of the file
+                  examples:
+                    example1:
+                      summary: Apple App Site Association File Example
+                      value: |
+                        {
+                          "applinks": {
+                            "apps": [],
+                            "details": [
+                              {
+                                "appID": "ABCDE12345.com.example.app",
+                                "paths": [ "/*", "/some/path/*" ]
+                              }
+                            ]
+                          }
+                        }
+                    example2:
+                      summary: Apple Developer Merchant ID Domain Association File Example
+                      value: |
+                        {
+                          "merchantId": "merchant.com.example",
+                          "merchantName": "Example Inc.",
+                          "domainAssociation": "web"
+                        }
+      responses:
+        '201':
+          description: File uploaded successfully
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    delete:
+      x-fern-sdk-group-name: well_known
+      x-fern-sdk-method-name: delete
+      security:
+        - OAuth2:
+            - 'site_config:write'
+      operationId: delete-well-known
+      summary: Delete a well-known file
+      description: |
+        Delete an existing well-known files from a site. 
+
+
+        Required Scope: `site_config:write`
+      tags:
+        - Sites
+        - Site Administration
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                fileNames:
+                  type: array
+                  description: A list of file names to delete
+                  items:
+                    type: string
+                  example:
+                    - apple-app-site-association
+      responses:
+        '204':
+          description: File deleted successfully
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
@@ -12044,6 +12352,74 @@ paths:
                     example:
                       name: Arthur Dent
                       email: arthur.dent@mostlyharmless.com
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '403':
+          description: Provided access token does not have access rights to this content.
+        '404':
+          description: Requested resource not found
+        '409':
+          description: 'To access this feature, the site needs to be republished.'
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    delete:
+      x-fern-sdk-group-name: forms
+      x-fern-sdk-method-name: delete-submission
+      security:
+        - OAuth2:
+            - 'forms:write'
+      operationId: delete-form-submission
+      summary: Delete Form Submission
+      description: |
+        Delete a form submission
+
+
+        Required scope | `forms:write`
+      tags:
+        - Forms
+      parameters:
+        - name: form_submission_id
+          in: path
+          description: Unique identifier for a Form Submission
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+      responses:
+        '204':
+          description: Form Submission successfully deleted
+          content: {}
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
