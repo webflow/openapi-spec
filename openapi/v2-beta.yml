@@ -3304,8 +3304,8 @@ paths:
         Upload a supported well-known file to a site. 
 
         Currently, Webflow supports the following well-known files:
-        - `apple-app-site-association.txt`
-        - `apple-developer-merchantid-domain-association.txt`
+        - `apple-app-site-association`
+        - `apple-developer-merchantid-domain-association`
 
 
         Required Scope: `site_config:write`
