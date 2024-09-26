@@ -7779,7 +7779,11 @@ paths:
                                   example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                                 text:
                                   type: string
-                                  description: 'The new string or HTML value to override the component instance property value. Values must be appropriate given the type of the component instance property, so if you attempt to override a component instance property that is plain-text single-line with a multi-line value, then the override will fail.'
+                                  description: |
+                                    The new string or HTML value used to override the component instance property value. 
+                                    The provided value must be compatible with the type of the component instance property. 
+                                    For example, attempting to override a single-line plain-text property with a multi-line 
+                                    value will result in an error.
                                   example: <div><h1>Property with <em>Rich Text</em></h1></div>
                               required:
                                 - propertyId
@@ -8331,6 +8335,134 @@ paths:
                         type: number
                         description: The total number of records
                         example: 100
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    post:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: update-properties
+      security:
+        - OAuth2:
+            - 'components:write'
+      operationId: update-component-properties
+      summary: Update Localized Component Properties
+      description: |
+        Updates the properties of a component definition in a specificed locale. 
+        The request requires a secondary locale ID. If a locale is missing, the request will not be processed and will result in an error.       
+
+        Required scope | `components:write`
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: component_id
+          in: path
+          description: Unique identifier for a Component
+          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+          required: true
+          schema:
+            type: string
+            default: null
+        - name: locale_id
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Update a Component Property
+              properties:
+                properties:
+                  description: A list of component properties to update within the specified secondary locale.
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      propertyId:
+                        type: string
+                        description: The ID of the property to override
+                        example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                      text:
+                        type: string
+                        description: |
+                          The new string or HTML value used to override the component instance property value. 
+                          The provided value must be compatible with the type of the component instance property. 
+                          For example, attempting to override a single-line plain-text property with a multi-line 
+                          value will result in an error.
+                        example: <div><h1>Property with <em>Rich Text</em></h1></div>
+                    required:
+                      - propertyId
+                      - text
+              required:
+                - properties
+              example:
+                properties:
+                  - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                    text: The Hitchhiker's Guide to the Galaxy
+                  - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                    text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    description: 'A list of error messages, if any.'
+                    items:
+                      type: string
+                    example: []
+                required:
+                  - errors
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
