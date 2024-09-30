@@ -2376,6 +2376,7 @@ paths:
                       lastPublished: '2022-06-30T13:35:20.878Z'
                       lastUpdated: '2022-06-25T14:51:27.809Z'
                       createdOn: '2022-06-25T14:51:27.809Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
                       isArchived: false
                       isDraft: false
                       fieldData:
@@ -2383,6 +2384,18 @@ paths:
                         name: Senior Data Analyst
                         department: Data
                         slug: senior-data-analyst
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      lastPublished: '2023-04-15T10:25:18.123Z'
+                      lastUpdated: '2023-04-10T11:45:30.567Z'
+                      createdOn: '2023-04-10T11:45:30.567Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
                   pagination:
                     limit: 25
                     offset: 0
@@ -2833,6 +2846,7 @@ paths:
                       lastPublished: '2022-06-30T13:35:20.878Z'
                       lastUpdated: '2022-06-25T14:51:27.809Z'
                       createdOn: '2022-06-25T14:51:27.809Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
                       isArchived: false
                       isDraft: false
                       fieldData:
@@ -2840,6 +2854,18 @@ paths:
                         name: Senior Data Analyst
                         department: Data
                         slug: senior-data-analyst
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      lastPublished: '2023-04-15T10:25:18.123Z'
+                      lastUpdated: '2023-04-10T11:45:30.567Z'
+                      createdOn: '2023-04-10T11:45:30.567Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
                   pagination:
                     limit: 25
                     offset: 0
@@ -3275,26 +3301,36 @@ paths:
                     color: '#db4b68'
               example:
                 items:
-                  - id: 65df88b3d9706dfafead9117
-                    cmsLocaleId: 653ad57de882f528b32e810e
+                  - id: 66f6ed9576ddacf3149d5ea6
+                    cmsLocaleId: 66f6e966c9e1dc700a857ca3
                     lastPublished: null
                     lastUpdated: '2024-02-28T19:25:39.942Z'
                     createdOn: '2024-02-28T19:25:39.942Z'
                     isArchived: false
                     isDraft: false
                     fieldData:
-                      name: My New Item
-                      slug: my-new-item
-                  - id: 65df88b3d9706dfafead9117
-                    cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                      name: Don't Panic
+                      slug: dont-panic
+                  - id: 66f6ed9576ddacf3149d5ea6
+                    cmsLocaleId: 66f6e966c9e1dc700a857ca4
                     lastPublished: null
                     lastUpdated: '2024-02-28T19:25:39.942Z'
                     createdOn: '2024-02-28T19:25:39.942Z'
                     isArchived: false
                     isDraft: false
                     fieldData:
-                      name: My New Item
-                      slug: my-new-item
+                      name: Don't Panic
+                      slug: dont-panic
+                  - id: 66f6ed9576ddacf3149d5ea6
+                    cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                    lastPublished: null
+                    lastUpdated: '2024-02-28T19:25:39.942Z'
+                    createdOn: '2024-02-28T19:25:39.942Z'
+                    isArchived: false
+                    isDraft: false
+                    fieldData:
+                      name: Don't Panic
+                      slug: dont-panic
       responses:
         '202':
           description: Request was successful
@@ -3366,26 +3402,36 @@ paths:
                       color: '#db4b68'
                 example:
                   items:
-                    - id: 65df88b3d9706dfafead9117
-                      cmsLocaleId: 653ad57de882f528b32e810e
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
                       lastPublished: null
                       lastUpdated: '2024-02-28T19:25:39.942Z'
                       createdOn: '2024-02-28T19:25:39.942Z'
                       isArchived: false
                       isDraft: false
                       fieldData:
-                        name: My New Item
-                        slug: my-new-item
-                    - id: 65df88b3d9706dfafead9117
-                      cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                        name: Don't Panic
+                        slug: dont-panic
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca4
                       lastPublished: null
                       lastUpdated: '2024-02-28T19:25:39.942Z'
                       createdOn: '2024-02-28T19:25:39.942Z'
                       isArchived: false
                       isDraft: false
                       fieldData:
-                        name: My New Item
-                        slug: my-new-item
+                        name: Don't Panic
+                        slug: dont-panic
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                      lastPublished: null
+                      lastUpdated: '2024-02-28T19:25:39.942Z'
+                      createdOn: '2024-02-28T19:25:39.942Z'
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        name: Don't Panic
+                        slug: dont-panic
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':

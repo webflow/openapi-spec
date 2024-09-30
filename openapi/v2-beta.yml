@@ -4773,6 +4773,7 @@ paths:
                       lastPublished: '2022-06-30T13:35:20.878Z'
                       lastUpdated: '2022-06-25T14:51:27.809Z'
                       createdOn: '2022-06-25T14:51:27.809Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
                       isArchived: false
                       isDraft: false
                       fieldData:
@@ -4780,6 +4781,18 @@ paths:
                         name: Senior Data Analyst
                         department: Data
                         slug: senior-data-analyst
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      lastPublished: '2023-04-15T10:25:18.123Z'
+                      lastUpdated: '2023-04-10T11:45:30.567Z'
+                      createdOn: '2023-04-10T11:45:30.567Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
                   pagination:
                     limit: 25
                     offset: 0
@@ -5120,6 +5133,437 @@ paths:
                     example: []
         '500':
           description: We had a problem with our server. Try again later.
+    patch:
+      x-fern-sdk-group-name:
+        - collections
+        - items
+      x-fern-sdk-method-name: update-items
+      security:
+        - OAuth2:
+            - 'CMS:write'
+      operationId: update-items
+      summary: Update Collection Items
+      description: |
+        Update a single item or multiple items (up to 100) in a Collection.
+
+
+        **Note**: To update an item or items across multiple locales, include a list of `cmsLocaleIds` in the request. If secondary locale identifiers are not present, the item will only be updated in the primary locale.
+
+
+        Required scope | <code>CMS:write</code>
+      tags:
+        - Items
+        - Collections
+        - Sites
+      parameters:
+        - name: collection_id
+          in: path
+          description: Unique identifier for a Collection
+          example: 580e63fc8c9a982ac9b8b745
+          required: true
+          schema:
+            type: string
+            format: objectid
+      requestBody:
+        description: Details of the item to update
+        content:
+          application/json:
+            schema:
+              properties:
+                items:
+                  type: array
+                  items:
+                    description: |
+                      The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                    required:
+                      - id
+                    properties:
+                      id:
+                        type: string
+                        example: 580e64008c9a982ac9b8b754
+                        description: Unique identifier for the Item
+                      cmsLocaleId:
+                        type: string
+                        example: 653ad57de882f528b32e810e
+                        description: Identifier for the locale of the CMS item
+                      lastPublished:
+                        type: string
+                        format: date-string
+                        readOnly: true
+                        example: 2023-03-17T18:47:35.560Z
+                        description: The date the item was last published
+                      lastUpdated:
+                        type: string
+                        format: date-string
+                        readOnly: true
+                        example: 2023-03-17T18:47:35.560Z
+                        description: The date the item was last updated
+                      createdOn:
+                        type: string
+                        format: date-string
+                        readOnly: true
+                        example: 2023-03-17T18:47:35.560Z
+                        description: The date the item was created
+                      isArchived:
+                        type: boolean
+                        default: false
+                        description: Boolean determining if the Item is set to archived
+                      isDraft:
+                        type: boolean
+                        default: false
+                        description: Boolean determining if the Item is set to draft
+                      fieldData:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: Name of the Item
+                          slug:
+                            type: string
+                            description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                        additionalProperties: true
+                        example:
+                          date: 2022-11-18T00:00:00.000Z
+                          featured: false
+                          name: My new item
+                          slug: my-new-item
+                          color: '#db4b68'
+                    example:
+                      id: 42b720ef280c7a7a3be8cabe
+                      cmsLocaleId: 653ad57de882f528b32e810e
+                      lastPublished: '2022-11-29T16:22:43.159Z'
+                      lastUpdated: '2022-11-17T17:19:43.282Z'
+                      createdOn: '2022-11-17T17:11:57.148Z'
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        date: '2022-11-18T00:00:00.000Z'
+                        featured: true
+                        name: Pan Galactic Gargle Blaster Recipe
+                        slug: pan-galactic-gargle-blaster
+                        color: '#db4b68'
+            examples:
+              LocalizedItems:
+                value:
+                  items:
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                      fieldData:
+                        name: Ne Paniquez Pas
+                        slug: ne-paniquez-pas
+                        featured: false
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                      fieldData:
+                        name: No Entrar en Pánico
+                        slug: no-entrar-en-panico
+                        featured: false
+                    - id: 66f6ed9576ddacf3149d5eaa
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                      fieldData:
+                        name: Au Revoir et Merci pour Tous les Poissons
+                        slug: au-revoir-et-merci
+                        featured: false
+                    - id: 66f6ed9576ddacf3149d5eaa
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                      fieldData:
+                        name: Hasta Luego y Gracias por Todo el Pescado
+                        slug: hasta-luego-y-gracias
+                        featured: false
+              MultipleItems:
+                value:
+                  items:
+                    - id: 62b720ef280c7a7a3be8cabe
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
+                        name: Senior Data Analyst
+                        department: Data
+                        slug: senior-data-analyst
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                required:
+                  - id
+                properties:
+                  id:
+                    type: string
+                    readOnly: true
+                    example: 580e64008c9a982ac9b8b754
+                    description: Unique identifier for the Item
+                  cmsLocaleId:
+                    type: string
+                    example: 653ad57de882f528b32e810e
+                    description: Identifier for the locale of the CMS item
+                  lastPublished:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: 2023-03-17T18:47:35.560Z
+                    description: The date the item was last published
+                  lastUpdated:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: 2023-03-17T18:47:35.560Z
+                    description: The date the item was last updated
+                  createdOn:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: 2023-03-17T18:47:35.560Z
+                    description: The date the item was created
+                  isArchived:
+                    type: boolean
+                    default: false
+                    description: Boolean determining if the Item is set to archived
+                  isDraft:
+                    type: boolean
+                    default: false
+                    description: Boolean determining if the Item is set to draft
+                  fieldData:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Name of the Item
+                      slug:
+                        type: string
+                        description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                    additionalProperties: true
+                    example:
+                      date: 2022-11-18T00:00:00.000Z
+                      featured: false
+                      name: My new item
+                      slug: my-new-item
+                      color: '#db4b68'
+                example:
+                  id: 42b720ef280c7a7a3be8cabe
+                  cmsLocaleId: 653ad57de882f528b32e810e
+                  lastPublished: '2022-11-29T16:22:43.159Z'
+                  lastUpdated: '2022-11-17T17:19:43.282Z'
+                  createdOn: '2022-11-17T17:11:57.148Z'
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    date: '2022-11-18T00:00:00.000Z'
+                    featured: true
+                    name: Pan Galactic Gargle Blaster Recipe
+                    slug: pan-galactic-gargle-blaster
+                    color: '#db4b68'
+              examples:
+                LocalizedItems:
+                  summary: Multiple items updated across multiple locales
+                  value:
+                    items:
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                        fieldData:
+                          name: Ne Paniquez Pas
+                          slug: ne-paniquez-pas
+                          featured: false
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                        fieldData:
+                          name: No Entrar en Pánico
+                          slug: no-entrar-en-panico
+                          featured: false
+                      - id: 66f6ed9576ddacf3149d5eaa
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                        fieldData:
+                          name: Au Revoir et Merci pour Tous les Poissons
+                          slug: au-revoir-et-merci
+                          featured: false
+                      - id: 66f6ed9576ddacf3149d5eaa
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                        fieldData:
+                          name: Hasta Luego y Gracias por Todo el Pescado
+                          slug: hasta-luego-y-gracias
+                          featured: false
+                MultipleItems:
+                  summary: Mulitple items updated in a single locale
+                  value:
+                    items:
+                      - id: 62b720ef280c7a7a3be8cabe
+                        lastPublished: '2022-06-30T13:35:20.878Z'
+                        lastUpdated: '2022-06-25T14:51:27.809Z'
+                        createdOn: '2022-06-25T14:51:27.809Z'
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
+                          name: Senior Data Analyst
+                          department: Data
+                          slug: senior-data-analyst
+                      - id: 62c880ef281c7b7b4cf9dabc
+                        lastPublished: '2023-04-15T10:25:18.123Z'
+                        lastUpdated: '2023-04-10T11:45:30.567Z'
+                        createdOn: '2023-04-10T11:45:30.567Z'
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                          name: Product Manager
+                          department: Product
+                          slug: product-manager
+                    pagination:
+                      limit: 25
+                      offset: 0
+                      total: 2
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    delete:
+      x-fern-sdk-group-name:
+        - collections
+        - items
+      x-fern-sdk-method-name: delete-items
+      security:
+        - OAuth2:
+            - 'CMS:write'
+      operationId: delete-items
+      summary: Delete Collection Items
+      description: 'Delete Items from a Collection. </br></br> Required scope | `CMS:write`'
+      tags:
+        - Items
+        - Collections
+        - Sites
+      parameters:
+        - name: collection_id
+          in: path
+          description: Unique identifier for a Collection
+          example: 580e63fc8c9a982ac9b8b745
+          required: true
+          schema:
+            type: string
+            format: objectid
+      requestBody:
+        description: Details of the items to delete
+        content:
+          application/json:
+            schema:
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                    properties:
+                      id:
+                        type: string
+                        example: 580e64008c9a982ac9b8b754
+                        description: Unique identifier for the Item
+                      cmsLocaleIds:
+                        type: array
+                        description: Array of identifiers for the locales where the item will be created
+                        items:
+                          type: string
+                          description: CMS Locale ID
+                        example:
+                          - 653ad57de882f528b32e810e
+                          - 6514390aea353fc691d69827
+                          - 65143930ea353fc691d69cd8
+      responses:
+        '204':
+          description: Request was successful
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/live':
     get:
       x-fern-sdk-group-name:
@@ -5230,6 +5674,7 @@ paths:
                       lastPublished: '2022-06-30T13:35:20.878Z'
                       lastUpdated: '2022-06-25T14:51:27.809Z'
                       createdOn: '2022-06-25T14:51:27.809Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
                       isArchived: false
                       isDraft: false
                       fieldData:
@@ -5237,6 +5682,18 @@ paths:
                         name: Senior Data Analyst
                         department: Data
                         slug: senior-data-analyst
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      lastPublished: '2023-04-15T10:25:18.123Z'
+                      lastUpdated: '2023-04-10T11:45:30.567Z'
+                      createdOn: '2023-04-10T11:45:30.567Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
                   pagination:
                     limit: 25
                     offset: 0
@@ -5577,18 +6034,498 @@ paths:
                     example: []
         '500':
           description: We had a problem with our server. Try again later.
+    patch:
+      x-fern-sdk-group-name:
+        - collections
+        - items
+      x-fern-sdk-method-name: update-items-live
+      security:
+        - OAuth2:
+            - 'CMS:write'
+      operationId: update-items-live
+      summary: Update Live Collection Items
+      description: |
+        Update a single live item or multiple live items (up to 100) in a Collection
+
+
+        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be updated only  in the primary locale. 
+
+
+        Required scope | `CMS:write`
+      tags:
+        - Items
+        - Collections
+        - Sites
+      parameters:
+        - name: collection_id
+          in: path
+          description: Unique identifier for a Collection
+          example: 580e63fc8c9a982ac9b8b745
+          required: true
+          schema:
+            type: string
+            format: objectid
+      requestBody:
+        description: Details of the live items to update
+        content:
+          application/json:
+            schema:
+              properties:
+                items:
+                  type: array
+                  items:
+                    description: |
+                      The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                    required:
+                      - id
+                    properties:
+                      id:
+                        type: string
+                        example: 580e64008c9a982ac9b8b754
+                        description: Unique identifier for the Item
+                      cmsLocaleId:
+                        type: string
+                        example: 653ad57de882f528b32e810e
+                        description: Identifier for the locale of the CMS item
+                      lastPublished:
+                        type: string
+                        format: date-string
+                        readOnly: true
+                        example: 2023-03-17T18:47:35.560Z
+                        description: The date the item was last published
+                      lastUpdated:
+                        type: string
+                        format: date-string
+                        readOnly: true
+                        example: 2023-03-17T18:47:35.560Z
+                        description: The date the item was last updated
+                      createdOn:
+                        type: string
+                        format: date-string
+                        readOnly: true
+                        example: 2023-03-17T18:47:35.560Z
+                        description: The date the item was created
+                      isArchived:
+                        type: boolean
+                        default: false
+                        description: Boolean determining if the Item is set to archived
+                      isDraft:
+                        type: boolean
+                        default: false
+                        description: Boolean determining if the Item is set to draft
+                      fieldData:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: Name of the Item
+                          slug:
+                            type: string
+                            description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                        additionalProperties: true
+                        example:
+                          date: 2022-11-18T00:00:00.000Z
+                          featured: false
+                          name: My new item
+                          slug: my-new-item
+                          color: '#db4b68'
+                    example:
+                      id: 42b720ef280c7a7a3be8cabe
+                      cmsLocaleId: 653ad57de882f528b32e810e
+                      lastPublished: '2022-11-29T16:22:43.159Z'
+                      lastUpdated: '2022-11-17T17:19:43.282Z'
+                      createdOn: '2022-11-17T17:11:57.148Z'
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        date: '2022-11-18T00:00:00.000Z'
+                        featured: true
+                        name: Pan Galactic Gargle Blaster Recipe
+                        slug: pan-galactic-gargle-blaster
+                        color: '#db4b68'
+            examples:
+              LocalizedItems:
+                value:
+                  items:
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                      fieldData:
+                        name: Ne Paniquez Pas
+                        slug: ne-paniquez-pas
+                        featured: false
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                      fieldData:
+                        name: No Entrar en Pánico
+                        slug: no-entrar-en-panico
+                        featured: false
+                    - id: 66f6ed9576ddacf3149d5eaa
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                      fieldData:
+                        name: Au Revoir et Merci pour Tous les Poissons
+                        slug: au-revoir-et-merci
+                        featured: false
+                    - id: 66f6ed9576ddacf3149d5eaa
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                      fieldData:
+                        name: Hasta Luego y Gracias por Todo el Pescado
+                        slug: hasta-luego-y-gracias
+                        featured: false
+              MultipleItems:
+                value:
+                  items:
+                    - id: 62b720ef280c7a7a3be8cabe
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
+                        name: Senior Data Analyst
+                        department: Data
+                        slug: senior-data-analyst
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: Results from collection items list
+                example:
+                  items:
+                    - id: 62b720ef280c7a7a3be8cabe
+                      lastPublished: '2022-06-30T13:35:20.878Z'
+                      lastUpdated: '2022-06-25T14:51:27.809Z'
+                      createdOn: '2022-06-25T14:51:27.809Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
+                        name: Senior Data Analyst
+                        department: Data
+                        slug: senior-data-analyst
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      lastPublished: '2023-04-15T10:25:18.123Z'
+                      lastUpdated: '2023-04-10T11:45:30.567Z'
+                      createdOn: '2023-04-10T11:45:30.567Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
+                  pagination:
+                    limit: 25
+                    offset: 0
+                    total: 2
+                properties:
+                  items:
+                    type: array
+                    description: List of Items within the collection
+                    items:
+                      description: |
+                        The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                      required:
+                        - id
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: Unique identifier for the Item
+                        cmsLocaleId:
+                          type: string
+                          example: 653ad57de882f528b32e810e
+                          description: Identifier for the locale of the CMS item
+                        lastPublished:
+                          type: string
+                          format: date-string
+                          readOnly: true
+                          example: 2023-03-17T18:47:35.560Z
+                          description: The date the item was last published
+                        lastUpdated:
+                          type: string
+                          format: date-string
+                          readOnly: true
+                          example: 2023-03-17T18:47:35.560Z
+                          description: The date the item was last updated
+                        createdOn:
+                          type: string
+                          format: date-string
+                          readOnly: true
+                          example: 2023-03-17T18:47:35.560Z
+                          description: The date the item was created
+                        isArchived:
+                          type: boolean
+                          default: false
+                          description: Boolean determining if the Item is set to archived
+                        isDraft:
+                          type: boolean
+                          default: false
+                          description: Boolean determining if the Item is set to draft
+                        fieldData:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Name of the Item
+                            slug:
+                              type: string
+                              description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                          additionalProperties: true
+                          example:
+                            date: 2022-11-18T00:00:00.000Z
+                            featured: false
+                            name: My new item
+                            slug: my-new-item
+                            color: '#db4b68'
+                      example:
+                        id: 42b720ef280c7a7a3be8cabe
+                        cmsLocaleId: 653ad57de882f528b32e810e
+                        lastPublished: '2022-11-29T16:22:43.159Z'
+                        lastUpdated: '2022-11-17T17:19:43.282Z'
+                        createdOn: '2022-11-17T17:11:57.148Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          date: '2022-11-18T00:00:00.000Z'
+                          featured: true
+                          name: Pan Galactic Gargle Blaster Recipe
+                          slug: pan-galactic-gargle-blaster
+                          color: '#db4b68'
+              examples:
+                LocalizedItems:
+                  summary: Multiple items updated across multiple locales
+                  value:
+                    items:
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                        fieldData:
+                          name: Ne Paniquez Pas
+                          slug: ne-paniquez-pas
+                          featured: false
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                        fieldData:
+                          name: No Entrar en Pánico
+                          slug: no-entrar-en-panico
+                          featured: false
+                      - id: 66f6ed9576ddacf3149d5eaa
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                        fieldData:
+                          name: Au Revoir et Merci pour Tous les Poissons
+                          slug: au-revoir-et-merci
+                          featured: false
+                      - id: 66f6ed9576ddacf3149d5eaa
+                        lastPublished: null
+                        lastUpdated: 2024-09-27T17:38:29.066Z
+                        createdOn: 2024-09-27T17:38:29.066Z
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                        fieldData:
+                          name: Hasta Luego y Gracias por Todo el Pescado
+                          slug: hasta-luego-y-gracias
+                          featured: false
+                MultipleItems:
+                  summary: Mulitple items updated in a single locale
+                  value:
+                    items:
+                      - id: 62b720ef280c7a7a3be8cabe
+                        lastPublished: '2022-06-30T13:35:20.878Z'
+                        lastUpdated: '2022-06-25T14:51:27.809Z'
+                        createdOn: '2022-06-25T14:51:27.809Z'
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
+                          name: Senior Data Analyst
+                          department: Data
+                          slug: senior-data-analyst
+                      - id: 62c880ef281c7b7b4cf9dabc
+                        lastPublished: '2023-04-15T10:25:18.123Z'
+                        lastUpdated: '2023-04-10T11:45:30.567Z'
+                        createdOn: '2023-04-10T11:45:30.567Z'
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                          name: Product Manager
+                          department: Product
+                          slug: product-manager
+                    pagination:
+                      limit: 25
+                      offset: 0
+                      total: 2
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
+    delete:
+      x-fern-sdk-group-name:
+        - collections
+        - items
+      x-fern-sdk-method-name: delete-items-live
+      security:
+        - OAuth2:
+            - 'CMS:write'
+      operationId: delete-items-live
+      summary: Delete Live Collection Items
+      description: |
+        Remove an item or multiple items (up to 100 items) from the live site. Deleting published items will unpublish the items from the live site and set them to draft. 
+
+        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be unpublished only in the primary locale. 
+
+        Required scope | `CMS:write`
+      tags:
+        - Items
+        - Collections
+        - Sites
+      parameters:
+        - name: collection_id
+          in: path
+          description: Unique identifier for a Collection
+          example: 580e63fc8c9a982ac9b8b745
+          required: true
+          schema:
+            type: string
+            format: objectid
+      requestBody:
+        description: Details of the live items to delete
+        content:
+          application/json:
+            schema:
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - itemId
+                    properties:
+                      itemId:
+                        type: string
+                        example: 580e64008c9a982ac9b8b754
+                        description: Unique identifier for the Item
+                      cmsLocaleIds:
+                        type: array
+                        description: Array of identifiers for the locales where the item will be created
+                        items:
+                          type: string
+                          description: CMS Locale ID
+                        example:
+                          - 653ad57de882f528b32e810e
+                          - 6514390aea353fc691d69827
+                          - 65143930ea353fc691d69cd8
+      responses:
+        '204':
+          description: Request was successful
+        '400':
+          description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+        '404':
+          description: Requested resource not found
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: too many requests
+                  code:
+                    type: string
+                    example: too_many_requests
+                  externalReference:
+                    type: string
+                    example: null
+                  details:
+                    type: array
+                    example: []
+        '500':
+          description: We had a problem with our server. Try again later.
   '/collections/{collection_id}/items/bulk':
     post:
       x-fern-sdk-group-name:
         - collections
         - items
-      x-fern-sdk-method-name: create-item-for-multiple-locales
+      x-fern-sdk-method-name: create-items
       security:
         - OAuth2:
             - 'cms:write'
-      operationId: create-item-for-multiple-locales
-      summary: Create Item for Multiple Locales
-      description: 'Create single Item in a Collection with multiple corresponding locales. </br></br> Required scope | `CMS:write`'
+      operationId: create-items
+      summary: Create Collection Items
+      description: |
+        Create an item or multiple items in a CMS Collection across multiple corresponding locales.
+
+        **Notes:**
+          - This endpoint can create up to 100 items in a request.
+          - If the `cmsLocaleId` parameter is undefined or empty and localization is enabled, items will only be created in the primary locale.
+
+
+        Required scope | `CMS:write`
       tags:
         - Items
         - Collections
@@ -5608,7 +6545,7 @@ paths:
           application/json:
             schema:
               description: |
-                The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                Schema for creating multiple items within a Collection. Each item adheres to the schema defined by the Collection it belongs to.  In addition to user-defined fields, several system fields are automatically created for all items, including `name` and `slug`.
               required:
                 - id
               properties:
@@ -5630,68 +6567,113 @@ paths:
                 lastPublished:
                   type: string
                   format: date-string
-                  nullable: true
                   readOnly: true
                   example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was last published
+                  description: The date and time when the item was last published.
                 lastUpdated:
                   type: string
                   format: date-string
                   readOnly: true
                   example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was last updated
+                  description: The date and time when the item was last updated.
                 createdOn:
                   type: string
                   format: date-string
                   readOnly: true
                   example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was created
+                  description: The date and time when the item was created.
                 isArchived:
                   type: boolean
                   default: false
-                  description: Boolean determining if the Item is set to archived
+                  description: Indicates whether the item is archived.
                 isDraft:
                   type: boolean
                   default: false
-                  description: Boolean determining if the Item is set to draft
+                  description: Indicates whether the item is in draft state.
                 fieldData:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      description: Name of the Item
-                    slug:
-                      type: string
-                      description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
-                  additionalProperties: true
-                  example:
-                    date: 2022-11-18T00:00:00.000Z
-                    featured: false
-                    name: My new item
-                    slug: my-new-item
-                    color: '#db4b68'
-              example:
-                items:
-                  - id: 65df88b3d9706dfafead9117
-                    cmsLocaleId: 653ad57de882f528b32e810e
-                    lastPublished: null
-                    lastUpdated: '2024-02-28T19:25:39.942Z'
-                    createdOn: '2024-02-28T19:25:39.942Z'
+                  oneOf:
+                    - type: object
+                      additionalProperties: true
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the item.
+                        slug:
+                          type: string
+                          description: |-
+                            URL slug for the item in your site. 
+                            Note: Updating the item slug will break all links referencing the old slug.
+                      required:
+                        - name
+                        - slug
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the item.
+                          slug:
+                            type: string
+                            description: |-
+                              URL slug for the item in your site. 
+                              Note: Updating the item slug will break all links referencing the old slug.
+                        required:
+                          - name
+                          - slug
+              examples:
+                SingleItemMultipleLocales:
+                  summary: Create a single item across multiple locales
+                  value:
+                    cmsLocaleIds:
+                      - 66f6e966c9e1dc700a857ca3
+                      - 66f6e966c9e1dc700a857ca4
+                      - 66f6e966c9e1dc700a857ca5
                     isArchived: false
                     isDraft: false
                     fieldData:
-                      name: My New Item
-                      slug: my-new-item
-                  - id: 65df88b3d9706dfafead9117
-                    cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
-                    lastPublished: null
-                    lastUpdated: '2024-02-28T19:25:39.942Z'
-                    createdOn: '2024-02-28T19:25:39.942Z'
+                      name: Don’t Panic
+                      slug: dont-panic
+                MultipleItemsMultipleLocales:
+                  summary: Create multiple items across multipel locales
+                  value:
+                    cmsLocaleIds:
+                      - 66f6e966c9e1dc700a857ca3
+                      - 66f6e966c9e1dc700a857ca4
                     isArchived: false
                     isDraft: false
                     fieldData:
-                      name: My New Item
-                      slug: my-new-item
+                      - name: Don’t Panic
+                        slug: dont-panic
+                      - name: So Long and Thanks for All the Fish
+                        slug: so-long-and-thanks
+            examples:
+              SingleItemMultipleLocales:
+                summary: Create a single item across multiple locales
+                value:
+                  cmsLocaleIds:
+                    - 66f6e966c9e1dc700a857ca3
+                    - 66f6e966c9e1dc700a857ca4
+                    - 66f6e966c9e1dc700a857ca5
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    name: Don’t Panic
+                    slug: dont-panic
+              MultipleItemsMultipleLocales:
+                summary: Create multiple items across multipel locales
+                value:
+                  cmsLocaleIds:
+                    - 66f6e966c9e1dc700a857ca3
+                    - 66f6e966c9e1dc700a857ca4
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    - name: Don’t Panic
+                      slug: dont-panic
+                    - name: So Long and Thanks for All the Fish
+                      slug: so-long-and-thanks
       responses:
         '202':
           description: Request was successful
@@ -5763,26 +6745,141 @@ paths:
                       color: '#db4b68'
                 example:
                   items:
-                    - id: 65df88b3d9706dfafead9117
-                      cmsLocaleId: 653ad57de882f528b32e810e
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
                       lastPublished: null
                       lastUpdated: '2024-02-28T19:25:39.942Z'
                       createdOn: '2024-02-28T19:25:39.942Z'
                       isArchived: false
                       isDraft: false
                       fieldData:
-                        name: My New Item
-                        slug: my-new-item
-                    - id: 65df88b3d9706dfafead9117
-                      cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                        name: Don't Panic
+                        slug: dont-panic
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca4
                       lastPublished: null
                       lastUpdated: '2024-02-28T19:25:39.942Z'
                       createdOn: '2024-02-28T19:25:39.942Z'
                       isArchived: false
                       isDraft: false
                       fieldData:
-                        name: My New Item
-                        slug: my-new-item
+                        name: Don't Panic
+                        slug: dont-panic
+                    - id: 66f6ed9576ddacf3149d5ea6
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                      lastPublished: null
+                      lastUpdated: '2024-02-28T19:25:39.942Z'
+                      createdOn: '2024-02-28T19:25:39.942Z'
+                      isArchived: false
+                      isDraft: false
+                      fieldData:
+                        name: Don't Panic
+                        slug: dont-panic
+              examples:
+                SingleItemMultipleLocales:
+                  summary: Single item created across multiple locales
+                  value:
+                    items:
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        lastPublished: null
+                        lastUpdated: '2024-02-28T19:25:39.942Z'
+                        createdOn: '2024-02-28T19:25:39.942Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          name: Don't Panic
+                          slug: dont-panic
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                        lastPublished: null
+                        lastUpdated: '2024-02-28T19:25:39.942Z'
+                        createdOn: '2024-02-28T19:25:39.942Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          name: Don't Panic
+                          slug: dont-panic
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                        lastPublished: null
+                        lastUpdated: '2024-02-28T19:25:39.942Z'
+                        createdOn: '2024-02-28T19:25:39.942Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          name: Don't Panic
+                          slug: dont-panic
+                MultipleItemsMultipleLocales:
+                  summary: Multiple items created across multiple locales
+                  value:
+                    items:
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        lastPublished: null
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          featured: false
+                          name: Don't Panic
+                          slug: dont-panic
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                        lastPublished: null
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          featured: false
+                          name: Don't Panic
+                          slug: dont-panic
+                      - id: 66f6ed9576ddacf3149d5ea6
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                        lastPublished: null
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          featured: false
+                          name: Don't Panic
+                          slug: dont-panic
+                      - id: 66f6ed9576ddacf3149d5eaa
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        lastPublished: null
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          featured: false
+                          name: So Long and Thanks for All the Fish
+                          slug: so-long-and-thanks
+                      - id: 66f6ed9576ddacf3149d5eaa
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca4
+                        lastPublished: null
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          featured: false
+                          name: So Long and Thanks for All the Fish
+                          slug: so-long-and-thanks
+                      - id: 66f6ed9576ddacf3149d5eaa
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca5
+                        lastPublished: null
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
+                        isArchived: false
+                        isDraft: false
+                        fieldData:
+                          featured: false
+                          name: So Long and Thanks for All the Fish
+                          slug: so-long-and-thanks
         '400':
           description: Request body was incorrectly formatted. Likely invalid JSON being sent up.
         '401':
@@ -8444,9 +9541,9 @@ paths:
               example:
                 properties:
                   - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                    text: The Hitchhiker's Guide to the Galaxy
+                    text: The Hitchhiker’s Guide to the Galaxy
                   - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                    text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                    text: <div><h3>Don’t Panic!</h3><p>Always know where your towel is.</p></div>
       responses:
         '200':
           description: Request was successful
