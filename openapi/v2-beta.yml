@@ -12856,16 +12856,16 @@ paths:
                         createdOn: '2016-10-24T19:41:29.156Z'
                         lastUpdated: '2016-10-24T19:43:17.271Z'
                         fields:
-                          - 660d5bcc9c0772150459dfb1: null
+                          660d5bcc9c0772150459dfb1:
                             displayName: Name
                             type: Plain
                             placeholder: null
                             userVisible: true
-                          - 589a331aa51e760df7ccb89d:
-                              displayName: Email
-                              type: Email
-                              placeholder: Enter your email
-                              userVisible: true
+                          589a331aa51e760df7ccb89d:
+                            displayName: Email
+                            type: Email
+                            placeholder: Enter your email
+                            userVisible: true
                         responseSettings:
                           redirectUrl: 'https://example.com'
                           redirectMethod: GET
@@ -12895,39 +12895,36 @@ paths:
                           description: Date that the Form was last updated on
                           example: '2018-10-04T15:21:02.042Z'
                         fields:
-                          description: A list of form fields
-                          type: array
-                          items:
+                          description: A collection of form field objects
+                          type: object
+                          maxProperties: 1
+                          additionalProperties:
+                            description: An object containing field info for a specific fieldID.
                             type: object
-                            description: A collection of form fields with additional properties.
-                            maxProperties: 1
-                            additionalProperties:
-                              description: An object containing field info for a specific fieldID.
-                              type: object
-                              properties:
-                                displayName:
-                                  type: string
-                                  description: The field name displayed on the site
-                                  example: Email
-                                type:
-                                  type: string
-                                  description: The field type
-                                  enum:
-                                    - Plain
-                                    - Email
-                                    - Password
-                                    - Phone
-                                    - Number
-                                  example: Email
-                                placeholder:
-                                  type: string
-                                  description: The placeholder text for the field
-                                  nullable: true
-                                  example: Enter your email
-                                userVisible:
-                                  type: boolean
-                                  description: Whether the field is visible to the user
-                                  example: true
+                            properties:
+                              displayName:
+                                type: string
+                                description: The field name displayed on the site
+                                example: Email
+                              type:
+                                type: string
+                                description: The field type
+                                enum:
+                                  - Plain
+                                  - Email
+                                  - Password
+                                  - Phone
+                                  - Number
+                                example: Email
+                              placeholder:
+                                type: string
+                                description: The placeholder text for the field
+                                nullable: true
+                                example: Enter your email
+                              userVisible:
+                                type: boolean
+                                description: Whether the field is visible to the user
+                                example: true
                         responseSettings:
                           description: Settings for form responses
                           type: object
@@ -13073,16 +13070,16 @@ paths:
                   createdOn: '2016-10-24T19:41:29.156Z'
                   lastUpdated: '2016-10-24T19:43:17.271Z'
                   fields:
-                    - 660d5bcc9c0772150459dfb1: null
+                    660d5bcc9c0772150459dfb1:
                       displayName: Name
                       type: Plain
                       placeholder: null
                       userVisible: true
-                    - 589a331aa51e760df7ccb89d:
-                        displayName: Email
-                        type: Email
-                        placeholder: Enter your email
-                        userVisible: true
+                    589a331aa51e760df7ccb89d:
+                      displayName: Email
+                      type: Email
+                      placeholder: Enter your email
+                      userVisible: true
                   responseSettings:
                     redirectUrl: 'https://example.com'
                     redirectMethod: GET
@@ -13111,39 +13108,36 @@ paths:
                     description: Date that the Form was last updated on
                     example: '2018-10-04T15:21:02.042Z'
                   fields:
-                    description: A list of form fields
-                    type: array
-                    items:
+                    description: A collection of form field objects
+                    type: object
+                    maxProperties: 1
+                    additionalProperties:
+                      description: An object containing field info for a specific fieldID.
                       type: object
-                      description: A collection of form fields with additional properties.
-                      maxProperties: 1
-                      additionalProperties:
-                        description: An object containing field info for a specific fieldID.
-                        type: object
-                        properties:
-                          displayName:
-                            type: string
-                            description: The field name displayed on the site
-                            example: Email
-                          type:
-                            type: string
-                            description: The field type
-                            enum:
-                              - Plain
-                              - Email
-                              - Password
-                              - Phone
-                              - Number
-                            example: Email
-                          placeholder:
-                            type: string
-                            description: The placeholder text for the field
-                            nullable: true
-                            example: Enter your email
-                          userVisible:
-                            type: boolean
-                            description: Whether the field is visible to the user
-                            example: true
+                      properties:
+                        displayName:
+                          type: string
+                          description: The field name displayed on the site
+                          example: Email
+                        type:
+                          type: string
+                          description: The field type
+                          enum:
+                            - Plain
+                            - Email
+                            - Password
+                            - Phone
+                            - Number
+                          example: Email
+                        placeholder:
+                          type: string
+                          description: The placeholder text for the field
+                          nullable: true
+                          example: Enter your email
+                        userVisible:
+                          type: boolean
+                          description: Whether the field is visible to the user
+                          example: true
                   responseSettings:
                     description: Settings for form responses
                     type: object
@@ -26116,6 +26110,29 @@ webhooks:
                       example:
                         name: Arthur Dent
                         email: arthur.dent@mostlyharmless.com
+                    schema:
+                      description: A list of fields from the submitted form
+                      type: array
+                      items:
+                        - fieldName:
+                            description: Form field name
+                            type: string
+                            example: First Name
+                          fieldType:
+                            description: Form field type
+                            type: string
+                            enum:
+                              - FormTextInput
+                              - FormTextarea
+                              - FormCheckboxInput
+                              - FormRadioInput
+                              - FormFileUploadInput
+                            example: FormTextInput
+                          fieldElementId:
+                            description: Element ID of the Form Field
+                            type: string
+                            format: UUID
+                            example: 285042f7-d554-dc7f-102c-aa10d6a2d2c4
                     submittedAt:
                       type: string
                       description: The timestamp the form was submitted
@@ -26144,6 +26161,19 @@ webhooks:
                     Last Name: Beeblebrox
                     email: zaphod@heartofgold.ai
                     Phone Number: 15550000000
+                  schema:
+                    - fieldName: First Name
+                      fieldType: FormTextInput
+                      fieldElementId: 285042f7-d554-dc7f-102c-aa10d6a2d2c4
+                    - fieldName: Last Name
+                      fieldType: FormTextInput
+                      fieldElementId: 285042f7-d554-dc7f-102c-aa10d6a2d2c5
+                    - fieldName: email
+                      fieldType: FormTextInput
+                      fieldElementId: 285042f7-d554-dc7f-102c-aa10d6a2d2c6
+                    - fieldName: Phone Number
+                      fieldType: FormTextInput
+                      fieldElementId: 285042f7-d554-dc7f-102c-aa10d6a2d2c7
                   submittedAt: '2022-09-14T12:35:16.117Z'
                   id: 6321ca84df3949bfc6752327
                   formId: 65429eadebe8a9f3a30f62d0
