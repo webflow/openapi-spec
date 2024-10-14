@@ -2166,7 +2166,7 @@ paths:
                 properties:
                   id:
                     description: ID of the hosting plan.
-                    type: 'string,'
+                    type: string
                     enum:
                       - hosting-basic-v3
                       - hosting-cms-v3
