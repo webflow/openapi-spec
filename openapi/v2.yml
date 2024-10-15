@@ -2880,16 +2880,14 @@ paths:
               MultipleItems:
                 value:
                   items:
-                    - id: 62b720ef280c7a7a3be8cabe
-                      isArchived: false
+                    - isArchived: false
                       isDraft: false
                       fieldData:
                         url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
                         name: Senior Data Analyst
                         department: Data
                         slug: senior-data-analyst
-                    - id: 62c880ef281c7b7b4cf9dabc
-                      isArchived: false
+                    - isArchived: false
                       isDraft: false
                       fieldData:
                         url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
@@ -3788,16 +3786,14 @@ paths:
               MultipleItems:
                 value:
                   items:
-                    - id: 62b720ef280c7a7a3be8cabe
-                      isArchived: false
+                    - isArchived: false
                       isDraft: false
                       fieldData:
                         url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
                         name: Senior Data Analyst
                         department: Data
                         slug: senior-data-analyst
-                    - id: 62c880ef281c7b7b4cf9dabc
-                      isArchived: false
+                    - isArchived: false
                       isDraft: false
                       fieldData:
                         url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
