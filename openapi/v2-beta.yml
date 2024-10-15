@@ -5151,7 +5151,7 @@ paths:
         Update a single item or multiple items (up to 100) in a Collection.
 
 
-        **Note**: To update an item or items across multiple locales, include a list of `cmsLocaleIds` in the request. If secondary locale identifiers are not present, the item will only be updated in the primary locale.
+        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be updated only in the primary locale.
 
 
         Required scope | <code>CMS:write</code>
@@ -5488,7 +5488,14 @@ paths:
             - 'CMS:write'
       operationId: delete-items
       summary: Delete Collection Items
-      description: 'Delete Items from a Collection. </br></br> Required scope | `CMS:write`'
+      description: |
+        Delete Items from a Collection.
+
+
+        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be deleted only in the primary locale.
+
+
+        Required scope | `CMS:write`
       tags:
         - Items
         - Collections
@@ -6052,7 +6059,7 @@ paths:
         Update a single live item or multiple live items (up to 100) in a Collection
 
 
-        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be updated only  in the primary locale. 
+        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be updated only in the primary locale. 
 
 
         Required scope | `CMS:write`
@@ -6428,7 +6435,9 @@ paths:
       description: |
         Remove an item or multiple items (up to 100 items) from the live site. Deleting published items will unpublish the items from the live site and set them to draft. 
 
-        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be unpublished only in the primary locale. 
+
+        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be unpublished only in the primary locale.
+
 
         Required scope | `CMS:write`
       tags:
@@ -6526,7 +6535,7 @@ paths:
 
         **Notes:**
           - This endpoint can create up to 100 items in a request.
-          - If the `cmsLocaleId` parameter is undefined or empty and localization is enabled, items will only be created in the primary locale.
+          - If the `cmsLocaleIds` parameter is undefined or empty and localization is enabled, items will only be created in the primary locale.
 
 
         Required scope | `CMS:write`
