@@ -14684,6 +14684,7 @@ paths:
                       archived: false
                       draft: false
                       canBranch: true
+                      isBranch: false
                       seo:
                         title: The Ultimate Hitchhiker's Guide to the Galaxy
                         description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -14739,6 +14740,7 @@ paths:
                         archived: false
                         draft: false
                         canBranch: true
+                        isBranch: false
                         seo:
                           title: The Ultimate Hitchhiker's Guide to the Galaxy
                           description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -14809,6 +14811,12 @@ paths:
                         canBranch:
                           type: boolean
                           description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                          readOnly: true
+                          default: false
+                          example: false
+                        isBranch:
+                          type: boolean
+                          description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
                           readOnly: true
                           default: false
                           example: false
@@ -15270,6 +15278,7 @@ paths:
                   archived: false
                   draft: false
                   canBranch: true
+                  isBranch: false
                   seo:
                     title: The Ultimate Hitchhiker's Guide to the Galaxy
                     description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -15340,6 +15349,12 @@ paths:
                   canBranch:
                     type: boolean
                     description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    readOnly: true
+                    default: false
+                    example: false
+                  isBranch:
+                    type: boolean
+                    description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
                     readOnly: true
                     default: false
                     example: false
@@ -15780,6 +15795,7 @@ paths:
                 archived: false
                 draft: false
                 canBranch: true
+                isBranch: false
                 seo:
                   title: The Ultimate Hitchhiker's Guide to the Galaxy
                   description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -15850,6 +15866,12 @@ paths:
                 canBranch:
                   type: boolean
                   description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                  readOnly: true
+                  default: false
+                  example: false
+                isBranch:
+                  type: boolean
+                  description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
                   readOnly: true
                   default: false
                   example: false
@@ -15927,6 +15949,7 @@ paths:
                   archived: false
                   draft: false
                   canBranch: true
+                  isBranch: false
                   seo:
                     title: The Ultimate Hitchhiker's Guide to the Galaxy
                     description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -15997,6 +16020,12 @@ paths:
                   canBranch:
                     type: boolean
                     description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    readOnly: true
+                    default: false
+                    example: false
+                  isBranch:
+                    type: boolean
+                    description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
                     readOnly: true
                     default: false
                     example: false
