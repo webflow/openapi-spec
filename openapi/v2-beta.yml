@@ -1593,6 +1593,20 @@ paths:
                               description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
                               example: en-US
                         description: A list of secondary locales available for the site or application.
+              example:
+                value:
+                  id: 670ecf86817e3cc7a510eb6a
+                  workspaceId: 625860a7a6c16d624927122f
+                  displayName: The Hitchiker‘s Guide
+                  shortName: hitchikers-guide
+                  previewUrl: null
+                  timeZone: null
+                  createdOn: '2024-10-15T20:24:38.134Z'
+                  lastUpdated: '2024-10-15T20:24:38.326Z'
+                  lastPublished: null
+                  parentFolderId: 670ece123598db72d9648be1
+                  customDomains: []
+                  locales: null
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -10111,6 +10125,49 @@ paths:
                           format: date-time
                         event:
                           type: string
+                          enum:
+                            - styles_modified
+                            - site_published
+                            - ix2_modified_on_page
+                            - page_dom_modified
+                            - cms_item
+                            - backup_created
+                            - page_custom_code_modified
+                            - symbols_modified
+                            - variable_modified
+                            - variables_modified
+                            - cms_collection
+                            - page_settings_modified
+                            - page_settings_custom_code_modified
+                            - ix2_modified_on_component
+                            - ix2_modified_on_class
+                            - site_custom_code_modified
+                            - page_duplicated
+                            - secondary_locale_page_content_modified
+                            - page_renamed
+                            - page_created
+                            - page_deleted
+                            - site_unpublished
+                            - backup_restored
+                            - locale_added
+                            - branch_created
+                            - locale_display_name_updated
+                            - locale_subdirectory_updated
+                            - branch_merged
+                            - locale_tag_updated
+                            - branch_deleted
+                            - locale_enabled
+                            - locale_removed
+                            - locale_disabled
+                            - library_shared
+                            - library_unshared
+                            - library_installed
+                            - library_uninstalled
+                            - library_update_shared
+                            - library_update_accepted
+                            - branch_review_created
+                            - branch_review_approved
+                            - branch_review_canceled
                         resourceOperation:
                           type: string
                           enum:
@@ -10119,6 +10176,10 @@ paths:
                             - PUBLISHED
                             - UNPUBLISHED
                             - DELETED
+                            - GROUP_REORDERED
+                            - GROUP_CREATED
+                            - GROUP_DELETED
+                            - REORDERED
                         user:
                           type: object
                           nullable: true
@@ -23946,7 +24007,7 @@ paths:
 
         In your <code>POST</code> request body, provide a list of nodes to be updated. For each node, include the <code>nodeId</code>, as well as you want to update.
         - For static content, use the `text` field.
-        - For components, list the `properties` you want to update. For each component property, provide the property `id` and it's associated value in the `text` field.
+        - For components, list the `properties` you want to update. For each component property, provide the property `id` and it's asscoiated value in the `text` field.
 
         <blockquote class="callout callout_info"><p><strong>Note:</strong> This endpoint is specifically for localized pages. Ensure that the specified <code>locale</code is a valid <strong>secondary</strong> locale for the site.</p></blockquote>
 
