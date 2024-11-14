@@ -23497,13 +23497,13 @@ paths:
                       type: component-instance
                       componentId: 6258612d1ee792848f805dcf
                       properties:
-                        - id: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
                           type: Plain Text
                           text:
                             html: null
                             text: Don't Panic!
                           attributes: {}
-                        - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
                           type: Rich Text
                           text:
                             html: <div><p>Always know where your towel is.</p></div>
@@ -23544,7 +23544,7 @@ paths:
                               Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
                             type: object
                             properties:
-                              id:
+                              propertyId:
                                 type: string
                               type:
                                 type: string
@@ -25514,7 +25514,7 @@ paths:
       security:
         - OAuth2:
             - 'components:write'
-      summary: Update Static Component Content
+      summary: Update Component Content
       description: |
         This endpoint allows you to update content within a component in a secondary locale. It is designed specifically for localized components and can handle up to 1000 nodes per request.
         To get started, use the [Get Component Content](/data/v2.0.0-beta/reference/get-component-content) endpoint to identify content nodes and types available for the component. 
@@ -25547,7 +25547,7 @@ paths:
           schema:
             type: string
             default: null
-        - name: locale_id
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -26160,13 +26160,13 @@ paths:
                 example:
                   componentId: 658205daa3e8206a523b5ad4
                   properties:
-                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                    - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
                       label: Title
                       type: Plain Text
                       text:
                         html: null
                         text: The Hitchhiker's Guide to the Galaxy
-                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                    - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad627
                       label: Content
                       type: Rich Text
                       text:
@@ -26187,7 +26187,7 @@ paths:
                         Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
                       type: object
                       properties:
-                        id:
+                        propertyId:
                           type: string
                         type:
                           type: string
