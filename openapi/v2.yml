@@ -6954,11 +6954,12 @@ paths:
         - OAuth2:
             - 'CMS:write'
       operationId: create-item
-      summary: Create Collection Item
+      summary: Create Collection Item(s)
       description: |
-        Create Item in a Collection.
+        Create Item(s) in a Collection.
 
-        To create items across multiple locales, [please use the bulk item endpoint.](/data/reference/cms/collection-items/bulk-items/create-items)
+
+        To create items across multiple locales, please use [this endpoint.](/data/v2.0.0/reference/cms/collection-items/bulk-items/create-items)
 
         Required scope | `CMS:write`
       tags:
@@ -6975,80 +6976,186 @@ paths:
             type: string
             format: objectid
       requestBody:
-        description: Details of the item to create
+        description: Details of the item(s) to create
         content:
           application/json:
             schema:
-              description: |
-                The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
-              required:
-                - id
-              properties:
-                id:
-                  type: string
-                  readOnly: true
-                  example: 580e64008c9a982ac9b8b754
-                  description: Unique identifier for the Item
-                cmsLocaleId:
-                  type: string
-                  example: 653ad57de882f528b32e810e
-                  description: Identifier for the locale of the CMS item
-                lastPublished:
-                  type: string
-                  format: date-string
-                  readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was last published
-                lastUpdated:
-                  type: string
-                  format: date-string
-                  readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was last updated
-                createdOn:
-                  type: string
-                  format: date-string
-                  readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was created
-                isArchived:
-                  type: boolean
-                  default: false
-                  description: Boolean determining if the Item is set to archived
-                isDraft:
-                  type: boolean
-                  default: false
-                  description: Boolean determining if the Item is set to draft
-                fieldData:
-                  type: object
+              oneOf:
+                - description: |
+                    The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  required:
+                    - id
                   properties:
-                    name:
+                    id:
                       type: string
-                      description: Name of the Item
-                    slug:
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: Unique identifier for the Item
+                    cmsLocaleId:
                       type: string
-                      description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
-                  additionalProperties: true
+                      example: 653ad57de882f528b32e810e
+                      description: Identifier for the locale of the CMS item
+                    lastPublished:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: 2023-03-17T18:47:35.560Z
+                      description: The date the item was last published
+                    lastUpdated:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: 2023-03-17T18:47:35.560Z
+                      description: The date the item was last updated
+                    createdOn:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: 2023-03-17T18:47:35.560Z
+                      description: The date the item was created
+                    isArchived:
+                      type: boolean
+                      default: false
+                      description: Boolean determining if the Item is set to archived
+                    isDraft:
+                      type: boolean
+                      default: false
+                      description: Boolean determining if the Item is set to draft
+                    fieldData:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of the Item
+                        slug:
+                          type: string
+                          description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                      additionalProperties: true
+                      example:
+                        date: 2022-11-18T00:00:00.000Z
+                        featured: false
+                        name: My new item
+                        slug: my-new-item
+                        color: '#db4b68'
                   example:
-                    date: 2022-11-18T00:00:00.000Z
-                    featured: false
-                    name: My new item
-                    slug: my-new-item
+                    id: 42b720ef280c7a7a3be8cabe
+                    cmsLocaleId: 653ad57de882f528b32e810e
+                    lastPublished: '2022-11-29T16:22:43.159Z'
+                    lastUpdated: '2022-11-17T17:19:43.282Z'
+                    createdOn: '2022-11-17T17:11:57.148Z'
+                    isArchived: false
+                    isDraft: false
+                    fieldData:
+                      date: '2022-11-18T00:00:00.000Z'
+                      featured: true
+                      name: Pan Galactic Gargle Blaster Recipe
+                      slug: pan-galactic-gargle-blaster
+                      color: '#db4b68'
+                - type: object
+                  additionalProperties: false
+                  properties:
+                    items:
+                      type: array
+                      description: An array of items to create
+                      items:
+                        description: |
+                          The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type: string
+                            readOnly: true
+                            example: 580e64008c9a982ac9b8b754
+                            description: Unique identifier for the Item
+                          cmsLocaleId:
+                            type: string
+                            example: 653ad57de882f528b32e810e
+                            description: Identifier for the locale of the CMS item
+                          lastPublished:
+                            type: string
+                            format: date-string
+                            readOnly: true
+                            example: 2023-03-17T18:47:35.560Z
+                            description: The date the item was last published
+                          lastUpdated:
+                            type: string
+                            format: date-string
+                            readOnly: true
+                            example: 2023-03-17T18:47:35.560Z
+                            description: The date the item was last updated
+                          createdOn:
+                            type: string
+                            format: date-string
+                            readOnly: true
+                            example: 2023-03-17T18:47:35.560Z
+                            description: The date the item was created
+                          isArchived:
+                            type: boolean
+                            default: false
+                            description: Boolean determining if the Item is set to archived
+                          isDraft:
+                            type: boolean
+                            default: false
+                            description: Boolean determining if the Item is set to draft
+                          fieldData:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                description: Name of the Item
+                              slug:
+                                type: string
+                                description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                            additionalProperties: true
+                            example:
+                              date: 2022-11-18T00:00:00.000Z
+                              featured: false
+                              name: My new item
+                              slug: my-new-item
+                              color: '#db4b68'
+                        example:
+                          id: 42b720ef280c7a7a3be8cabe
+                          cmsLocaleId: 653ad57de882f528b32e810e
+                          lastPublished: '2022-11-29T16:22:43.159Z'
+                          lastUpdated: '2022-11-17T17:19:43.282Z'
+                          createdOn: '2022-11-17T17:11:57.148Z'
+                          isArchived: false
+                          isDraft: false
+                          fieldData:
+                            date: '2022-11-18T00:00:00.000Z'
+                            featured: true
+                            name: Pan Galactic Gargle Blaster Recipe
+                            slug: pan-galactic-gargle-blaster
+                            color: '#db4b68'
+            examples:
+              SingleItem:
+                value:
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    date: '2022-11-18T00:00:00.000Z'
+                    featured: true
+                    name: Pan Galactic Gargle Blaster Recipe
+                    slug: pan-galactic-gargle-blaster
                     color: '#db4b68'
-              example:
-                id: 42b720ef280c7a7a3be8cabe
-                cmsLocaleId: 653ad57de882f528b32e810e
-                lastPublished: '2022-11-29T16:22:43.159Z'
-                lastUpdated: '2022-11-17T17:19:43.282Z'
-                createdOn: '2022-11-17T17:11:57.148Z'
-                isArchived: false
-                isDraft: false
-                fieldData:
-                  date: '2022-11-18T00:00:00.000Z'
-                  featured: true
-                  name: Pan Galactic Gargle Blaster Recipe
-                  slug: pan-galactic-gargle-blaster
-                  color: '#db4b68'
+              MultipleItems:
+                value:
+                  items:
+                    - isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
+                        name: Senior Data Analyst
+                        department: Data
+                        slug: senior-data-analyst
+                    - isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
       responses:
         '202':
           description: Request was successful
@@ -9076,11 +9183,13 @@ paths:
         - OAuth2:
             - 'CMS:write'
       operationId: create-item-live
-      summary: Create Live Collection Item
+      summary: Create Live Collection Item(s)
       description: |
-        Create live Item in a Collection. This Item will be published to the live site. 
+        Create live Item(s) in a Collection. The Item(s) will be published to the live site.
 
-        To create items across multiple locales, please use the bullk item endpoint.
+
+        To create items across multiple locales, [please use this endpoint.](/v2.0.0/data/reference/cms/collection-items/bulk-items/create-items)
+
 
         Required scope | `CMS:write`
       tags:
@@ -9097,80 +9206,185 @@ paths:
             type: string
             format: objectid
       requestBody:
-        description: Details of the item to create
+        description: Details of the item(s) to create
         content:
           application/json:
             schema:
-              description: |
-                The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
-              required:
-                - id
-              properties:
-                id:
-                  type: string
-                  readOnly: true
-                  example: 580e64008c9a982ac9b8b754
-                  description: Unique identifier for the Item
-                cmsLocaleId:
-                  type: string
-                  example: 653ad57de882f528b32e810e
-                  description: Identifier for the locale of the CMS item
-                lastPublished:
-                  type: string
-                  format: date-string
-                  readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was last published
-                lastUpdated:
-                  type: string
-                  format: date-string
-                  readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was last updated
-                createdOn:
-                  type: string
-                  format: date-string
-                  readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
-                  description: The date the item was created
-                isArchived:
-                  type: boolean
-                  default: false
-                  description: Boolean determining if the Item is set to archived
-                isDraft:
-                  type: boolean
-                  default: false
-                  description: Boolean determining if the Item is set to draft
-                fieldData:
-                  type: object
+              oneOf:
+                - description: |
+                    The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  required:
+                    - id
                   properties:
-                    name:
+                    id:
                       type: string
-                      description: Name of the Item
-                    slug:
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: Unique identifier for the Item
+                    cmsLocaleId:
                       type: string
-                      description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
-                  additionalProperties: true
+                      example: 653ad57de882f528b32e810e
+                      description: Identifier for the locale of the CMS item
+                    lastPublished:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: 2023-03-17T18:47:35.560Z
+                      description: The date the item was last published
+                    lastUpdated:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: 2023-03-17T18:47:35.560Z
+                      description: The date the item was last updated
+                    createdOn:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: 2023-03-17T18:47:35.560Z
+                      description: The date the item was created
+                    isArchived:
+                      type: boolean
+                      default: false
+                      description: Boolean determining if the Item is set to archived
+                    isDraft:
+                      type: boolean
+                      default: false
+                      description: Boolean determining if the Item is set to draft
+                    fieldData:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of the Item
+                        slug:
+                          type: string
+                          description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                      additionalProperties: true
+                      example:
+                        date: 2022-11-18T00:00:00.000Z
+                        featured: false
+                        name: My new item
+                        slug: my-new-item
+                        color: '#db4b68'
                   example:
-                    date: 2022-11-18T00:00:00.000Z
-                    featured: false
-                    name: My new item
-                    slug: my-new-item
+                    id: 42b720ef280c7a7a3be8cabe
+                    cmsLocaleId: 653ad57de882f528b32e810e
+                    lastPublished: '2022-11-29T16:22:43.159Z'
+                    lastUpdated: '2022-11-17T17:19:43.282Z'
+                    createdOn: '2022-11-17T17:11:57.148Z'
+                    isArchived: false
+                    isDraft: false
+                    fieldData:
+                      date: '2022-11-18T00:00:00.000Z'
+                      featured: true
+                      name: Pan Galactic Gargle Blaster Recipe
+                      slug: pan-galactic-gargle-blaster
+                      color: '#db4b68'
+                - type: object
+                  properties:
+                    items:
+                      type: array
+                      description: List of collection items to create
+                      items:
+                        description: |
+                          The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type: string
+                            readOnly: true
+                            example: 580e64008c9a982ac9b8b754
+                            description: Unique identifier for the Item
+                          cmsLocaleId:
+                            type: string
+                            example: 653ad57de882f528b32e810e
+                            description: Identifier for the locale of the CMS item
+                          lastPublished:
+                            type: string
+                            format: date-string
+                            readOnly: true
+                            example: 2023-03-17T18:47:35.560Z
+                            description: The date the item was last published
+                          lastUpdated:
+                            type: string
+                            format: date-string
+                            readOnly: true
+                            example: 2023-03-17T18:47:35.560Z
+                            description: The date the item was last updated
+                          createdOn:
+                            type: string
+                            format: date-string
+                            readOnly: true
+                            example: 2023-03-17T18:47:35.560Z
+                            description: The date the item was created
+                          isArchived:
+                            type: boolean
+                            default: false
+                            description: Boolean determining if the Item is set to archived
+                          isDraft:
+                            type: boolean
+                            default: false
+                            description: Boolean determining if the Item is set to draft
+                          fieldData:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                description: Name of the Item
+                              slug:
+                                type: string
+                                description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
+                            additionalProperties: true
+                            example:
+                              date: 2022-11-18T00:00:00.000Z
+                              featured: false
+                              name: My new item
+                              slug: my-new-item
+                              color: '#db4b68'
+                        example:
+                          id: 42b720ef280c7a7a3be8cabe
+                          cmsLocaleId: 653ad57de882f528b32e810e
+                          lastPublished: '2022-11-29T16:22:43.159Z'
+                          lastUpdated: '2022-11-17T17:19:43.282Z'
+                          createdOn: '2022-11-17T17:11:57.148Z'
+                          isArchived: false
+                          isDraft: false
+                          fieldData:
+                            date: '2022-11-18T00:00:00.000Z'
+                            featured: true
+                            name: Pan Galactic Gargle Blaster Recipe
+                            slug: pan-galactic-gargle-blaster
+                            color: '#db4b68'
+            examples:
+              SingleItem:
+                value:
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    date: '2022-11-18T00:00:00.000Z'
+                    featured: true
+                    name: Pan Galactic Gargle Blaster Recipe
+                    slug: pan-galactic-gargle-blaster
                     color: '#db4b68'
-              example:
-                id: 42b720ef280c7a7a3be8cabe
-                cmsLocaleId: 653ad57de882f528b32e810e
-                lastPublished: '2022-11-29T16:22:43.159Z'
-                lastUpdated: '2022-11-17T17:19:43.282Z'
-                createdOn: '2022-11-17T17:11:57.148Z'
-                isArchived: false
-                isDraft: false
-                fieldData:
-                  date: '2022-11-18T00:00:00.000Z'
-                  featured: true
-                  name: Pan Galactic Gargle Blaster Recipe
-                  slug: pan-galactic-gargle-blaster
-                  color: '#db4b68'
+              MultipleItems:
+                value:
+                  items:
+                    - isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
+                        name: Senior Data Analyst
+                        department: Data
+                        slug: senior-data-analyst
+                    - isArchived: false
+                      isDraft: false
+                      fieldData:
+                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
+                        name: Product Manager
+                        department: Product
+                        slug: product-manager
       responses:
         '202':
           description: Request was successful
