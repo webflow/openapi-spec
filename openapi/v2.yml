@@ -22357,7 +22357,7 @@ paths:
                 fileName:
                   type: string
                   example: file.png
-                  description: file name including file extension
+                  description: File name including file extension. File names must be less than 100 characters.
                 fileHash:
                   type: string
                   example: 3c7d87c9575702bc3b1e991f4d3c638e

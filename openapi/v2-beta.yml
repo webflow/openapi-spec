@@ -22651,7 +22651,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale_id
+        - name: locale
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -24949,7 +24949,7 @@ paths:
           schema:
             type: string
             default: null
-        - name: locale_id
+        - name: locale
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -26015,7 +26015,7 @@ paths:
           schema:
             type: string
             default: null
-        - name: locale_id
+        - name: locale
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -26487,7 +26487,7 @@ paths:
           schema:
             type: string
             default: null
-        - name: locale_id
+        - name: locale
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -31812,7 +31812,7 @@ paths:
         content:
           application/json:
             schema:
-              description: The request to create a webhook
+              description: The request to create an asset
               required:
                 - fileName
                 - fileHash
