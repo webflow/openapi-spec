@@ -14816,7 +14816,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -15428,7 +15428,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -15950,7 +15950,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -16629,7 +16629,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -17175,10 +17175,11 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
-          required: true
-          description: The locale identifier.
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
       requestBody:
@@ -23507,13 +23508,15 @@ paths:
           application/json:
             schema:
               description: The request to update an asset
-              required:
-                - displayName
               properties:
+                localeId:
+                  type: string
+                  example: 65427cf400e02b306eaa04a0
+                  description: 'Unique identifier for a specific locale. Applicable, when using localization.'
                 displayName:
                   type: string
                   example: bulldoze.png
-                  description: file name including file extension
+                  description: A human readable name for the asset
       responses:
         '200':
           description: Request was successful
