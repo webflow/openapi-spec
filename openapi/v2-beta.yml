@@ -23440,7 +23440,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -24027,7 +24027,7 @@ paths:
         - For static content, use the `text` field.
         - For components, list the `properties` you want to update. For each component property, provide the property `id` and it's associated value in the `text` field.
 
-        <Note>This endpoint is specifically for localized pages. Ensure that the specified `locale` is a valid **secondary** locale for the site.</Note>
+        <Note>This endpoint is specifically for localized pages. Ensure that the specified `localeId` is a valid **secondary** locale for the site.</Note>
 
         Required scope | `pages:write`
       operationId: update-static-content
@@ -24043,7 +24043,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           required: true
           description: The locale identifier.
@@ -25059,7 +25059,7 @@ paths:
           schema:
             type: string
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -25511,6 +25511,8 @@ paths:
                 externalReference: null
                 details: []
     post:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: update-content
       security:
         - OAuth2:
             - 'components:write'
@@ -26125,7 +26127,7 @@ paths:
           schema:
             type: string
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -26597,7 +26599,7 @@ paths:
           schema:
             type: string
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
