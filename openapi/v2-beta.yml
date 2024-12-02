@@ -666,7 +666,7 @@ paths:
             - 'authorized_user:read'
       operationId: resolve
       summary: Resolve ID Token
-      description: "Information about the authorized user derived from the resolved ID Token \n<blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>\n\nRequired Scope | `authorized_user:read`\n"
+      description: "Information about the authorized user derived from the resolved ID Token\n<blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>\n\nRequired Scope | `authorized_user:read`\n"
       tags:
         - Meta
       requestBody:
@@ -685,30 +685,37 @@ paths:
           content:
             application/json:
               schema:
-                example:
-                  id: 545bbecb7bdd6769632504a7
-                  email: some@email.com
-                  firstName: Some
-                  lastName: One
-                properties:
-                  id:
-                    type: string
-                    format: objectid
-                    description: The unique ID of the user
-                    example: 545bbecb7bdd6769632504a7
-                  email:
-                    type: string
-                    format: email
-                    description: The user's email address
-                    example: someone@email.com
-                  firstName:
-                    type: string
-                    description: The user's first name
-                    example: Some
-                  lastName:
-                    type: string
-                    description: The user's last name
-                    example: One
+                allOf:
+                  - example:
+                      id: 545bbecb7bdd6769632504a7
+                      email: some@email.com
+                      firstName: Some
+                      lastName: One
+                    properties:
+                      id:
+                        type: string
+                        format: objectid
+                        description: The unique ID of the user
+                        example: 545bbecb7bdd6769632504a7
+                      email:
+                        type: string
+                        format: email
+                        description: The user's email address
+                        example: someone@email.com
+                      firstName:
+                        type: string
+                        description: The user's first name
+                        example: Some
+                      lastName:
+                        type: string
+                        description: The user's last name
+                        example: One
+                  - type: object
+                    properties:
+                      siteId:
+                        type: string
+                        description: The ID of the site associated with the user
+                        example: 42e63e98c9a982ac9b8b741
         '401':
           description: Provided access token is invalid or does not have access to requested resource
           x-logErrorCode: 401
@@ -982,7 +989,7 @@ paths:
             - 'app_subscriptions:read'
       operationId: app_subscriptions
       summary: Get app subscriptions
-      description: "Information about subscriptions for a specific authorization token\n<blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>            \nRequired Scope | `app_subscriptions:read`\n"
+      description: "Information about subscriptions for a specific authorization token\n<blockquote class=\"callout callout_info\" theme=\"\U0001F4D8\">Access to this endpoint requires a bearer token from a <a href=\"/data/docs/getting-started-data-clients\">Data Client App</a>.</blockquote>\nRequired Scope | `app_subscriptions:read`\n"
       tags:
         - Meta
         - App Subscriptions
@@ -7606,7 +7613,7 @@ paths:
       operationId: get-redirects
       summary: Get URL redirects
       description: |
-        Fetch a list of all URL redirect rules configured for a specific site. 
+        Fetch a list of all URL redirect rules configured for a specific site.
 
         Use this endpoint to review, audit, or manage the redirection rules that control how traffic is rerouted on your site.
 
@@ -8033,7 +8040,7 @@ paths:
       operationId: create-redirect
       summary: Create a URL redirect
       description: |
-        Add a new URL redirection rule to a site. 
+        Add a new URL redirection rule to a site.
 
         This endpoint allows you to define a source path (`fromUrl`) and its corresponding destination path (`toUrl`), which will dictate how traffic is rerouted on your site. This is useful for managing site changes, restructuring URLs, or handling outdated links.
 
@@ -8449,7 +8456,7 @@ paths:
       operationId: update-redirect
       summary: Update URL redirect
       description: |
-        Update a URL redirection rule from a site. 
+        Update a URL redirection rule from a site.
 
         Required scope: `sites:write`
       tags:
@@ -8871,7 +8878,7 @@ paths:
       operationId: delete-redirects
       summary: Delete URL redirects
       description: |
-        Remove a URL redirection rule from a site. 
+        Remove a URL redirection rule from a site.
 
         This is useful for cleaning up outdated or unnecessary redirects, ensuring that your site's routing behavior remains efficient and up-to-date.
 
@@ -9307,7 +9314,7 @@ paths:
       operationId: set-well-known
       summary: Set a well-known file
       description: |
-        Upload a supported well-known file to a site. 
+        Upload a supported well-known file to a site.
 
         Currently, Webflow supports the following well-known files:
         - `apple-app-site-association`
@@ -9720,7 +9727,7 @@ paths:
       operationId: delete-well-known
       summary: Delete a well-known file
       description: |
-        Delete an existing well-known files from a site. 
+        Delete an existing well-known files from a site.
 
 
         Required Scope: `site_config:write`
@@ -24020,8 +24027,8 @@ paths:
       description: |
         This endpoint allows you to update content on a static page in a secondary locale. It is designed specifically for localized pages and can handle up to 1000 nodes per request.
 
-        To get started, use the [Get Page Content](/v2.0.0-beta/reference/pages/get-content) endpoint to identify content nodes and types available for the page. 
-        If you're updating components, be sure to retrieve the component's properties via the [Get Component Properties endpoint.](/v2.0.0-beta/reference/pages/components/get-properties) 
+        To get started, use the [Get Page Content](/v2.0.0-beta/reference/pages/get-content) endpoint to identify content nodes and types available for the page.
+        If you're updating components, be sure to retrieve the component's properties via the [Get Component Properties endpoint.](/v2.0.0-beta/reference/pages/components/get-properties)
 
         In your `POST` request body, provide a list of nodes to be updated. For each node, include the `nodeId`, as well as you want to update.
         - For static content, use the `text` field.
@@ -25519,9 +25526,9 @@ paths:
       summary: Update Component Content
       description: |
         This endpoint allows you to update content within a component in a secondary locale. It is designed specifically for localized components and can handle up to 1000 nodes per request.
-        To get started, use the [Get Component Content](/data/v2.0.0-beta/reference/get-component-content) endpoint to identify content nodes and types available for the component. 
+        To get started, use the [Get Component Content](/data/v2.0.0-beta/reference/get-component-content) endpoint to identify content nodes and types available for the component.
 
-        If you're updating components properties, be sure to retrieve the component's properties via the [Get Component Properties](/data/v2.0.0-beta/reference/get-component-properties) endpoint. 
+        If you're updating components properties, be sure to retrieve the component's properties via the [Get Component Properties](/data/v2.0.0-beta/reference/get-component-properties) endpoint.
 
         <Note>
         This endpoint is specifically for localized components. Ensure that the specified `locale` is a valid **secondary** locale for the site.
@@ -26576,7 +26583,7 @@ paths:
       description: |
         Updates the properties of a component definition in a specificed locale.
 
-        The request requires a secondary locale ID. If a locale is missing, the request will not be processed and will result in an error.       
+        The request requires a secondary locale ID. If a locale is missing, the request will not be processed and will result in an error.
 
         Required scope | `components:write`
       tags:
@@ -31899,9 +31906,9 @@ paths:
       operationId: create-asset
       summary: Create Asset Metadata
       description: |
-        Create a new asset entry. 
+        Create a new asset entry.
 
-        This endpoint generates a response with the following information: `uploadUrl` and `uploadDetails`. 
+        This endpoint generates a response with the following information: `uploadUrl` and `uploadDetails`.
         You can use these two properties to [upload the file to Amazon s3 by making a POST](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)
         request to the `uploadUrl` with the `uploadDetails` object as your header information in the request.
 
@@ -40056,6 +40063,553 @@ paths:
               example:
                 code: forms_require_republish
                 message: 'To access this feature, the site needs to be republished.'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+  '/sites/{site_id}/form_submissions':
+    get:
+      x-fern-sdk-group-name: forms
+      x-fern-sdk-method-name: list-submissions-by-site
+      security:
+        - OAuth2:
+            - 'forms:read'
+      operationId: list-submissions-by-site
+      summary: List Form Submissions by Site
+      description: |
+        List form submissions for a given site. This endpoint differs from the existing [List Form Submissions endpoint](/data/reference/forms/list-submissions) by accepting `siteId` as a path parameter and `elementId` as a query parameter. Use this parameter to filter submissions on a site by the `formElementId`.
+
+        Required scope | `forms:read`
+      tags:
+        - Forms
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: elementId
+          in: query
+          allowEmptyValue: true
+          description: Identifier for an element
+          example: 18259716-3e5a-646a-5f41-5dc4b9405aa0
+          required: false
+          schema:
+            type: string
+            default: null
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: A list of form submissions
+                example:
+                  formSubmissions:
+                    - id: 6321ca84df3949bfc6752327
+                      formId: 6321ca84df3949bfc6752327
+                      displayName: Sample Form
+                      siteId: 62749158efef318abc8d5a0f
+                      workspaceId: 62749158efef318abc8d5a0f
+                      formResponse:
+                        First Name: Arthur
+                        Last Name: Dent
+                      dateSubmitted: '2022-09-14T12:35:16.117Z'
+                    - id: 660d64fabf6e0a0d4edab981
+                      formId: 6321ca84df3949bfc6752327
+                      displayName: Sample Form
+                      siteId: 62749158efef318abc8d5a0f
+                      workspaceId: 62749158efef318abc8d5a0f
+                      formResponse:
+                        First Name: Ford
+                        Last Name: Prefect
+                      dateSubmitted: '2022-09-14T12:35:16.117Z'
+                  pagination:
+                    limit: 25
+                    offset: 0
+                    total: 2
+                properties:
+                  formSubmissions:
+                    type: array
+                    items:
+                      example:
+                        id: 6321ca84df3949bfc6752327
+                        formId: 6321ca84df3949bfc6752327
+                        displayName: Sample Form
+                        siteId: 62749158efef318abc8d5a0f
+                        workspaceId: 62749158efef318abc8d5a0f
+                        formResponse:
+                          First Name: Arthur
+                          Last Name: Dent
+                        dateSubmitted: '2022-09-14T12:35:16.117Z'
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          description: The unique ID of the Form submission
+                          example: 545bbecb7bdd6769632504a7
+                        displayName:
+                          type: string
+                          description: The Form name displayed on the site
+                          example: someone@email.com
+                        siteId:
+                          type: string
+                          format: objectid
+                          description: The unique ID of the Site the Form belongs to
+                          example: 545bbecb7bdd6769632504a7
+                        workspaceId:
+                          type: string
+                          format: objectid
+                          description: The unique ID of the Workspace the Site belongs to
+                          example: 580e63fc8c9a982ac9b8b744
+                        dateSubmitted:
+                          type: string
+                          format: date-time
+                          description: Date that the Form was submitted on
+                          example: '2018-10-04T15:21:02.042Z'
+                        formResponse:
+                          type: object
+                          description: The data submitted in the Form
+                          example:
+                            name: Arthur Dent
+                            email: arthur.dent@mostlyharmless.com
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '403':
+          description: Forbidden
+          x-logErrorCode: 403
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: forbidden
+                message: User is not authorized to perform this action
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
                 externalReference: null
                 details: []
         '429':
