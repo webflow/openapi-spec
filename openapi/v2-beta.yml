@@ -1458,6 +1458,8 @@ paths:
                           displayImageId: null
                           subdirectory: es-mx
                           tag: es-MX
+                  dataCollectionEnabled: true
+                  dataCollectionType: always
                 required:
                   - id
                 properties:
@@ -1608,6 +1610,18 @@ paths:
                               description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
                               example: en-US
                         description: A list of secondary locales available for the site or application.
+                  dataCollectionEnabled:
+                    type: boolean
+                    description: Indicates if data collection is enabled for the site.
+                    example: false
+                  dataCollectionType:
+                    type: string
+                    enum:
+                      - always
+                      - optOut
+                      - disabled
+                    description: The type of data collection enabled for the site.
+                    example: always
               example:
                 value:
                   id: 670ecf86817e3cc7a510eb6a
@@ -2165,6 +2179,8 @@ paths:
                                 displayImageId: null
                                 subdirectory: es-mx
                                 tag: es-MX
+                        dataCollectionEnabled: true
+                        dataCollectionType: always
                       required:
                         - id
                       properties:
@@ -2315,6 +2331,18 @@ paths:
                                     description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
                                     example: en-US
                               description: A list of secondary locales available for the site or application.
+                        dataCollectionEnabled:
+                          type: boolean
+                          description: Indicates if data collection is enabled for the site.
+                          example: false
+                        dataCollectionType:
+                          type: string
+                          enum:
+                            - always
+                            - optOut
+                            - disabled
+                          description: The type of data collection enabled for the site.
+                          example: always
                 example:
                   sites:
                     - id: 42e63e98c9a982ac9b8b741
@@ -2353,6 +2381,8 @@ paths:
                             redirect: true
                             subdirectory: /mg
                             tag: Magrathean
+                      dataCollectionEnabled: true
+                      dataCollectionType: always
                     - id: 42e63e98c9a982ac9b8b742
                       workspaceId: 42e63fc8c9a982ac9b8b745
                       createdOn: '1981-10-12T12:00:00.000Z'
@@ -2382,6 +2412,8 @@ paths:
                             redirect: true
                             subdirectory: /sr
                             tag: Squornshellous
+                      dataCollectionEnabled: true
+                      dataCollectionType: always
                     - id: 42e63e98c9a982ac9b8b743
                       workspaceId: 42e63fc8c9a982ac9b8b746
                       createdOn: '1982-10-12T12:00:00.000Z'
@@ -2411,6 +2443,8 @@ paths:
                             redirect: true
                             subdirectory: /gl
                             tag: Pan-Galactic Gargle Blaster
+                      dataCollectionEnabled: true
+                      dataCollectionType: always
         '401':
           description: Provided access token is invalid or does not have access to requested resource
           x-logErrorCode: 401
@@ -2823,6 +2857,8 @@ paths:
                           displayImageId: null
                           subdirectory: es-mx
                           tag: es-MX
+                  dataCollectionEnabled: true
+                  dataCollectionType: always
                 required:
                   - id
                 properties:
@@ -2973,6 +3009,18 @@ paths:
                               description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
                               example: en-US
                         description: A list of secondary locales available for the site or application.
+                  dataCollectionEnabled:
+                    type: boolean
+                    description: Indicates if data collection is enabled for the site.
+                    example: false
+                  dataCollectionType:
+                    type: string
+                    enum:
+                      - always
+                      - optOut
+                      - disabled
+                    description: The type of data collection enabled for the site.
+                    example: always
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -3398,6 +3446,8 @@ paths:
                           displayImageId: null
                           subdirectory: es-mx
                           tag: es-MX
+                  dataCollectionEnabled: true
+                  dataCollectionType: always
                 required:
                   - id
                 properties:
@@ -3548,6 +3598,18 @@ paths:
                               description: 'A tag or code representing the locale, often following a standard format like ''en-US''.'
                               example: en-US
                         description: A list of secondary locales available for the site or application.
+                  dataCollectionEnabled:
+                    type: boolean
+                    description: Indicates if data collection is enabled for the site.
+                    example: false
+                  dataCollectionType:
+                    type: string
+                    enum:
+                      - always
+                      - optOut
+                      - disabled
+                    description: The type of data collection enabled for the site.
+                    example: always
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
