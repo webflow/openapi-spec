@@ -23565,7 +23565,7 @@ paths:
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                       type: component-instance
                       componentId: 6258612d1ee792848f805dcf
-                      properties:
+                      propertyOverrides:
                         - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
                           type: Plain Text
                           text:
@@ -23606,7 +23606,8 @@ paths:
                         componentId:
                           type: string
                           description: Component ID
-                        properties:
+                        propertyOverrides:
+                          description: List of component properties with overrides for a component instance.
                           type: array
                           items:
                             description: |
@@ -23615,6 +23616,8 @@ paths:
                             properties:
                               propertyId:
                                 type: string
+                                description: The ID of the property.
+                                example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                               type:
                                 type: string
                                 enum:
@@ -24094,7 +24097,7 @@ paths:
 
         In your `POST` request body, provide a list of nodes to be updated. For each node, include the `nodeId`, as well as you want to update.
         - For static content, use the `text` field.
-        - For components, list the `properties` you want to update. For each component property, provide the property `id` and it's associated value in the `text` field.
+        - For components, list the `propertiesOverrides` you want to update. For each component property, provide the `propertyId` and it's associated value in the `text` field.
 
         <Note>This endpoint is specifically for localized pages. Ensure that the specified `localeId` is a valid **secondary** locale for the site.</Note>
 
@@ -24161,15 +24164,15 @@ paths:
                             type: string
                             description: Node UUID
                             example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          properties:
-                            description: A list of component instance properties to update within the specified secondary locale.
+                          propertyOverrides:
+                            description: A list of component instance properties to override within the specified secondary locale.
                             type: array
                             items:
                               type: object
                               properties:
                                 propertyId:
                                   type: string
-                                  description: The ID of the property to override
+                                  description: The ID of the property.
                                   example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                                 text:
                                   type: string
@@ -24184,11 +24187,11 @@ paths:
                                 - text
                         required:
                           - nodeId
-                          - properties
+                          - propertyOverrides
                         example:
                           nodes:
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                              properties:
+                              propertyOverrides:
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                                   text: <div><h1>Don’t <em>Panic!</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
@@ -25198,6 +25201,40 @@ paths:
                             - text
                             - image
                             - component-instance
+                        componentId:
+                          type: string
+                          description: Component ID
+                        propertyOverrides:
+                          description: List of component properties with overrides for a component instance.
+                          type: array
+                          items:
+                            description: |
+                              Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                            type: object
+                            properties:
+                              propertyId:
+                                type: string
+                                description: The ID of the property.
+                                example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                              type:
+                                type: string
+                                enum:
+                                  - Plain Text
+                                  - Rich Text
+                                  - Alt Text
+                              label:
+                                type: string
+                              text:
+                                description: |
+                                  Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                                type: object
+                                properties:
+                                  html:
+                                    type: string
+                                    nullable: true
+                                  text:
+                                    type: string
+                                    nullable: true
                         text:
                           description: |
                             Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
@@ -25587,10 +25624,12 @@ paths:
             - 'components:write'
       summary: Update Component Content
       description: |
-        This endpoint allows you to update content within a component in a secondary locale. It is designed specifically for localized components and can handle up to 1000 nodes per request.
-        To get started, use the [Get Component Content](/data/v2.0.0-beta/reference/get-component-content) endpoint to identify content nodes and types available for the component.
+        This endpoint allows you to update content within a component in a secondary locale. 
 
-        If you're updating components properties, be sure to retrieve the component's properties via the [Get Component Properties](/data/v2.0.0-beta/reference/get-component-properties) endpoint.
+        It is designed specifically for localized components and can handle up to 1000 nodes per request.
+        To get started, use the [Get Component Content](/data/v2.0.0-beta/reference/get-component-content) endpoint to identify content nodes and types available for the component. 
+
+        If you're updating a component's properties, be sure to retrieve them via the [Get Component Properties](/data/v2.0.0-beta/reference/get-component-properties) endpoint. 
 
         <Note>
         This endpoint is specifically for localized components. Ensure that the specified `locale` is a valid **secondary** locale for the site.
@@ -25668,15 +25707,15 @@ paths:
                             type: string
                             description: Node UUID
                             example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          properties:
-                            description: A list of component instance properties to update within the specified secondary locale.
+                          propertyOverrides:
+                            description: A list of component instance properties to override within the specified secondary locale.
                             type: array
                             items:
                               type: object
                               properties:
                                 propertyId:
                                   type: string
-                                  description: The ID of the property to override
+                                  description: The ID of the property.
                                   example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                                 text:
                                   type: string
@@ -25691,11 +25730,11 @@ paths:
                                 - text
                         required:
                           - nodeId
-                          - properties
+                          - propertyOverrides
                         example:
                           nodes:
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                              properties:
+                              propertyOverrides:
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                                   text: <div><h1>Don’t <em>Panic!</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
@@ -25716,7 +25755,7 @@ paths:
                 ComponentNodePropertiesWrite:
                   nodes:
                     - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      properties:
+                      propertyOverrides:
                         - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                           text: <div><h1>Don’t <em>Panic!</em></h1></div>
                         - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
@@ -25735,7 +25774,7 @@ paths:
                 value:
                   nodes:
                     - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      properties:
+                      propertyOverrides:
                         - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                           text: <div><h1>Don’t <em>Panic!</em></h1></div>
                         - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
@@ -26260,6 +26299,8 @@ paths:
                       properties:
                         propertyId:
                           type: string
+                          description: The ID of the property.
+                          example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                         type:
                           type: string
                           enum:
@@ -26690,14 +26731,14 @@ paths:
                     properties:
                       propertyId:
                         type: string
-                        description: The ID of the property to override
+                        description: The ID of the property.
                         example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
                       text:
                         type: string
                         description: |
-                          The new string or HTML value used to override the component instance property value. 
-                          The provided value must be compatible with the type of the component instance property. 
-                          For example, attempting to override a single-line plain-text property with a multi-line 
+                          The new string or HTML value used to update the component property in the secondary locale. 
+                          The provided value must be compatible with the type of the component property. 
+                          For example, attempting to update a single-line plain-text property with a multi-line 
                           value will result in an error.
                         example: <div><h1>Property with <em>Rich Text</em></h1></div>
                     required:
