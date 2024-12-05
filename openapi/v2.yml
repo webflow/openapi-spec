@@ -6487,12 +6487,15 @@ paths:
                 type: string
                 format: date-time
                 example: '2024-04-22T16:00:31.000Z'
+                description: Filter items last published before this date
               gte:
                 type: string
                 format: date-time
                 example: '2024-04-19T16:00:31.000Z'
+                description: Filter items last published after this date
           style: deepObject
           explode: true
+          required: false
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -8716,12 +8719,15 @@ paths:
                 type: string
                 format: date-time
                 example: '2024-04-22T16:00:31.000Z'
+                description: Filter items last published before this date
               gte:
                 type: string
                 format: date-time
                 example: '2024-04-19T16:00:31.000Z'
+                description: Filter items last published after this date
           style: deepObject
           explode: true
+          required: false
         - name: sortBy
           in: query
           allowEmptyValue: true
