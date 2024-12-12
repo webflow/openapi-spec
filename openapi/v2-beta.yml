@@ -13930,7 +13930,11 @@ paths:
                     description: List of Items within the collection
                     items:
                       description: |
-                        The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        A Collection Item represents a single entry in your collection. Each item includes:
+
+                        - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                        - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                        - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                       required:
                         - id
                         - fieldData
@@ -14394,7 +14398,14 @@ paths:
               oneOf:
                 - x-fern-type-name: Single Item
                   description: |
-                    The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                    A new Collection Item that will be created in the draft state. 
+
+                    A Collection Item represents a single entry in your collection. Each item includes:
+
+                    - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                    - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                    - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
+                  type: object
                   required:
                     - fieldData
                   properties:
@@ -14428,11 +14439,12 @@ paths:
                     isArchived:
                       type: boolean
                       default: false
-                      description: Boolean determining if the Item is set to archived
+                      description: Boolean determining if the Item is in an archived state.
                     isDraft:
                       type: boolean
-                      default: false
-                      description: Boolean determining if the Item is set to draft
+                      default: true
+                      example: true
+                      description: Boolean determining if the Item is in a draft state.
                     fieldData:
                       type: object
                       required:
@@ -14470,7 +14482,14 @@ paths:
                       description: An array of items to create
                       items:
                         description: |
-                          The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                          A new Collection Item that will be created in the draft state. 
+
+                          A Collection Item represents a single entry in your collection. Each item includes:
+
+                          - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                          - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                          - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
+                        type: object
                         required:
                           - fieldData
                         properties:
@@ -14504,11 +14523,12 @@ paths:
                           isArchived:
                             type: boolean
                             default: false
-                            description: Boolean determining if the Item is set to archived
+                            description: Boolean determining if the Item is in an archived state.
                           isDraft:
                             type: boolean
-                            default: false
-                            description: Boolean determining if the Item is set to draft
+                            default: true
+                            example: true
+                            description: Boolean determining if the Item is in a draft state.
                           fieldData:
                             type: object
                             required:
@@ -14541,7 +14561,7 @@ paths:
               SingleItem:
                 value:
                   isArchived: false
-                  isDraft: false
+                  isDraft: true
                   fieldData:
                     name: Pan Galactic Gargle Blaster Recipe
                     slug: pan-galactic-gargle-blaster
@@ -14551,20 +14571,34 @@ paths:
               MultipleItems:
                 value:
                   items:
-                    - isArchived: false
-                      isDraft: false
+                    - id: 62b720ef280c7a7a3be8cabe
+                      lastPublished: null
+                      lastUpdated: '2022-06-25T14:51:27.809Z'
+                      createdOn: '2022-06-25T14:51:27.809Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: true
                       fieldData:
                         name: Senior Data Analyst
                         slug: senior-data-analyst
                         url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
                         department: Data
-                    - isArchived: false
-                      isDraft: false
+                    - id: 62c880ef281c7b7b4cf9dabc
+                      lastPublished: null
+                      lastUpdated: '2023-04-10T11:45:30.567Z'
+                      createdOn: '2023-04-10T11:45:30.567Z'
+                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                      isArchived: false
+                      isDraft: true
                       fieldData:
                         name: Product Manager
                         slug: product-manager
                         url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
                         department: Product
+                  pagination:
+                    limit: 25
+                    offset: 0
+                    total: 2
       responses:
         '202':
           description: Request was successful
@@ -14572,7 +14606,13 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item that will be created in the draft state. 
+
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -14610,7 +14650,7 @@ paths:
                     description: Boolean determining if the Item is set to archived
                   isDraft:
                     type: boolean
-                    default: false
+                    default: true
                     description: Boolean determining if the Item is set to draft
                   fieldData:
                     type: object
@@ -14650,11 +14690,11 @@ paths:
                   value:
                     id: 42b720ef280c7a7a3be8cabe
                     cmsLocaleId: 653ad57de882f528b32e810e
-                    lastPublished: '2022-11-29T16:22:43.159Z'
+                    lastPublished: null
                     lastUpdated: '2022-11-17T17:19:43.282Z'
                     createdOn: '2022-11-17T17:11:57.148Z'
                     isArchived: false
-                    isDraft: false
+                    isDraft: true
                     fieldData:
                       name: Pan Galactic Gargle Blaster Recipe
                       slug: pan-galactic-gargle-blaster
@@ -14664,20 +14704,34 @@ paths:
                 MultipleItems:
                   value:
                     items:
-                      - isArchived: false
-                        isDraft: false
+                      - id: 62b720ef280c7a7a3be8cabe
+                        lastPublished: null
+                        lastUpdated: '2022-06-25T14:51:27.809Z'
+                        createdOn: '2022-06-25T14:51:27.809Z'
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        isArchived: false
+                        isDraft: true
                         fieldData:
                           name: Senior Data Analyst
                           slug: senior-data-analyst
                           url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
                           department: Data
-                      - isArchived: false
-                        isDraft: false
+                      - id: 62c880ef281c7b7b4cf9dabc
+                        lastPublished: null
+                        lastUpdated: '2023-04-10T11:45:30.567Z'
+                        createdOn: '2023-04-10T11:45:30.567Z'
+                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
+                        isArchived: false
+                        isDraft: true
                         fieldData:
                           name: Product Manager
                           slug: product-manager
                           url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
                           department: Product
+                    pagination:
+                      limit: 25
+                      offset: 0
+                      total: 2
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -15088,11 +15142,9 @@ paths:
                         description: The date the item was created
                       isArchived:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to archived
                       isDraft:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to draft
                       fieldData:
                         type: object
@@ -15176,7 +15228,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -16205,7 +16261,11 @@ paths:
                     description: List of Items within the collection
                     items:
                       description: |
-                        The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        A Collection Item represents a single entry in your collection. Each item includes:
+
+                        - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                        - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                        - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                       required:
                         - id
                         - fieldData
@@ -16668,9 +16728,13 @@ paths:
           application/json:
             schema:
               oneOf:
-                - x-fern-type-name: Single Item
+                - x-fern-type-name: Single Live Item
                   description: |
-                    The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                    A Collection Item represents a single entry in your collection. Each item includes:
+
+                    - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                    - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                    - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                   required:
                     - id
                     - fieldData
@@ -16744,14 +16808,18 @@ paths:
                       date: '2022-11-18T00:00:00.000Z'
                       featured: true
                 - type: object
-                  x-fern-type-name: Multiple Items
+                  x-fern-type-name: Multiple Live Items
                   properties:
                     items:
                       type: array
                       description: List of collection items to create
                       items:
                         description: |
-                          The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                          A Collection Item represents a single entry in your collection. Each item includes:
+
+                          - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                          - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                          - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                         required:
                           - id
                           - fieldData
@@ -16859,7 +16927,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -17342,11 +17414,9 @@ paths:
                         description: The date the item was created
                       isArchived:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to archived
                       isDraft:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to draft
                       fieldData:
                         type: object
@@ -17466,7 +17536,11 @@ paths:
                     description: List of Items within the collection
                     items:
                       description: |
-                        The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        A Collection Item represents a single entry in your collection. Each item includes:
+
+                        - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                        - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                        - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                       required:
                         - id
                         - fieldData
@@ -18387,9 +18461,15 @@ paths:
           application/json:
             schema:
               description: |
-                Schema for creating multiple items within a Collection. Each item adheres to the schema defined by the Collection it belongs to.  In addition to user-defined fields, several system fields are automatically created for all items, including `name` and `slug`.
+                New collection item(s) that will be created in the draft state. 
+
+                A Collection Item represents a single entry in your collection. Each item includes:
+
+                - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
               required:
-                - fieldData
+                - id
               properties:
                 id:
                   type: string
@@ -18430,12 +18510,11 @@ paths:
                   description: Indicates whether the item is archived.
                 isDraft:
                   type: boolean
-                  default: false
+                  default: true
                   description: Indicates whether the item is in draft state.
                 fieldData:
                   oneOf:
                     - type: object
-                      x-fern-type-name: Single CMS Item
                       additionalProperties: true
                       properties:
                         name:
@@ -18450,11 +18529,8 @@ paths:
                         - name
                         - slug
                     - type: array
-                      x-fern-type-name: Multiple CMS Items
-                      description: A list of CMS items to create
                       items:
                         type: object
-                        description: A single CMS item to create
                         additionalProperties: true
                         properties:
                           name:
@@ -18477,7 +18553,7 @@ paths:
                       - 66f6e966c9e1dc700a857ca4
                       - 66f6e966c9e1dc700a857ca5
                     isArchived: false
-                    isDraft: false
+                    isDraft: true
                     fieldData:
                       name: Don’t Panic
                       slug: dont-panic
@@ -18488,7 +18564,7 @@ paths:
                       - 66f6e966c9e1dc700a857ca3
                       - 66f6e966c9e1dc700a857ca4
                     isArchived: false
-                    isDraft: false
+                    isDraft: true
                     fieldData:
                       - name: Don’t Panic
                         slug: dont-panic
@@ -18503,18 +18579,18 @@ paths:
                     - 66f6e966c9e1dc700a857ca4
                     - 66f6e966c9e1dc700a857ca5
                   isArchived: false
-                  isDraft: false
+                  isDraft: true
                   fieldData:
                     name: Don’t Panic
                     slug: dont-panic
               MultipleItemsMultipleLocales:
-                summary: Create multiple items across multipel locales
+                summary: Create multiple items across multiple locales
                 value:
                   cmsLocaleIds:
                     - 66f6e966c9e1dc700a857ca3
                     - 66f6e966c9e1dc700a857ca4
                   isArchived: false
-                  isDraft: false
+                  isDraft: true
                   fieldData:
                     - name: Don’t Panic
                       slug: dont-panic
@@ -18527,7 +18603,13 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A list of new Collection Items that will be created in the draft state. 
+
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                 properties:
@@ -18571,7 +18653,7 @@ paths:
                     description: Boolean determining if the Item is set to archived
                   isDraft:
                     type: boolean
-                    default: false
+                    default: true
                     description: Boolean determining if the Item is set to draft
                   fieldData:
                     type: object
@@ -18597,7 +18679,7 @@ paths:
                       lastUpdated: '2024-02-28T19:25:39.942Z'
                       createdOn: '2024-02-28T19:25:39.942Z'
                       isArchived: false
-                      isDraft: false
+                      isDraft: true
                       fieldData:
                         name: Don't Panic
                         slug: dont-panic
@@ -18607,7 +18689,7 @@ paths:
                       lastUpdated: '2024-02-28T19:25:39.942Z'
                       createdOn: '2024-02-28T19:25:39.942Z'
                       isArchived: false
-                      isDraft: false
+                      isDraft: true
                       fieldData:
                         name: Don't Panic
                         slug: dont-panic
@@ -18617,7 +18699,7 @@ paths:
                       lastUpdated: '2024-02-28T19:25:39.942Z'
                       createdOn: '2024-02-28T19:25:39.942Z'
                       isArchived: false
-                      isDraft: false
+                      isDraft: true
                       fieldData:
                         name: Don't Panic
                         slug: dont-panic
@@ -18632,7 +18714,7 @@ paths:
                         lastUpdated: '2024-02-28T19:25:39.942Z'
                         createdOn: '2024-02-28T19:25:39.942Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           name: Don't Panic
                           slug: dont-panic
@@ -18642,7 +18724,7 @@ paths:
                         lastUpdated: '2024-02-28T19:25:39.942Z'
                         createdOn: '2024-02-28T19:25:39.942Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           name: Don't Panic
                           slug: dont-panic
@@ -18652,7 +18734,7 @@ paths:
                         lastUpdated: '2024-02-28T19:25:39.942Z'
                         createdOn: '2024-02-28T19:25:39.942Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           name: Don't Panic
                           slug: dont-panic
@@ -18666,7 +18748,7 @@ paths:
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           featured: false
                           name: Don't Panic
@@ -18677,7 +18759,7 @@ paths:
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           featured: false
                           name: Don't Panic
@@ -18688,7 +18770,7 @@ paths:
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           featured: false
                           name: Don't Panic
@@ -18699,7 +18781,7 @@ paths:
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           featured: false
                           name: So Long and Thanks for All the Fish
@@ -18710,7 +18792,7 @@ paths:
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           featured: false
                           name: So Long and Thanks for All the Fish
@@ -18721,7 +18803,7 @@ paths:
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         isArchived: false
-                        isDraft: false
+                        isDraft: true
                         fieldData:
                           featured: false
                           name: So Long and Thanks for All the Fish
@@ -19114,7 +19196,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -19598,11 +19684,9 @@ paths:
                   description: The date the item was created
                 isArchived:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to archived
                 isDraft:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to draft
                 fieldData:
                   type: object
@@ -19636,7 +19720,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -20480,7 +20568,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -20964,11 +21056,9 @@ paths:
                   description: The date the item was created
                 isArchived:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to archived
                 isDraft:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to draft
                 fieldData:
                   type: object
@@ -21002,7 +21092,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -22064,71 +22158,6 @@ paths:
               example:
                 code: resource_not_found
                 message: 'Requested resource not found: The site cannot be found'
-                externalReference: null
-                details: []
-        '409':
-          description: Site is published to multiple domains at different times
-          x-logErrorCode: 409
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  code: not_authorized
-                  message: Request not authorized
-                  externalReference: null
-                  details: []
-                properties:
-                  code:
-                    type: string
-                    description: Error code
-                    example: not_authorized
-                    enum:
-                      - bad_request
-                      - collection_not_found
-                      - conflict
-                      - duplicate_collection
-                      - duplicate_user_email
-                      - ecommerce_not_enabled
-                      - forbidden
-                      - forms_require_republish
-                      - incompatible_webhook_filter
-                      - internal_error
-                      - invalid_auth_version
-                      - invalid_credentials
-                      - invalid_domain
-                      - invalid_user_email
-                      - item_not_found
-                      - missing_scopes
-                      - no_domains
-                      - not_authorized
-                      - not_enterprise_plan_site
-                      - not_enterprise_plan_workspace
-                      - order_not_found
-                      - resource_not_found
-                      - too_many_requests
-                      - unsupported_version
-                      - unsupported_webhook_trigger_type
-                      - user_limit_reached
-                      - user_not_found
-                      - users_not_enabled
-                      - validation_error
-                  message:
-                    type: string
-                    description: Error message
-                    example: Request not authorized
-                  externalReference:
-                    type: string
-                    description: Link to more information
-                  details:
-                    type: array
-                    description: Array of errors
-                    items:
-                      type:
-                        - string
-                        - object
-              example:
-                message: '''Site is published to multiple domains at different times'
                 externalReference: null
                 details: []
         '429':

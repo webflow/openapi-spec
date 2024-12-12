@@ -6560,7 +6560,11 @@ paths:
                     description: List of Items within the collection
                     items:
                       description: |
-                        The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        A Collection Item represents a single entry in your collection. Each item includes:
+
+                        - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                        - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                        - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                       required:
                         - id
                         - fieldData
@@ -7024,7 +7028,12 @@ paths:
               oneOf:
                 - x-fern-type-name: Single Item
                   description: |
-                    The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                    A Collection Item represents a single entry in your collection. Each item includes:
+
+                    - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                    - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                    - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
+                  type: object
                   required:
                     - fieldData
                   properties:
@@ -7058,11 +7067,12 @@ paths:
                     isArchived:
                       type: boolean
                       default: false
-                      description: Boolean determining if the Item is set to archived
+                      description: Boolean determining if the Item is in an archived state.
                     isDraft:
                       type: boolean
                       default: false
-                      description: Boolean determining if the Item is set to draft
+                      example: false
+                      description: Boolean determining if the Item is in a draft state.
                     fieldData:
                       type: object
                       required:
@@ -7100,7 +7110,12 @@ paths:
                       description: An array of items to create
                       items:
                         description: |
-                          The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                          A Collection Item represents a single entry in your collection. Each item includes:
+
+                          - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                          - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                          - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
+                        type: object
                         required:
                           - fieldData
                         properties:
@@ -7134,11 +7149,12 @@ paths:
                           isArchived:
                             type: boolean
                             default: false
-                            description: Boolean determining if the Item is set to archived
+                            description: Boolean determining if the Item is in an archived state.
                           isDraft:
                             type: boolean
                             default: false
-                            description: Boolean determining if the Item is set to draft
+                            example: false
+                            description: Boolean determining if the Item is in a draft state.
                           fieldData:
                             type: object
                             required:
@@ -7202,7 +7218,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -7718,11 +7738,9 @@ paths:
                         description: The date the item was created
                       isArchived:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to archived
                       isDraft:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to draft
                       fieldData:
                         type: object
@@ -7806,7 +7824,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -8548,6 +8570,71 @@ paths:
                 message: 'Requested resource not found: The site cannot be found'
                 externalReference: null
                 details: []
+        '409':
+          description: Site is published to multiple domains at different times
+          x-logErrorCode: 409
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                message: '''Site is published to multiple domains at different times'
+                externalReference: null
+                details: []
         '429':
           description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
           x-logErrorCode: 429
@@ -8835,7 +8922,11 @@ paths:
                     description: List of Items within the collection
                     items:
                       description: |
-                        The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        A Collection Item represents a single entry in your collection. Each item includes:
+
+                        - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                        - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                        - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                       required:
                         - id
                         - fieldData
@@ -9298,9 +9389,13 @@ paths:
           application/json:
             schema:
               oneOf:
-                - x-fern-type-name: Single Item
+                - x-fern-type-name: Single Live Item
                   description: |
-                    The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                    A Collection Item represents a single entry in your collection. Each item includes:
+
+                    - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                    - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                    - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                   required:
                     - id
                     - fieldData
@@ -9374,14 +9469,18 @@ paths:
                       date: '2022-11-18T00:00:00.000Z'
                       featured: true
                 - type: object
-                  x-fern-type-name: Multiple Items
+                  x-fern-type-name: Multiple Live Items
                   properties:
                     items:
                       type: array
                       description: List of collection items to create
                       items:
                         description: |
-                          The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                          A Collection Item represents a single entry in your collection. Each item includes:
+
+                          - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                          - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                          - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                         required:
                           - id
                           - fieldData
@@ -9489,7 +9588,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -9972,11 +10075,9 @@ paths:
                         description: The date the item was created
                       isArchived:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to archived
                       isDraft:
                         type: boolean
-                        default: false
                         description: Boolean determining if the Item is set to draft
                       fieldData:
                         type: object
@@ -10096,7 +10197,11 @@ paths:
                     description: List of Items within the collection
                     items:
                       description: |
-                        The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                        A Collection Item represents a single entry in your collection. Each item includes:
+
+                        - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                        - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                        - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                       required:
                         - id
                         - fieldData
@@ -11012,12 +11117,15 @@ paths:
             type: string
             format: objectid
       requestBody:
-        description: Details of the item to create
         content:
           application/json:
             schema:
               description: |
-                Schema for creating multiple items within a Collection. Each item adheres to the schema defined by the Collection it belongs to.  In addition to user-defined fields, several system fields are automatically created for all items, including `name` and `slug`.
+                A Collection Item represents a single entry in your collection. Each item includes:
+
+                - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
               required:
                 - fieldData
               properties:
@@ -11744,7 +11852,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -12228,11 +12340,9 @@ paths:
                   description: The date the item was created
                 isArchived:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to archived
                 isDraft:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to draft
                 fieldData:
                   type: object
@@ -12266,7 +12376,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -13110,7 +13224,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
@@ -13594,11 +13712,9 @@ paths:
                   description: The date the item was created
                 isArchived:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to archived
                 isDraft:
                   type: boolean
-                  default: false
                   description: Boolean determining if the Item is set to draft
                 fieldData:
                   type: object
@@ -13632,7 +13748,11 @@ paths:
             application/json:
               schema:
                 description: |
-                  The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+                  A Collection Item represents a single entry in your collection. Each item includes:
+
+                  - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
+                  - **Status flags** - Controls for managing content state: `isDraft`, `isArchived `<br/> 
+                  - **Content fields** - Stored in `fieldData`. Each item needs a `name` and `slug`, and may include additional fields matching your collection's schema definition.
                 required:
                   - id
                   - fieldData
