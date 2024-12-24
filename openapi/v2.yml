@@ -20918,14 +20918,15 @@ paths:
       security:
         - OAuth2:
             - 'page:read'
+      operationId: get-static-content
       summary: Get Page Content
       description: |
-        Get static content from a static page.
+        Get static content from a static page. This includes text nodes, image nodes and component instances.
+        To retrieve the contents of components in the page use the [get component content](/data/reference/pages-and-components/components/get-content) endpoint.
 
-        If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.
+        <Note>If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.</Note>
 
         Required scope | `pages:read`
-      operationId: get-static-content
       tags:
         - Pages
       parameters:
@@ -20968,7 +20969,7 @@ paths:
             application/json:
               schema:
                 description: |
-                  The DOM (Document Object Model) schema represents the content structure of a web page. It captures various content nodes, such as text and images, along with their associated attributes. Each node has a unique identifier and can be of different types like text or image. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
+                  The DOM (Document Object Model) schema represents the content structure of a web page or component. It captures various content nodes along with their associated attributes. Each node has a unique identifier and can be of different types like text, image or component-instance. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
                 type: object
                 example:
                   pageId: 658205daa3e8206a523b5ad4
@@ -20984,17 +20985,32 @@ paths:
                       text:
                         html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                         text: null
-                      attributes: {}
+                      attributes:
+                        number: forty two
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
                       type: image
                       image:
                         alt: 'Marvin, the Paranoid Android'
                         assetId: 659595234426a9fcbad57043
                       attributes: {}
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                      type: component-instance
+                      componentId: 6258612d1ee792848f805dcf
+                      propertyOverrides:
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                          type: Plain Text
+                          text:
+                            html: null
+                            text: Don't Panic!
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                          type: Rich Text
+                          text:
+                            html: <div><p>Always know where your towel is.</p></div>
+                            text: null
                   pagination:
-                    limit: 3
+                    limit: 4
                     offset: 0
-                    total: 3
+                    total: 4
                 properties:
                   pageId:
                     type: string
@@ -21005,41 +21021,162 @@ paths:
                       description: |
                         A generic representation of a content element within the Document Object Model (DOM). Each node has a unique identifier and a specific type that determines its content structure and attributes.
                       type: object
-                      properties:
-                        id:
-                          type: string
-                          description: Node UUID
-                          readOnly: true
-                        type:
-                          type: string
-                          enum:
-                            - text
-                            - image
-                        text:
-                          description: |
-                            Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                      properties: null
+                      oneOf:
+                        - description: |
+                            Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
                           properties:
-                            html:
+                            id:
                               type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - text
+                              default: text
                             text:
-                              type: string
-                              nullable: true
-                        image:
-                          description: |
+                              properties:
+                                html:
+                                  type: string
+                                  nullable: true
+                                text:
+                                  type: string
+                                  nullable: true
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
                             Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
                           type: object
                           properties:
-                            alt:
+                            id:
                               type: string
-                              nullable: true
-                            assetId:
+                              description: Node UUID
+                              readOnly: true
+                            type:
                               type: string
-                        attributes:
+                              enum:
+                                - image
+                              default: image
+                            image:
+                              properties:
+                                alt:
+                                  type: string
+                                  nullable: true
+                                assetId:
+                                  type: string
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
+                            Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
                           type: object
-                          description: The custom attributes of the node
-                          additionalProperties:
-                            type: string
+                          properties:
+                            id:
+                              type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - component-instance
+                              default: component-instance
+                            componentId:
+                              type: string
+                              description: Component ID
+                            propertyOverrides:
+                              description: List of component properties with overrides for a component instance.
+                              type: array
+                              items:
+                                description: |
+                                  Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                                type: object
+                                properties:
+                                  propertyId:
+                                    type: string
+                                    description: The ID of the property.
+                                    example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                  type:
+                                    type: string
+                                    enum:
+                                      - Plain Text
+                                      - Rich Text
+                                      - Alt Text
+                                  label:
+                                    type: string
+                                  text:
+                                    description: |
+                                      Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        description: Node UUID
+                                        readOnly: true
+                                      type:
+                                        type: string
+                                        enum:
+                                          - text
+                                        default: text
+                                      text:
+                                        properties:
+                                          html:
+                                            type: string
+                                            nullable: true
+                                          text:
+                                            type: string
+                                            nullable: true
+                                      attributes:
+                                        type: object
+                                        description: The custom attributes of the node
+                                        additionalProperties:
+                                          type: string
+                      example:
+                        pageId: 658205daa3e8206a523b5ad4
+                        nodes:
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            type: text
+                            text:
+                              html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                              text: The Hitchhiker's Guide to the Galaxy
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                            type: text
+                            text:
+                              html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                              text: null
+                            attributes:
+                              number: forty two
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                            type: image
+                            image:
+                              alt: 'Marvin, the Paranoid Android'
+                              assetId: 659595234426a9fcbad57043
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                            type: component-instance
+                            componentId: 6258612d1ee792848f805dcf
+                            propertyOverrides:
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                                type: Plain Text
+                                text:
+                                  html: null
+                                  text: Don't Panic!
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                                type: Rich Text
+                                text:
+                                  html: <div><p>Always know where your towel is.</p></div>
+                                  text: null
+                        pagination:
+                          limit: 4
+                          offset: 0
+                          total: 4
                   pagination:
                     description: Pagination object
                     type: object
@@ -21056,6 +21193,48 @@ paths:
                         type: number
                         description: The total number of records
                         example: 100
+              examples:
+                PageDOM:
+                  value:
+                    pageId: 658205daa3e8206a523b5ad4
+                    nodes:
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                        type: text
+                        text:
+                          html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                          text: The Hitchhiker's Guide to the Galaxy
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                        type: text
+                        text:
+                          html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                          text: null
+                        attributes:
+                          number: forty two
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                        type: image
+                        image:
+                          alt: 'Marvin, the Paranoid Android'
+                          assetId: 659595234426a9fcbad57043
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                        type: component-instance
+                        componentId: 6258612d1ee792848f805dcf
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                            type: Plain Text
+                            text:
+                              html: null
+                              text: Don't Panic!
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                            type: Rich Text
+                            text:
+                              html: <div><p>Always know where your towel is.</p></div>
+                              text: null
+                    pagination:
+                      limit: 4
+                      offset: 0
+                      total: 4
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -21467,8 +21646,15 @@ paths:
             - 'page:write'
       summary: Update Page Content
       description: |
-        This endpoint allows for updating static content on a static page within a secondary locale. It is designed specifically for localized pages and can handle up to 1000 nodes per request.
-        <blockquote class="callout callout_info"><p><strong>Note:</strong>This endpoint is specifically for localized pages. Ensure that the locale specified is a valid secondary locale for the site.</p></blockquote>
+        This endpoint updates content on a static page in **secondary locales**. It supports updating up to 1000 nodes in a single request.
+
+        Before making updates:
+        1. Use the [get page content](/data/reference/pages-and-components/pages/get-content) endpoint to identify available content nodes and their types
+        2. If the page has component instances, retrieve the component's properties that you'll override using the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint
+
+        <Note>
+          This endpoint is specifically for localized pages. Ensure that the specified `localeId` is a valid **secondary locale** for the site otherwise the request will fail.
+        </Note>
 
         Required scope | `pages:write`
       operationId: update-static-content
@@ -21486,9 +21672,8 @@ paths:
             default: null
         - name: localeId
           in: query
-          allowEmptyValue: true
-          example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          required: true
+          description: The locale identifier.
           schema:
             type: string
       requestBody:
@@ -21496,25 +21681,76 @@ paths:
           application/json:
             schema:
               description: |
-                The DOM (Document Object Model) schema represents the content structure of a web page. It captures various content nodes, such as text and images, along with their associated attributes. Each node has a unique identifier and can be of different types like text or image. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
+                The body for which to update the page dom nodes. Nodes can be of type text or component instances.
               type: object
               properties:
                 nodes:
                   type: array
+                  description: List of DOM Nodes with the new content that will be updated in each node.
                   items:
                     type: object
-                    properties:
-                      nodeId:
-                        type: string
-                        description: Node UUID
-                        example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      text:
-                        type: string
-                        description: 'HTML content of the node, including the HTML tag. The HTML tags must be the same as what''s returned from the Get Content endpoint.'
-                        example: <h1>Hello world</h1>
-                    required:
-                      - nodeId
-                      - text
+                    oneOf:
+                      - x-fern-type-name: Text Node
+                        type: object
+                        description: Update a text node
+                        properties:
+                          nodeId:
+                            type: string
+                            description: Node UUID
+                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                          text:
+                            type: string
+                            description: 'HTML content of the node, including the HTML tag. The HTML tags must be the same as what''s returned from the Get Content endpoint.'
+                            example: <h1>Hello world</h1>
+                        required:
+                          - nodeId
+                          - text
+                        example:
+                          nodes:
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                              text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                              text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                      - x-fern-type-name: Component Instance
+                        type: object
+                        description: Update text property overrides of a component instance
+                        properties:
+                          nodeId:
+                            type: string
+                            description: Node UUID
+                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                          propertyOverrides:
+                            description: A list of component instance properties to override within the specified secondary locale.
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                propertyId:
+                                  type: string
+                                  description: The ID of the property.
+                                  example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                text:
+                                  type: string
+                                  description: |
+                                    The new string or HTML value used to override the component instance property value. 
+                                    The provided value must be compatible with the type of the component instance property. 
+                                    For example, attempting to override a single-line plain-text property with a multi-line 
+                                    value will result in an error.
+                                  example: <div><h1>Property with <em>Rich Text</em></h1></div>
+                              required:
+                                - propertyId
+                                - text
+                        required:
+                          - nodeId
+                          - propertyOverrides
+                        example:
+                          nodes:
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                              propertyOverrides:
+                                - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                  text: <div><h1>Time is an <em>illusion</em></h1></div>
+                                - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
+                                  text: 'Life, the Universe and Everything'
                   minItems: 1
                   maxItems: 1000
               required:
@@ -21522,11 +21758,15 @@ paths:
               example:
                 nodes:
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                    text: <h1>The Hitchhiker’s Guide to the Galaxy</h1>
+                    text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                    text: <div><h3>Don’t Panic!</h3><p>Always know where your towel is.</p></div>
+                    text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
-                    text: '<img alt="Marvin, the Paranoid Android" src="path/to/image/with/assetId/659595234426a9fcbad57043"/>'
+                    propertyOverrides:
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                        text: <div><h1>Time is an <em>illusion</em></h1></div>
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
+                        text: 'Life, the Universe and Everything'
       responses:
         '200':
           description: Request was successful
@@ -21739,6 +21979,2659 @@ paths:
               example:
                 code: forbidden
                 message: User is not authorized to perform this action
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+  '/sites/{site_id}/components':
+    get:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: list
+      security:
+        - OAuth2:
+            - 'components:read'
+      operationId: list-components
+      summary: List Components
+      description: |
+        List of all components for a site.
+
+        Required scope | `components:read`
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: List of Components on a site.
+                type: object
+                example:
+                  components:
+                    - id: 6596da6045e56dee495bcbba
+                      name: Primary Button
+                      group: Buttons
+                      description: A default button component that can be used across the site
+                    - id: 658205daa3e8206a523b5ad4
+                      name: Secondary Button
+                      group: Buttons
+                      description: A secondary button component that can be used across the site
+                    - id: 6258612d1ee792848f805dcf
+                      name: Card
+                      group: null
+                      description: null
+                    - id: 68a2b1d1ee792848f805dcf
+                      name: Nav
+                      group: null
+                      description: null
+                      readonly: true
+                  pagination:
+                    limit: 20
+                    offset: 0
+                    total: 4
+                properties:
+                  components:
+                    type: array
+                    items:
+                      description: The Component object
+                      type: object
+                      required:
+                        - id
+                      example:
+                        id: 6258612d1ee792848f805dcf
+                        name: Primary Button
+                        group: Buttons
+                        description: A default button component that can be used across the site
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          description: Unique identifier for the Component
+                          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+                        name:
+                          type: string
+                          description: Component Name
+                          readOnly: true
+                          example: My Button Component
+                        group:
+                          type: string
+                          description: The group that the component belongs to
+                          readOnly: true
+                          example: Buttons
+                        description:
+                          type: string
+                          description: Component Description
+                          readOnly: true
+                          example: A button component that can be used across the site
+                        readonly:
+                          type: boolean
+                          description: Indicates whether the component is read-only. Components that cannot be updated within this Site are set to readonly. Workspace Libraries are a good example.
+                          optional: true
+                          readOnly: true
+                          example: true
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+  '/sites/{site_id}/components/{component_id}/dom':
+    get:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: get-content
+      security:
+        - OAuth2:
+            - 'components:read'
+      operationId: get-component-content
+      summary: Get Component Content
+      description: |
+        Get static content from a component definition. This includes text nodes, image nodes and nested component instances.
+        To retrieve dynamic content set by component properties, use the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint.
+
+        <Note>If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.</Note>
+
+        Required scope | `components:read`
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: component_id
+          in: path
+          description: Unique identifier for a Component
+          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+          required: true
+          schema:
+            type: string
+            default: null
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  The Component DOM schema represents the content structure of a component. Similar to Page DOM, it captures various content nodes and their associated attributes, but specifically for a component's structure. Each node has a unique identifier and  can contain text, images, or nested component instances.
+                type: object
+                example:
+                  componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                  nodes:
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                      type: text
+                      text:
+                        html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                        text: The Hitchhiker's Guide to the Galaxy
+                      attributes: {}
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                      type: text
+                      text:
+                        html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                        text: null
+                      attributes:
+                        number: forty two
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                      type: image
+                      image:
+                        alt: 'Marvin, the Paranoid Android'
+                        assetId: 659595234426a9fcbad57043
+                      attributes: {}
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                      type: component-instance
+                      componentId: 6258612d1ee792848f805dcf
+                      propertyOverrides:
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                          type: Plain Text
+                          text:
+                            html: null
+                            text: Don't Panic!
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                          type: Rich Text
+                          text:
+                            html: <div><p>Always know where your towel is.</p></div>
+                            text: null
+                  pagination:
+                    limit: 4
+                    offset: 0
+                    total: 4
+                properties:
+                  componentId:
+                    type: string
+                    description: Component ID
+                  nodes:
+                    type: array
+                    items:
+                      description: |
+                        A generic representation of a content element within the Document Object Model (DOM). Each node has a unique identifier and a specific type that determines its content structure and attributes.
+                      type: object
+                      properties: null
+                      oneOf:
+                        - description: |
+                            Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - text
+                              default: text
+                            text:
+                              properties:
+                                html:
+                                  type: string
+                                  nullable: true
+                                text:
+                                  type: string
+                                  nullable: true
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
+                            Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - image
+                              default: image
+                            image:
+                              properties:
+                                alt:
+                                  type: string
+                                  nullable: true
+                                assetId:
+                                  type: string
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
+                            Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - component-instance
+                              default: component-instance
+                            componentId:
+                              type: string
+                              description: Component ID
+                            propertyOverrides:
+                              description: List of component properties with overrides for a component instance.
+                              type: array
+                              items:
+                                description: |
+                                  Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                                type: object
+                                properties:
+                                  propertyId:
+                                    type: string
+                                    description: The ID of the property.
+                                    example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                  type:
+                                    type: string
+                                    enum:
+                                      - Plain Text
+                                      - Rich Text
+                                      - Alt Text
+                                  label:
+                                    type: string
+                                  text:
+                                    description: |
+                                      Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        description: Node UUID
+                                        readOnly: true
+                                      type:
+                                        type: string
+                                        enum:
+                                          - text
+                                        default: text
+                                      text:
+                                        properties:
+                                          html:
+                                            type: string
+                                            nullable: true
+                                          text:
+                                            type: string
+                                            nullable: true
+                                      attributes:
+                                        type: object
+                                        description: The custom attributes of the node
+                                        additionalProperties:
+                                          type: string
+                      example:
+                        pageId: 658205daa3e8206a523b5ad4
+                        nodes:
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            type: text
+                            text:
+                              html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                              text: The Hitchhiker's Guide to the Galaxy
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                            type: text
+                            text:
+                              html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                              text: null
+                            attributes:
+                              number: forty two
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                            type: image
+                            image:
+                              alt: 'Marvin, the Paranoid Android'
+                              assetId: 659595234426a9fcbad57043
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                            type: component-instance
+                            componentId: 6258612d1ee792848f805dcf
+                            propertyOverrides:
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                                type: Plain Text
+                                text:
+                                  html: null
+                                  text: Don't Panic!
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                                type: Rich Text
+                                text:
+                                  html: <div><p>Always know where your towel is.</p></div>
+                                  text: null
+                        pagination:
+                          limit: 4
+                          offset: 0
+                          total: 4
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+              examples:
+                ComponentDOM:
+                  value:
+                    componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                    nodes:
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                        type: text
+                        text:
+                          html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                          text: The Hitchhiker's Guide to the Galaxy
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                        type: text
+                        text:
+                          html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                          text: null
+                        attributes:
+                          number: forty two
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                        type: image
+                        image:
+                          alt: 'Marvin, the Paranoid Android'
+                          assetId: 659595234426a9fcbad57043
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                        type: component-instance
+                        componentId: 6258612d1ee792848f805dcf
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                            type: Plain Text
+                            text:
+                              html: null
+                              text: Don't Panic!
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                            type: Rich Text
+                            text:
+                              html: <div><p>Always know where your towel is.</p></div>
+                              text: null
+                    pagination:
+                      limit: 4
+                      offset: 0
+                      total: 4
+                LocalizedComponentDOM:
+                  value:
+                    componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                    nodes:
+                      - id: 69118560-d0bc-15fc-bbf8-b8fe5f6535b8
+                        type: image
+                        image:
+                          alt: Pulgar del Autoestopista
+                          assetId: 66748b636b1a2661d4d1dfc3
+                        attributes: {}
+                      - id: 8ebfb409-7493-3bca-5d48-0e547befb960
+                        type: text
+                        text:
+                          html: <div>¡No te asustes!</div>
+                          text: ¡No te asustes!
+                        attributes: {}
+                      - id: 69118560-d0bc-15fc-bbf8-b8fe5f6535c2
+                        type: component-instance
+                        componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            text: La Guía del Autoestopista Galáctico
+                        attributes: {}
+                    pagination:
+                      limit: 100
+                      offset: 0
+                      total: 3
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+    post:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: update-content
+      security:
+        - OAuth2:
+            - 'components:write'
+      summary: Update Component Content
+      description: |
+        This endpoint updates content within a component defintion for **secondary locales**. It supports updating up to 1000 nodes in a single request.
+
+        Before making updates:
+        1. Use the [get component content](/data/reference/pages-and-components/components/get-content) endpoint to identify available content nodes and their types
+        2. If your component definition has a component instance nested within it, retrieve the nested component instance's properties that you'll override using the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint
+
+        <Note>
+          This endpoint is specifically for localizing component definitions. Ensure that the specified `localeId` is a valid **secondary locale** for the site otherwise the request will fail.
+        </Note>
+
+        Required scope | `components:write`
+      operationId: update-component-content
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: component_id
+          in: path
+          description: Unique identifier for a Component
+          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+          required: true
+          schema:
+            type: string
+            default: null
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: |
+                The body for which to update the Component DOM nodes. Nodes can be of type text or component instances.
+              type: object
+              properties:
+                nodes:
+                  type: array
+                  description: List of DOM Nodes with the new content that will be updated in each node.
+                  items:
+                    type: object
+                    oneOf:
+                      - x-fern-type-name: Component Text Node
+                        type: object
+                        description: Update a text node
+                        properties:
+                          nodeId:
+                            type: string
+                            description: Node UUID
+                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                          text:
+                            type: string
+                            description: 'HTML content of the node, including the HTML tag. The HTML tags must be the same as what''s returned from the Get Content endpoint.'
+                            example: <h1>Hello world</h1>
+                        required:
+                          - nodeId
+                          - text
+                        example:
+                          nodes:
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                              text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                              text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                      - x-fern-type-name: Nested Component Instance
+                        type: object
+                        description: Update text property overrides of a component instance
+                        properties:
+                          nodeId:
+                            type: string
+                            description: Node UUID
+                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                          propertyOverrides:
+                            description: A list of component instance properties to override within the specified secondary locale.
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                propertyId:
+                                  type: string
+                                  description: The ID of the property.
+                                  example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                text:
+                                  type: string
+                                  description: |
+                                    The new string or HTML value used to override the component instance property value. 
+                                    The provided value must be compatible with the type of the component instance property. 
+                                    For example, attempting to override a single-line plain-text property with a multi-line 
+                                    value will result in an error.
+                                  example: <div><h1>Property with <em>Rich Text</em></h1></div>
+                              required:
+                                - propertyId
+                                - text
+                        required:
+                          - nodeId
+                          - propertyOverrides
+                        example:
+                          nodes:
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                              propertyOverrides:
+                                - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                  text: <div><h1>Time is an <em>illusion</em></h1></div>
+                                - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
+                                  text: 'Life, the Universe and Everything'
+                  minItems: 1
+                  maxItems: 1000
+              required:
+                - nodes
+              example:
+                nodes:
+                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                    text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                    text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                    propertyOverrides:
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                        text: <div><h1>Time is an <em>illusion</em></h1></div>
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
+                        text: 'Life, the Universe and Everything'
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    description: 'A list of error messages, if any.'
+                    items:
+                      type: string
+                    example: []
+                required:
+                  - errors
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '403':
+          description: Forbidden
+          x-logErrorCode: 403
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: forbidden
+                message: User is not authorized to perform this action
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+  '/sites/{site_id}/components/{component_id}/properties':
+    get:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: get-properties
+      security:
+        - OAuth2:
+            - 'components:read'
+      operationId: get-component-properties
+      summary: Get Component Properties
+      description: |
+        Get the property default values of a component definition.
+
+        <Note>If you do not provide a Locale ID in your request, the response will return any properties that can be localized from the Primary locale.</Note>
+
+        Required scope | `components:read`
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: component_id
+          in: path
+          description: Unique identifier for a Component
+          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+          required: true
+          schema:
+            type: string
+            default: null
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  The Component Properties schema represents a list of properties that store text content. Each property has a unique identifier and can be of different types like plain text or rich text. The schema also provides pagination details for scenarios where there more properties than the limit.
+                type: object
+                example:
+                  componentId: 658205daa3e8206a523b5ad4
+                  properties:
+                    - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                      label: Title
+                      type: Plain Text
+                      text:
+                        html: null
+                        text: The Hitchhiker's Guide to the Galaxy
+                    - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                      label: Content
+                      type: Rich Text
+                      text:
+                        html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                        text: null
+                  pagination:
+                    limit: 2
+                    offset: 0
+                    total: 2
+                properties:
+                  componentId:
+                    type: string
+                    description: Component ID
+                    readOnly: true
+                  properties:
+                    type: array
+                    items:
+                      description: |
+                        Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                      type: object
+                      properties:
+                        propertyId:
+                          type: string
+                          description: The ID of the property.
+                          example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                        type:
+                          type: string
+                          enum:
+                            - Plain Text
+                            - Rich Text
+                            - Alt Text
+                        label:
+                          type: string
+                        text:
+                          description: |
+                            Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - text
+                              default: text
+                            text:
+                              properties:
+                                html:
+                                  type: string
+                                  nullable: true
+                                text:
+                                  type: string
+                                  nullable: true
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+    post:
+      x-fern-sdk-group-name: components
+      x-fern-sdk-method-name: update-properties
+      security:
+        - OAuth2:
+            - 'components:write'
+      operationId: update-component-properties
+      summary: Update Component Properties
+      description: |
+        Update the property default values of a component definition in a specificed locale.
+
+        Before making updates:
+        1. Use the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint to identify available properties
+
+        <Note>The request requires a secondary locale ID. If a locale is missing, the request will not be processed and will result in an error.</Note>
+
+        Required scope | `components:write`
+      tags:
+        - Components
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: component_id
+          in: path
+          description: Unique identifier for a Component
+          example: 8505ba55-ef72-629e-f85c-33e4b703d48b
+          required: true
+          schema:
+            type: string
+            default: null
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Update a Component Property
+              properties:
+                properties:
+                  description: A list of component properties to update within the specified secondary locale.
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      propertyId:
+                        type: string
+                        description: The ID of the property.
+                        example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                      text:
+                        type: string
+                        description: |
+                          The new string or HTML value used to update the component property in the secondary locale.
+
+                          The provided value must be compatible with the type of the component property.
+
+                          For example, attempting to update a single-line plain-text property with a multi-line 
+                          value will result in an error.
+                        example: <div><h1>Property with <em>Rich Text</em></h1></div>
+                    required:
+                      - propertyId
+                      - text
+              required:
+                - properties
+              example:
+                properties:
+                  - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                    text: The Hitchhiker’s Guide to the Galaxy
+                  - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                    text: <div><h3>Dont Panic!</h3><p>Always know where your towel is.</p></div>
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    description: 'A list of error messages, if any.'
+                    items:
+                      type: string
+                    example: []
+                required:
+                  - errors
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: not_authorized
+                message: Request not authorized
                 externalReference: null
                 details: []
         '404':

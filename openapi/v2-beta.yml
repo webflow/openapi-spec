@@ -22912,6 +22912,530 @@ paths:
                 externalReference: null
                 details: []
   '/pages/{page_id}':
+    get:
+      x-fern-sdk-group-name: pages
+      x-fern-sdk-method-name: get-metadata
+      security:
+        - OAuth2:
+            - 'page:read'
+      operationId: get-page-metadata
+      summary: Get Page Metadata
+      description: |
+        Get metadata information for a single page.
+
+        Required scope | `pages:read`
+      tags:
+        - Pages
+      parameters:
+        - name: page_id
+          in: path
+          description: Unique identifier for a Page
+          example: 63c720f9347c2139b248e552
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: The Page object
+                type: object
+                required:
+                  - id
+                example:
+                  id: 6596da6045e56dee495bcbba
+                  siteId: 6258612d1ee792848f805dcf
+                  parentId: null
+                  collectionId: null
+                  title: Guide to the Galaxy
+                  slug: guide-to-the-galaxy
+                  createdOn: '2024-03-11T10:42:00.000Z'
+                  lastUpdated: '2024-03-11T10:42:42.000Z'
+                  archived: false
+                  draft: false
+                  canBranch: true
+                  isBranch: false
+                  seo:
+                    title: The Ultimate Hitchhiker's Guide to the Galaxy
+                    description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
+                  openGraph:
+                    title: Explore the Cosmos with The Ultimate Guide
+                    titleCopied: false
+                    description: Dive deep into the mysteries of the universe with your guide to everything galactic.
+                    descriptionCopied: false
+                  localeId: 653fd9af6a07fc9cfd7a5e57
+                  publishedPath: /en-us/guide-to-the-galaxy
+                properties:
+                  id:
+                    type: string
+                    format: objectid
+                    readOnly: true
+                    description: Unique identifier for the Page
+                    example: 63499e4e6e9ed5abbfe42b69
+                  siteId:
+                    type: string
+                    format: objectid
+                    readOnly: true
+                    description: Unique identifier for the Site
+                    example: 580e63e98c9a982ac9b8b741
+                  title:
+                    type: string
+                    description: Title of the Page
+                    example: My New Page
+                  slug:
+                    type: string
+                    description: slug of the Page (derived from title)
+                    example: my-new-page
+                  parentId:
+                    type: string
+                    format: objectid
+                    description: Identifier of the parent folder
+                    readOnly: true
+                    example: 6419db964a9c435aa3af6251
+                  collectionId:
+                    type: string
+                    format: objectid
+                    readOnly: true
+                    description: 'Unique identifier for a linked Collection, value will be null if the Page is not part of a Collection.'
+                    example: 6390c49774a71f12831a08e3
+                  createdOn:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                    description: The date the Page was created
+                    example: '2016-10-24T19:42:38.929Z'
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                    description: The date the Page was most recently updated
+                    example: '2016-10-24T19:42:38.929Z'
+                  archived:
+                    type: boolean
+                    description: Whether the Page has been archived
+                    default: false
+                    example: false
+                    readOnly: true
+                  draft:
+                    type: boolean
+                    description: Whether the Page is a draft
+                    default: false
+                    example: false
+                    readOnly: true
+                  canBranch:
+                    type: boolean
+                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    readOnly: true
+                    default: false
+                    example: false
+                  isBranch:
+                    type: boolean
+                    description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    readOnly: true
+                    default: false
+                    example: false
+                  isMembersOnly:
+                    type: boolean
+                    description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
+                    readOnly: true
+                    default: false
+                    example: false
+                  seo:
+                    type: object
+                    description: SEO-related fields for the Page
+                    properties:
+                      title:
+                        type: string
+                        description: The Page title shown in search engine results
+                        example: CoffeeStyle eCommerce - Webflow HTML website template
+                      description:
+                        type: string
+                        description: The Page description shown in search engine results
+                        example: This Webflow template offers a quick start into an ecommerce / memberships site
+                  openGraph:
+                    type: object
+                    description: Open Graph fields for the Page
+                    properties:
+                      title:
+                        type: string
+                        description: The title supplied to Open Graph annotations
+                        example: My snazzy Open Graph title
+                      titleCopied:
+                        type: boolean
+                        description: Indicates the Open Graph title was copied from the SEO title
+                        readOnly: true
+                        default: true
+                      description:
+                        type: string
+                        description: The description supplied to Open Graph annotations
+                        example: My informative Open Graph description
+                      descriptionCopied:
+                        type: boolean
+                        description: Indicates the Open Graph description was copied from the SEO description
+                        readOnly: true
+                        default: true
+                  localeId:
+                    description: Unique ID of the page locale
+                    type: string
+                    format: objectid
+                    nullable: true
+                    readOnly: true
+                    example: 653fd9af6a07fc9cfd7a5e57
+                  publishedPath:
+                    description: Relative path of the published page URL
+                    type: string
+                    readOnly: true
+                    example: /heart-of-gold
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      type:
+                        - string
+                        - object
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
     put:
       security:
         - OAuth2:
@@ -22934,7 +23458,7 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
@@ -23593,14 +24117,15 @@ paths:
       security:
         - OAuth2:
             - 'page:read'
+      operationId: get-static-content
       summary: Get Page Content
       description: |
-        Get static content from a static page.
+        Get static content from a static page. This includes text nodes, image nodes and component instances.
+        To retrieve the contents of components in the page use the [get component content](/data/reference/pages-and-components/components/get-content) endpoint.
 
-        If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.
+        <Note>If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.</Note>
 
         Required scope | `pages:read`
-      operationId: get-static-content
       tags:
         - Pages
       parameters:
@@ -23643,7 +24168,7 @@ paths:
             application/json:
               schema:
                 description: |
-                  The DOM (Document Object Model) schema represents the content structure of a web page. It captures various content nodes, such as text and images, along with their associated attributes. Each node has a unique identifier and can be of different types like text or image. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
+                  The DOM (Document Object Model) schema represents the content structure of a web page or component. It captures various content nodes along with their associated attributes. Each node has a unique identifier and can be of different types like text, image or component-instance. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
                 type: object
                 example:
                   pageId: 658205daa3e8206a523b5ad4
@@ -23659,7 +24184,8 @@ paths:
                       text:
                         html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                         text: null
-                      attributes: {}
+                      attributes:
+                        number: forty two
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
                       type: image
                       image:
@@ -23675,13 +24201,11 @@ paths:
                           text:
                             html: null
                             text: Don't Panic!
-                          attributes: {}
                         - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
                           type: Rich Text
                           text:
                             html: <div><p>Always know where your towel is.</p></div>
                             text: null
-                          attributes: {}
                   pagination:
                     limit: 4
                     offset: 0
@@ -23696,77 +24220,162 @@ paths:
                       description: |
                         A generic representation of a content element within the Document Object Model (DOM). Each node has a unique identifier and a specific type that determines its content structure and attributes.
                       type: object
-                      properties:
-                        id:
-                          type: string
-                          description: Node UUID
-                          readOnly: true
-                        type:
-                          type: string
-                          enum:
-                            - text
-                            - image
-                            - component-instance
-                        componentId:
-                          type: string
-                          description: Component ID
-                        propertyOverrides:
-                          description: List of component properties with overrides for a component instance.
-                          type: array
-                          items:
-                            description: |
-                              Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
-                            type: object
-                            properties:
-                              propertyId:
-                                type: string
-                                description: The ID of the property.
-                                example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                              type:
-                                type: string
-                                enum:
-                                  - Plain Text
-                                  - Rich Text
-                                  - Alt Text
-                              label:
-                                type: string
-                              text:
-                                description: |
-                                  Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
-                                type: object
-                                properties:
-                                  html:
-                                    type: string
-                                    nullable: true
-                                  text:
-                                    type: string
-                                    nullable: true
-                        text:
-                          description: |
-                            Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                      properties: null
+                      oneOf:
+                        - description: |
+                            Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
                           properties:
-                            html:
+                            id:
                               type: string
-                              nullable: true
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - text
+                              default: text
                             text:
-                              type: string
-                              nullable: true
-                        image:
-                          description: |
+                              properties:
+                                html:
+                                  type: string
+                                  nullable: true
+                                text:
+                                  type: string
+                                  nullable: true
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
                             Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
                           type: object
                           properties:
-                            alt:
+                            id:
                               type: string
-                              nullable: true
-                            assetId:
+                              description: Node UUID
+                              readOnly: true
+                            type:
                               type: string
-                        attributes:
+                              enum:
+                                - image
+                              default: image
+                            image:
+                              properties:
+                                alt:
+                                  type: string
+                                  nullable: true
+                                assetId:
+                                  type: string
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
+                            Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
                           type: object
-                          description: The custom attributes of the node
-                          additionalProperties:
-                            type: string
+                          properties:
+                            id:
+                              type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - component-instance
+                              default: component-instance
+                            componentId:
+                              type: string
+                              description: Component ID
+                            propertyOverrides:
+                              description: List of component properties with overrides for a component instance.
+                              type: array
+                              items:
+                                description: |
+                                  Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                                type: object
+                                properties:
+                                  propertyId:
+                                    type: string
+                                    description: The ID of the property.
+                                    example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                  type:
+                                    type: string
+                                    enum:
+                                      - Plain Text
+                                      - Rich Text
+                                      - Alt Text
+                                  label:
+                                    type: string
+                                  text:
+                                    description: |
+                                      Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        description: Node UUID
+                                        readOnly: true
+                                      type:
+                                        type: string
+                                        enum:
+                                          - text
+                                        default: text
+                                      text:
+                                        properties:
+                                          html:
+                                            type: string
+                                            nullable: true
+                                          text:
+                                            type: string
+                                            nullable: true
+                                      attributes:
+                                        type: object
+                                        description: The custom attributes of the node
+                                        additionalProperties:
+                                          type: string
+                      example:
+                        pageId: 658205daa3e8206a523b5ad4
+                        nodes:
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            type: text
+                            text:
+                              html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                              text: The Hitchhiker's Guide to the Galaxy
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                            type: text
+                            text:
+                              html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                              text: null
+                            attributes:
+                              number: forty two
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                            type: image
+                            image:
+                              alt: 'Marvin, the Paranoid Android'
+                              assetId: 659595234426a9fcbad57043
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                            type: component-instance
+                            componentId: 6258612d1ee792848f805dcf
+                            propertyOverrides:
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                                type: Plain Text
+                                text:
+                                  html: null
+                                  text: Don't Panic!
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                                type: Rich Text
+                                text:
+                                  html: <div><p>Always know where your towel is.</p></div>
+                                  text: null
+                        pagination:
+                          limit: 4
+                          offset: 0
+                          total: 4
                   pagination:
                     description: Pagination object
                     type: object
@@ -23783,6 +24392,48 @@ paths:
                         type: number
                         description: The total number of records
                         example: 100
+              examples:
+                PageDOM:
+                  value:
+                    pageId: 658205daa3e8206a523b5ad4
+                    nodes:
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                        type: text
+                        text:
+                          html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                          text: The Hitchhiker's Guide to the Galaxy
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                        type: text
+                        text:
+                          html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                          text: null
+                        attributes:
+                          number: forty two
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                        type: image
+                        image:
+                          alt: 'Marvin, the Paranoid Android'
+                          assetId: 659595234426a9fcbad57043
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                        type: component-instance
+                        componentId: 6258612d1ee792848f805dcf
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                            type: Plain Text
+                            text:
+                              html: null
+                              text: Don't Panic!
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                            type: Rich Text
+                            text:
+                              html: <div><p>Always know where your towel is.</p></div>
+                              text: null
+                    pagination:
+                      limit: 4
+                      offset: 0
+                      total: 4
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -24194,16 +24845,15 @@ paths:
             - 'page:write'
       summary: Update Page Content
       description: |
-        This endpoint allows you to update content on a static page in a secondary locale. It is designed specifically for localized pages and can handle up to 1000 nodes per request.
+        This endpoint updates content on a static page in **secondary locales**. It supports updating up to 1000 nodes in a single request.
 
-        To get started, use the [Get Page Content](/v2.0.0-beta/reference/pages/get-content) endpoint to identify content nodes and types available for the page.
-        If you're updating components, be sure to retrieve the component's properties via the [Get Component Properties endpoint.](/v2.0.0-beta/reference/pages/components/get-properties)
+        Before making updates:
+        1. Use the [get page content](/data/reference/pages-and-components/pages/get-content) endpoint to identify available content nodes and their types
+        2. If the page has component instances, retrieve the component's properties that you'll override using the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint
 
-        In your `POST` request body, provide a list of nodes to be updated. For each node, include the `nodeId`, as well as you want to update.
-        - For static content, use the `text` field.
-        - For components, list the `propertiesOverrides` you want to update. For each component property, provide the `propertyId` and it's associated value in the `text` field.
-
-        <Note>This endpoint is specifically for localized pages. Ensure that the specified `localeId` is a valid **secondary** locale for the site.</Note>
+        <Note>
+          This endpoint is specifically for localized pages. Ensure that the specified `localeId` is a valid **secondary locale** for the site otherwise the request will fail.
+        </Note>
 
         Required scope | `pages:write`
       operationId: update-static-content
@@ -24230,18 +24880,18 @@ paths:
           application/json:
             schema:
               description: |
-                The DOM (Document Object Model) schema represents the content structure of a web page. It captures various content nodes, such as text and images, along with their associated attributes. Each node has a unique identifier and can be of different types like text or image. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
+                The body for which to update the page dom nodes. Nodes can be of type text or component instances.
               type: object
               properties:
                 nodes:
                   type: array
-                  description: List of DOM Nodes and content that will be updated in each node.
+                  description: List of DOM Nodes with the new content that will be updated in each node.
                   items:
                     type: object
                     oneOf:
-                      - x-fern-type-name: Static Element
+                      - x-fern-type-name: Text Node
                         type: object
-                        description: Update a static Element
+                        description: Update a text node
                         properties:
                           nodeId:
                             type: string
@@ -24257,14 +24907,12 @@ paths:
                         example:
                           nodes:
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                              text: <h1>The Hitchhiker’s Guide to the Galaxy</h1>
+                              text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                              text: <div><h3>Don’t Panic!</h3><p>Always know where your towel is.</p></div>
-                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
-                              text: '<img alt="Marvin, the Paranoid Android" src="path/to/image/with/assetId/659595234426a9fcbad57043"/>'
+                              text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                       - x-fern-type-name: Component Instance
                         type: object
-                        description: Update a Component instance
+                        description: Update text property overrides of a component instance
                         properties:
                           nodeId:
                             type: string
@@ -24296,12 +24944,12 @@ paths:
                           - propertyOverrides
                         example:
                           nodes:
-                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
                               propertyOverrides:
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                                  text: <div><h1>Don’t <em>Panic!</em></h1></div>
+                                  text: <div><h1>Time is an <em>illusion</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
-                                  text: Always know where your towel is!
+                                  text: 'Life, the Universe and Everything'
                   minItems: 1
                   maxItems: 1000
               required:
@@ -24309,11 +24957,15 @@ paths:
               example:
                 nodes:
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                    text: <h1>The Hitchhiker’s Guide to the Galaxy</h1>
+                    text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                    text: <div><h3>Don’t Panic!</h3><p>Always know where your towel is.</p></div>
+                    text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
-                    text: '<img alt="Marvin, the Paranoid Android" src="path/to/image/with/assetId/659595234426a9fcbad57043"/>'
+                    propertyOverrides:
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                        text: <div><h1>Time is an <em>illusion</em></h1></div>
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
+                        text: 'Life, the Universe and Everything'
       responses:
         '200':
           description: Request was successful
@@ -24745,7 +25397,7 @@ paths:
       operationId: list-components
       summary: List Components
       description: |
-        List of all components for a site
+        List of all components for a site.
 
         Required scope | `components:read`
       tags:
@@ -24843,7 +25495,7 @@ paths:
                           example: A button component that can be used across the site
                         readonly:
                           type: boolean
-                          description: Components that cannot be updated within this Site are set to readonly. Workspace Libraries are a good example.
+                          description: Indicates whether the component is read-only. Components that cannot be updated within this Site are set to readonly. Workspace Libraries are a good example.
                           optional: true
                           readOnly: true
                           example: true
@@ -25212,9 +25864,10 @@ paths:
       operationId: get-component-content
       summary: Get Component Content
       description: |
-        Get static content from a component definition. To retrieve dynamic content set by component properties, use the [Get Component Properties endpoint](/v2.0.0-beta/reference/pages/components/get-properties).
+        Get static content from a component definition. This includes text nodes, image nodes and nested component instances.
+        To retrieve dynamic content set by component properties, use the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint.
 
-        If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.
+        <Note>If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.</Note>
 
         Required scope | `components:read`
       tags:
@@ -25267,25 +25920,48 @@ paths:
             application/json:
               schema:
                 description: |
-                  The Component DOM (Document Object Model) schema represents the content structure of a component. It captures various content nodes, such as text and images, along with their associated attributes. Each node has a unique identifier and can be of different types like text, image, or component-instance. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
+                  The Component DOM schema represents the content structure of a component. Similar to Page DOM, it captures various content nodes and their associated attributes, but specifically for a component's structure. Each node has a unique identifier and  can contain text, images, or nested component instances.
                 type: object
                 example:
-                  componentId: 8505ba55-ef72-629e-f85c-33e4b703d48b
+                  componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
                   nodes:
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
                       type: text
                       text:
                         html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                         text: The Hitchhiker's Guide to the Galaxy
+                      attributes: {}
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
                       type: text
                       text:
                         html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                         text: null
+                      attributes:
+                        number: forty two
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                      type: image
+                      image:
+                        alt: 'Marvin, the Paranoid Android'
+                        assetId: 659595234426a9fcbad57043
+                      attributes: {}
+                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                      type: component-instance
+                      componentId: 6258612d1ee792848f805dcf
+                      propertyOverrides:
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                          type: Plain Text
+                          text:
+                            html: null
+                            text: Don't Panic!
+                        - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                          type: Rich Text
+                          text:
+                            html: <div><p>Always know where your towel is.</p></div>
+                            text: null
                   pagination:
-                    limit: 2
+                    limit: 4
                     offset: 0
-                    total: 2
+                    total: 4
                 properties:
                   componentId:
                     type: string
@@ -25296,77 +25972,162 @@ paths:
                       description: |
                         A generic representation of a content element within the Document Object Model (DOM). Each node has a unique identifier and a specific type that determines its content structure and attributes.
                       type: object
-                      properties:
-                        id:
-                          type: string
-                          description: Node UUID
-                          readOnly: true
-                        type:
-                          type: string
-                          enum:
-                            - text
-                            - image
-                            - component-instance
-                        componentId:
-                          type: string
-                          description: Component ID
-                        propertyOverrides:
-                          description: List of component properties with overrides for a component instance.
-                          type: array
-                          items:
-                            description: |
-                              Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
-                            type: object
-                            properties:
-                              propertyId:
-                                type: string
-                                description: The ID of the property.
-                                example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                              type:
-                                type: string
-                                enum:
-                                  - Plain Text
-                                  - Rich Text
-                                  - Alt Text
-                              label:
-                                type: string
-                              text:
-                                description: |
-                                  Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
-                                type: object
-                                properties:
-                                  html:
-                                    type: string
-                                    nullable: true
-                                  text:
-                                    type: string
-                                    nullable: true
-                        text:
-                          description: |
-                            Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                      properties: null
+                      oneOf:
+                        - description: |
+                            Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
                           properties:
-                            html:
+                            id:
                               type: string
-                              nullable: true
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - text
+                              default: text
                             text:
-                              type: string
-                              nullable: true
-                        image:
-                          description: |
+                              properties:
+                                html:
+                                  type: string
+                                  nullable: true
+                                text:
+                                  type: string
+                                  nullable: true
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
                             Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
                           type: object
                           properties:
-                            alt:
+                            id:
                               type: string
-                              nullable: true
-                            assetId:
+                              description: Node UUID
+                              readOnly: true
+                            type:
                               type: string
-                        attributes:
+                              enum:
+                                - image
+                              default: image
+                            image:
+                              properties:
+                                alt:
+                                  type: string
+                                  nullable: true
+                                assetId:
+                                  type: string
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
+                        - description: |
+                            Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
                           type: object
-                          description: The custom attributes of the node
-                          additionalProperties:
-                            type: string
+                          properties:
+                            id:
+                              type: string
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - component-instance
+                              default: component-instance
+                            componentId:
+                              type: string
+                              description: Component ID
+                            propertyOverrides:
+                              description: List of component properties with overrides for a component instance.
+                              type: array
+                              items:
+                                description: |
+                                  Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                                type: object
+                                properties:
+                                  propertyId:
+                                    type: string
+                                    description: The ID of the property.
+                                    example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                  type:
+                                    type: string
+                                    enum:
+                                      - Plain Text
+                                      - Rich Text
+                                      - Alt Text
+                                  label:
+                                    type: string
+                                  text:
+                                    description: |
+                                      Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        description: Node UUID
+                                        readOnly: true
+                                      type:
+                                        type: string
+                                        enum:
+                                          - text
+                                        default: text
+                                      text:
+                                        properties:
+                                          html:
+                                            type: string
+                                            nullable: true
+                                          text:
+                                            type: string
+                                            nullable: true
+                                      attributes:
+                                        type: object
+                                        description: The custom attributes of the node
+                                        additionalProperties:
+                                          type: string
+                      example:
+                        pageId: 658205daa3e8206a523b5ad4
+                        nodes:
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            type: text
+                            text:
+                              html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                              text: The Hitchhiker's Guide to the Galaxy
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                            type: text
+                            text:
+                              html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                              text: null
+                            attributes:
+                              number: forty two
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                            type: image
+                            image:
+                              alt: 'Marvin, the Paranoid Android'
+                              assetId: 659595234426a9fcbad57043
+                            attributes: {}
+                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                            type: component-instance
+                            componentId: 6258612d1ee792848f805dcf
+                            propertyOverrides:
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                                type: Plain Text
+                                text:
+                                  html: null
+                                  text: Don't Panic!
+                              - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                                type: Rich Text
+                                text:
+                                  html: <div><p>Always know where your towel is.</p></div>
+                                  text: null
+                        pagination:
+                          limit: 4
+                          offset: 0
+                          total: 4
                   pagination:
                     description: Pagination object
                     type: object
@@ -25383,6 +26144,75 @@ paths:
                         type: number
                         description: The total number of records
                         example: 100
+              examples:
+                ComponentDOM:
+                  value:
+                    componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                    nodes:
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                        type: text
+                        text:
+                          html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                          text: The Hitchhiker's Guide to the Galaxy
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                        type: text
+                        text:
+                          html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                          text: null
+                        attributes:
+                          number: forty two
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                        type: image
+                        image:
+                          alt: 'Marvin, the Paranoid Android'
+                          assetId: 659595234426a9fcbad57043
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                        type: component-instance
+                        componentId: 6258612d1ee792848f805dcf
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                            type: Plain Text
+                            text:
+                              html: null
+                              text: Don't Panic!
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                            type: Rich Text
+                            text:
+                              html: <div><p>Always know where your towel is.</p></div>
+                              text: null
+                    pagination:
+                      limit: 4
+                      offset: 0
+                      total: 4
+                LocalizedComponentDOM:
+                  value:
+                    componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                    nodes:
+                      - id: 69118560-d0bc-15fc-bbf8-b8fe5f6535b8
+                        type: image
+                        image:
+                          alt: Pulgar del Autoestopista
+                          assetId: 66748b636b1a2661d4d1dfc3
+                        attributes: {}
+                      - id: 8ebfb409-7493-3bca-5d48-0e547befb960
+                        type: text
+                        text:
+                          html: <div>¡No te asustes!</div>
+                          text: ¡No te asustes!
+                        attributes: {}
+                      - id: 69118560-d0bc-15fc-bbf8-b8fe5f6535c2
+                        type: component-instance
+                        componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            text: La Guía del Autoestopista Galáctico
+                        attributes: {}
+                    pagination:
+                      limit: 100
+                      offset: 0
+                      total: 3
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -25730,15 +26560,14 @@ paths:
             - 'components:write'
       summary: Update Component Content
       description: |
-        This endpoint allows you to update content within a component in a secondary locale. 
+        This endpoint updates content within a component defintion for **secondary locales**. It supports updating up to 1000 nodes in a single request.
 
-        It is designed specifically for localized components and can handle up to 1000 nodes per request.
-        To get started, use the [Get Component Content](/data/v2.0.0-beta/reference/get-component-content) endpoint to identify content nodes and types available for the component. 
-
-        If you're updating a component's properties, be sure to retrieve them via the [Get Component Properties](/data/v2.0.0-beta/reference/get-component-properties) endpoint. 
+        Before making updates:
+        1. Use the [get component content](/data/reference/pages-and-components/components/get-content) endpoint to identify available content nodes and their types
+        2. If your component definition has a component instance nested within it, retrieve the nested component instance's properties that you'll override using the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint
 
         <Note>
-        This endpoint is specifically for localized components. Ensure that the specified `locale` is a valid **secondary** locale for the site.
+          This endpoint is specifically for localizing component definitions. Ensure that the specified `localeId` is a valid **secondary locale** for the site otherwise the request will fail.
         </Note>
 
         Required scope | `components:write`
@@ -25775,18 +26604,18 @@ paths:
           application/json:
             schema:
               description: |
-                The body for which to update the component nodes and nested component instance's properties.
+                The body for which to update the Component DOM nodes. Nodes can be of type text or component instances.
               type: object
               properties:
                 nodes:
                   type: array
-                  description: List of nodes within components OR a nested component instance's properties to update (with their corresponding new values).
+                  description: List of DOM Nodes with the new content that will be updated in each node.
                   items:
                     type: object
                     oneOf:
-                      - x-fern-type-name: Static Component Content
+                      - x-fern-type-name: Component Text Node
                         type: object
-                        description: Update a static Element
+                        description: Update a text node
                         properties:
                           nodeId:
                             type: string
@@ -25802,14 +26631,12 @@ paths:
                         example:
                           nodes:
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                              text: <h1>The Hitchhiker’s Guide to the Galaxy</h1>
+                              text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                              text: <div><h3>Don’t Panic!</h3><p>Always know where your towel is.</p></div>
-                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
-                              text: '<img alt="Marvin, the Paranoid Android" src="path/to/image/with/assetId/659595234426a9fcbad57043"/>'
+                              text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                       - x-fern-type-name: Nested Component Instance
                         type: object
-                        description: Update a Component instance
+                        description: Update text property overrides of a component instance
                         properties:
                           nodeId:
                             type: string
@@ -25841,52 +26668,28 @@ paths:
                           - propertyOverrides
                         example:
                           nodes:
-                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
                               propertyOverrides:
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                                  text: <div><h1>Don’t <em>Panic!</em></h1></div>
+                                  text: <div><h1>Time is an <em>illusion</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
-                                  text: Always know where your towel is!
+                                  text: 'Life, the Universe and Everything'
                   minItems: 1
                   maxItems: 1000
               required:
                 - nodes
-              examples:
-                StaticContentWrite:
-                  nodes:
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      text: <h1>The Hitchhiker’s Guide to the Galaxy</h1>
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                      text: <div><h3>Don’t Panic!</h3><p>Always know where your towel is.</p></div>
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
-                      text: '<img alt="Marvin, the Paranoid Android" src="path/to/image/with/assetId/659595234426a9fcbad57043"/>'
-                ComponentNodePropertiesWrite:
-                  nodes:
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      propertyOverrides:
-                        - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                          text: <div><h1>Don’t <em>Panic!</em></h1></div>
-                        - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
-                          text: Always know where your towel is!
-            examples:
-              StaticContentWrite:
-                value:
-                  nodes:
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      text: <h1>The Hitchhiker’s Guide to the Galaxy</h1>
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
-                      text: <div><h3>Don’t Panic!</h3><p>Always know where your towel is.</p></div>
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
-                      text: '<img alt="Marvin, the Paranoid Android" src="path/to/image/with/assetId/659595234426a9fcbad57043"/>'
-              ComponentNodePropertiesWrite:
-                value:
-                  nodes:
-                    - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                      propertyOverrides:
-                        - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                          text: <div><h1>Don’t <em>Panic!</em></h1></div>
-                        - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
-                          text: Always know where your towel is!
+              example:
+                nodes:
+                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                    text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                    text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                    propertyOverrides:
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                        text: <div><h1>Time is an <em>illusion</em></h1></div>
+                      - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
+                        text: 'Life, the Universe and Everything'
       responses:
         '200':
           description: Request was successful
@@ -26318,9 +27121,9 @@ paths:
       operationId: get-component-properties
       summary: Get Component Properties
       description: |
-        Get properties of a component definition.
+        Get the property default values of a component definition.
 
-        If you do not provide a Locale ID in your request, the response will return any properties that can be localized from the Primary locale.
+        <Note>If you do not provide a Locale ID in your request, the response will return any properties that can be localized from the Primary locale.</Note>
 
         Required scope | `components:read`
       tags:
@@ -26403,7 +27206,7 @@ paths:
                     type: array
                     items:
                       description: |
-                        Represents a property of a component instance in the DOM. It contains a list of both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                        Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
                       type: object
                       properties:
                         propertyId:
@@ -26420,15 +27223,31 @@ paths:
                           type: string
                         text:
                           description: |
-                            Represents textual content within the DOM. It contains both the raw text and its HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
+                            Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
                           properties:
-                            html:
+                            id:
                               type: string
-                              nullable: true
+                              description: Node UUID
+                              readOnly: true
+                            type:
+                              type: string
+                              enum:
+                                - text
+                              default: text
                             text:
-                              type: string
-                              nullable: true
+                              properties:
+                                html:
+                                  type: string
+                                  nullable: true
+                                text:
+                                  type: string
+                                  nullable: true
+                            attributes:
+                              type: object
+                              description: The custom attributes of the node
+                              additionalProperties:
+                                type: string
                   pagination:
                     description: Pagination object
                     type: object
@@ -26793,9 +27612,12 @@ paths:
       operationId: update-component-properties
       summary: Update Component Properties
       description: |
-        Updates the properties of a component definition in a specificed locale.
+        Update the property default values of a component definition in a specificed locale.
 
-        The request requires a secondary locale ID. If a locale is missing, the request will not be processed and will result in an error.
+        Before making updates:
+        1. Use the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint to identify available properties
+
+        <Note>The request requires a secondary locale ID. If a locale is missing, the request will not be processed and will result in an error.</Note>
 
         Required scope | `components:write`
       tags:
@@ -26845,8 +27667,10 @@ paths:
                       text:
                         type: string
                         description: |
-                          The new string or HTML value used to update the component property in the secondary locale. 
-                          The provided value must be compatible with the type of the component property. 
+                          The new string or HTML value used to update the component property in the secondary locale.
+
+                          The provided value must be compatible with the type of the component property.
+
                           For example, attempting to update a single-line plain-text property with a multi-line 
                           value will result in an error.
                         example: <div><h1>Property with <em>Rich Text</em></h1></div>
