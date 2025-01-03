@@ -68999,7 +68999,9 @@ webhooks:
                             email:
                               type: string
                               example: arthur.dent@heartofgold.ship
-                            name: Arthur Dent
+                            name:
+                              type: string
+                              example: Arthur Dent
             example:
               triggerType: user_account_added
               payload:
@@ -69165,7 +69167,9 @@ webhooks:
                             email:
                               type: string
                               example: arthur.dent@heartofgold.ship
-                            name: Arthur Dent
+                            name:
+                              type: string
+                              example: Arthur Dent
             example:
               triggerType: user_account_updated
               payload:
@@ -69331,7 +69335,9 @@ webhooks:
                             email:
                               type: string
                               example: arthur.dent@heartofgold.ship
-                            name: Arthur Dent
+                            name:
+                              type: string
+                              example: Arthur Dent
             example:
               triggerType: user_account_deleted
               payload:
