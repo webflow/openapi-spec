@@ -12133,19 +12133,19 @@ paths:
                         type:
                           type: string
                           enum:
+                            - Color
+                            - DateTime
+                            - Email
+                            - ExtFileRef
+                            - Image
+                            - Link
+                            - MultiImage
+                            - Number
+                            - Phone
                             - PlainText
                             - RichText
-                            - Image
-                            - MultiImage
-                            - Video
-                            - Link
-                            - Email
-                            - Phone
-                            - Number
-                            - DateTime
                             - Switch
-                            - Color
-                            - ExtFileRef
+                            - Video
                           description: Choose these appropriate field type for your collection data
                         slug:
                           type: string
@@ -12648,19 +12648,19 @@ paths:
                         type:
                           type: string
                           enum:
+                            - Color
+                            - DateTime
+                            - Email
+                            - ExtFileRef
+                            - Image
+                            - Link
+                            - MultiImage
+                            - Number
+                            - Phone
                             - PlainText
                             - RichText
-                            - Image
-                            - MultiImage
-                            - Video
-                            - Link
-                            - Email
-                            - Phone
-                            - Number
-                            - DateTime
                             - Switch
-                            - Color
-                            - ExtFileRef
+                            - Video
                           description: Choose these appropriate field type for your collection data
                         slug:
                           type: string
@@ -13458,14 +13458,14 @@ paths:
       operationId: create-field
       summary: Create Collection Field
       description: |
-        Create a custom field in a collection. 
+        Create a custom field in a collection.
 
         Slugs must be all lowercase letters without spaces.
         If you pass a string with uppercase letters and/or spaces to the "Slug" property, Webflow will
         convert the slug to lowercase and replace spaces with "-."
 
-        Only some field types can be created through the API. 
-        This endpoint does not currently support bulk creation. 
+        Only some field types can be created through the API.
+        This endpoint does not currently support bulk creation.
 
         Required scope | `cms:write`
       tags:
@@ -13483,37 +13483,64 @@ paths:
                 isRequired: false
                 displayName: Post Body
                 helpText: Add the body of your post here
-              type: object
-              required:
-                - type
-                - displayName
-              properties:
-                isRequired:
-                  type: boolean
-                  description: define whether a field is required in a collection
-                type:
-                  type: string
-                  enum:
-                    - PlainText
-                    - RichText
-                    - Image
-                    - MultiImage
-                    - Video
-                    - Link
-                    - Email
-                    - Phone
-                    - Number
-                    - DateTime
-                    - Switch
-                    - Color
-                    - File
-                  description: Choose these appropriate field type for your collection data
-                displayName:
-                  type: string
-                  description: The name of a field
-                helpText:
-                  type: string
-                  description: Additional text to help anyone filling out this field
+              oneOf:
+                - type: object
+                  x-fern-type-name: Static Field
+                  required:
+                    - type
+                    - displayName
+                  properties:
+                    isRequired:
+                      type: boolean
+                      description: define whether a field is required in a collection
+                    type:
+                      type: string
+                      enum:
+                        - Color
+                        - DateTime
+                        - Email
+                        - File
+                        - Image
+                        - Link
+                        - MultiImage
+                        - Number
+                        - Phone
+                        - PlainText
+                        - RichText
+                        - Switch
+                        - Video
+                      description: Choose these appropriate field type for your collection data
+                    displayName:
+                      type: string
+                      description: The name of a field
+                    helpText:
+                      type: string
+                      description: Additional text to help anyone filling out this field
+                - type: object
+                  x-fern-type-name: Reference Field
+                  properties:
+                    isRequired:
+                      type: boolean
+                      description: define whether a field is required in a collection
+                    type:
+                      type: string
+                      enum:
+                        - MultiReference
+                        - Reference
+                      description: Choose these appropriate field type for your collection data
+                    displayName:
+                      type: string
+                      description: The name of a field
+                    helpText:
+                      type: string
+                      description: Additional text to help anyone filling out this field
+                    metadata:
+                      type: object
+                      properties:
+                        collectionId:
+                          type: string
+                          description: The unique identifier of the collection
+                      description: The collectionId for the referenced collection. Only applicable for Reference and MultiReference fields.
       parameters:
         - name: collection_id
           in: path
@@ -13560,19 +13587,19 @@ paths:
                   type:
                     type: string
                     enum:
+                      - Color
+                      - DateTime
+                      - Email
+                      - ExtFileRef
+                      - Image
+                      - Link
+                      - MultiImage
+                      - Number
+                      - Phone
                       - PlainText
                       - RichText
-                      - Image
-                      - MultiImage
-                      - Video
-                      - Link
-                      - Email
-                      - Phone
-                      - Number
-                      - DateTime
                       - Switch
-                      - Color
-                      - ExtFileRef
+                      - Video
                     description: Choose these appropriate field type for your collection data
                   slug:
                     type: string
@@ -14050,19 +14077,19 @@ paths:
                   type:
                     type: string
                     enum:
+                      - Color
+                      - DateTime
+                      - Email
+                      - ExtFileRef
+                      - Image
+                      - Link
+                      - MultiImage
+                      - Number
+                      - Phone
                       - PlainText
                       - RichText
-                      - Image
-                      - MultiImage
-                      - Video
-                      - Link
-                      - Email
-                      - Phone
-                      - Number
-                      - DateTime
                       - Switch
-                      - Color
-                      - ExtFileRef
+                      - Video
                     description: Choose these appropriate field type for your collection data
                   slug:
                     type: string

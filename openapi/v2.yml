@@ -8586,19 +8586,19 @@ paths:
                         type:
                           type: string
                           enum:
+                            - Color
+                            - DateTime
+                            - Email
+                            - ExtFileRef
+                            - Image
+                            - Link
+                            - MultiImage
+                            - Number
+                            - Phone
                             - PlainText
                             - RichText
-                            - Image
-                            - MultiImage
-                            - Video
-                            - Link
-                            - Email
-                            - Phone
-                            - Number
-                            - DateTime
                             - Switch
-                            - Color
-                            - ExtFileRef
+                            - Video
                           description: Choose these appropriate field type for your collection data
                         slug:
                           type: string
@@ -9101,19 +9101,19 @@ paths:
                         type:
                           type: string
                           enum:
+                            - Color
+                            - DateTime
+                            - Email
+                            - ExtFileRef
+                            - Image
+                            - Link
+                            - MultiImage
+                            - Number
+                            - Phone
                             - PlainText
                             - RichText
-                            - Image
-                            - MultiImage
-                            - Video
-                            - Link
-                            - Email
-                            - Phone
-                            - Number
-                            - DateTime
                             - Switch
-                            - Color
-                            - ExtFileRef
+                            - Video
                           description: Choose these appropriate field type for your collection data
                         slug:
                           type: string
@@ -9947,19 +9947,20 @@ paths:
                 type:
                   type: string
                   enum:
+                    - Color
+                    - DateTime
+                    - Email
+                    - ExtFileRef
+                    - File
+                    - Image
+                    - Link
+                    - MultiImage
+                    - Number
+                    - Phone
                     - PlainText
                     - RichText
-                    - Image
-                    - MultiImage
-                    - Video
-                    - Link
-                    - Email
-                    - Phone
-                    - Number
-                    - DateTime
                     - Switch
-                    - Color
-                    - File
+                    - Video
                   description: Choose these appropriate field type for your collection data
                 displayName:
                   type: string
@@ -10013,19 +10014,19 @@ paths:
                   type:
                     type: string
                     enum:
+                      - Color
+                      - DateTime
+                      - Email
+                      - ExtFileRef
+                      - Image
+                      - Link
+                      - MultiImage
+                      - Number
+                      - Phone
                       - PlainText
                       - RichText
-                      - Image
-                      - MultiImage
-                      - Video
-                      - Link
-                      - Email
-                      - Phone
-                      - Number
-                      - DateTime
                       - Switch
-                      - Color
-                      - ExtFileRef
+                      - Video
                     description: Choose these appropriate field type for your collection data
                   slug:
                     type: string
@@ -10503,19 +10504,19 @@ paths:
                   type:
                     type: string
                     enum:
+                      - Color
+                      - DateTime
+                      - Email
+                      - ExtFileRef
+                      - Image
+                      - Link
+                      - MultiImage
+                      - Number
+                      - Phone
                       - PlainText
                       - RichText
-                      - Image
-                      - MultiImage
-                      - Video
-                      - Link
-                      - Email
-                      - Phone
-                      - Number
-                      - DateTime
                       - Switch
-                      - Color
-                      - ExtFileRef
+                      - Video
                     description: Choose these appropriate field type for your collection data
                   slug:
                     type: string
