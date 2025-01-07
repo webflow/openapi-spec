@@ -11115,8 +11115,8 @@ paths:
                 example:
                   items:
                     - id: 654c16c7b229e56bcf26872d
-                      createdOn: 2023-11-08T23:16:23.496Z
-                      lastUpdated: 2023-11-08T23:16:23.496Z
+                      createdOn: '2023-11-08T23:16:23.496Z'
+                      lastUpdated: '2023-11-08T23:16:23.496Z'
                       event: cms_collection
                       user:
                         id: 6509cd56e90eec668b009712
@@ -15053,19 +15053,19 @@ paths:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was last published
                         lastUpdated:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was last updated
                         createdOn:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was created
                         isArchived:
                           type: boolean
@@ -15089,7 +15089,7 @@ paths:
                               description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                           additionalProperties: true
                           example:
-                            date: 2022-11-18T00:00:00.000Z
+                            date: '2022-11-18T00:00:00.000Z'
                             featured: false
                             name: My new item
                             slug: my-new-item
@@ -15558,19 +15558,19 @@ paths:
                       type: string
                       format: date-string
                       readOnly: true
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                       description: The date the item was last published
                     lastUpdated:
                       type: string
                       format: date-string
                       readOnly: true
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                       description: The date the item was last updated
                     createdOn:
                       type: string
                       format: date-string
                       readOnly: true
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                       description: The date the item was created
                     isArchived:
                       type: boolean
@@ -15595,7 +15595,7 @@ paths:
                           description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                       additionalProperties: true
                       example:
-                        date: 2022-11-18T00:00:00.000Z
+                        date: '2022-11-18T00:00:00.000Z'
                         featured: false
                         name: My new item
                         slug: my-new-item
@@ -15642,19 +15642,19 @@ paths:
                             type: string
                             format: date-string
                             readOnly: true
-                            example: 2023-03-17T18:47:35.560Z
+                            example: '2023-03-17T18:47:35.560Z'
                             description: The date the item was last published
                           lastUpdated:
                             type: string
                             format: date-string
                             readOnly: true
-                            example: 2023-03-17T18:47:35.560Z
+                            example: '2023-03-17T18:47:35.560Z'
                             description: The date the item was last updated
                           createdOn:
                             type: string
                             format: date-string
                             readOnly: true
-                            example: 2023-03-17T18:47:35.560Z
+                            example: '2023-03-17T18:47:35.560Z'
                             description: The date the item was created
                           isArchived:
                             type: boolean
@@ -15679,7 +15679,7 @@ paths:
                                 description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                             additionalProperties: true
                             example:
-                              date: 2022-11-18T00:00:00.000Z
+                              date: '2022-11-18T00:00:00.000Z'
                               featured: false
                               name: My new item
                               slug: my-new-item
@@ -15766,19 +15766,19 @@ paths:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -15802,7 +15802,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -16297,19 +16297,19 @@ paths:
                         type: string
                         format: date-string
                         readOnly: true
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                         description: The date the item was last published
                       lastUpdated:
                         type: string
                         format: date-string
                         readOnly: true
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                         description: The date the item was last updated
                       createdOn:
                         type: string
                         format: date-string
                         readOnly: true
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                         description: The date the item was created
                       isArchived:
                         type: boolean
@@ -16328,7 +16328,7 @@ paths:
                             description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                         additionalProperties: true
                         example:
-                          date: 2022-11-18T00:00:00.000Z
+                          date: '2022-11-18T00:00:00.000Z'
                           featured: false
                           name: My new item
                           slug: my-new-item
@@ -16421,19 +16421,19 @@ paths:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -16457,7 +16457,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -16483,8 +16483,8 @@ paths:
                     items:
                       - id: 66f6ed9576ddacf3149d5ea6
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
                         fieldData:
                           name: Ne Paniquez Pas
@@ -16492,8 +16492,8 @@ paths:
                           featured: false
                       - id: 66f6ed9576ddacf3149d5ea6
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
                         fieldData:
                           name: No Entrar en Pánico
@@ -16501,8 +16501,8 @@ paths:
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
                         fieldData:
                           name: Au Revoir et Merci pour Tous les Poissons
@@ -16510,8 +16510,8 @@ paths:
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
                         fieldData:
                           name: Hasta Luego y Gracias por Todo el Pescado
@@ -17524,19 +17524,19 @@ paths:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was last published
                         lastUpdated:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was last updated
                         createdOn:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was created
                         isArchived:
                           type: boolean
@@ -17560,7 +17560,7 @@ paths:
                               description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                           additionalProperties: true
                           example:
-                            date: 2022-11-18T00:00:00.000Z
+                            date: '2022-11-18T00:00:00.000Z'
                             featured: false
                             name: My new item
                             slug: my-new-item
@@ -18004,8 +18004,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - x-fern-type-name: Single Live Item
-                  description: |
+                - description: |
                     A Collection Item represents a single entry in your collection. Each item includes:
 
                     - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
@@ -18028,19 +18027,19 @@ paths:
                       type: string
                       format: date-string
                       readOnly: true
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                       description: The date the item was last published
                     lastUpdated:
                       type: string
                       format: date-string
                       readOnly: true
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                       description: The date the item was last updated
                     createdOn:
                       type: string
                       format: date-string
                       readOnly: true
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                       description: The date the item was created
                     isArchived:
                       type: boolean
@@ -18064,7 +18063,7 @@ paths:
                           description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                       additionalProperties: true
                       example:
-                        date: 2022-11-18T00:00:00.000Z
+                        date: '2022-11-18T00:00:00.000Z'
                         featured: false
                         name: My new item
                         slug: my-new-item
@@ -18083,6 +18082,7 @@ paths:
                       color: '#db4b68'
                       date: '2022-11-18T00:00:00.000Z'
                       featured: true
+                  x-fern-type-name: Single Live Item
                 - type: object
                   x-fern-type-name: Multiple Live Items
                   properties:
@@ -18113,19 +18113,19 @@ paths:
                             type: string
                             format: date-string
                             readOnly: true
-                            example: 2023-03-17T18:47:35.560Z
+                            example: '2023-03-17T18:47:35.560Z'
                             description: The date the item was last published
                           lastUpdated:
                             type: string
                             format: date-string
                             readOnly: true
-                            example: 2023-03-17T18:47:35.560Z
+                            example: '2023-03-17T18:47:35.560Z'
                             description: The date the item was last updated
                           createdOn:
                             type: string
                             format: date-string
                             readOnly: true
-                            example: 2023-03-17T18:47:35.560Z
+                            example: '2023-03-17T18:47:35.560Z'
                             description: The date the item was created
                           isArchived:
                             type: boolean
@@ -18149,7 +18149,7 @@ paths:
                                 description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                             additionalProperties: true
                             example:
-                              date: 2022-11-18T00:00:00.000Z
+                              date: '2022-11-18T00:00:00.000Z'
                               featured: false
                               name: My new item
                               slug: my-new-item
@@ -18225,19 +18225,19 @@ paths:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -18261,7 +18261,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -18709,19 +18709,19 @@ paths:
                         type: string
                         format: date-string
                         readOnly: true
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                         description: The date the item was last published
                       lastUpdated:
                         type: string
                         format: date-string
                         readOnly: true
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                         description: The date the item was last updated
                       createdOn:
                         type: string
                         format: date-string
                         readOnly: true
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                         description: The date the item was created
                       isArchived:
                         type: boolean
@@ -18740,7 +18740,7 @@ paths:
                             description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                         additionalProperties: true
                         example:
-                          date: 2022-11-18T00:00:00.000Z
+                          date: '2022-11-18T00:00:00.000Z'
                           featured: false
                           name: My new item
                           slug: my-new-item
@@ -18869,19 +18869,19 @@ paths:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was last published
                         lastUpdated:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was last updated
                         createdOn:
                           type: string
                           format: date-string
                           readOnly: true
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was created
                         isArchived:
                           type: boolean
@@ -18905,7 +18905,7 @@ paths:
                               description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                           additionalProperties: true
                           example:
-                            date: 2022-11-18T00:00:00.000Z
+                            date: '2022-11-18T00:00:00.000Z'
                             featured: false
                             name: My new item
                             slug: my-new-item
@@ -18931,8 +18931,8 @@ paths:
                     items:
                       - id: 66f6ed9576ddacf3149d5ea6
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
                         fieldData:
                           name: Ne Paniquez Pas
@@ -18940,8 +18940,8 @@ paths:
                           featured: false
                       - id: 66f6ed9576ddacf3149d5ea6
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
                         fieldData:
                           name: No Entrar en Pánico
@@ -18949,8 +18949,8 @@ paths:
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
                         fieldData:
                           name: Au Revoir et Merci pour Tous les Poissons
@@ -18958,8 +18958,8 @@ paths:
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
                         lastPublished: null
-                        lastUpdated: 2024-09-27T17:38:29.066Z
-                        createdOn: 2024-09-27T17:38:29.066Z
+                        lastUpdated: '2024-09-27T17:38:29.066Z'
+                        createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
                         fieldData:
                           name: Hasta Luego y Gracias por Todo el Pescado
@@ -19871,19 +19871,19 @@ paths:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date and time when the item was last published.
                 lastUpdated:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date and time when the item was last updated.
                 createdOn:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date and time when the item was created.
                 isArchived:
                   type: boolean
@@ -20014,19 +20014,19 @@ paths:
                     format: date-string
                     nullable: true
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -20047,7 +20047,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -20634,19 +20634,19 @@ paths:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -20670,7 +20670,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -21119,19 +21119,19 @@ paths:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date the item was last published
                 lastUpdated:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date the item was last updated
                 createdOn:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date the item was created
                 isArchived:
                   type: boolean
@@ -21150,7 +21150,7 @@ paths:
                       description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                   additionalProperties: true
                   example:
-                    date: 2022-11-18T00:00:00.000Z
+                    date: '2022-11-18T00:00:00.000Z'
                     featured: false
                     name: My new item
                     slug: my-new-item
@@ -21193,19 +21193,19 @@ paths:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -21229,7 +21229,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -22111,19 +22111,19 @@ paths:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -22147,7 +22147,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -22596,19 +22596,19 @@ paths:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date the item was last published
                 lastUpdated:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date the item was last updated
                 createdOn:
                   type: string
                   format: date-string
                   readOnly: true
-                  example: 2023-03-17T18:47:35.560Z
+                  example: '2023-03-17T18:47:35.560Z'
                   description: The date the item was created
                 isArchived:
                   type: boolean
@@ -22627,7 +22627,7 @@ paths:
                       description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                   additionalProperties: true
                   example:
-                    date: 2022-11-18T00:00:00.000Z
+                    date: '2022-11-18T00:00:00.000Z'
                     featured: false
                     name: My new item
                     slug: my-new-item
@@ -22670,19 +22670,19 @@ paths:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last published
                   lastUpdated:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                   createdOn:
                     type: string
                     format: date-string
                     readOnly: true
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   isArchived:
                     type: boolean
@@ -22706,7 +22706,7 @@ paths:
                         description: 'URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.'
                     additionalProperties: true
                     example:
-                      date: 2022-11-18T00:00:00.000Z
+                      date: '2022-11-18T00:00:00.000Z'
                       featured: false
                       name: My new item
                       slug: my-new-item
@@ -37448,8 +37448,8 @@ paths:
                         - 63e5889e7fe4eafa7384cea4
                         - 659595234426a9fcbad57043
                       siteId: 6390c49674a71f84b51a08d8
-                      createdOn: 2018-10-14T21:55:49.063Z
-                      lastUpdated: 2022-12-07T16:51:37.571Z
+                      createdOn: '2018-10-14T21:55:49.063Z'
+                      lastUpdated: '2022-12-07T16:51:37.571Z'
                   pagination:
                     total: 1
                     offset: 0
@@ -37468,8 +37468,8 @@ paths:
                           - 63e5889e7fe4eafa7384cea4
                           - 659595234426a9fcbad57043
                         siteId: 6390c49674a71f84b51a08d8
-                        createdOn: 2018-10-14T21:55:49.063Z
-                        lastUpdated: 2022-12-07T16:51:37.571Z
+                        createdOn: '2018-10-14T21:55:49.063Z'
+                        lastUpdated: '2022-12-07T16:51:37.571Z'
                       properties:
                         id:
                           type: string
@@ -37953,8 +37953,8 @@ paths:
                     - 63e5889e7fe4eafa7384cea4
                     - 659595234426a9fcbad57043
                   siteId: 6390c49674a71f84b51a08d8
-                  createdOn: 2018-10-14T21:55:49.063Z
-                  lastUpdated: 2022-12-07T16:51:37.571Z
+                  createdOn: '2018-10-14T21:55:49.063Z'
+                  lastUpdated: '2022-12-07T16:51:37.571Z'
                 properties:
                   id:
                     type: string
@@ -38405,8 +38405,8 @@ paths:
                     - 63e5889e7fe4eafa7384cea4
                     - 659595234426a9fcbad57043
                   siteId: 6390c49674a71f84b51a08d8
-                  createdOn: 2018-10-14T21:55:49.063Z
-                  lastUpdated: 2022-12-07T16:51:37.571Z
+                  createdOn: '2018-10-14T21:55:49.063Z'
+                  lastUpdated: '2022-12-07T16:51:37.571Z'
                 properties:
                   id:
                     type: string
@@ -41625,7 +41625,6 @@ paths:
           content:
             application/json:
               schema:
-                description: A form and its corresponding metadata
                 example:
                   displayName: Email Form
                   createdOn: '2016-10-24T19:41:29.156Z'
@@ -41653,6 +41652,7 @@ paths:
                   pageName: Home
                   formElementId: 4e038d2c-6a1e-4953-7be9-a59a2b453177
                   workspaceId: 580e63fc8c9a982ac9b8b744
+                description: A Webflow form
                 properties:
                   displayName:
                     type: string
@@ -42811,7 +42811,6 @@ paths:
           content:
             application/json:
               schema:
-                description: A form submission
                 example:
                   id: 6321ca84df3949bfc6752327
                   formId: 6321ca84df3949bfc6752327
@@ -42853,6 +42852,7 @@ paths:
                     example:
                       name: Arthur Dent
                       email: arthur.dent@mostlyharmless.com
+                description: A form submission
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -43340,7 +43340,6 @@ paths:
           content:
             application/json:
               schema:
-                description: A form submission
                 example:
                   id: 6321ca84df3949bfc6752327
                   formId: 6321ca84df3949bfc6752327
@@ -43382,6 +43381,7 @@ paths:
                     example:
                       name: Arthur Dent
                       email: arthur.dent@mostlyharmless.com
+                description: A form submission
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -49514,19 +49514,19 @@ paths:
                               format: date-time
                               readOnly: true
                               description: The date the Product was last published
-                              example: 2023-03-17T18:47:35.560Z
+                              example: '2023-03-17T18:47:35.560Z'
                             lastUpdated:
                               type: string
                               format: date-time
                               readOnly: true
                               description: The date the Product was last updated
-                              example: 2023-03-17T18:47:35.560Z
+                              example: '2023-03-17T18:47:35.560Z'
                             createdOn:
                               type: string
                               format: date-time
                               readOnly: true
                               description: The date the Product was created
-                              example: 2023-03-17T18:47:35.560Z
+                              example: '2023-03-17T18:47:35.560Z'
                             isArchived:
                               type: boolean
                               default: false
@@ -49687,19 +49687,19 @@ paths:
                                 format: date-time
                                 readOnly: true
                                 description: The date the Product was last published
-                                example: 2023-03-17T18:47:35.560Z
+                                example: '2023-03-17T18:47:35.560Z'
                               lastUpdated:
                                 type: string
                                 format: date-time
                                 readOnly: true
                                 description: The date the Product was last updated
-                                example: 2023-03-17T18:47:35.560Z
+                                example: '2023-03-17T18:47:35.560Z'
                               createdOn:
                                 type: string
                                 format: date-time
                                 readOnly: true
                                 description: The date the Product was created
-                                example: 2023-03-17T18:47:35.560Z
+                                example: '2023-03-17T18:47:35.560Z'
                               fieldData:
                                 description: Standard and Custom fields for a SKU
                                 type: object
@@ -50437,139 +50437,7 @@ paths:
                   example: staging
                 product:
                   allOf:
-                    - properties:
-                        fieldData:
-                          allOf:
-                            - description: 'Contains content-specific details for a product, covering both standard (e.g., title, description)  and custom fields tailored to the product setup.'
-                              type: object
-                              properties:
-                                name:
-                                  type: string
-                                  description: Name of the Product
-                                  example: T-Shirt
-                                slug:
-                                  type: string
-                                  description: URL structure of the Product in your site.
-                                  example: t-shirt
-                                description:
-                                  type: string
-                                  description: A description of your product
-                                  example: A plain cotton t-shirt.
-                                shippable:
-                                  type: boolean
-                                  description: Boolean determining if the Product is shippable
-                                  example: true
-                                sku-properties:
-                                  type: array
-                                  description: Variant types to include in SKUs
-                                  items:
-                                    type: object
-                                    description: A variant/option type for a SKU
-                                    required:
-                                      - id
-                                      - name
-                                      - enum
-                                    properties:
-                                      id:
-                                        type: string
-                                        description: Unique identifier for a collection of Product Variants
-                                        default: null
-                                        example: Color
-                                      name:
-                                        type: string
-                                        description: Name of the collection of Product Variants
-                                        example: Color
-                                      enum:
-                                        description: The individual Product variants that are contained within the collection
-                                        type: array
-                                        items:
-                                          description: Enumerated Product variants/Options for the SKU
-                                          type: object
-                                          required:
-                                            - id
-                                            - name
-                                            - slug
-                                          properties:
-                                            id:
-                                              type: string
-                                              description: Unique identifier for a Product variant/Option
-                                              default: null
-                                              example:
-                                                - royal-blue
-                                                - crimson-red
-                                                - forrest-green
-                                            name:
-                                              type: string
-                                              description: Name of the Product variant/Option
-                                              examples:
-                                                - Royal Blue
-                                                - Crimson Red
-                                                - Forrest Green
-                                            slug:
-                                              type: string
-                                              description: Slug for the Product variant/Option in the Site URL structure
-                                              examples:
-                                                - royal-blue
-                                                - crimson-red
-                                                - forrest-green
-                                                - null
-                                categories:
-                                  type: array
-                                  description: The categories your product belongs to.
-                                  items:
-                                    type: string
-                                tax-category:
-                                  type: string
-                                  description: Product tax class
-                                  enum:
-                                    - standard-taxable
-                                    - standard-exempt
-                                    - books-religious
-                                    - books-textbook
-                                    - clothing
-                                    - clothing-swimwear
-                                    - digital-goods
-                                    - digital-service
-                                    - drugs-non-prescription
-                                    - drugs-prescription
-                                    - food-bottled-water
-                                    - food-candy
-                                    - food-groceries
-                                    - food-prepared
-                                    - food-soda
-                                    - food-supplements
-                                    - magazine-individual
-                                    - magazine-subscription
-                                    - service-admission
-                                    - service-advertising
-                                    - service-dry-cleaning
-                                    - service-hairdressing
-                                    - service-installation
-                                    - service-miscellaneous
-                                    - service-parking
-                                    - service-printing
-                                    - service-professional
-                                    - service-repair
-                                    - service-training
-                                default-sku:
-                                  type: string
-                                  format: objectid
-                                  description: The default SKU associated with this product.
-                                ec-product-type:
-                                  description: '<a href="https://university.webflow.com/lesson/add-and-manage-products-and-categories?topics=ecommerce#how-to-understand-product-types">Product types.</a> Enums reflect the following values in order: Physical, Digital, Service, Advanced"'
-                                  type: string
-                                  enum:
-                                    - ff42fee0113744f693a764e3431a9cc2
-                                    - f22027db68002190aef89a4a2b7ac8a1
-                                    - c599e43b1a1c34d5a323aedf75d3adf6
-                                    - b6ccc1830db4b1babeb06a9ac5f6dd76
-                              additionalProperties:
-                                type: string
-                                description: Custom fields for your product.
-                            - required:
-                                - name
-                                - slug
-                      description: The Product object
+                    - description: The Product object
                       type: object
                       example:
                         id: 660eb7a486d1d6e0412292d7
@@ -50612,6 +50480,172 @@ paths:
                           description: A plain t-shirt
                           slug: t-shirt
                           default-sku: 66072fb71b89448912e2681c
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          description: Unique identifier for the Product
+                          example: 580e63fc8c9a982ac9b8b745
+                        cmsLocaleId:
+                          type: string
+                          readOnly: true
+                          example: 653ad57de882f528b32e810e
+                          description: Identifier for the locale of the CMS item
+                        lastPublished:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          description: The date the Product was last published
+                          example: '2023-03-17T18:47:35.560Z'
+                        lastUpdated:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          description: The date the Product was last updated
+                          example: '2023-03-17T18:47:35.560Z'
+                        createdOn:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          description: The date the Product was created
+                          example: '2023-03-17T18:47:35.560Z'
+                        isArchived:
+                          type: boolean
+                          default: false
+                          description: Boolean determining if the Product is set to archived
+                          example: false
+                        isDraft:
+                          type: boolean
+                          default: false
+                          description: Boolean determining if the Product is set to draft
+                          example: false
+                        fieldData:
+                          description: 'Contains content-specific details for a product, covering both standard (e.g., title, description)  and custom fields tailored to the product setup.'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Name of the Product
+                              example: T-Shirt
+                            slug:
+                              type: string
+                              description: URL structure of the Product in your site.
+                              example: t-shirt
+                            description:
+                              type: string
+                              description: A description of your product
+                              example: A plain cotton t-shirt.
+                            shippable:
+                              type: boolean
+                              description: Boolean determining if the Product is shippable
+                              example: true
+                            sku-properties:
+                              type: array
+                              description: Variant types to include in SKUs
+                              items:
+                                type: object
+                                description: A variant/option type for a SKU
+                                required:
+                                  - id
+                                  - name
+                                  - enum
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for a collection of Product Variants
+                                    default: null
+                                    example: Color
+                                  name:
+                                    type: string
+                                    description: Name of the collection of Product Variants
+                                    example: Color
+                                  enum:
+                                    description: The individual Product variants that are contained within the collection
+                                    type: array
+                                    items:
+                                      description: Enumerated Product variants/Options for the SKU
+                                      type: object
+                                      required:
+                                        - id
+                                        - name
+                                        - slug
+                                      properties:
+                                        id:
+                                          type: string
+                                          description: Unique identifier for a Product variant/Option
+                                          default: null
+                                          example:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
+                                        name:
+                                          type: string
+                                          description: Name of the Product variant/Option
+                                          examples:
+                                            - Royal Blue
+                                            - Crimson Red
+                                            - Forrest Green
+                                        slug:
+                                          type: string
+                                          description: Slug for the Product variant/Option in the Site URL structure
+                                          examples:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
+                                            - null
+                            categories:
+                              type: array
+                              description: The categories your product belongs to.
+                              items:
+                                type: string
+                            tax-category:
+                              type: string
+                              description: Product tax class
+                              enum:
+                                - standard-taxable
+                                - standard-exempt
+                                - books-religious
+                                - books-textbook
+                                - clothing
+                                - clothing-swimwear
+                                - digital-goods
+                                - digital-service
+                                - drugs-non-prescription
+                                - drugs-prescription
+                                - food-bottled-water
+                                - food-candy
+                                - food-groceries
+                                - food-prepared
+                                - food-soda
+                                - food-supplements
+                                - magazine-individual
+                                - magazine-subscription
+                                - service-admission
+                                - service-advertising
+                                - service-dry-cleaning
+                                - service-hairdressing
+                                - service-installation
+                                - service-miscellaneous
+                                - service-parking
+                                - service-printing
+                                - service-professional
+                                - service-repair
+                                - service-training
+                            default-sku:
+                              type: string
+                              format: objectid
+                              description: The default SKU associated with this product.
+                            ec-product-type:
+                              description: '<a href="https://university.webflow.com/lesson/add-and-manage-products-and-categories?topics=ecommerce#how-to-understand-product-types">Product types.</a> Enums reflect the following values in order: Physical, Digital, Service, Advanced"'
+                              type: string
+                              enum:
+                                - ff42fee0113744f693a764e3431a9cc2
+                                - f22027db68002190aef89a4a2b7ac8a1
+                                - c599e43b1a1c34d5a323aedf75d3adf6
+                                - b6ccc1830db4b1babeb06a9ac5f6dd76
+                          additionalProperties:
+                            type: string
+                            description: Custom fields for your product.
                 sku:
                   description: The SKU object
                   type: object
@@ -50632,19 +50666,19 @@ paths:
                       format: date-time
                       readOnly: true
                       description: The date the Product was last published
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     lastUpdated:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was last updated
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     createdOn:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was created
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     fieldData:
                       description: Standard and Custom fields for a SKU
                       type: object
@@ -50820,19 +50854,19 @@ paths:
                         format: date-time
                         readOnly: true
                         description: The date the Product was last published
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       lastUpdated:
                         type: string
                         format: date-time
                         readOnly: true
                         description: The date the Product was last updated
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       createdOn:
                         type: string
                         format: date-time
                         readOnly: true
                         description: The date the Product was created
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       isArchived:
                         type: boolean
                         default: false
@@ -50993,19 +51027,19 @@ paths:
                           format: date-time
                           readOnly: true
                           description: The date the Product was last published
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         lastUpdated:
                           type: string
                           format: date-time
                           readOnly: true
                           description: The date the Product was last updated
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         createdOn:
                           type: string
                           format: date-time
                           readOnly: true
                           description: The date the Product was created
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         fieldData:
                           description: Standard and Custom fields for a SKU
                           type: object
@@ -51735,19 +51769,19 @@ paths:
                         format: date-time
                         readOnly: true
                         description: The date the Product was last published
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       lastUpdated:
                         type: string
                         format: date-time
                         readOnly: true
                         description: The date the Product was last updated
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       createdOn:
                         type: string
                         format: date-time
                         readOnly: true
                         description: The date the Product was created
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       isArchived:
                         type: boolean
                         default: false
@@ -51908,19 +51942,19 @@ paths:
                           format: date-time
                           readOnly: true
                           description: The date the Product was last published
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         lastUpdated:
                           type: string
                           format: date-time
                           readOnly: true
                           description: The date the Product was last updated
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         createdOn:
                           type: string
                           format: date-time
                           readOnly: true
                           description: The date the Product was created
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         fieldData:
                           description: Standard and Custom fields for a SKU
                           type: object
@@ -52699,19 +52733,19 @@ paths:
                       format: date-time
                       readOnly: true
                       description: The date the Product was last published
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     lastUpdated:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was last updated
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     createdOn:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was created
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     isArchived:
                       type: boolean
                       default: false
@@ -52869,19 +52903,19 @@ paths:
                       format: date-time
                       readOnly: true
                       description: The date the Product was last published
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     lastUpdated:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was last updated
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     createdOn:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was created
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     fieldData:
                       description: Standard and Custom fields for a SKU
                       type: object
@@ -53053,19 +53087,19 @@ paths:
                     format: date-time
                     readOnly: true
                     description: The date the Product was last published
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                   lastUpdated:
                     type: string
                     format: date-time
                     readOnly: true
                     description: The date the Product was last updated
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                   createdOn:
                     type: string
                     format: date-time
                     readOnly: true
                     description: The date the Product was created
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                   isArchived:
                     type: boolean
                     default: false
@@ -53799,19 +53833,19 @@ paths:
                         format: date-time
                         readOnly: true
                         description: The date the Product was last published
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       lastUpdated:
                         type: string
                         format: date-time
                         readOnly: true
                         description: The date the Product was last updated
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       createdOn:
                         type: string
                         format: date-time
                         readOnly: true
                         description: The date the Product was created
-                        example: 2023-03-17T18:47:35.560Z
+                        example: '2023-03-17T18:47:35.560Z'
                       fieldData:
                         description: Standard and Custom fields for a SKU
                         type: object
@@ -53948,19 +53982,19 @@ paths:
                           format: date-time
                           readOnly: true
                           description: The date the Product was last published
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         lastUpdated:
                           type: string
                           format: date-time
                           readOnly: true
                           description: The date the Product was last updated
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         createdOn:
                           type: string
                           format: date-time
                           readOnly: true
                           description: The date the Product was created
-                          example: 2023-03-17T18:47:35.560Z
+                          example: '2023-03-17T18:47:35.560Z'
                         fieldData:
                           description: Standard and Custom fields for a SKU
                           type: object
@@ -54668,19 +54702,19 @@ paths:
                       format: date-time
                       readOnly: true
                       description: The date the Product was last published
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     lastUpdated:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was last updated
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     createdOn:
                       type: string
                       format: date-time
                       readOnly: true
                       description: The date the Product was created
-                      example: 2023-03-17T18:47:35.560Z
+                      example: '2023-03-17T18:47:35.560Z'
                     fieldData:
                       description: Standard and Custom fields for a SKU
                       type: object
@@ -54812,19 +54846,19 @@ paths:
                     format: date-time
                     readOnly: true
                     description: The date the Product was last published
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                   lastUpdated:
                     type: string
                     format: date-time
                     readOnly: true
                     description: The date the Product was last updated
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                   createdOn:
                     type: string
                     format: date-time
                     readOnly: true
                     description: The date the Product was created
-                    example: 2023-03-17T18:47:35.560Z
+                    example: '2023-03-17T18:47:35.560Z'
                   fieldData:
                     description: Standard and Custom fields for a SKU
                     type: object
@@ -55553,34 +55587,34 @@ paths:
                           format: date-time
                           nullable: true
                           description: The ISO8601 timestamp that an Order was placed.
-                          example: 2018-12-03T22:06:15.761Z
+                          example: '2018-12-03T22:06:15.761Z'
                         fulfilledOn:
                           type: string
                           format: date-time
                           nullable: true
                           description: |
                             When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                          example: 2018-12-03T22:06:15.761Z
+                          example: '2018-12-03T22:06:15.761Z'
                         refundedOn:
                           type: string
                           format: date-time
                           nullable: true
                           description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                          example: 2018-12-03T22:06:15.761Z
+                          example: '2018-12-03T22:06:15.761Z'
                         disputedOn:
                           type: string
                           format: date-time
                           nullable: true
                           description: |
                             When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                          example: 2018-12-03T22:06:15.761Z
+                          example: '2018-12-03T22:06:15.761Z'
                         disputeUpdatedOn:
                           type: string
                           format: date-time
                           nullable: true
                           description: |
                             If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                          example: 2018-12-03T22:06:15.761Z
+                          example: '2018-12-03T22:06:15.761Z'
                         disputeLastStatus:
                           type: string
                           description: |
@@ -55710,17 +55744,7 @@ paths:
                                 example: 90012
                                 description: The postal code of the address
                         shippingAddress:
-                          description: The shipping address
-                          example:
-                            type: shipping
-                            japanType: kanji
-                            addressee: Custmerio Namen
-                            line1: 123 Example Road
-                            line2: Unit 3
-                            city: Examplesville
-                            state: CA
-                            country: US
-                            postalCode: 90012
+                          description: A customer address
                           properties:
                             type:
                               description: The type of the order address (billing or shipping)
@@ -55765,18 +55789,10 @@ paths:
                               type: string
                               example: 90012
                               description: The postal code of the address
+                          example:
+                            $ref: ../examples/order.yml#/ShippingAddress/value
                         billingAddress:
-                          description: The billing address
-                          example:
-                            type: billing
-                            japanType: kanji
-                            addressee: Custmerio Namen
-                            line1: 123 Example Road
-                            line2: Unit 3
-                            city: Examplesville
-                            state: CA
-                            country: US
-                            postalCode: 90012
+                          description: A customer address
                           properties:
                             type:
                               description: The type of the order address (billing or shipping)
@@ -55821,6 +55837,8 @@ paths:
                               type: string
                               example: 90012
                               description: The postal code of the address
+                          example:
+                            $ref: ../examples/order.yml#/BillingAddress/value
                         shippingProvider:
                           type: string
                           description: |
@@ -55927,7 +55945,7 @@ paths:
                                         description: The creation timestamp of the image
                                         type: string
                                         format: date-time
-                                        example: 2018-12-03T22:06:15.761Z
+                                        example: '2018-12-03T22:06:15.761Z'
                                       contentType:
                                         description: The MIME type of the image
                                         format: mime-type
@@ -57350,34 +57368,34 @@ paths:
                     format: date-time
                     nullable: true
                     description: The ISO8601 timestamp that an Order was placed.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   fulfilledOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   refundedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeUpdatedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeLastStatus:
                     type: string
                     description: |
@@ -57507,17 +57525,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: The shipping address
-                    example:
-                      type: shipping
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -57562,18 +57570,10 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/ShippingAddress/value
                   billingAddress:
-                    description: The billing address
-                    example:
-                      type: billing
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -57618,6 +57618,8 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/BillingAddress/value
                   shippingProvider:
                     type: string
                     description: |
@@ -57724,7 +57726,7 @@ paths:
                                   description: The creation timestamp of the image
                                   type: string
                                   format: date-time
-                                  example: 2018-12-03T22:06:15.761Z
+                                  example: '2018-12-03T22:06:15.761Z'
                                 contentType:
                                   description: The MIME type of the image
                                   format: mime-type
@@ -58843,34 +58845,34 @@ paths:
                     format: date-time
                     nullable: true
                     description: The ISO8601 timestamp that an Order was placed.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   fulfilledOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   refundedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeUpdatedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeLastStatus:
                     type: string
                     description: |
@@ -59000,17 +59002,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: The shipping address
-                    example:
-                      type: shipping
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -59055,18 +59047,10 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/ShippingAddress/value
                   billingAddress:
-                    description: The billing address
-                    example:
-                      type: billing
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -59111,6 +59095,8 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/BillingAddress/value
                   shippingProvider:
                     type: string
                     description: |
@@ -59217,7 +59203,7 @@ paths:
                                   description: The creation timestamp of the image
                                   type: string
                                   format: date-time
-                                  example: 2018-12-03T22:06:15.761Z
+                                  example: '2018-12-03T22:06:15.761Z'
                                 contentType:
                                   description: The MIME type of the image
                                   format: mime-type
@@ -60322,34 +60308,34 @@ paths:
                     format: date-time
                     nullable: true
                     description: The ISO8601 timestamp that an Order was placed.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   fulfilledOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   refundedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeUpdatedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeLastStatus:
                     type: string
                     description: |
@@ -60479,17 +60465,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: The shipping address
-                    example:
-                      type: shipping
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -60534,18 +60510,10 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/ShippingAddress/value
                   billingAddress:
-                    description: The billing address
-                    example:
-                      type: billing
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -60590,6 +60558,8 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/BillingAddress/value
                   shippingProvider:
                     type: string
                     description: |
@@ -60696,7 +60666,7 @@ paths:
                                   description: The creation timestamp of the image
                                   type: string
                                   format: date-time
-                                  example: 2018-12-03T22:06:15.761Z
+                                  example: '2018-12-03T22:06:15.761Z'
                                 contentType:
                                   description: The MIME type of the image
                                   format: mime-type
@@ -61790,34 +61760,34 @@ paths:
                     format: date-time
                     nullable: true
                     description: The ISO8601 timestamp that an Order was placed.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   fulfilledOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   refundedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeUpdatedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeLastStatus:
                     type: string
                     description: |
@@ -61947,17 +61917,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: The shipping address
-                    example:
-                      type: shipping
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -62002,18 +61962,10 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/ShippingAddress/value
                   billingAddress:
-                    description: The billing address
-                    example:
-                      type: billing
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -62058,6 +62010,8 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/BillingAddress/value
                   shippingProvider:
                     type: string
                     description: |
@@ -62164,7 +62118,7 @@ paths:
                                   description: The creation timestamp of the image
                                   type: string
                                   format: date-time
-                                  example: 2018-12-03T22:06:15.761Z
+                                  example: '2018-12-03T22:06:15.761Z'
                                 contentType:
                                   description: The MIME type of the image
                                   format: mime-type
@@ -63273,34 +63227,34 @@ paths:
                     format: date-time
                     nullable: true
                     description: The ISO8601 timestamp that an Order was placed.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   fulfilledOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   refundedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeUpdatedOn:
                     type: string
                     format: date-time
                     nullable: true
                     description: |
                       If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                    example: 2018-12-03T22:06:15.761Z
+                    example: '2018-12-03T22:06:15.761Z'
                   disputeLastStatus:
                     type: string
                     description: |
@@ -63430,17 +63384,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: The shipping address
-                    example:
-                      type: shipping
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -63485,18 +63429,10 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/ShippingAddress/value
                   billingAddress:
-                    description: The billing address
-                    example:
-                      type: billing
-                      japanType: kanji
-                      addressee: Custmerio Namen
-                      line1: 123 Example Road
-                      line2: Unit 3
-                      city: Examplesville
-                      state: CA
-                      country: US
-                      postalCode: 90012
+                    description: A customer address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -63541,6 +63477,8 @@ paths:
                         type: string
                         example: 90012
                         description: The postal code of the address
+                    example:
+                      $ref: ../examples/order.yml#/BillingAddress/value
                   shippingProvider:
                     type: string
                     description: |
@@ -63647,7 +63585,7 @@ paths:
                                   description: The creation timestamp of the image
                                   type: string
                                   format: date-time
-                                  example: 2018-12-03T22:06:15.761Z
+                                  example: '2018-12-03T22:06:15.761Z'
                                 contentType:
                                   description: The MIME type of the image
                                   format: mime-type
@@ -65901,7 +65839,7 @@ paths:
                     format: date-time
                     readOnly: true
                     description: Date that the Site was created on
-                    example: 2018-10-04T15:21:02.042Z
+                    example: '2018-10-04T15:21:02.042Z'
                   defaultCurrency:
                     type: string
                     description: The three-letter ISO currency code for the Site
@@ -66600,7 +66538,7 @@ webhooks:
                       description: The timestamp of the publish event
                       type: string
                       format: date-time
-                      example: 2024-07-26T16:43:20.440Z
+                      example: '2024-07-26T16:43:20.440Z'
                     domains:
                       description: The domains that were published
                       type: array
@@ -66617,7 +66555,7 @@ webhooks:
                 triggerType: site_publish
                 payload:
                   site: 62749158efef318abc8d5a0f
-                  publishTime: 2024-07-26T16:43:20.440Z
+                  publishTime: '2024-07-26T16:43:20.440Z'
                   domains:
                     - my-website.webflow.io
                   publishedBy:
@@ -66678,34 +66616,34 @@ webhooks:
                       format: date-time
                       nullable: true
                       description: The ISO8601 timestamp that an Order was placed.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     fulfilledOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: |
                         When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     refundedOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     disputedOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: |
                         When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     disputeUpdatedOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: |
                         If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     disputeLastStatus:
                       type: string
                       description: |
@@ -66835,17 +66773,7 @@ webhooks:
                             example: 90012
                             description: The postal code of the address
                     shippingAddress:
-                      description: The shipping address
-                      example:
-                        type: shipping
-                        japanType: kanji
-                        addressee: Custmerio Namen
-                        line1: 123 Example Road
-                        line2: Unit 3
-                        city: Examplesville
-                        state: CA
-                        country: US
-                        postalCode: 90012
+                      description: A customer address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -66890,18 +66818,10 @@ webhooks:
                           type: string
                           example: 90012
                           description: The postal code of the address
+                      example:
+                        $ref: ../examples/order.yml#/ShippingAddress/value
                     billingAddress:
-                      description: The billing address
-                      example:
-                        type: billing
-                        japanType: kanji
-                        addressee: Custmerio Namen
-                        line1: 123 Example Road
-                        line2: Unit 3
-                        city: Examplesville
-                        state: CA
-                        country: US
-                        postalCode: 90012
+                      description: A customer address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -66946,6 +66866,8 @@ webhooks:
                           type: string
                           example: 90012
                           description: The postal code of the address
+                      example:
+                        $ref: ../examples/order.yml#/BillingAddress/value
                     shippingProvider:
                       type: string
                       description: |
@@ -67052,7 +66974,7 @@ webhooks:
                                     description: The creation timestamp of the image
                                     type: string
                                     format: date-time
-                                    example: 2018-12-03T22:06:15.761Z
+                                    example: '2018-12-03T22:06:15.761Z'
                                   contentType:
                                     description: The MIME type of the image
                                     format: mime-type
@@ -67780,34 +67702,34 @@ webhooks:
                       format: date-time
                       nullable: true
                       description: The ISO8601 timestamp that an Order was placed.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     fulfilledOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: |
                         When an Order is marked as 'fulfilled', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     refundedOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: 'When an Order is marked as ''refunded'', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.'
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     disputedOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: |
                         When an Order is marked as 'disputed', this field represents the timestamp of the fulfillment in ISO8601 format. Otherwise, it is null.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     disputeUpdatedOn:
                       type: string
                       format: date-time
                       nullable: true
                       description: |
                         If an Order has been disputed by the customer, this key will be set to the ISO8601 timestamp of the last update received. If the Order is not disputed, the key will be null.
-                      example: 2018-12-03T22:06:15.761Z
+                      example: '2018-12-03T22:06:15.761Z'
                     disputeLastStatus:
                       type: string
                       description: |
@@ -67937,17 +67859,7 @@ webhooks:
                             example: 90012
                             description: The postal code of the address
                     shippingAddress:
-                      description: The shipping address
-                      example:
-                        type: shipping
-                        japanType: kanji
-                        addressee: Custmerio Namen
-                        line1: 123 Example Road
-                        line2: Unit 3
-                        city: Examplesville
-                        state: CA
-                        country: US
-                        postalCode: 90012
+                      description: A customer address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -67992,18 +67904,10 @@ webhooks:
                           type: string
                           example: 90012
                           description: The postal code of the address
+                      example:
+                        $ref: ../examples/order.yml#/ShippingAddress/value
                     billingAddress:
-                      description: The billing address
-                      example:
-                        type: billing
-                        japanType: kanji
-                        addressee: Custmerio Namen
-                        line1: 123 Example Road
-                        line2: Unit 3
-                        city: Examplesville
-                        state: CA
-                        country: US
-                        postalCode: 90012
+                      description: A customer address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -68048,6 +67952,8 @@ webhooks:
                           type: string
                           example: 90012
                           description: The postal code of the address
+                      example:
+                        $ref: ../examples/order.yml#/BillingAddress/value
                     shippingProvider:
                       type: string
                       description: |
@@ -68154,7 +68060,7 @@ webhooks:
                                     description: The creation timestamp of the image
                                     type: string
                                     format: date-time
-                                    example: 2018-12-03T22:06:15.761Z
+                                    example: '2018-12-03T22:06:15.761Z'
                                   contentType:
                                     description: The MIME type of the image
                                     format: mime-type
@@ -69628,8 +69534,8 @@ webhooks:
                     siteId: 65427cf400e02b306eaa049c
                     collectionId: 664243617fcc8b464b23c4ee
                     lastPublished: null
-                    lastUpdated: 2023-03-17T18:47:35.560Z
-                    createdOn: 2023-03-17T18:47:35.560Z
+                    lastUpdated: '2023-03-17T18:47:35.560Z'
+                    createdOn: '2023-03-17T18:47:35.560Z'
                     isArchived: false
                     isDraft: false
                     fieldData:
@@ -69992,7 +69898,7 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
-                  createdOn: 2024-07-26T16:32:50.903Z
+                  createdOn: '2024-07-26T16:32:50.903Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -70039,7 +69945,7 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
-                  lastUpdated: 2024-07-26T16:32:50.903Z
+                  lastUpdated: '2024-07-26T16:32:50.903Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -70085,7 +69991,7 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
-                  deletedOn: 2024-07-26T16:32:50.903Z
+                  deletedOn: '2024-07-26T16:32:50.903Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
