@@ -1645,9 +1645,17 @@ paths:
                           type: string
                           example: test-api-domain.com
                           description: The registered Domain name
+                        lastPublished:
+                          type: string
+                          format: date-time
+                          example: '2022-12-07T16:51:37.571Z'
+                          readOnly: true
+                          nullable: true
+                          description: The date the custom domain was last published to
                       example:
                         id: 589a331aa51e760df7ccb89d
                         url: test-api-domain.com
+                        lastPublished: '2022-12-07T16:51:37.571Z'
                   locales:
                     type: object
                     properties:
@@ -2416,9 +2424,17 @@ paths:
                                 type: string
                                 example: test-api-domain.com
                                 description: The registered Domain name
+                              lastPublished:
+                                type: string
+                                format: date-time
+                                example: '2022-12-07T16:51:37.571Z'
+                                readOnly: true
+                                nullable: true
+                                description: The date the custom domain was last published to
                             example:
                               id: 589a331aa51e760df7ccb89d
                               url: test-api-domain.com
+                              lastPublished: '2022-12-07T16:51:37.571Z'
                         locales:
                           type: object
                           properties:
@@ -2524,6 +2540,7 @@ paths:
                       customDomains:
                         - id: 589a331aa51e760df7ccb89e
                           url: heartofgold.galaxy
+                          lastPublished: '2022-12-07T16:51:37.571Z'
                       locales:
                         primary:
                           id: 653fd9af6a07fc9cfd7a5e57
@@ -2562,6 +2579,7 @@ paths:
                       customDomains:
                         - id: 589a331aa51e760df7ccb89f
                           url: marvin.blog
+                          lastPublished: '2022-12-07T16:51:37.571Z'
                       locales:
                         primary:
                           id: 653fd9af6a07fc9cfd7a5e57
@@ -2593,6 +2611,7 @@ paths:
                       customDomains:
                         - id: 589a331aa51e760df7ccb8a0
                           url: vogonpoetry.galaxy
+                          lastPublished: '2022-12-07T16:51:37.571Z'
                       locales:
                         primary:
                           id: 653fd9af6a07fc9cfd7a5e55
@@ -3129,9 +3148,17 @@ paths:
                           type: string
                           example: test-api-domain.com
                           description: The registered Domain name
+                        lastPublished:
+                          type: string
+                          format: date-time
+                          example: '2022-12-07T16:51:37.571Z'
+                          readOnly: true
+                          nullable: true
+                          description: The date the custom domain was last published to
                       example:
                         id: 589a331aa51e760df7ccb89d
                         url: test-api-domain.com
+                        lastPublished: '2022-12-07T16:51:37.571Z'
                   locales:
                     type: object
                     properties:
@@ -3753,9 +3780,17 @@ paths:
                           type: string
                           example: test-api-domain.com
                           description: The registered Domain name
+                        lastPublished:
+                          type: string
+                          format: date-time
+                          example: '2022-12-07T16:51:37.571Z'
+                          readOnly: true
+                          nullable: true
+                          description: The date the custom domain was last published to
                       example:
                         id: 589a331aa51e760df7ccb89d
                         url: test-api-domain.com
+                        lastPublished: '2022-12-07T16:51:37.571Z'
                   locales:
                     type: object
                     properties:
@@ -4972,15 +5007,25 @@ paths:
                           type: string
                           example: test-api-domain.com
                           description: The registered Domain name
+                        lastPublished:
+                          type: string
+                          format: date-time
+                          example: '2022-12-07T16:51:37.571Z'
+                          readOnly: true
+                          nullable: true
+                          description: The date the custom domain was last published to
                       example:
                         id: 589a331aa51e760df7ccb89d
                         url: test-api-domain.com
+                        lastPublished: '2022-12-07T16:51:37.571Z'
                 example:
                   customDomains:
                     - id: 589a331aa51e760df7ccb89d
                       url: hitchhikersguide.galaxy
+                      lastPublished: '2022-12-07T16:51:37.571Z'
                     - id: 589a331aa51e760df7ccb89e
                       url: heartofgold.spaceship
+                      lastPublished: '2022-12-07T16:51:37.571Z'
         '401':
           description: Provided access token is invalid or does not have access to requested resource
           x-logErrorCode: 401
@@ -5429,9 +5474,17 @@ paths:
                           type: string
                           example: test-api-domain.com
                           description: The registered Domain name
+                        lastPublished:
+                          type: string
+                          format: date-time
+                          example: '2022-12-07T16:51:37.571Z'
+                          readOnly: true
+                          nullable: true
+                          description: The date the custom domain was last published to
                       example:
                         id: 589a331aa51e760df7ccb89d
                         url: test-api-domain.com
+                        lastPublished: '2022-12-07T16:51:37.571Z'
                   publishToWebflowSubdomain:
                     description: Flag for publishing to webflow.io subdomain
                     type: boolean
