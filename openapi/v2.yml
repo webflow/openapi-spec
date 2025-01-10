@@ -769,7 +769,7 @@ paths:
                   example: a9c420f9347c2139b248e913
                   description: MegaDodo Publications - Potential Book Ideas
       responses:
-        '200':
+        '201':
           description: Request was successful
           content:
             application/json:
