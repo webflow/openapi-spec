@@ -5942,8 +5942,10 @@ paths:
                 details: []
   '/sites/{site_id}/plan':
     get:
-      x-fern-sdk-group-name: site_plan
-      x-fern-sdk-method-name: get
+      x-fern-sdk-group-name:
+        - sites
+        - plans
+      x-fern-sdk-method-name: get-site-plan
       security:
         - OAuth2:
             - 'sites:read'
@@ -6383,8 +6385,10 @@ paths:
                 details: []
   '/sites/{site_id}/redirects':
     get:
-      x-fern-sdk-group-name: redirects
-      x-fern-sdk-method-name: get
+      x-fern-sdk-group-name:
+        - sites
+        - redirects
+      x-fern-sdk-method-name: list
       security:
         - OAuth2:
             - 'sites:read'
@@ -6845,7 +6849,9 @@ paths:
                 externalReference: null
                 details: []
     post:
-      x-fern-sdk-group-name: redirects
+      x-fern-sdk-group-name:
+        - sites
+        - redirects
       x-fern-sdk-method-name: create
       security:
         - OAuth2:
@@ -7296,8 +7302,10 @@ paths:
                 details: []
   '/sites/{site_id}/redirects/{redirect_id}':
     patch:
-      x-fern-sdk-group-name: redirects
-      x-fern-sdk-method-name: patch
+      x-fern-sdk-group-name:
+        - sites
+        - redirects
+      x-fern-sdk-method-name: update
       security:
         - OAuth2:
             - 'sites:write'
@@ -7752,7 +7760,9 @@ paths:
                 externalReference: null
                 details: []
     delete:
-      x-fern-sdk-group-name: redirects
+      x-fern-sdk-group-name:
+        - sites
+        - redirects
       x-fern-sdk-method-name: delete
       security:
         - OAuth2:
