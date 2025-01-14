@@ -12099,10 +12099,96 @@ paths:
                 slug:
                   type: string
                   description: Part of a URL that identifier
+                fields:
+                  type: array
+                  description: An array of custom fields to add to the collection
+                  items:
+                    description: Details about the field of a collection
+                    example:
+                      type: RichText
+                      isRequired: false
+                      displayName: Post Body
+                      helpText: Add the body of your post here
+                    oneOf:
+                      - type: object
+                        x-fern-type-name: Static Field
+                        required:
+                          - type
+                          - displayName
+                        properties:
+                          isRequired:
+                            type: boolean
+                            description: define whether a field is required in a collection
+                          type:
+                            type: string
+                            enum:
+                              - Color
+                              - DateTime
+                              - Email
+                              - File
+                              - Image
+                              - Link
+                              - MultiImage
+                              - Number
+                              - Phone
+                              - PlainText
+                              - RichText
+                              - Switch
+                              - Video
+                            description: Choose these appropriate field type for your collection data
+                          displayName:
+                            type: string
+                            description: The name of a field
+                          helpText:
+                            type: string
+                            description: Additional text to help anyone filling out this field
+                      - type: object
+                        x-fern-type-name: Reference Field
+                        properties:
+                          isRequired:
+                            type: boolean
+                            description: define whether a field is required in a collection
+                          type:
+                            type: string
+                            enum:
+                              - MultiReference
+                              - Reference
+                            description: Choose these appropriate field type for your collection data
+                          displayName:
+                            type: string
+                            description: The name of a field
+                          helpText:
+                            type: string
+                            description: Additional text to help anyone filling out this field
+                          metadata:
+                            type: object
+                            properties:
+                              collectionId:
+                                type: string
+                                description: The unique identifier of the collection
+                            description: The collectionId for the referenced collection. Only applicable for Reference and MultiReference fields.
             example:
               displayName: Blog Posts
               singularName: Blog Post
               slug: posts
+              fields:
+                - type: PlainText
+                  displayName: Title
+                  slug: title
+                  isRequired: true
+                  helpText: The title of the blog post
+                - type: RichText
+                  displayName: Content
+                  slug: content
+                  isRequired: true
+                  helpText: The content of the blog post
+                - type: Reference
+                  displayName: Author
+                  slug: author
+                  isRequired: true
+                  helpText: The author of the blog post
+                  metadata:
+                    collectionId: 23cc2d952d4e4631ffd4345d2743db4e
       responses:
         '200':
           description: Request was successful
@@ -12128,6 +12214,8 @@ paths:
                 type: object
                 required:
                   - id
+                  - displayName
+                  - singularName
                   - fields
                 properties:
                   id:
@@ -12163,7 +12251,6 @@ paths:
                   fields:
                     type: array
                     description: The list of fields in the Collection
-                    readOnly: true
                     items:
                       description: The details of a field in a collection
                       example:
@@ -12219,8 +12306,32 @@ paths:
                         helpText:
                           type: string
                           description: Additional text to help anyone filling out this field
+              example:
+                displayName: Blog Posts
+                singularName: Blog Post
+                slug: posts
+                createdOn: '2016-10-24T19:41:48Z'
+                lastUpdated: '2016-10-24T19:42:38Z'
+                fields:
+                  - type: PlainText
+                    displayName: Title
+                    slug: title
+                    isRequired: true
+                    helpText: The title of the blog post
+                  - type: RichText
+                    displayName: Content
+                    slug: content
+                    isRequired: true
+                    helpText: The content of the blog post
+                  - type: Reference
+                    displayName: Author
+                    slug: author
+                    isRequired: true
+                    helpText: The author of the blog post
+                    metadata:
+                      collectionId: 23cc2d952d4e4631ffd4345d2743db4e
         '400':
-          description: Request body was incorrectly formatted.
+          description: Validation failure
           x-logErrorCode: 400
           content:
             application/json:
@@ -12288,8 +12399,8 @@ paths:
                         description: Error message
                     example: []
               example:
-                code: bad_request
-                message: 'Bad Request: Request is malformed'
+                code: validation_error
+                message: 'Validation Error: Provided ID is invalid'
                 externalReference: null
                 details: []
         '401':
@@ -12436,6 +12547,79 @@ paths:
               example:
                 code: resource_not_found
                 message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '409':
+          description: Collection already exists
+          x-logErrorCode: 409
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: duplicate_collection
+                message: Collection already exists
                 externalReference: null
                 details: []
         '429':
@@ -12643,6 +12827,8 @@ paths:
                 type: object
                 required:
                   - id
+                  - displayName
+                  - singularName
                   - fields
                 properties:
                   id:
@@ -12678,7 +12864,6 @@ paths:
                   fields:
                     type: array
                     description: The list of fields in the Collection
-                    readOnly: true
                     items:
                       description: The details of a field in a collection
                       example:
@@ -13890,6 +14075,79 @@ paths:
               example:
                 code: resource_not_found
                 message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '409':
+          description: Collection already exists
+          x-logErrorCode: 409
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: duplicate_collection
+                message: Collection already exists
                 externalReference: null
                 details: []
         '429':

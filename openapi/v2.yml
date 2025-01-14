@@ -8581,6 +8581,8 @@ paths:
                 type: object
                 required:
                   - id
+                  - displayName
+                  - singularName
                   - fields
                 properties:
                   id:
@@ -8616,7 +8618,6 @@ paths:
                   fields:
                     type: array
                     description: The list of fields in the Collection
-                    readOnly: true
                     items:
                       description: The details of a field in a collection
                       example:
@@ -9096,6 +9097,8 @@ paths:
                 type: object
                 required:
                   - id
+                  - displayName
+                  - singularName
                   - fields
                 properties:
                   id:
@@ -9131,7 +9134,6 @@ paths:
                   fields:
                     type: array
                     description: The list of fields in the Collection
-                    readOnly: true
                     items:
                       description: The details of a field in a collection
                       example:
