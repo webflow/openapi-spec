@@ -43607,7 +43607,7 @@ paths:
       operationId: get-form-submission
       summary: Get Form Submission
       description: |
-        Get information about a given form submission
+        Get information about a given form submissio.
 
         Required scope | `forms:read`
       tags:
