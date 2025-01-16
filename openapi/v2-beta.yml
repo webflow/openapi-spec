@@ -39704,7 +39704,7 @@ paths:
                           type: string
                           example: form_submission
                           description: |
-                            The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
+                            The type of event that triggered the request. See the the documentation for details on [supported events](/data/reference/all-events).
                           enum:
                             - form_submission
                             - site_publish
@@ -40201,7 +40201,7 @@ paths:
                   type: string
                   example: form_submission
                   description: |
-                    The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
+                    The type of event that triggered the request. See the the documentation for details on [supported events](/data/reference/all-events).
                   enum:
                     - form_submission
                     - site_publish
@@ -40280,7 +40280,7 @@ paths:
                     type: string
                     example: form_submission
                     description: |
-                      The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
+                      The type of event that triggered the request. See the the documentation for details on [supported events](/data/reference/all-events).
                     enum:
                       - form_submission
                       - site_publish
@@ -40754,7 +40754,7 @@ paths:
                     type: string
                     example: form_submission
                     description: |
-                      The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
+                      The type of event that triggered the request. See the the documentation for details on [supported events](/data/reference/all-events).
                     enum:
                       - form_submission
                       - site_publish
