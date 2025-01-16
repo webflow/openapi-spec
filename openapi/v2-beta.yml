@@ -1492,7 +1492,9 @@ paths:
       operationId: create-site
       summary: Create Site
       description: |
-        Create a site. This endpoint requires an Enterprise workspace.
+        Create a site. 
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope | `workspace:write`
       tags:
@@ -1533,6 +1535,19 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - id
+                  - workspaceId
+                  - createdOn
+                  - displayName
+                  - shortName
+                  - templateName
+                  - lastPublished
+                  - lastUpdated
+                  - previewUrl
+                  - timeZone
+                  - dataCollectionEnabled
+                  - dataCollectionType
                 example:
                   id: 42e98c9a982ac9b8b742
                   workspaceId: 42e63e98c9a982ac9b8b742
@@ -1577,8 +1592,6 @@ paths:
                           tag: es-MX
                   dataCollectionEnabled: true
                   dataCollectionType: always
-                required:
-                  - id
                 properties:
                   id:
                     type: string
@@ -3633,7 +3646,9 @@ paths:
       operationId: update-site
       summary: Update Site
       description: |
-        Update a site. This endpoint requires an Enterprise workspace.
+        Update a site. 
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope | `sites:write`
       tags:
@@ -4415,7 +4430,9 @@ paths:
       operationId: delete-site
       summary: Delete Site
       description: |
-        Delete a site. This endpoint requires an Enterprise workspace.
+        Delete a site. 
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope | `sites:write`
       tags:
@@ -5954,6 +5971,8 @@ paths:
       description: |
         Get site plan details for the specified Site.
 
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
+
         Required scope | `sites:read`
       tags:
         - Sites
@@ -6399,6 +6418,7 @@ paths:
 
         Use this endpoint to review, audit, or manage the redirection rules that control how traffic is rerouted on your site.
 
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope: `sites:read`
       tags:
@@ -6449,6 +6469,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -6862,6 +6886,8 @@ paths:
         Add a new URL redirection rule to a site.
 
         This endpoint allows you to define a source path (`fromUrl`) and its corresponding destination path (`toUrl`), which will dictate how traffic is rerouted on your site. This is useful for managing site changes, restructuring URLs, or handling outdated links.
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope: `sites:write`
       tags:
@@ -7313,6 +7339,9 @@ paths:
       summary: Update URL redirect
       description: |
         Update a URL redirection rule from a site.
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
+
         Required scope: `sites:write`
       tags:
         - Sites
@@ -7771,7 +7800,11 @@ paths:
       summary: Delete URL redirects
       description: |
         Remove a URL redirection rule from a site.
+
         This is useful for cleaning up outdated or unnecessary redirects, ensuring that your site's routing behavior remains efficient and up-to-date.
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
+
         Required scope: `sites:write`
       tags:
         - Sites
@@ -7830,6 +7863,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -11025,7 +11062,12 @@ paths:
       x-fern-sdk-method-name: list
       summary: Get Site Activity Logs
       operationId: get-site-activity-logs
-      description: 'Retrieve Activity Logs for a specific Site. Requires Site to be on an Enterprise plan. </br></br>  Required scope | `site_activity:read`'
+      description: |
+        Retrieve Activity Logs for a specific Site. 
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
+
+        Required scope: `site_activity:read`
       tags:
         - Site Activity
         - Sites
@@ -11162,6 +11204,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -15259,19 +15305,19 @@ paths:
         - name: name
           in: query
           allowEmptyValue: true
-          description: The name of the item(s)
+          description: Filter by the exact name of the item(s)
           schema:
             type: string
         - name: slug
           in: query
           allowEmptyValue: true
-          description: The slug of the item
+          description: Filter by the exact slug of the item
           schema:
             type: string
         - name: lastPublished
           in: query
           allowEmptyValue: true
-          description: The last published date of the item(s)
+          description: Filter by the last published date of the item(s)
           schema:
             type: object
             properties:
@@ -15360,6 +15406,9 @@ paths:
                       required:
                         - id
                         - fieldData
+                        - lastPublished
+                        - lastUpdated
+                        - createdOn
                       properties:
                         id:
                           type: string
@@ -16728,6 +16777,9 @@ paths:
                 required:
                   - id
                   - fieldData
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
                 properties:
                   id:
                     type: string
@@ -17689,7 +17741,7 @@ paths:
       operationId: list-collection-items-live
       summary: List Live Collection Items
       description: |
-        List of all live Items within a Collection.
+        List all published items in a collection.
 
         Required scope | `CMS:read`
       tags:
@@ -17730,19 +17782,19 @@ paths:
         - name: name
           in: query
           allowEmptyValue: true
-          description: The name of the item(s)
+          description: Filter by the exact name of the item(s)
           schema:
             type: string
         - name: slug
           in: query
           allowEmptyValue: true
-          description: The slug of the item
+          description: Filter by the exact slug of the item
           schema:
             type: string
         - name: lastPublished
           in: query
           allowEmptyValue: true
-          description: The last published date of the item(s)
+          description: Filter by the last published date of the item(s)
           schema:
             type: object
             properties:
@@ -17831,6 +17883,9 @@ paths:
                       required:
                         - id
                         - fieldData
+                        - lastPublished
+                        - lastUpdated
+                        - createdOn
                       properties:
                         id:
                           type: string
@@ -17914,6 +17969,9 @@ paths:
                       total:
                         type: number
                         description: Total number of items in the collection
+                required:
+                  - items
+                  - pagination
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -18299,7 +18357,7 @@ paths:
       operationId: create-item-live
       summary: Create Live Collection Item(s)
       description: |
-        Create live Item(s) in a Collection. The Item(s) will be published to the live site.
+        Create item(s) in a collection that will be immediately published to the live site.
 
 
         To create items across multiple locales, [please use this endpoint.](/v2.0.0/data/reference/cms/collection-items/staged-items/create-items)
@@ -18334,6 +18392,9 @@ paths:
                   required:
                     - id
                     - fieldData
+                    - lastPublished
+                    - lastUpdated
+                    - createdOn
                   properties:
                     id:
                       type: string
@@ -18420,6 +18481,9 @@ paths:
                         required:
                           - id
                           - fieldData
+                          - lastPublished
+                          - lastUpdated
+                          - createdOn
                         properties:
                           id:
                             type: string
@@ -18532,6 +18596,9 @@ paths:
                 required:
                   - id
                   - fieldData
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
                 properties:
                   id:
                     type: string
@@ -18986,9 +19053,9 @@ paths:
       operationId: update-items-live
       summary: Update Live Collection Items
       description: |
-        Update a single live item or multiple live items (up to 100) in a Collection
+        Update a single published item or multiple published items (up to 100) in a Collection
 
-        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be updated only in the primary locale. 
+        <Tip title="Localization Tip">Items will only be updated in the primary locale, unless a `cmsLocaleId` is included in the request.</Tip>
 
         Required scope | `CMS:write`
       tags:
@@ -19131,6 +19198,14 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - id
+                  - fieldData
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
+                  - isArchived
+                  - isDraft
                 description: Results from collection items list
                 example:
                   items:
@@ -19176,6 +19251,9 @@ paths:
                       required:
                         - id
                         - fieldData
+                        - lastPublished
+                        - lastUpdated
+                        - createdOn
                       properties:
                         id:
                           type: string
@@ -19537,6 +19615,88 @@ paths:
                 message: 'Requested resource not found: The site cannot be found'
                 externalReference: null
                 details: []
+        '409':
+          description: Conflict with server data. Item not published
+          content:
+            application/json:
+              schema:
+                description: Resource conflict
+                x-logErrorCode: 409
+                content:
+                  application/json:
+                    schema:
+                      type: object
+                      example:
+                        code: not_authorized
+                        message: Request not authorized
+                        externalReference: null
+                        details: []
+                      properties:
+                        code:
+                          type: string
+                          description: Error code
+                          example: not_authorized
+                          enum:
+                            - bad_request
+                            - collection_not_found
+                            - conflict
+                            - duplicate_collection
+                            - duplicate_user_email
+                            - ecommerce_not_enabled
+                            - forbidden
+                            - forms_require_republish
+                            - incompatible_webhook_filter
+                            - internal_error
+                            - invalid_auth_version
+                            - invalid_credentials
+                            - invalid_domain
+                            - invalid_user_email
+                            - item_not_found
+                            - missing_scopes
+                            - no_domains
+                            - not_authorized
+                            - not_enterprise_plan_site
+                            - not_enterprise_plan_workspace
+                            - order_not_found
+                            - resource_not_found
+                            - too_many_requests
+                            - unsupported_version
+                            - unsupported_webhook_trigger_type
+                            - user_limit_reached
+                            - user_not_found
+                            - users_not_enabled
+                            - validation_error
+                        message:
+                          type: string
+                          description: Error message
+                          example: Request not authorized
+                        externalReference:
+                          type: string
+                          description: Link to more information
+                          example: ''
+                        details:
+                          type: array
+                          description: Array of errors
+                          items:
+                            - type: string
+                              example: Invalid email address
+                              description: Error message
+                            - type: object
+                              example:
+                                field: email
+                                message: Invalid email address
+                              description: Error message
+                          example: []
+                    example:
+                      code: conflict
+                      message: 'Conflict: Resource already exists'
+                      externalReference: null
+                      details: []
+              example:
+                code: conflict
+                message: 'Conflict: Conflict with server data: Live PATCH updates can''t be applied to items that have never been published'
+                externalReference: null
+                details: []
         '429':
           description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
           x-logErrorCode: 429
@@ -19703,9 +19863,11 @@ paths:
       operationId: delete-items-live
       summary: Delete Live Collection Items
       description: |
-        Remove an item or multiple items (up to 100 items) from the live site. Deleting published items will unpublish the items from the live site and set them to draft. 
+        Remove an item or multiple items (up to 100 items) from the live site.
 
-        **Note:** If the `cmsLocaleId` parameter is undefined or empty and the items are localized, items will be unpublished only in the primary locale.
+        Using this endpoint to delete published item(s) will unpublish the item(s) from the live site and set the item(s) `isDraft` property to `true`. 
+
+        <Tip title="Localization Tip">Items will only be unpublished in the primary locale unless a `cmsLocaleId` is included in the request.</Tip>
 
         Required scope | `CMS:write`
       tags:
@@ -20941,6 +21103,9 @@ paths:
                 required:
                   - id
                   - fieldData
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
                 properties:
                   id:
                     type: string
@@ -21500,6 +21665,9 @@ paths:
                 required:
                   - id
                   - fieldData
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
                 properties:
                   id:
                     type: string
@@ -21954,7 +22122,7 @@ paths:
       operationId: delete-item
       summary: Delete Collection Item
       description: |
-        Delete an Item from a Collection. This endpoint does not currently support bulk deletion.
+        Delete an item from a collection. 
 
         Required scope | `CMS:write`
       tags:
@@ -22418,6 +22586,9 @@ paths:
                 required:
                   - id
                   - fieldData
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
                 properties:
                   id:
                     type: string
@@ -22977,6 +23148,9 @@ paths:
                 required:
                   - id
                   - fieldData
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
                 properties:
                   id:
                     type: string
@@ -23263,6 +23437,88 @@ paths:
               example:
                 code: resource_not_found
                 message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '409':
+          description: Conflict with server data. Item not published
+          content:
+            application/json:
+              schema:
+                description: Resource conflict
+                x-logErrorCode: 409
+                content:
+                  application/json:
+                    schema:
+                      type: object
+                      example:
+                        code: not_authorized
+                        message: Request not authorized
+                        externalReference: null
+                        details: []
+                      properties:
+                        code:
+                          type: string
+                          description: Error code
+                          example: not_authorized
+                          enum:
+                            - bad_request
+                            - collection_not_found
+                            - conflict
+                            - duplicate_collection
+                            - duplicate_user_email
+                            - ecommerce_not_enabled
+                            - forbidden
+                            - forms_require_republish
+                            - incompatible_webhook_filter
+                            - internal_error
+                            - invalid_auth_version
+                            - invalid_credentials
+                            - invalid_domain
+                            - invalid_user_email
+                            - item_not_found
+                            - missing_scopes
+                            - no_domains
+                            - not_authorized
+                            - not_enterprise_plan_site
+                            - not_enterprise_plan_workspace
+                            - order_not_found
+                            - resource_not_found
+                            - too_many_requests
+                            - unsupported_version
+                            - unsupported_webhook_trigger_type
+                            - user_limit_reached
+                            - user_not_found
+                            - users_not_enabled
+                            - validation_error
+                        message:
+                          type: string
+                          description: Error message
+                          example: Request not authorized
+                        externalReference:
+                          type: string
+                          description: Link to more information
+                          example: ''
+                        details:
+                          type: array
+                          description: Array of errors
+                          items:
+                            - type: string
+                              example: Invalid email address
+                              description: Error message
+                            - type: object
+                              example:
+                                field: email
+                                message: Invalid email address
+                              description: Error message
+                          example: []
+                    example:
+                      code: conflict
+                      message: 'Conflict: Resource already exists'
+                      externalReference: null
+                      details: []
+              example:
+                code: conflict
+                message: 'Conflict: Conflict with server data: Live PATCH updates can''t be applied to items that have never been published'
                 externalReference: null
                 details: []
         '429':
@@ -24543,6 +24799,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -26209,10 +26469,11 @@ paths:
       operationId: get-static-content
       summary: Get Page Content
       description: |
-        Get static content from a static page. This includes text nodes, image nodes and component instances.
-        To retrieve the contents of components in the page use the [get component content](/data/reference/pages-and-components/components/get-content) endpoint.
+        Get content from a static page. This includes text nodes, image nodes, and component instances with [property overrides](https://help.webflow.com/hc/en-us/articles/33961219350547-Component-properties#how-to-modify-property-values-on-component-instances).
 
-        <Note>If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.</Note>
+        To retrieve the static content of a component instance, use the [Get Component Content](/data/reference/pages-and-components/components/get-content) endpoint.
+
+        <Note>If you do not include a `localeId` in your request, the response will return any content that can be localized from the Primary locale.</Note>
 
         Required scope | `pages:read`
       tags:
@@ -26256,6 +26517,10 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - pageId
+                  - nodes
+                  - pagination
                 description: |
                   The DOM (Document Object Model) schema represents the content structure of a web page or component. It captures various content nodes along with their associated attributes. Each node has a unique identifier and can be of different types like text, image or component-instance. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
                 type: object
@@ -26316,17 +26581,23 @@ paths:
                         - description: |
                             Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
+                          required:
+                            - id
+                            - type
+                            - text
                           properties:
                             id:
                               type: string
                               description: Node UUID
                               readOnly: true
                             type:
+                              description: The type of the node
                               type: string
                               enum:
                                 - text
                               default: text
                             text:
+                              description: The text content of the node
                               properties:
                                 html:
                                   description: The HTML content of the text node.
@@ -26344,6 +26615,10 @@ paths:
                         - description: |
                             Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
                           type: object
+                          required:
+                            - id
+                            - type
+                            - image
                           properties:
                             id:
                               type: string
@@ -26351,10 +26626,12 @@ paths:
                               readOnly: true
                             type:
                               type: string
+                              description: The type of the node
                               enum:
                                 - image
                               default: image
                             image:
+                              description: The image details of the node
                               properties:
                                 alt:
                                   type: string
@@ -26369,19 +26646,25 @@ paths:
                         - description: |
                             Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
                           type: object
+                          required:
+                            - id
+                            - type
+                            - componentId
+                            - propertyOverrides
                           properties:
                             id:
                               type: string
-                              description: Node UUID
+                              description: The unique identifier of the component instance node
                               readOnly: true
                             type:
+                              description: The type of the node
                               type: string
                               enum:
                                 - component-instance
                               default: component-instance
                             componentId:
                               type: string
-                              description: Component ID
+                              description: The unique identifier of the component
                             propertyOverrides:
                               description: List of component properties with overrides for a component instance.
                               type: array
@@ -26460,6 +26743,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -27669,6 +27956,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -28179,17 +28470,23 @@ paths:
                         - description: |
                             Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
+                          required:
+                            - id
+                            - type
+                            - text
                           properties:
                             id:
                               type: string
                               description: Node UUID
                               readOnly: true
                             type:
+                              description: The type of the node
                               type: string
                               enum:
                                 - text
                               default: text
                             text:
+                              description: The text content of the node
                               properties:
                                 html:
                                   description: The HTML content of the text node.
@@ -28207,6 +28504,10 @@ paths:
                         - description: |
                             Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
                           type: object
+                          required:
+                            - id
+                            - type
+                            - image
                           properties:
                             id:
                               type: string
@@ -28214,10 +28515,12 @@ paths:
                               readOnly: true
                             type:
                               type: string
+                              description: The type of the node
                               enum:
                                 - image
                               default: image
                             image:
+                              description: The image details of the node
                               properties:
                                 alt:
                                   type: string
@@ -28232,19 +28535,25 @@ paths:
                         - description: |
                             Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
                           type: object
+                          required:
+                            - id
+                            - type
+                            - componentId
+                            - propertyOverrides
                           properties:
                             id:
                               type: string
-                              description: Node UUID
+                              description: The unique identifier of the component instance node
                               readOnly: true
                             type:
+                              description: The type of the node
                               type: string
                               enum:
                                 - component-instance
                               default: component-instance
                             componentId:
                               type: string
-                              description: Component ID
+                              description: The unique identifier of the component
                             propertyOverrides:
                               description: List of component properties with overrides for a component instance.
                               type: array
@@ -28323,6 +28632,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -29390,9 +29703,9 @@ paths:
       operationId: get-component-properties
       summary: Get Component Properties
       description: |
-        Get the property default values of a component definition.
+        Get the default property values of a component definition.
 
-        <Note>If you do not provide a Locale ID in your request, the response will return any properties that can be localized from the Primary locale.</Note>
+        <Note>If you do not include a `localeId` in your request, the response will return any properties that can be localized from the Primary locale.</Note>
 
         Required scope | `components:read`
       tags:
@@ -29506,6 +29819,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -29902,12 +30219,11 @@ paths:
       operationId: update-component-properties
       summary: Update Component Properties
       description: |
-        Update the property default values of a component definition in a specificed locale.
+        Update the default property values of a component definition in a specificed locale.
 
-        Before making updates:
-        1. Use the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint to identify available properties
+        Before making updates, use the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint to identify properties that can be updated in a secondary locale.
 
-        <Note>The request requires a secondary locale ID. If a locale is missing, the request will not be processed and will result in an error.</Note>
+        <Note>The request requires a secondary locale ID. If a `localeId` is missing, the request will not be processed and will result in an error.</Note>
 
         Required scope | `components:write`
       tags:
@@ -30377,13 +30693,7 @@ paths:
       operationId: get-page-custom-code
       summary: Get Custom Code
       description: |
-        Get all registered scripts that have been applied to a specific Page. 
-
-        In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered 
-        to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate
-        `custom_code` endpoints. 
-
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        Get all scripts applied to a page. 
 
         Required scope | `custom_code:read`
       tags:
@@ -30858,11 +31168,7 @@ paths:
       operationId: delete-page-custom-code
       summary: Delete Custom Code
       description: |
-        Delete the custom code block that an app has created for a page
-
-        In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered 
-        to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate
-        `custom_code` endpoints. 
+        Delete a custom code block that the App created on a page.
 
         <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
 
@@ -31269,15 +31575,11 @@ paths:
       operationId: add-custom-code-to-page
       summary: Add/Update Custom Code
       description: |
-        Add a registered script to a Page. 
+        Apply scripts to a page.
 
-        In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered 
-        to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate
-        `custom_code` endpoints.
-
-        A site can have a maximum of 800 registered scripts.
-
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        <Note title="Script Registration">
+          To apply a script to a page, the script must first be registered to a Site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
+        </Note>
 
         Required scope | `custom_code:write`
       tags:
@@ -31882,9 +32184,11 @@ paths:
       operationId: get-site-custom-code
       summary: Get Custom Code
       description: |
-        Get all registered scripts that have been applied to a specific Site. 
+        Get all scripts applied to a site by the App. 
 
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>    
+        <Note title="Script Registration">
+          To apply a script to a site or page, the script must first be registered to a site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
+        </Note> 
 
         Required scope | `custom_code:read`
       tags:
@@ -32358,9 +32662,7 @@ paths:
       operationId: delete-site-custom-code
       summary: Delete Custom Code
       description: |
-        Delete the custom code block that an app created for a Site
-
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>    
+        Remove scripts from a site applied by the App. This endpoint will not remove scripts from the site's registered scripts.
 
         Required scope | `custom_code:write`
       tags:
@@ -32765,13 +33067,11 @@ paths:
       operationId: add-custom-code-tosite
       summary: Add/Update Custom Code
       description: |
-        Add a registered script to a Site. 
+        Apply registered scripts to a site.
 
-        In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered 
-        to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate
-        `custom_code` endpoints. 
-
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>    
+        <Note title="Script Registration">
+          To apply a script to a site or page, the script must first be registered to a site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
+        </Note>
 
         Required scope | `custom_code:write`
       tags:
@@ -33298,14 +33598,11 @@ paths:
       operationId: get-scripts
       summary: Get Registered Scripts
       description: |
-        List of scripts registered to a Site. 
+        Get a list of scripts that have been registered to a site. A site can have a maximum of 800 registered scripts.
 
-        In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered 
-        to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate
-        `custom_code` endpoints. 
-        Additionally, Scripts can be remotely hosted, or registered as inline snippets.
-
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>    
+        <Note title="Script Registration">
+          To apply a script to a site or page, the script must first be registered to a site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
+        </Note>
 
         Required scope | `custom_code:read`
       tags:
@@ -33781,14 +34078,11 @@ paths:
       operationId: post-hosted-script
       summary: Register Script - Hosted
       description: |
-        Add a script to a Site's Custom Code registry.
+        Register a hosted script to a site.
 
-        In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered 
-        to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate
-        `custom_code` endpoints. 
-        Additionally, Scripts can be remotely hosted, or registered as inline snippets.  
-
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>    
+        <Note title="Script Registration">
+          To apply a script to a site or page, the script must first be registered to a site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
+        </Note>
 
         Required scope | `custom_code:write`
       tags:
@@ -34269,13 +34563,11 @@ paths:
       operationId: post-inline-scripts
       summary: Register Script - Inline
       description: |
-        Add a script to a Site's Custom Code registry. Inline scripts can be between 1 and 2000 characters.
+        Register an inline script to a site. Inline scripts are limited to 2000 characters.
 
-        In order to use the Custom Code APIs for Sites and Pages, Custom Code Scripts must first be registered 
-        to a Site via the `registered_scripts` endpoints, and then applied to a Site or Page using the appropriate
-        `custom_code` endpoints. 
-
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>    
+        <Note title="Script Registration">
+          To apply a script to a site or page, the script must first be registered to a site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
+        </Note>
 
         Required scope | `custom_code:write`
       tags:
@@ -34757,9 +35049,13 @@ paths:
       operationId: get-site-custom-code-blocks
       summary: List Custom Code Blocks
       description: |
-        Get all instances of Custom Code applied to a Site or Pages. 
+        Get a list of scripts that have been applied to a site and/or individual pages. 
 
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>    
+        <Note title="Script Registration">
+          To apply a script to a site or page, the script must first be registered to a site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. 
+          
+          See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
+        </Note>
 
         Required scope | `custom_code:read`
       tags:
@@ -34863,6 +35159,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -35342,36 +35642,99 @@ paths:
                           height: null
                           quality: 100
                           error: null
+                      altText: A single candy wrapper
+                    - id: 63e5889e7fe4eafa7384cea5
+                      originalFileName: Gum-Wrapper.svg
+                      displayName: 63e5889e7fe4eafa7384cea5_Gum-Wrapper.png
+                      contentType: image/png
+                      size: 2212772
+                      siteId: 63938b302ea6b0aa6f3d8745
+                      createdOn: '2023-02-09T23:58:22.294Z'
+                      lastUpdated: '2023-03-01T23:42:57.862Z'
+                      hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/63938b302ea6b0aa6f3d8745/63e5889e7fe4eafa7384cea4_Vectors-Wrapper.svg'
+                      variants:
+                        - hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/6258612d1ee792848f805dcf/660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png'
+                          originalFileName: Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                          displayName: 660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                          format: png
+                          width: 500
+                          height: null
+                          quality: 100
+                          error: null
+                      altText: A single gum wrapper
+                  pagination:
+                    total: 2
+                    offset: 0
+                    limit: 2
                 items:
+                  description: Asset details
+                  example:
+                    id: 63e5889e7fe4eafa7384cea4
+                    originalFileName: Candy-Wrapper.svg
+                    displayName: 63e5889e7fe4eafa7384cea4_Candy-Wrapper.png
+                    contentType: image/png
+                    size: 2212772
+                    siteId: 63938b302ea6b0aa6f3d8745
+                    createdOn: '2023-02-09T23:58:22.294Z'
+                    lastUpdated: '2023-03-01T23:42:57.862Z'
+                    hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/63938b302ea6b0aa6f3d8745/63e5889e7fe4eafa7384cea4_Vectors-Wrapper.svg'
+                    variants:
+                      - hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/6258612d1ee792848f805dcf/660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png'
+                        originalFileName: Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                        displayName: 660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                        format: png
+                        width: 500
+                        height: null
+                        quality: 100
+                        error: null
+                    altText: A single candy wrapper
+                  required:
+                    - id
+                    - contentType
+                    - size
+                    - siteId
+                    - hostedUrl
+                    - originalFileName
+                    - displayName
+                    - lastUpdated
+                    - createdOn
+                    - variants
+                    - altText
                   properties:
                     id:
                       type: string
                       format: objectid
                       example: 55131cd036c09f7d07883dfc
                       description: Unique identifier for this asset
+                      readOnly: true
                     contentType:
                       type: string
                       example: image/png
                       format: mime-type
                       description: File format type
+                      readOnly: true
                     size:
                       type: integer
                       description: size in bytes
                       example: 1500
+                      readOnly: true
                     siteId:
                       type: string
                       format: objectid
                       example: 62749158efef318abc8d5a0f
                       description: Unique identifier for the site that hosts this asset
+                      readOnly: true
                     hostedUrl:
                       type: string
                       format: uri
                       example: example.com/hostedimage.png
                       description: Link to the asset
+                      readOnly: true
                     originalFileName:
                       type: string
                       example: image.png
                       description: Original file name at the time of upload
+                      readOnly: true
                     displayName:
                       type: string
                       example: example-image-123.png
@@ -35381,14 +35744,26 @@ paths:
                       format: date-time
                       example: '2016-09-06T21:12:22.148Z'
                       description: Date the asset metadata was last updated
+                      readOnly: true
                     createdOn:
                       type: string
                       format: date-time
                       example: '2016-09-02T23:26:22.241Z'
                       description: Date the asset metadata was created
+                      readOnly: true
                     variants:
+                      description: 'A list of [asset variants](https://help.webflow.com/hc/en-us/articles/33961378697107-Responsive-images) created by Webflow to serve your site responsively.'
                       type: array
                       items:
+                        description: Asset variant details
+                        required:
+                          - hostedUrl
+                          - originalFileName
+                          - displayName
+                          - format
+                          - width
+                          - height
+                          - quality
                         properties:
                           hostedUrl:
                             type: string
@@ -35423,6 +35798,7 @@ paths:
                     altText:
                       type: string
                       example: A red chair
+                      nullable: true
                       description: The visual description of the asset
         '400':
           description: Request body was incorrectly formatted.
@@ -36368,35 +36744,74 @@ paths:
           content:
             application/json:
               schema:
+                description: Asset details
+                example:
+                  id: 63e5889e7fe4eafa7384cea4
+                  originalFileName: Candy-Wrapper.svg
+                  displayName: 63e5889e7fe4eafa7384cea4_Candy-Wrapper.png
+                  contentType: image/png
+                  size: 2212772
+                  siteId: 63938b302ea6b0aa6f3d8745
+                  createdOn: '2023-02-09T23:58:22.294Z'
+                  lastUpdated: '2023-03-01T23:42:57.862Z'
+                  hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/63938b302ea6b0aa6f3d8745/63e5889e7fe4eafa7384cea4_Vectors-Wrapper.svg'
+                  variants:
+                    - hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/6258612d1ee792848f805dcf/660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png'
+                      originalFileName: Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                      displayName: 660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                      format: png
+                      width: 500
+                      height: null
+                      quality: 100
+                      error: null
+                  altText: A single candy wrapper
+                required:
+                  - id
+                  - contentType
+                  - size
+                  - siteId
+                  - hostedUrl
+                  - originalFileName
+                  - displayName
+                  - lastUpdated
+                  - createdOn
+                  - variants
+                  - altText
                 properties:
                   id:
                     type: string
                     format: objectid
                     example: 55131cd036c09f7d07883dfc
                     description: Unique identifier for this asset
+                    readOnly: true
                   contentType:
                     type: string
                     example: image/png
                     format: mime-type
                     description: File format type
+                    readOnly: true
                   size:
                     type: integer
                     description: size in bytes
                     example: 1500
+                    readOnly: true
                   siteId:
                     type: string
                     format: objectid
                     example: 62749158efef318abc8d5a0f
                     description: Unique identifier for the site that hosts this asset
+                    readOnly: true
                   hostedUrl:
                     type: string
                     format: uri
                     example: example.com/hostedimage.png
                     description: Link to the asset
+                    readOnly: true
                   originalFileName:
                     type: string
                     example: image.png
                     description: Original file name at the time of upload
+                    readOnly: true
                   displayName:
                     type: string
                     example: example-image-123.png
@@ -36406,14 +36821,26 @@ paths:
                     format: date-time
                     example: '2016-09-06T21:12:22.148Z'
                     description: Date the asset metadata was last updated
+                    readOnly: true
                   createdOn:
                     type: string
                     format: date-time
                     example: '2016-09-02T23:26:22.241Z'
                     description: Date the asset metadata was created
+                    readOnly: true
                   variants:
+                    description: 'A list of [asset variants](https://help.webflow.com/hc/en-us/articles/33961378697107-Responsive-images) created by Webflow to serve your site responsively.'
                     type: array
                     items:
+                      description: Asset variant details
+                      required:
+                        - hostedUrl
+                        - originalFileName
+                        - displayName
+                        - format
+                        - width
+                        - height
+                        - quality
                       properties:
                         hostedUrl:
                           type: string
@@ -36448,6 +36875,7 @@ paths:
                   altText:
                     type: string
                     example: A red chair
+                    nullable: true
                     description: The visual description of the asset
         '400':
           description: Request body was incorrectly formatted.
@@ -36872,35 +37300,74 @@ paths:
           content:
             application/json:
               schema:
+                description: Asset details
+                example:
+                  id: 63e5889e7fe4eafa7384cea4
+                  originalFileName: Candy-Wrapper.svg
+                  displayName: 63e5889e7fe4eafa7384cea4_Candy-Wrapper.png
+                  contentType: image/png
+                  size: 2212772
+                  siteId: 63938b302ea6b0aa6f3d8745
+                  createdOn: '2023-02-09T23:58:22.294Z'
+                  lastUpdated: '2023-03-01T23:42:57.862Z'
+                  hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/63938b302ea6b0aa6f3d8745/63e5889e7fe4eafa7384cea4_Vectors-Wrapper.svg'
+                  variants:
+                    - hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/6258612d1ee792848f805dcf/660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png'
+                      originalFileName: Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                      displayName: 660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                      format: png
+                      width: 500
+                      height: null
+                      quality: 100
+                      error: null
+                  altText: A single candy wrapper
+                required:
+                  - id
+                  - contentType
+                  - size
+                  - siteId
+                  - hostedUrl
+                  - originalFileName
+                  - displayName
+                  - lastUpdated
+                  - createdOn
+                  - variants
+                  - altText
                 properties:
                   id:
                     type: string
                     format: objectid
                     example: 55131cd036c09f7d07883dfc
                     description: Unique identifier for this asset
+                    readOnly: true
                   contentType:
                     type: string
                     example: image/png
                     format: mime-type
                     description: File format type
+                    readOnly: true
                   size:
                     type: integer
                     description: size in bytes
                     example: 1500
+                    readOnly: true
                   siteId:
                     type: string
                     format: objectid
                     example: 62749158efef318abc8d5a0f
                     description: Unique identifier for the site that hosts this asset
+                    readOnly: true
                   hostedUrl:
                     type: string
                     format: uri
                     example: example.com/hostedimage.png
                     description: Link to the asset
+                    readOnly: true
                   originalFileName:
                     type: string
                     example: image.png
                     description: Original file name at the time of upload
+                    readOnly: true
                   displayName:
                     type: string
                     example: example-image-123.png
@@ -36910,14 +37377,26 @@ paths:
                     format: date-time
                     example: '2016-09-06T21:12:22.148Z'
                     description: Date the asset metadata was last updated
+                    readOnly: true
                   createdOn:
                     type: string
                     format: date-time
                     example: '2016-09-02T23:26:22.241Z'
                     description: Date the asset metadata was created
+                    readOnly: true
                   variants:
+                    description: 'A list of [asset variants](https://help.webflow.com/hc/en-us/articles/33961378697107-Responsive-images) created by Webflow to serve your site responsively.'
                     type: array
                     items:
+                      description: Asset variant details
+                      required:
+                        - hostedUrl
+                        - originalFileName
+                        - displayName
+                        - format
+                        - width
+                        - height
+                        - quality
                       properties:
                         hostedUrl:
                           type: string
@@ -36952,6 +37431,7 @@ paths:
                   altText:
                     type: string
                     example: A red chair
+                    nullable: true
                     description: The visual description of the asset
         '400':
           description: Request body was incorrectly formatted.
@@ -37831,6 +38311,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -39197,22 +39681,6 @@ paths:
                       lastTriggered: '2023-02-08T23:59:28.572Z'
                       url: 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f'
                 properties:
-                  pagination:
-                    description: Pagination object
-                    type: object
-                    properties:
-                      limit:
-                        type: number
-                        description: The limit used for pagination
-                        example: 100
-                      offset:
-                        type: number
-                        description: The offset used for pagination
-                        example: 0
-                      total:
-                        type: number
-                        description: The total number of records
-                        example: 100
                   webhooks:
                     type: array
                     items:
@@ -39236,21 +39704,7 @@ paths:
                           type: string
                           example: form_submission
                           description: |
-                            * `form_submission` - Sends the [form_submission](#form_submission) event
-                            * `site_publish` - Sends a [site_publish](#site_publish) event
-                            * `page_created` - Send the [page_created](#page_created) event
-                            * `page_metadata_updated` - Sends the [page_metadata_updated](#page_metadata_updated) event
-                            * `page_deleted` - Sends the [page_deleted](#page_deleted) event
-                            * `ecomm_new_order` - Sends the new [ecomm_new_order](#ecomm_new_order) event
-                            * `ecomm_order_changed` - Sends the [ecomm_order_changed](#ecomm_order_changed) event
-                            * `ecomm_inventory_changed` - Sends the [ecomm_inventory_changed](#ecomm_inventory_changed) event
-                            * `user_account_added` - Sends the [user_account_added](#user_account_added) event
-                            * `user_account_updated` - Sends the [user_account_updated](#user_account_updated) event
-                            * `user_account_deleted` - Sends the [user_account_deleted](#user_account_deleted) event
-                            * `collection_item_created` - Sends the [collection_item_created](#collection_item_created) event
-                            * `collection_item_changed` - Sends the [collection_item_changed](#collection_item_changed) event
-                            * `collection_item_deleted` - Sends the [collection_item_deleted](#collection_item_deleted) event
-                            * `collection_item_unpublished` - Sends the [collection_item_unpublished](#collection_item_unpublished) event
+                            The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
                           enum:
                             - form_submission
                             - site_publish
@@ -39303,6 +39757,26 @@ paths:
                           format: date-time
                           example: '2016-09-02T23:26:22.241Z'
                           description: Date the Webhook registration was created
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -39727,21 +40201,7 @@ paths:
                   type: string
                   example: form_submission
                   description: |
-                    * `form_submission` - Sends the [form_submission](#form_submission) event
-                    * `site_publish` - Sends a [site_publish](#site_publish) event
-                    * `page_created` - Send the [page_created](#page_created) event
-                    * `page_metadata_updated` - Sends the [page_metadata_updated](#page_metadata_updated) event
-                    * `page_deleted` - Sends the [page_deleted](#page_deleted) event
-                    * `ecomm_new_order` - Sends the new [ecomm_new_order](#ecomm_new_order) event
-                    * `ecomm_order_changed` - Sends the [ecomm_order_changed](#ecomm_order_changed) event
-                    * `ecomm_inventory_changed` - Sends the [ecomm_inventory_changed](#ecomm_inventory_changed) event
-                    * `user_account_added` - Sends the [user_account_added](#user_account_added) event
-                    * `user_account_updated` - Sends the [user_account_updated](#user_account_updated) event
-                    * `user_account_deleted` - Sends the [user_account_deleted](#user_account_deleted) event
-                    * `collection_item_created` - Sends the [collection_item_created](#collection_item_created) event
-                    * `collection_item_changed` - Sends the [collection_item_changed](#collection_item_changed) event
-                    * `collection_item_deleted` - Sends the [collection_item_deleted](#collection_item_deleted) event
-                    * `collection_item_unpublished` - Sends the [collection_item_unpublished](#collection_item_unpublished) event
+                    The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
                   enum:
                     - form_submission
                     - site_publish
@@ -39820,21 +40280,7 @@ paths:
                     type: string
                     example: form_submission
                     description: |
-                      * `form_submission` - Sends the [form_submission](#form_submission) event
-                      * `site_publish` - Sends a [site_publish](#site_publish) event
-                      * `page_created` - Send the [page_created](#page_created) event
-                      * `page_metadata_updated` - Sends the [page_metadata_updated](#page_metadata_updated) event
-                      * `page_deleted` - Sends the [page_deleted](#page_deleted) event
-                      * `ecomm_new_order` - Sends the new [ecomm_new_order](#ecomm_new_order) event
-                      * `ecomm_order_changed` - Sends the [ecomm_order_changed](#ecomm_order_changed) event
-                      * `ecomm_inventory_changed` - Sends the [ecomm_inventory_changed](#ecomm_inventory_changed) event
-                      * `user_account_added` - Sends the [user_account_added](#user_account_added) event
-                      * `user_account_updated` - Sends the [user_account_updated](#user_account_updated) event
-                      * `user_account_deleted` - Sends the [user_account_deleted](#user_account_deleted) event
-                      * `collection_item_created` - Sends the [collection_item_created](#collection_item_created) event
-                      * `collection_item_changed` - Sends the [collection_item_changed](#collection_item_changed) event
-                      * `collection_item_deleted` - Sends the [collection_item_deleted](#collection_item_deleted) event
-                      * `collection_item_unpublished` - Sends the [collection_item_unpublished](#collection_item_unpublished) event
+                      The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
                     enum:
                       - form_submission
                       - site_publish
@@ -40308,21 +40754,7 @@ paths:
                     type: string
                     example: form_submission
                     description: |
-                      * `form_submission` - Sends the [form_submission](#form_submission) event
-                      * `site_publish` - Sends a [site_publish](#site_publish) event
-                      * `page_created` - Send the [page_created](#page_created) event
-                      * `page_metadata_updated` - Sends the [page_metadata_updated](#page_metadata_updated) event
-                      * `page_deleted` - Sends the [page_deleted](#page_deleted) event
-                      * `ecomm_new_order` - Sends the new [ecomm_new_order](#ecomm_new_order) event
-                      * `ecomm_order_changed` - Sends the [ecomm_order_changed](#ecomm_order_changed) event
-                      * `ecomm_inventory_changed` - Sends the [ecomm_inventory_changed](#ecomm_inventory_changed) event
-                      * `user_account_added` - Sends the [user_account_added](#user_account_added) event
-                      * `user_account_updated` - Sends the [user_account_updated](#user_account_updated) event
-                      * `user_account_deleted` - Sends the [user_account_deleted](#user_account_deleted) event
-                      * `collection_item_created` - Sends the [collection_item_created](#collection_item_created) event
-                      * `collection_item_changed` - Sends the [collection_item_changed](#collection_item_changed) event
-                      * `collection_item_deleted` - Sends the [collection_item_deleted](#collection_item_deleted) event
-                      * `collection_item_unpublished` - Sends the [collection_item_unpublished](#collection_item_unpublished) event
+                      The type of event that triggered the request. See the the documentation for details on [supported events](m/data/reference/all-events).
                     enum:
                       - form_submission
                       - site_publish
@@ -41193,6 +41625,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - forms
+                  - pagination
                 description: A list of forms
                 example:
                   forms:
@@ -41383,6 +41818,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -41396,6 +41835,58 @@ paths:
                         type: number
                         description: The total number of records
                         example: 100
+              example:
+                forms:
+                  - displayName: Email Form
+                    createdOn: '2016-10-24T19:41:29.156Z'
+                    lastUpdated: '2016-10-24T19:43:17.271Z'
+                    fields:
+                      - 660d5bcc9c0772150459dfb1:
+                          displayName: Name
+                          type: Plain
+                          placeholder: null
+                          userVisible: true
+                      - 589a331aa51e760df7ccb89d:
+                          displayName: Email
+                          type: Email
+                          placeholder: Enter your email
+                          userVisible: true
+                    responseSettings:
+                      redirectUrl: 'https://example.com'
+                      redirectMethod: GET
+                      redirectAction: null
+                      sendEmailConfirmation: true
+                    id: 589a331aa51e760df7ccb89e
+                    siteId: 580e63e98c9a982ac9b8b741
+                    siteDomainId: 6419db964a9c436a4baf6248
+                    pageId: 6419db964a9c43f6a3af6348
+                    pageName: Home
+                    workspaceId: 580e63fc8c9a982ac9b8b744
+                  - displayName: Name Form
+                    createdOn: '2016-10-24T19:41:29.156Z'
+                    lastUpdated: '2016-10-24T19:43:17.271Z'
+                    fields:
+                      - 589a331aa51e760df7ccb89d:
+                          displayName: Name
+                          type: Plain
+                          placeholder: Enter your name
+                          userVisible: true
+                    responseSettings:
+                      redirectUrl: 'https://example.com'
+                      redirectMethod: GET
+                      redirectAction: null
+                      sendEmailConfirmation: false
+                    id: 580ff8d7ba3e45ba9fe588e9
+                    siteId: 580e63e98c9a982ac9b8b741
+                    siteDomainId: 6419db964a9c436a4baf6248
+                    pageId: 6419db964a9c43f6a3af6348
+                    pageName: Home
+                    formElementId: 4e038d2c-6a1e-4953-7be9-a59a2b453177
+                    workspaceId: 580e63fc8c9a982ac9b8b744
+                pagination:
+                  limit: 25
+                  offset: 0
+                  total: 2
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -42642,6 +43133,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -44900,6 +45395,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -50072,11 +50571,13 @@ paths:
                                         description: Currency of Item
                                         example: USD
                                   ec-sku-billing-method:
+                                    description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                                     type: string
                                     enum:
                                       - one-time
                                       - subscription
                                   ec-sku-subscription-plan:
+                                    description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                                     type: object
                                     properties:
                                       interval:
@@ -50130,6 +50631,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -51051,11 +51556,13 @@ paths:
                               description: Currency of Item
                               example: USD
                         ec-sku-billing-method:
+                          description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                           type: string
                           enum:
                             - one-time
                             - subscription
                         ec-sku-subscription-plan:
+                          description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                           type: object
                           properties:
                             interval:
@@ -51412,11 +51919,13 @@ paths:
                                   description: Currency of Item
                                   example: USD
                             ec-sku-billing-method:
+                              description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                               type: string
                               enum:
                                 - one-time
                                 - subscription
                             ec-sku-subscription-plan:
+                              description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                               type: object
                               properties:
                                 interval:
@@ -52327,11 +52836,13 @@ paths:
                                   description: Currency of Item
                                   example: USD
                             ec-sku-billing-method:
+                              description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                               type: string
                               enum:
                                 - one-time
                                 - subscription
                             ec-sku-subscription-plan:
+                              description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                               type: object
                               properties:
                                 interval:
@@ -53288,11 +53799,13 @@ paths:
                               description: Currency of Item
                               example: USD
                         ec-sku-billing-method:
+                          description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                           type: string
                           enum:
                             - one-time
                             - subscription
                         ec-sku-subscription-plan:
+                          description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                           type: object
                           properties:
                             interval:
@@ -54218,11 +54731,13 @@ paths:
                                 description: Currency of Item
                                 example: USD
                           ec-sku-billing-method:
+                            description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                             type: string
                             enum:
                               - one-time
                               - subscription
                           ec-sku-subscription-plan:
+                            description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                             type: object
                             properties:
                               interval:
@@ -54281,6 +54796,8 @@ paths:
               schema:
                 type: object
                 properties:
+                  required:
+                    - skus
                   skus:
                     type: array
                     items:
@@ -54367,11 +54884,13 @@ paths:
                                   description: Currency of Item
                                   example: USD
                             ec-sku-billing-method:
+                              description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                               type: string
                               enum:
                                 - one-time
                                 - subscription
                             ec-sku-subscription-plan:
+                              description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                               type: object
                               properties:
                                 interval:
@@ -55087,11 +55606,13 @@ paths:
                               description: Currency of Item
                               example: USD
                         ec-sku-billing-method:
+                          description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                           type: string
                           enum:
                             - one-time
                             - subscription
                         ec-sku-subscription-plan:
+                          description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                           type: object
                           properties:
                             interval:
@@ -55231,11 +55752,13 @@ paths:
                             description: Currency of Item
                             example: USD
                       ec-sku-billing-method:
+                        description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
                         type: string
                         enum:
                           - one-time
                           - subscription
                       ec-sku-subscription-plan:
+                        description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
                         type: object
                         properties:
                           interval:
@@ -55286,6 +55809,12 @@ paths:
                     additionalProperties:
                       type: string
                       description: Custom fields for your SKU.
+                required:
+                  - id
+                  - lastPublished
+                  - lastUpdated
+                  - createdOn
+                  - fieldData
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -56769,6 +57298,10 @@ paths:
                   pagination:
                     description: Pagination object
                     type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
                     properties:
                       limit:
                         type: number
@@ -66833,6 +67366,7 @@ webhooks:
     post:
       operationId: site_publish
       summary: Site Publish
+      description: Information about a site that was published
       tags:
         - Sites
       requestBody:
@@ -66888,6 +67422,7 @@ webhooks:
     post:
       operationId: ecomm_new_order
       summary: New eComm Order
+      description: Information about a new ecommerce order
       tags:
         - Orders
       requestBody:
@@ -67974,6 +68509,7 @@ webhooks:
     post:
       operationId: ecomm_order_changed
       summary: Updated eComm Order
+      description: Information about an updated ecommerce order
       tags:
         - Orders
       requestBody:
@@ -69060,6 +69596,7 @@ webhooks:
     post:
       operationId: ecomm_inventory_changed
       summary: Updated eComm Inventory
+      description: Information about updated ecommerce inventory values
       tags:
         - Inventory
       requestBody:
@@ -69067,34 +69604,36 @@ webhooks:
         content:
           application/json:
             schema:
-              triggerType:
-                type: string
-                enum:
-                  - ecomm_inventory_changed
-              payload:
-                description: The availabile inventory for an item
-                properties:
-                  id:
-                    type: string
-                    readOnly: true
-                    format: objectid
-                    description: Unique identifier for a SKU item
-                    example: 5bfedb42bab0ad90fa7dad39
-                  quantity:
-                    type: number
-                    description: Total quantity of items remaining in inventory (if inventoryType is finite)
-                    example: 100
-                  inventoryType:
-                    type: string
-                    description: infinite or finite
-                    enum:
-                      - infinite
-                      - finite
-                    example: finite
-                example:
-                  id: 5bfedb42bab0ad90fa7dad39
-                  quantity: 100
-                  inventoryType: finite
+              type: object
+              properties:
+                triggerType:
+                  type: string
+                  enum:
+                    - ecomm_inventory_changed
+                payload:
+                  description: The availabile inventory for an item
+                  properties:
+                    id:
+                      type: string
+                      readOnly: true
+                      format: objectid
+                      description: Unique identifier for a SKU item
+                      example: 5bfedb42bab0ad90fa7dad39
+                    quantity:
+                      type: number
+                      description: Total quantity of items remaining in inventory (if inventoryType is finite)
+                      example: 100
+                    inventoryType:
+                      type: string
+                      description: infinite or finite
+                      enum:
+                        - infinite
+                        - finite
+                      example: finite
+                  example:
+                    id: 5bfedb42bab0ad90fa7dad39
+                    quantity: 100
+                    inventoryType: finite
             examples:
               WebhookInventoryChanged:
                 value:
@@ -69110,6 +69649,7 @@ webhooks:
     post:
       operationId: user_account_added
       summary: New User Added
+      description: Information about a new user account
       tags:
         - Users
       requestBody:
@@ -69278,6 +69818,7 @@ webhooks:
     post:
       operationId: user_account_updated
       summary: Account Updated
+      description: Information about an updated user account
       tags:
         - Users
       requestBody:
@@ -69290,7 +69831,7 @@ webhooks:
                 triggerType:
                   type: string
                   enum:
-                    - user_account_added
+                    - user_account_updated
                 payload:
                   allOf:
                     - description: |
@@ -69446,6 +69987,7 @@ webhooks:
     post:
       operationId: user_account_deleted
       summary: Account Deleted
+      description: Information about a deleted user account
       tags:
         - Users
       requestBody:
@@ -69613,7 +70155,8 @@ webhooks:
   collection_item_created:
     post:
       operationId: collection_item_created
-      summary: Item Created
+      summary: CollectionItem Created
+      description: Information about a new collection item
       tags:
         - Items
         - Collections
@@ -69917,7 +70460,8 @@ webhooks:
   collection_item_changed:
     post:
       operationId: collection_item_changed
-      summary: Item Updated
+      summary: Collection Item Updated
+      description: Information about an updated collection item
       tags:
         - Items
         - Collections
@@ -70077,7 +70621,8 @@ webhooks:
   collection_item_deleted:
     post:
       operationId: collection_item_deleted
-      summary: Item Deleted
+      summary: Collection Item Deleted
+      description: Information about a deleted collection item
       tags:
         - Items
         - Collections
@@ -70128,7 +70673,8 @@ webhooks:
   collection_item_unpublished:
     post:
       operationId: collection_item_unpublished
-      summary: Item Unpublished
+      summary: CollectionItem Unpublished
+      description: Information about a collection item that was removed from the live site
       tags:
         - Items
         - Collections
@@ -70180,6 +70726,7 @@ webhooks:
     post:
       operationId: page_created
       summary: Page Created
+      description: Information about a new page
       tags:
         - Pages
       requestBody:
@@ -70227,6 +70774,7 @@ webhooks:
     post:
       operationId: page_metadata_updated
       summary: Page Metadata Updated
+      description: Information about a page's updated metadata and/or settings
       tags:
         - Pages
       requestBody:
@@ -70274,6 +70822,7 @@ webhooks:
     post:
       operationId: page_deleted
       summary: Page Deleted
+      description: Information about a page that was deleted
       tags:
         - Pages
       requestBody:
