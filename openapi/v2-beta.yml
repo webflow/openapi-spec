@@ -10202,10 +10202,16 @@ paths:
       description: |
         Upload a supported well-known file to a site.
 
-        Currently, Webflow supports the following well-known files:
-        - `apple-app-site-association`
-        - `apple-developer-merchantid-domain-association`
-
+        The current restrictions on well-known files are as follows:
+          - Each file must be smaller than 100kb
+          - Less than 30 total files
+          - Have one of the following file extensions (or no extension)
+            - .txt
+            - .json
+            - .noext
+              - This is a special file extension that removes other extensions
+              - E.g. apple-app-site-association.noext.txt will be uploaded as apple-app-site-association
+              - This is used for uploader tools that have trouble with extensionless files
 
         Required Scope: `site_config:write`
       tags:
@@ -10229,6 +10235,7 @@ paths:
                 fileName:
                   type: string
                   description: The name of the file
+                  required: true
                   examples:
                     example1:
                       summary: Apple App Site Association
@@ -10239,6 +10246,7 @@ paths:
                 fileData:
                   type: string
                   description: The contents of the file
+                  required: true
                   examples:
                     example1:
                       summary: Apple App Site Association File Example
@@ -10262,6 +10270,20 @@ paths:
                           "merchantName": "Example Inc.",
                           "domainAssociation": "web"
                         }
+                contentType:
+                  type: string
+                  default: application/json
+                  description: The content type of the file. Defaults to application/json
+                  enum:
+                    - application/json
+                    - text/plain
+                  examples:
+                    example1:
+                      summary: JSON
+                      value: application/json
+                    example2:
+                      summary: Plain Text
+                      value: text/plain
       responses:
         '201':
           description: File uploaded successfully
