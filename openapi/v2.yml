@@ -13355,7 +13355,7 @@ paths:
       x-fern-sdk-method-name: list-items
       security:
         - OAuth2:
-            - 'CMS:read'
+            - 'cms:read'
       operationId: list-collection-items
       summary: List Collection Items
       description: |
@@ -13971,7 +13971,7 @@ paths:
       x-fern-sdk-method-name: create-item
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: create-item
       summary: Create Collection Item(s)
       description: |
@@ -14686,7 +14686,7 @@ paths:
       x-fern-sdk-method-name: update-items
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: update-items
       summary: Update Collection Items
       description: |
@@ -15372,7 +15372,7 @@ paths:
       x-fern-sdk-method-name: delete-items
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: delete-items
       summary: Delete Collection Items
       description: |
@@ -15878,7 +15878,7 @@ paths:
       x-fern-sdk-method-name: list-items-live
       security:
         - OAuth2:
-            - 'CMS:read'
+            - 'cms:read'
       operationId: list-collection-items-live
       summary: List Live Collection Items
       description: |
@@ -16494,7 +16494,7 @@ paths:
       x-fern-sdk-method-name: create-item-live
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: create-item-live
       summary: Create Live Collection Item(s)
       description: |
@@ -17190,7 +17190,7 @@ paths:
       x-fern-sdk-method-name: update-items-live
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: update-items-live
       summary: Update Live Collection Items
       description: |
@@ -18000,7 +18000,7 @@ paths:
       x-fern-sdk-method-name: delete-items-live
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: delete-items-live
       summary: Delete Live Collection Items
       description: |
@@ -18035,9 +18035,9 @@ paths:
                   items:
                     type: object
                     required:
-                      - itemId
+                      - id
                     properties:
-                      itemId:
+                      id:
                         type: string
                         example: 580e64008c9a982ac9b8b754
                         description: Unique identifier for the Item
@@ -19198,7 +19198,7 @@ paths:
       x-fern-sdk-method-name: get-item
       security:
         - OAuth2:
-            - 'CMS:read'
+            - 'cms:read'
       operationId: Get-Item
       summary: Get Collection Item
       description: |
@@ -19700,7 +19700,7 @@ paths:
       x-fern-sdk-method-name: update-item
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: update-item
       summary: Update Collection Item
       description: |
@@ -20262,7 +20262,7 @@ paths:
       x-fern-sdk-method-name: delete-item
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: delete-item
       summary: Delete Collection Item
       description: |
@@ -20681,7 +20681,7 @@ paths:
       x-fern-sdk-method-name: get-item-live
       security:
         - OAuth2:
-            - 'CMS:read'
+            - 'cms:read'
       operationId: get-item-live
       summary: Get Live Collection Item
       description: |
@@ -21183,7 +21183,7 @@ paths:
       x-fern-sdk-method-name: update-item-live
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: update-item-live
       summary: Update Live Collection Item
       description: |
@@ -21827,7 +21827,7 @@ paths:
       x-fern-sdk-method-name: delete-item-live
       security:
         - OAuth2:
-            - 'CMS:write'
+            - 'cms:write'
       operationId: delete-item-live
       summary: Delete Live Collection Item
       description: |
