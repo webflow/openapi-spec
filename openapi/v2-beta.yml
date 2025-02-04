@@ -12180,7 +12180,6 @@ paths:
                     oneOf:
                       - type: object
                         x-fern-type-name: Static Field
-                        description: 'A field that returns static data from the CMS. See the [documentation for a list of field types](/data/reference/field-types-item-values).'
                         required:
                           - type
                           - displayName
@@ -12211,14 +12210,66 @@ paths:
                           helpText:
                             type: string
                             description: Additional text to help anyone filling out this field
+                        example:
+                          type: RichText
+                          isRequired: false
+                          displayName: Post Body
+                          helpText: Add the body of your post here
+                      - type: object
+                        x-fern-type-name: Option Field
+                        required:
+                          - type
+                          - displayName
+                          - metadata
+                        properties:
+                          isRequired:
+                            type: boolean
+                            description: define whether a field is required in a collection
+                          type:
+                            description: 'The [Option field type](/data/reference/field-types-item-values#option)'
+                            type: string
+                            enum:
+                              - Option
+                          displayName:
+                            type: string
+                            description: The name of a field
+                          helpText:
+                            type: string
+                            description: Additional text to help anyone filling out this field
+                          metadata:
+                            type: object
+                            description: The metadata for the Option field.
+                            properties:
+                              options:
+                                type: array
+                                description: The option values for the Option field.
+                                items:
+                                  type: object
+                                  description: A single option value for the Option field.
+                                  properties:
+                                    name:
+                                      type: string
+                                      description: The name of the option
+                                    id:
+                                      type: string
+                                      description: The unique identifier of the option
+                                      readOnly: true
+                                  minItems: 1
+                                  maxItems: 100
+                        example:
+                          type: Option
+                          isRequired: false
+                          displayName: Post Body
+                          helpText: Add the body of your post here
+                          metadata:
+                            options:
+                              - name: Option 1
+                              - name: Option 2
                       - type: object
                         x-fern-type-name: Reference Field
-                        description: |
-                          A field that references item(s) in another collection.
                         required:
-                          - displayName
                           - type
-                          - metadata
+                          - displayName
                         properties:
                           isRequired:
                             type: boolean
@@ -12228,7 +12279,7 @@ paths:
                             enum:
                               - MultiReference
                               - Reference
-                            description: Choose to reference a single item or multiple items from a collection.
+                            description: Choose these appropriate field type for your collection data
                           displayName:
                             type: string
                             description: The name of a field
@@ -12237,13 +12288,18 @@ paths:
                             description: Additional text to help anyone filling out this field
                           metadata:
                             type: object
-                            required:
-                              - collectionId
                             properties:
                               collectionId:
                                 type: string
                                 description: The unique identifier of the collection
                             description: The collectionId for the referenced collection. Only applicable for Reference and MultiReference fields.
+                        example:
+                          type: Reference
+                          isRequired: false
+                          displayName: Author
+                          helpText: Add the post author here
+                          metadata:
+                            collectionId: 63692ab61fb2852f582ba8f5
             example:
               displayName: Blog Posts
               singularName: Blog Post
@@ -13813,7 +13869,6 @@ paths:
               oneOf:
                 - type: object
                   x-fern-type-name: Static Field
-                  description: 'A field that returns static data from the CMS. See the [documentation for a list of field types](/data/reference/field-types-item-values).'
                   required:
                     - type
                     - displayName
@@ -13844,14 +13899,66 @@ paths:
                     helpText:
                       type: string
                       description: Additional text to help anyone filling out this field
+                  example:
+                    type: RichText
+                    isRequired: false
+                    displayName: Post Body
+                    helpText: Add the body of your post here
+                - type: object
+                  x-fern-type-name: Option Field
+                  required:
+                    - type
+                    - displayName
+                    - metadata
+                  properties:
+                    isRequired:
+                      type: boolean
+                      description: define whether a field is required in a collection
+                    type:
+                      description: 'The [Option field type](/data/reference/field-types-item-values#option)'
+                      type: string
+                      enum:
+                        - Option
+                    displayName:
+                      type: string
+                      description: The name of a field
+                    helpText:
+                      type: string
+                      description: Additional text to help anyone filling out this field
+                    metadata:
+                      type: object
+                      description: The metadata for the Option field.
+                      properties:
+                        options:
+                          type: array
+                          description: The option values for the Option field.
+                          items:
+                            type: object
+                            description: A single option value for the Option field.
+                            properties:
+                              name:
+                                type: string
+                                description: The name of the option
+                              id:
+                                type: string
+                                description: The unique identifier of the option
+                                readOnly: true
+                            minItems: 1
+                            maxItems: 100
+                  example:
+                    type: Option
+                    isRequired: false
+                    displayName: Post Body
+                    helpText: Add the body of your post here
+                    metadata:
+                      options:
+                        - name: Option 1
+                        - name: Option 2
                 - type: object
                   x-fern-type-name: Reference Field
-                  description: |
-                    A field that references item(s) in another collection.
                   required:
-                    - displayName
                     - type
-                    - metadata
+                    - displayName
                   properties:
                     isRequired:
                       type: boolean
@@ -13861,7 +13968,7 @@ paths:
                       enum:
                         - MultiReference
                         - Reference
-                      description: Choose to reference a single item or multiple items from a collection.
+                      description: Choose these appropriate field type for your collection data
                     displayName:
                       type: string
                       description: The name of a field
@@ -13870,13 +13977,18 @@ paths:
                       description: Additional text to help anyone filling out this field
                     metadata:
                       type: object
-                      required:
-                        - collectionId
                       properties:
                         collectionId:
                           type: string
                           description: The unique identifier of the collection
                       description: The collectionId for the referenced collection. Only applicable for Reference and MultiReference fields.
+                  example:
+                    type: Reference
+                    isRequired: false
+                    displayName: Author
+                    helpText: Add the post author here
+                    metadata:
+                      collectionId: 63692ab61fb2852f582ba8f5
       parameters:
         - name: collection_id
           in: path
