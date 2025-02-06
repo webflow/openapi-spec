@@ -26724,6 +26724,7 @@ paths:
                     limit: 4
                     offset: 0
                     total: 4
+                  lastUpdated: '2016-10-24T19:42:38.929Z'
                 properties:
                   pageId:
                     type: string
@@ -26898,6 +26899,7 @@ paths:
                           limit: 4
                           offset: 0
                           total: 4
+                        lastUpdated: '2016-10-24T19:42:38.929Z'
                   pagination:
                     description: Pagination object
                     type: object
@@ -26918,6 +26920,13 @@ paths:
                         type: number
                         description: The total number of records
                         example: 100
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                    nullable: true
+                    description: The date the page dom was most recently updated
+                    example: '2016-10-24T19:42:38.929Z'
               examples:
                 PageDOM:
                   value:
@@ -26962,6 +26971,7 @@ paths:
                       limit: 4
                       offset: 0
                       total: 4
+                    lastUpdated: '2016-10-24T19:42:38.929Z'
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -28787,6 +28797,7 @@ paths:
                           limit: 4
                           offset: 0
                           total: 4
+                        lastUpdated: '2016-10-24T19:42:38.929Z'
                   pagination:
                     description: Pagination object
                     type: object
