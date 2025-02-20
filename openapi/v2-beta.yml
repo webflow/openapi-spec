@@ -24287,20 +24287,85 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - itemIds
-              properties:
-                itemIds:
-                  type: array
-                  items:
-                    type: string
-                    format: objectid
+              oneOf:
+                - type: object
+                  x-fern-type-name: Item IDs
+                  description: An array of Item IDs in a single locale
+                  properties:
+                    itemIds:
+                      type: array
+                      items:
+                        type: string
+                        format: objectid
                   example:
                     itemIds:
                       - 643fd856d66b6528195ee2ca
                       - 643fd856d66b6528195ee2cb
                       - 643fd856d66b6528195ee2cc
+                - type: object
+                  x-fern-type-name: Item IDs with Locales
+                  description: An array of Item IDs with included `cmsLocaleIds`
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - id
+                        properties:
+                          id:
+                            description: The ID of the CMS item
+                            type: string
+                            format: objectid
+                            example: 643fd856d66b6528195ee2ca
+                          cmsLocaleIds:
+                            type: array
+                            description: Array of identifiers for the locales where the item will be published
+                            items:
+                              type: string
+                              description: CMS Locale ID
+                            example:
+                              - 653ad57de882f528b32e810e
+                              - 6514390aea353fc691d69827
+                              - 65143930ea353fc691d69cd8
+                  example:
+                    value:
+                      items:
+                        - id: 643fd856d66b6528195ee2ca
+                          cmsLocaleIds:
+                            - 653ad57de882f528b32e810e
+                            - 6514390aea353fc691d69827
+                            - 65143930ea353fc691d69cd8
+                        - id: 643fd856d66b6528195ee2cb
+                          cmsLocaleIds:
+                            - 653ad57de882f528b32e810e
+            examples:
+              PrimaryLocale:
+                value:
+                  itemIds:
+                    - 643fd856d66b6528195ee2ca
+                    - 643fd856d66b6528195ee2cb
+                    - 643fd856d66b6528195ee2cc
+              SecondaryLocale:
+                value:
+                  items:
+                    - id: 643fd856d66b6528195ee2ca
+                      cmsLocaleIds:
+                        - 653ad57de882f528b32e810e
+                    - id: 643fd856d66b6528195ee2cb
+                      cmsLocaleIds:
+                        - 653ad57de882f528b32e810e
+                    - id: 643fd856d66b6528195ee2cc
+                      cmsLocaleIds:
+                        - 653ad57de882f528b32e810e
+              MultipleLocales:
+                value:
+                  items:
+                    - id: 643fd856d66b6528195ee2ca
+                      cmsLocaleIds:
+                        - 653ad57de882f528b32e810e
+                        - 6514390aea353fc691d69827
+                        - 65143930ea353fc691d69cd8
       responses:
         '202':
           description: Request was successful
