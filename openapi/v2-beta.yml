@@ -8268,7 +8268,9 @@ paths:
                 details: []
   '/sites/{site_id}/robots_txt':
     get:
-      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-group-name:
+        - sites
+        - robots-txt
       x-fern-sdk-method-name: get
       security:
         - OAuth2:
@@ -8713,7 +8715,9 @@ paths:
                 externalReference: null
                 details: []
     put:
-      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-group-name:
+        - sites
+        - robots-txt
       x-fern-sdk-method-name: put
       security:
         - OAuth2:
@@ -9203,7 +9207,9 @@ paths:
                 externalReference: null
                 details: []
     patch:
-      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-group-name:
+        - sites
+        - robots-txt
       x-fern-sdk-method-name: patch
       security:
         - OAuth2:
@@ -9693,7 +9699,9 @@ paths:
                 externalReference: null
                 details: []
     delete:
-      x-fern-sdk-group-name: robots_txt
+      x-fern-sdk-group-name:
+        - sites
+        - robots-txt
       x-fern-sdk-method-name: delete
       security:
         - OAuth2:
