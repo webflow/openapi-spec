@@ -25988,6 +25988,10 @@ paths:
       description: |
         Update Page-level metadata, including SEO and Open Graph fields.
 
+        <Note>
+          Note: When updating Page Metadata in secondary locales, you may only add `slug` to the request if your Site has the [Advanced or Enterprise Localization](https://webflow.com/localization) add-on.
+        </Note>
+
         Required scope | `pages:write`
       summary: Update Page Metadata
       operationId: update-page-settings
