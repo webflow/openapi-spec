@@ -68638,7 +68638,7 @@ webhooks:
   collection_item_unpublished:
     post:
       operationId: collection_item_unpublished
-      summary: CollectionItem Unpublished
+      summary: Collection Item Unpublished
       description: Information about a collection item that was removed from the live site
       tags:
         - Items
