@@ -10535,19 +10535,53 @@ paths:
                   description: An array of custom fields to add to the collection
                   items:
                     description: Details about the field of a collection
-                    example:
-                      type: RichText
-                      isRequired: false
-                      displayName: Post Body
-                      helpText: Add the body of your post here
+                    examples:
+                      StaticField:
+                        id: 562ac0395358780a1f5e6fbc
+                        isEditable: true
+                        type: RichText
+                        isRequired: false
+                        displayName: Post Body
+                        helpText: Add the body of your post here
+                      OptionField:
+                        id: 562ac0395358780a1f5e6fbc
+                        isEditable: true
+                        type: Option
+                        isRequired: false
+                        displayName: Post Type
+                        helpText: Add the body of your post here
+                        metadata:
+                          options:
+                            - name: Feature
+                            - name: News
+                            - name: Product Highlight
+                      ReferenceField:
+                        id: 562ac0395358780a1f5e6fbd
+                        isEditable: true
+                        type: Reference
+                        isRequired: false
+                        displayName: Author
+                        helpText: Add the post author here
+                        metadata:
+                          collectionId: 63692ab61fb2852f582ba8f5
                     oneOf:
                       - type: object
                         x-fern-type-name: Static Field
-                        description: 'A field that returns static data from the CMS. See the [documentation for a list of field types](/data/reference/field-types-item-values).'
                         required:
                           - type
                           - displayName
                         properties:
+                          id:
+                            type: string
+                            format: objectid
+                            description: Unique identifier for a Field
+                            example: 562ac0395358780a1f5e6fbd
+                            readOnly: true
+                          isEditable:
+                            type: boolean
+                            description: Define whether the field is editable
+                            readOnly: true
+                            example: true
                           isRequired:
                             type: boolean
                             description: define whether a field is required in a collection
@@ -10574,15 +10608,95 @@ paths:
                           helpText:
                             type: string
                             description: Additional text to help anyone filling out this field
+                        example:
+                          id: 562ac0395358780a1f5e6fbc
+                          isEditable: true
+                          type: RichText
+                          isRequired: false
+                          displayName: Post Body
+                          helpText: Add the body of your post here
                       - type: object
-                        x-fern-type-name: Reference Field
-                        description: |
-                          A field that references item(s) in another collection.
+                        x-fern-type-name: Option Field
                         required:
-                          - displayName
                           - type
+                          - displayName
                           - metadata
                         properties:
+                          id:
+                            type: string
+                            format: objectid
+                            description: Unique identifier for a Field
+                            readOnly: true
+                          isEditable:
+                            type: boolean
+                            description: Define whether the field is editable
+                            readOnly: true
+                          isRequired:
+                            type: boolean
+                            description: define whether a field is required in a collection
+                          type:
+                            description: 'The [Option field type](/data/reference/field-types-item-values#option)'
+                            type: string
+                            enum:
+                              - Option
+                          displayName:
+                            type: string
+                            description: The name of a field
+                          helpText:
+                            type: string
+                            description: Additional text to help anyone filling out this field
+                          metadata:
+                            type: object
+                            required:
+                              - options
+                            description: The metadata for the Option field.
+                            properties:
+                              options:
+                                type: array
+                                description: The option values for the Option field.
+                                items:
+                                  type: object
+                                  required:
+                                    - name
+                                  description: A single option value for the Option field.
+                                  properties:
+                                    name:
+                                      type: string
+                                      description: The name of the option
+                                    id:
+                                      type: string
+                                      description: The unique identifier of the option
+                                      readOnly: true
+                                  minItems: 1
+                                  maxItems: 100
+                        example:
+                          id: 562ac0395358780a1f5e6fbc
+                          isEditable: true
+                          type: Option
+                          isRequired: false
+                          displayName: Post Type
+                          helpText: Add the body of your post here
+                          metadata:
+                            options:
+                              - name: Feature
+                              - name: News
+                              - name: Product Highlight
+                      - type: object
+                        x-fern-type-name: Reference Field
+                        required:
+                          - type
+                          - displayName
+                          - metadata
+                        properties:
+                          id:
+                            type: string
+                            format: objectid
+                            description: Unique identifier for a Field
+                            readOnly: true
+                          isEditable:
+                            type: boolean
+                            description: Define whether the field is editable
+                            readOnly: true
                           isRequired:
                             type: boolean
                             description: define whether a field is required in a collection
@@ -10591,7 +10705,7 @@ paths:
                             enum:
                               - MultiReference
                               - Reference
-                            description: Choose to reference a single item or multiple items from a collection.
+                            description: Choose these appropriate field type for your collection data
                           displayName:
                             type: string
                             description: The name of a field
@@ -10607,6 +10721,15 @@ paths:
                                 type: string
                                 description: The unique identifier of the collection
                             description: The collectionId for the referenced collection. Only applicable for Reference and MultiReference fields.
+                        example:
+                          id: 562ac0395358780a1f5e6fbd
+                          isEditable: true
+                          type: Reference
+                          isRequired: false
+                          displayName: Author
+                          helpText: Add the post author here
+                          metadata:
+                            collectionId: 63692ab61fb2852f582ba8f5
             example:
               displayName: Blog Posts
               singularName: Blog Post
@@ -12168,19 +12291,53 @@ paths:
           application/json:
             schema:
               description: Details about the field of a collection
-              example:
-                type: RichText
-                isRequired: false
-                displayName: Post Body
-                helpText: Add the body of your post here
+              examples:
+                StaticField:
+                  id: 562ac0395358780a1f5e6fbc
+                  isEditable: true
+                  type: RichText
+                  isRequired: false
+                  displayName: Post Body
+                  helpText: Add the body of your post here
+                OptionField:
+                  id: 562ac0395358780a1f5e6fbc
+                  isEditable: true
+                  type: Option
+                  isRequired: false
+                  displayName: Post Type
+                  helpText: Add the body of your post here
+                  metadata:
+                    options:
+                      - name: Feature
+                      - name: News
+                      - name: Product Highlight
+                ReferenceField:
+                  id: 562ac0395358780a1f5e6fbd
+                  isEditable: true
+                  type: Reference
+                  isRequired: false
+                  displayName: Author
+                  helpText: Add the post author here
+                  metadata:
+                    collectionId: 63692ab61fb2852f582ba8f5
               oneOf:
                 - type: object
                   x-fern-type-name: Static Field
-                  description: 'A field that returns static data from the CMS. See the [documentation for a list of field types](/data/reference/field-types-item-values).'
                   required:
                     - type
                     - displayName
                   properties:
+                    id:
+                      type: string
+                      format: objectid
+                      description: Unique identifier for a Field
+                      example: 562ac0395358780a1f5e6fbd
+                      readOnly: true
+                    isEditable:
+                      type: boolean
+                      description: Define whether the field is editable
+                      readOnly: true
+                      example: true
                     isRequired:
                       type: boolean
                       description: define whether a field is required in a collection
@@ -12207,15 +12364,95 @@ paths:
                     helpText:
                       type: string
                       description: Additional text to help anyone filling out this field
+                  example:
+                    id: 562ac0395358780a1f5e6fbc
+                    isEditable: true
+                    type: RichText
+                    isRequired: false
+                    displayName: Post Body
+                    helpText: Add the body of your post here
                 - type: object
-                  x-fern-type-name: Reference Field
-                  description: |
-                    A field that references item(s) in another collection.
+                  x-fern-type-name: Option Field
                   required:
-                    - displayName
                     - type
+                    - displayName
                     - metadata
                   properties:
+                    id:
+                      type: string
+                      format: objectid
+                      description: Unique identifier for a Field
+                      readOnly: true
+                    isEditable:
+                      type: boolean
+                      description: Define whether the field is editable
+                      readOnly: true
+                    isRequired:
+                      type: boolean
+                      description: define whether a field is required in a collection
+                    type:
+                      description: 'The [Option field type](/data/reference/field-types-item-values#option)'
+                      type: string
+                      enum:
+                        - Option
+                    displayName:
+                      type: string
+                      description: The name of a field
+                    helpText:
+                      type: string
+                      description: Additional text to help anyone filling out this field
+                    metadata:
+                      type: object
+                      required:
+                        - options
+                      description: The metadata for the Option field.
+                      properties:
+                        options:
+                          type: array
+                          description: The option values for the Option field.
+                          items:
+                            type: object
+                            required:
+                              - name
+                            description: A single option value for the Option field.
+                            properties:
+                              name:
+                                type: string
+                                description: The name of the option
+                              id:
+                                type: string
+                                description: The unique identifier of the option
+                                readOnly: true
+                            minItems: 1
+                            maxItems: 100
+                  example:
+                    id: 562ac0395358780a1f5e6fbc
+                    isEditable: true
+                    type: Option
+                    isRequired: false
+                    displayName: Post Type
+                    helpText: Add the body of your post here
+                    metadata:
+                      options:
+                        - name: Feature
+                        - name: News
+                        - name: Product Highlight
+                - type: object
+                  x-fern-type-name: Reference Field
+                  required:
+                    - type
+                    - displayName
+                    - metadata
+                  properties:
+                    id:
+                      type: string
+                      format: objectid
+                      description: Unique identifier for a Field
+                      readOnly: true
+                    isEditable:
+                      type: boolean
+                      description: Define whether the field is editable
+                      readOnly: true
                     isRequired:
                       type: boolean
                       description: define whether a field is required in a collection
@@ -12224,7 +12461,7 @@ paths:
                       enum:
                         - MultiReference
                         - Reference
-                      description: Choose to reference a single item or multiple items from a collection.
+                      description: Choose these appropriate field type for your collection data
                     displayName:
                       type: string
                       description: The name of a field
@@ -12240,6 +12477,47 @@ paths:
                           type: string
                           description: The unique identifier of the collection
                       description: The collectionId for the referenced collection. Only applicable for Reference and MultiReference fields.
+                  example:
+                    id: 562ac0395358780a1f5e6fbd
+                    isEditable: true
+                    type: Reference
+                    isRequired: false
+                    displayName: Author
+                    helpText: Add the post author here
+                    metadata:
+                      collectionId: 63692ab61fb2852f582ba8f5
+            examples:
+              StaticField:
+                value:
+                  id: 562ac0395358780a1f5e6fbc
+                  isEditable: true
+                  type: RichText
+                  isRequired: false
+                  displayName: Post Body
+                  helpText: Add the body of your post here
+              OptionField:
+                value:
+                  id: 562ac0395358780a1f5e6fbc
+                  isEditable: true
+                  type: Option
+                  isRequired: false
+                  displayName: Post Type
+                  helpText: Add the body of your post here
+                  metadata:
+                    options:
+                      - name: Feature
+                      - name: News
+                      - name: Product Highlight
+              ReferenceField:
+                value:
+                  id: 562ac0395358780a1f5e6fbd
+                  isEditable: true
+                  type: Reference
+                  isRequired: false
+                  displayName: Author
+                  helpText: Add the post author here
+                  metadata:
+                    collectionId: 63692ab61fb2852f582ba8f5
       parameters:
         - name: collection_id
           in: path
@@ -12255,62 +12533,234 @@ paths:
           content:
             application/json:
               schema:
-                description: The details of a field in a collection
-                example:
-                  id: 75821f618da60c18383330bcc0ca488b
-                  isEditable: true
-                  isRequired: false
-                  type: RichText
-                  slug: post-body
-                  displayName: Post Body
-                  helpText: Add the body of your post here
-                type: object
-                required:
-                  - id
-                  - type
-                  - isRequired
-                  - displayName
-                properties:
-                  id:
-                    type: string
-                    format: objectid
-                    description: Unique identifier for a Field
-                    readOnly: true
-                  isRequired:
-                    type: boolean
-                    description: define whether a field is required in a collection
-                  isEditable:
-                    type: boolean
-                    description: Define whether the field is editable
-                    readOnly: true
-                  type:
-                    type: string
-                    enum:
-                      - Color
-                      - DateTime
-                      - Email
-                      - ExtFileRef
-                      - Image
-                      - Link
-                      - MultiImage
-                      - MultiReference
-                      - Number
-                      - Phone
-                      - PlainText
-                      - Reference
-                      - RichText
-                      - Switch
-                      - Video
-                    description: Choose these appropriate field type for your collection data
-                  slug:
-                    type: string
-                    description: Slug of Field in Site URL structure. Slugs should be all lowercase with no spaces. Any spaces will be converted to "-."
-                  displayName:
-                    type: string
-                    description: The name of a field
-                  helpText:
-                    type: string
-                    description: Additional text to help anyone filling out this field
+                description: Details about the field of a collection
+                examples:
+                  StaticField:
+                    id: 562ac0395358780a1f5e6fbc
+                    isEditable: true
+                    type: RichText
+                    isRequired: false
+                    displayName: Post Body
+                    helpText: Add the body of your post here
+                  OptionField:
+                    id: 562ac0395358780a1f5e6fbc
+                    isEditable: true
+                    type: Option
+                    isRequired: false
+                    displayName: Post Type
+                    helpText: Add the body of your post here
+                    metadata:
+                      options:
+                        - name: Feature
+                        - name: News
+                        - name: Product Highlight
+                  ReferenceField:
+                    id: 562ac0395358780a1f5e6fbd
+                    isEditable: true
+                    type: Reference
+                    isRequired: false
+                    displayName: Author
+                    helpText: Add the post author here
+                    metadata:
+                      collectionId: 63692ab61fb2852f582ba8f5
+                oneOf:
+                  - type: object
+                    x-fern-type-name: Static Field
+                    required:
+                      - type
+                      - displayName
+                    properties:
+                      id:
+                        type: string
+                        format: objectid
+                        description: Unique identifier for a Field
+                        example: 562ac0395358780a1f5e6fbd
+                        readOnly: true
+                      isEditable:
+                        type: boolean
+                        description: Define whether the field is editable
+                        readOnly: true
+                        example: true
+                      isRequired:
+                        type: boolean
+                        description: define whether a field is required in a collection
+                      type:
+                        type: string
+                        enum:
+                          - Color
+                          - DateTime
+                          - Email
+                          - File
+                          - Image
+                          - Link
+                          - MultiImage
+                          - Number
+                          - Phone
+                          - PlainText
+                          - RichText
+                          - Switch
+                          - Video
+                        description: Choose these appropriate field type for your collection data
+                      displayName:
+                        type: string
+                        description: The name of a field
+                      helpText:
+                        type: string
+                        description: Additional text to help anyone filling out this field
+                    example:
+                      id: 562ac0395358780a1f5e6fbc
+                      isEditable: true
+                      type: RichText
+                      isRequired: false
+                      displayName: Post Body
+                      helpText: Add the body of your post here
+                  - type: object
+                    x-fern-type-name: Option Field
+                    required:
+                      - type
+                      - displayName
+                      - metadata
+                    properties:
+                      id:
+                        type: string
+                        format: objectid
+                        description: Unique identifier for a Field
+                        readOnly: true
+                      isEditable:
+                        type: boolean
+                        description: Define whether the field is editable
+                        readOnly: true
+                      isRequired:
+                        type: boolean
+                        description: define whether a field is required in a collection
+                      type:
+                        description: 'The [Option field type](/data/reference/field-types-item-values#option)'
+                        type: string
+                        enum:
+                          - Option
+                      displayName:
+                        type: string
+                        description: The name of a field
+                      helpText:
+                        type: string
+                        description: Additional text to help anyone filling out this field
+                      metadata:
+                        type: object
+                        required:
+                          - options
+                        description: The metadata for the Option field.
+                        properties:
+                          options:
+                            type: array
+                            description: The option values for the Option field.
+                            items:
+                              type: object
+                              required:
+                                - name
+                              description: A single option value for the Option field.
+                              properties:
+                                name:
+                                  type: string
+                                  description: The name of the option
+                                id:
+                                  type: string
+                                  description: The unique identifier of the option
+                                  readOnly: true
+                              minItems: 1
+                              maxItems: 100
+                    example:
+                      id: 562ac0395358780a1f5e6fbc
+                      isEditable: true
+                      type: Option
+                      isRequired: false
+                      displayName: Post Type
+                      helpText: Add the body of your post here
+                      metadata:
+                        options:
+                          - name: Feature
+                          - name: News
+                          - name: Product Highlight
+                  - type: object
+                    x-fern-type-name: Reference Field
+                    required:
+                      - type
+                      - displayName
+                      - metadata
+                    properties:
+                      id:
+                        type: string
+                        format: objectid
+                        description: Unique identifier for a Field
+                        readOnly: true
+                      isEditable:
+                        type: boolean
+                        description: Define whether the field is editable
+                        readOnly: true
+                      isRequired:
+                        type: boolean
+                        description: define whether a field is required in a collection
+                      type:
+                        type: string
+                        enum:
+                          - MultiReference
+                          - Reference
+                        description: Choose these appropriate field type for your collection data
+                      displayName:
+                        type: string
+                        description: The name of a field
+                      helpText:
+                        type: string
+                        description: Additional text to help anyone filling out this field
+                      metadata:
+                        type: object
+                        required:
+                          - collectionId
+                        properties:
+                          collectionId:
+                            type: string
+                            description: The unique identifier of the collection
+                        description: The collectionId for the referenced collection. Only applicable for Reference and MultiReference fields.
+                    example:
+                      id: 562ac0395358780a1f5e6fbd
+                      isEditable: true
+                      type: Reference
+                      isRequired: false
+                      displayName: Author
+                      helpText: Add the post author here
+                      metadata:
+                        collectionId: 63692ab61fb2852f582ba8f5
+              examples:
+                StaticField:
+                  value:
+                    id: 562ac0395358780a1f5e6fbc
+                    isEditable: true
+                    type: RichText
+                    isRequired: false
+                    displayName: Post Body
+                    helpText: Add the body of your post here
+                OptionField:
+                  value:
+                    id: 562ac0395358780a1f5e6fbc
+                    isEditable: true
+                    type: Option
+                    isRequired: false
+                    displayName: Post Type
+                    helpText: Add the body of your post here
+                    metadata:
+                      options:
+                        - name: Feature
+                        - name: News
+                        - name: Product Highlight
+                ReferenceField:
+                  value:
+                    id: 562ac0395358780a1f5e6fbd
+                    isEditable: true
+                    type: Reference
+                    isRequired: false
+                    displayName: Author
+                    helpText: Add the post author here
+                    metadata:
+                      collectionId: 63692ab61fb2852f582ba8f5
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
