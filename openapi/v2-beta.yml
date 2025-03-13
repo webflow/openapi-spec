@@ -70022,6 +70022,8 @@ components:
             'assets:write': write assets on a site
             'cms:read': read collections and items for a site
             'cms:write': write to collections and items for a site
+            'comments:read': read comments on the site
+            'comments:write': write comments on the site
             'custom_code:read': read custom code on the site
             'custom_code:write': modify custom code on the site
             'ecommerce:read': read ecommerce data
