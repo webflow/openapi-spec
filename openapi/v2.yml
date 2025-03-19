@@ -13,6 +13,8 @@ info:
     url: 'https://opensource.org/licenses/MIT'
 servers:
   - url: 'https://api.webflow.com/v2'
+    description: Webflow API v2
+    x-fern-server-name: Data API
 security:
   - OAuth2: []
   - ApiKey: []
@@ -16640,6 +16642,11 @@ paths:
         - collections
         - items
       x-fern-sdk-method-name: list-items-live
+      servers:
+        - url: 'https://api.webflow.com/v2'
+          x-fern-server-name: Data API
+        - url: 'https://api-cdn.webflow.com/v2'
+          x-fern-server-name: Content Delivery API
       security:
         - OAuth2:
             - 'cms:read'
@@ -16647,6 +16654,11 @@ paths:
       summary: List Live Collection Items
       description: |
         List all published items in a collection.
+
+        <Note title="Serve data with the Content Delivery API">
+          To serve content to your other frontends applications, enterprise sites have access to a dedicated [content delivery API](/data/docs/cms-cdn), available at api-cdn.webflow.com.
+
+        </Note>
 
         Required scope | `CMS:read`
       tags:
@@ -19960,6 +19972,11 @@ paths:
         - collections
         - items
       x-fern-sdk-method-name: get-item
+      servers:
+        - url: 'https://api.webflow.com/v2'
+          x-fern-server-name: Production
+        - url: 'https://api-cdn.webflow.com/v2'
+          x-fern-server-name: CDN
       security:
         - OAuth2:
             - 'cms:read'
@@ -21443,6 +21460,11 @@ paths:
         - collections
         - items
       x-fern-sdk-method-name: get-item-live
+      servers:
+        - url: 'https://api.webflow.com/v2'
+          x-fern-server-name: Data API
+        - url: 'https://api-cdn.webflow.com/v2'
+          x-fern-server-name: Content Delivery API
       security:
         - OAuth2:
             - 'cms:read'
@@ -21450,6 +21472,11 @@ paths:
       summary: Get Live Collection Item
       description: |
         Get details of a selected Collection live Item.
+
+        <Note title="Serve data with the Content Delivery API">
+          To serve content to your other frontends applications, enterprise sites have access to a dedicated [content delivery API](/data/docs/cms-cdn), available at api-cdn.webflow.com.
+
+        </Note>
 
         Required scope | `CMS:read`
       tags:
