@@ -808,31 +808,30 @@ paths:
                     - id: 589a331aa51e760df7ccb89e
                       url: heartofgold.spaceship
                   locales:
-                    value:
-                      primary:
-                        id: 653fd9af6a07fc9cfd7a5e57
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        enabled: false
-                        displayName: English (United States)
+                    primary:
+                      id: 653fd9af6a07fc9cfd7a5e57
+                      cmsLocaleId: 653ad57de882f528b32e810e
+                      enabled: false
+                      displayName: English (United States)
+                      displayImageId: null
+                      redirect: true
+                      subdirectory: ''
+                      tag: en-US
+                    secondary:
+                      - id: 653fd9af6a07fc9cfd7a5e56
+                        cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                        enabled: true
+                        displayName: French (France)
                         displayImageId: null
-                        redirect: true
-                        subdirectory: ''
-                        tag: en-US
-                      secondary:
-                        - id: 653fd9af6a07fc9cfd7a5e56
-                          cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
-                          enabled: true
-                          displayName: French (France)
-                          displayImageId: null
-                          subdirectory: fr-fr
-                          tag: fr-FR
-                        - id: 654112a3a525b2739d97664c
-                          cmsLocaleId: 654112a3a525b2739d97664f
-                          enabled: true
-                          displayName: Spanish (Mexico)
-                          displayImageId: null
-                          subdirectory: es-mx
-                          tag: es-MX
+                        subdirectory: fr-fr
+                        tag: fr-FR
+                      - id: 654112a3a525b2739d97664c
+                        cmsLocaleId: 654112a3a525b2739d97664f
+                        enabled: true
+                        displayName: Spanish (Mexico)
+                        displayImageId: null
+                        subdirectory: es-mx
+                        tag: es-MX
                   dataCollectionEnabled: true
                   dataCollectionType: always
                 properties:
@@ -1585,31 +1584,30 @@ paths:
                           - id: 589a331aa51e760df7ccb89e
                             url: heartofgold.spaceship
                         locales:
-                          value:
-                            primary:
-                              id: 653fd9af6a07fc9cfd7a5e57
-                              cmsLocaleId: 653ad57de882f528b32e810e
-                              enabled: false
-                              displayName: English (United States)
+                          primary:
+                            id: 653fd9af6a07fc9cfd7a5e57
+                            cmsLocaleId: 653ad57de882f528b32e810e
+                            enabled: false
+                            displayName: English (United States)
+                            displayImageId: null
+                            redirect: true
+                            subdirectory: ''
+                            tag: en-US
+                          secondary:
+                            - id: 653fd9af6a07fc9cfd7a5e56
+                              cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                              enabled: true
+                              displayName: French (France)
                               displayImageId: null
-                              redirect: true
-                              subdirectory: ''
-                              tag: en-US
-                            secondary:
-                              - id: 653fd9af6a07fc9cfd7a5e56
-                                cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
-                                enabled: true
-                                displayName: French (France)
-                                displayImageId: null
-                                subdirectory: fr-fr
-                                tag: fr-FR
-                              - id: 654112a3a525b2739d97664c
-                                cmsLocaleId: 654112a3a525b2739d97664f
-                                enabled: true
-                                displayName: Spanish (Mexico)
-                                displayImageId: null
-                                subdirectory: es-mx
-                                tag: es-MX
+                              subdirectory: fr-fr
+                              tag: fr-FR
+                            - id: 654112a3a525b2739d97664c
+                              cmsLocaleId: 654112a3a525b2739d97664f
+                              enabled: true
+                              displayName: Spanish (Mexico)
+                              displayImageId: null
+                              subdirectory: es-mx
+                              tag: es-MX
                         dataCollectionEnabled: true
                         dataCollectionType: always
                       required:
@@ -2309,31 +2307,30 @@ paths:
                     - id: 589a331aa51e760df7ccb89e
                       url: heartofgold.spaceship
                   locales:
-                    value:
-                      primary:
-                        id: 653fd9af6a07fc9cfd7a5e57
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        enabled: false
-                        displayName: English (United States)
+                    primary:
+                      id: 653fd9af6a07fc9cfd7a5e57
+                      cmsLocaleId: 653ad57de882f528b32e810e
+                      enabled: false
+                      displayName: English (United States)
+                      displayImageId: null
+                      redirect: true
+                      subdirectory: ''
+                      tag: en-US
+                    secondary:
+                      - id: 653fd9af6a07fc9cfd7a5e56
+                        cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                        enabled: true
+                        displayName: French (France)
                         displayImageId: null
-                        redirect: true
-                        subdirectory: ''
-                        tag: en-US
-                      secondary:
-                        - id: 653fd9af6a07fc9cfd7a5e56
-                          cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
-                          enabled: true
-                          displayName: French (France)
-                          displayImageId: null
-                          subdirectory: fr-fr
-                          tag: fr-FR
-                        - id: 654112a3a525b2739d97664c
-                          cmsLocaleId: 654112a3a525b2739d97664f
-                          enabled: true
-                          displayName: Spanish (Mexico)
-                          displayImageId: null
-                          subdirectory: es-mx
-                          tag: es-MX
+                        subdirectory: fr-fr
+                        tag: fr-FR
+                      - id: 654112a3a525b2739d97664c
+                        cmsLocaleId: 654112a3a525b2739d97664f
+                        enabled: true
+                        displayName: Spanish (Mexico)
+                        displayImageId: null
+                        subdirectory: es-mx
+                        tag: es-MX
                   dataCollectionEnabled: true
                   dataCollectionType: always
                 required:
@@ -2943,31 +2940,30 @@ paths:
                     - id: 589a331aa51e760df7ccb89e
                       url: heartofgold.spaceship
                   locales:
-                    value:
-                      primary:
-                        id: 653fd9af6a07fc9cfd7a5e57
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        enabled: false
-                        displayName: English (United States)
+                    primary:
+                      id: 653fd9af6a07fc9cfd7a5e57
+                      cmsLocaleId: 653ad57de882f528b32e810e
+                      enabled: false
+                      displayName: English (United States)
+                      displayImageId: null
+                      redirect: true
+                      subdirectory: ''
+                      tag: en-US
+                    secondary:
+                      - id: 653fd9af6a07fc9cfd7a5e56
+                        cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                        enabled: true
+                        displayName: French (France)
                         displayImageId: null
-                        redirect: true
-                        subdirectory: ''
-                        tag: en-US
-                      secondary:
-                        - id: 653fd9af6a07fc9cfd7a5e56
-                          cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
-                          enabled: true
-                          displayName: French (France)
-                          displayImageId: null
-                          subdirectory: fr-fr
-                          tag: fr-FR
-                        - id: 654112a3a525b2739d97664c
-                          cmsLocaleId: 654112a3a525b2739d97664f
-                          enabled: true
-                          displayName: Spanish (Mexico)
-                          displayImageId: null
-                          subdirectory: es-mx
-                          tag: es-MX
+                        subdirectory: fr-fr
+                        tag: fr-FR
+                      - id: 654112a3a525b2739d97664c
+                        cmsLocaleId: 654112a3a525b2739d97664f
+                        enabled: true
+                        displayName: Spanish (Mexico)
+                        displayImageId: null
+                        subdirectory: es-mx
+                        tag: es-MX
                   dataCollectionEnabled: true
                   dataCollectionType: always
                 required:
