@@ -55728,9 +55728,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - skus
                 properties:
-                  required:
-                    - skus
                   skus:
                     type: array
                     items:
