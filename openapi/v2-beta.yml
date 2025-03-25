@@ -18249,7 +18249,7 @@ paths:
         List all published items in a collection.
 
         <Note title="Serve data with the Content Delivery API">
-          To serve content to your other frontends applications, enterprise sites have access to a dedicated [content delivery API](/data/docs/cms-cdn), available at api-cdn.webflow.com.
+          To serve content to your other frontends applications, enterprise sites have access to a dedicated [content delivery API](/data/docs/cms-content-delivery), available at api-cdn.webflow.com.
 
         </Note>
 
@@ -23064,7 +23064,7 @@ paths:
         Get details of a selected Collection live Item.
 
         <Note title="Serve data with the Content Delivery API">
-          To serve content to your other frontends applications, enterprise sites have access to a dedicated [content delivery API](/data/docs/cms-cdn), available at api-cdn.webflow.com.
+          To serve content to your other frontends applications, enterprise sites have access to a dedicated [content delivery API](/data/docs/cms-content-delivery), available at api-cdn.webflow.com.
 
         </Note>
 
@@ -51363,7 +51363,6 @@ paths:
                                                 - royal-blue
                                                 - crimson-red
                                                 - forrest-green
-                                                - null
                                 categories:
                                   type: array
                                   description: The categories your product belongs to.
@@ -51468,7 +51467,7 @@ paths:
                                     additionalProperties:
                                       type: string
                                     example:
-                                      ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                                      color: red
                                   name:
                                     type: string
                                     description: Name of the Product
@@ -51485,11 +51484,15 @@ paths:
                                         description: Price of SKU
                                         isRequired: true
                                         type: number
-                                        example: 100
+                                        example: 2499
                                       unit:
                                         type: string
                                         isRequired: true
                                         description: Currency of Item
+                                        example: USD
+                                      currency:
+                                        type: string
+                                        description: Currency of Item (alternative representation)
                                         example: USD
                                   compare-at-price:
                                     type: object
@@ -51558,9 +51561,25 @@ paths:
                                     type: number
                                     description: Quantity of SKU that will be tracked as items are ordered.
                                     example: 10
+                                  main-image:
+                                    type: string
+                                    description: The URL for the main image of the SKU
+                                    example: 'https://www.example.com/image.jpg'
                                 additionalProperties:
                                   type: string
                                   description: Custom fields for your SKU.
+                            example:
+                              fieldData:
+                                name: Colorful T-shirt - Default
+                                slug: colorful-t-shirt-default
+                                price:
+                                  value: 2499
+                                  currency: USD
+                                  unit: USD
+                              sku-values:
+                                color: red
+                                size: small
+                              main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
                   pagination:
                     description: Pagination object
                     type: object
@@ -52145,46 +52164,46 @@ paths:
               description: The Product and SKU to create
               type: object
               example:
-                id: 660eb7a486d1d6e0412292d7
-                cmsLocaleId: 653ad57de882f528b32e810e
-                lastPublished: '2024-04-04T14:24:19.467Z'
-                lastUpdated: '2024-04-04T14:30:19.282Z'
-                createdOn: '2024-04-04T14:22:28.547Z'
-                isArchived: false
-                isDraft: false
-                fieldData:
-                  tax-category: standard-taxable
-                  shippable: true
-                  ec-product-type: b6ccc1830db4b1babeb06a9ac5f6dd76
-                  sku-properties:
-                    - id: 31b77fa66fa376c2c0abb458d5be39fb
-                      name: Size
-                      enum:
-                        - id: 8d21a625d655ab260e9941c27180c75b
-                          name: Small
-                          slug: small
-                        - id: ecdca17106ad86c0dfe3b5f3ac8be6c9
-                          name: Medium
-                          slug: medium
-                        - id: ec7877d6137ecf7ec86f726c135b1812
-                          name: Large
-                          slug: large
-                    - id: 74d3738e62c568d5634dd6989daec5ec
-                      name: Color
-                      enum:
-                        - id: e539b0d6c3a609cd06ddb2da804f68f0
-                          name: Royal Blue
-                          slug: royal-blue
-                        - id: 68d98f2fbafc0fd45651cddc44798dd0
-                          name: Crimson Red
-                          slug: crimson-red
-                        - id: 996cd95c97fd5620d0a374c835b37205
-                          name: Forrest Green
-                          slug: forrest-green
-                  name: T-Shirt
-                  description: A plain t-shirt
-                  slug: t-shirt
-                  default-sku: 66072fb71b89448912e2681c
+                publishStatus: staging
+                product:
+                  fieldData:
+                    name: Colorful T-shirt
+                    slug: colorful-t-shirt
+                    description: Our best-selling t-shirt available in multiple colors and sizes
+                    sku-properties:
+                      - id: color
+                        name: Color
+                        enum:
+                          - id: red
+                            name: Red
+                            slug: red
+                          - id: yellow
+                            name: Yellow
+                            slug: yellow
+                          - id: blue
+                            name: Blue
+                            slug: blue
+                      - id: size
+                        name: Size
+                        enum:
+                          - id: small
+                            name: Small
+                            slug: small
+                          - id: medium
+                            name: Medium
+                            slug: medium
+                          - id: large
+                            name: Large
+                            slug: large
+                sku:
+                  fieldData:
+                    name: Colorful T-shirt - Red Small
+                    slug: colorful-t-shirt-red-small
+                    price:
+                      value: 2499
+                      currency: USD
+                      unit: USD
+                    main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
               properties:
                 publishStatus:
                   description: Indicate whether your Product should be set as "staging" or "live"
@@ -52195,91 +52214,11 @@ paths:
                   default: staging
                   example: staging
                 product:
-                  allOf:
-                    - description: The Product object
-                      type: object
-                      example:
-                        id: 660eb7a486d1d6e0412292d7
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        lastPublished: '2024-04-04T14:24:19.467Z'
-                        lastUpdated: '2024-04-04T14:30:19.282Z'
-                        createdOn: '2024-04-04T14:22:28.547Z'
-                        isArchived: false
-                        isDraft: false
-                        fieldData:
-                          tax-category: standard-taxable
-                          shippable: true
-                          ec-product-type: b6ccc1830db4b1babeb06a9ac5f6dd76
-                          sku-properties:
-                            - id: 31b77fa66fa376c2c0abb458d5be39fb
-                              name: Size
-                              enum:
-                                - id: 8d21a625d655ab260e9941c27180c75b
-                                  name: Small
-                                  slug: small
-                                - id: ecdca17106ad86c0dfe3b5f3ac8be6c9
-                                  name: Medium
-                                  slug: medium
-                                - id: ec7877d6137ecf7ec86f726c135b1812
-                                  name: Large
-                                  slug: large
-                            - id: 74d3738e62c568d5634dd6989daec5ec
-                              name: Color
-                              enum:
-                                - id: e539b0d6c3a609cd06ddb2da804f68f0
-                                  name: Royal Blue
-                                  slug: royal-blue
-                                - id: 68d98f2fbafc0fd45651cddc44798dd0
-                                  name: Crimson Red
-                                  slug: crimson-red
-                                - id: 996cd95c97fd5620d0a374c835b37205
-                                  name: Forrest Green
-                                  slug: forrest-green
-                          name: T-Shirt
-                          description: A plain t-shirt
-                          slug: t-shirt
-                          default-sku: 66072fb71b89448912e2681c
-                      properties:
-                        id:
-                          type: string
-                          readOnly: true
-                          description: Unique identifier for the Product
-                          example: 580e63fc8c9a982ac9b8b745
-                        cmsLocaleId:
-                          type: string
-                          readOnly: true
-                          example: 653ad57de882f528b32e810e
-                          description: Identifier for the locale of the CMS item
-                        lastPublished:
-                          type: string
-                          format: date-time
-                          readOnly: true
-                          description: The date the Product was last published
-                          example: '2023-03-17T18:47:35.560Z'
-                        lastUpdated:
-                          type: string
-                          format: date-time
-                          readOnly: true
-                          description: The date the Product was last updated
-                          example: '2023-03-17T18:47:35.560Z'
-                        createdOn:
-                          type: string
-                          format: date-time
-                          readOnly: true
-                          description: The date the Product was created
-                          example: '2023-03-17T18:47:35.560Z'
-                        isArchived:
-                          type: boolean
-                          default: false
-                          description: Boolean determining if the Product is set to archived
-                          example: false
-                        isDraft:
-                          type: boolean
-                          default: false
-                          description: Boolean determining if the Product is set to draft
-                          example: false
-                        fieldData:
-                          description: 'Contains content-specific details for a product, covering both standard (e.g., title, description)  and custom fields tailored to the product setup.'
+                  type: object
+                  properties:
+                    fieldData:
+                      allOf:
+                        - description: 'Contains content-specific details for a product, covering both standard (e.g., title, description)  and custom fields tailored to the product setup.'
                           type: object
                           properties:
                             name:
@@ -52351,7 +52290,6 @@ paths:
                                             - royal-blue
                                             - crimson-red
                                             - forrest-green
-                                            - null
                             categories:
                               type: array
                               description: The categories your product belongs to.
@@ -52405,147 +52343,136 @@ paths:
                           additionalProperties:
                             type: string
                             description: Custom fields for your product.
+                        - required:
+                            - name
+                            - slug
                 sku:
-                  description: The SKU object
                   type: object
                   properties:
-                    id:
-                      type: string
-                      readOnly: true
-                      format: objectid
-                      description: Unique identifier for the Product
-                      example: 580e63fc8c9a982ac9b8b745
-                    cmsLocaleId:
-                      type: string
-                      readOnly: true
-                      example: 653ad57de882f528b32e810e
-                      description: Identifier for the locale of the CMS item
-                    lastPublished:
-                      type: string
-                      format: date-time
-                      readOnly: true
-                      description: The date the Product was last published
-                      example: '2023-03-17T18:47:35.560Z'
-                    lastUpdated:
-                      type: string
-                      format: date-time
-                      readOnly: true
-                      description: The date the Product was last updated
-                      example: '2023-03-17T18:47:35.560Z'
-                    createdOn:
-                      type: string
-                      format: date-time
-                      readOnly: true
-                      description: The date the Product was created
-                      example: '2023-03-17T18:47:35.560Z'
                     fieldData:
-                      description: Standard and Custom fields for a SKU
-                      type: object
-                      required:
-                        - name
-                        - slug
-                        - price
-                      properties:
-                        sku-values:
+                      allOf:
+                        - description: Standard and Custom fields for a SKU
                           type: object
-                          description: |
-                            A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                          required:
+                            - name
+                            - slug
+                            - price
+                          properties:
+                            sku-values:
+                              type: object
+                              description: |
+                                A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                              additionalProperties:
+                                type: string
+                              example:
+                                color: red
+                            name:
+                              type: string
+                              description: Name of the Product
+                              example: Blue T-shirt
+                            slug:
+                              type: string
+                              description: URL structure of the Product in your site.
+                              example: t-shirt-blue
+                            price:
+                              type: object
+                              description: price of SKU
+                              properties:
+                                value:
+                                  description: Price of SKU
+                                  isRequired: true
+                                  type: number
+                                  example: 2499
+                                unit:
+                                  type: string
+                                  isRequired: true
+                                  description: Currency of Item
+                                  example: USD
+                                currency:
+                                  type: string
+                                  description: Currency of Item (alternative representation)
+                                  example: USD
+                            compare-at-price:
+                              type: object
+                              description: comparison price of SKU
+                              properties:
+                                value:
+                                  description: Price of SKU
+                                  type: number
+                                  example: 100
+                                unit:
+                                  type: string
+                                  description: Currency of Item
+                                  example: USD
+                            ec-sku-billing-method:
+                              description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
+                              type: string
+                              enum:
+                                - one-time
+                                - subscription
+                            ec-sku-subscription-plan:
+                              description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
+                              type: object
+                              properties:
+                                interval:
+                                  type: string
+                                  description: Interval of subscription renewal
+                                  enum:
+                                    - day
+                                    - week
+                                    - month
+                                    - year
+                                frequency:
+                                  type: number
+                                  description: Frequncy of billing within interval
+                                  example: 1
+                                trial:
+                                  type: number
+                                  description: Number of days of a trial
+                                  example: 7
+                                plans:
+                                  readOnly: true
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      platform:
+                                        type: string
+                                        enum:
+                                          - stripe
+                                        description: The platform of the subscription plan
+                                      id:
+                                        type: string
+                                        description: The unique identifier of the plan
+                                      status:
+                                        type: string
+                                        enum:
+                                          - active
+                                          - inactive
+                                          - canceled
+                                        description: The status of the plan
+                            track-inventory:
+                              type: boolean
+                              description: A boolean indicating whether inventory for this product should be tracked.
+                              default: false
+                            quantity:
+                              type: number
+                              description: Quantity of SKU that will be tracked as items are ordered.
+                              example: 10
+                            main-image:
+                              type: string
+                              description: The URL for the main image of the SKU
+                              example: 'https://www.example.com/image.jpg'
                           additionalProperties:
                             type: string
-                          example:
-                            ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
-                        name:
-                          type: string
-                          description: Name of the Product
-                          example: Blue T-shirt
-                        slug:
-                          type: string
-                          description: URL structure of the Product in your site.
-                          example: t-shirt-blue
-                        price:
-                          type: object
-                          description: price of SKU
-                          properties:
-                            value:
-                              description: Price of SKU
-                              isRequired: true
-                              type: number
-                              example: 100
-                            unit:
-                              type: string
-                              isRequired: true
-                              description: Currency of Item
-                              example: USD
-                        compare-at-price:
-                          type: object
-                          description: comparison price of SKU
-                          properties:
-                            value:
-                              description: Price of SKU
-                              type: number
-                              example: 100
-                            unit:
-                              type: string
-                              description: Currency of Item
-                              example: USD
-                        ec-sku-billing-method:
-                          description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
-                          type: string
-                          enum:
-                            - one-time
-                            - subscription
-                        ec-sku-subscription-plan:
-                          description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
-                          type: object
-                          properties:
-                            interval:
-                              type: string
-                              description: Interval of subscription renewal
-                              enum:
-                                - day
-                                - week
-                                - month
-                                - year
-                            frequency:
-                              type: number
-                              description: Frequncy of billing within interval
-                              example: 1
-                            trial:
-                              type: number
-                              description: Number of days of a trial
-                              example: 7
-                            plans:
-                              readOnly: true
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  platform:
-                                    type: string
-                                    enum:
-                                      - stripe
-                                    description: The platform of the subscription plan
-                                  id:
-                                    type: string
-                                    description: The unique identifier of the plan
-                                  status:
-                                    type: string
-                                    enum:
-                                      - active
-                                      - inactive
-                                      - canceled
-                                    description: The status of the plan
-                        track-inventory:
-                          type: boolean
-                          description: A boolean indicating whether inventory for this product should be tracked.
-                          default: false
-                        quantity:
-                          type: number
-                          description: Quantity of SKU that will be tracked as items are ordered.
-                          example: 10
-                      additionalProperties:
-                        type: string
-                        description: Custom fields for your SKU.
+                            description: Custom fields for your SKU.
+                        - required:
+                            - name
+                            - slug
+                            - price
+              required:
+                - product
+                - sku
       responses:
         '200':
           description: Request was successful
@@ -52711,7 +52638,6 @@ paths:
                                           - royal-blue
                                           - crimson-red
                                           - forrest-green
-                                          - null
                           categories:
                             type: array
                             description: The categories your product belongs to.
@@ -52816,7 +52742,7 @@ paths:
                               additionalProperties:
                                 type: string
                               example:
-                                ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                                color: red
                             name:
                               type: string
                               description: Name of the Product
@@ -52833,11 +52759,15 @@ paths:
                                   description: Price of SKU
                                   isRequired: true
                                   type: number
-                                  example: 100
+                                  example: 2499
                                 unit:
                                   type: string
                                   isRequired: true
                                   description: Currency of Item
+                                  example: USD
+                                currency:
+                                  type: string
+                                  description: Currency of Item (alternative representation)
                                   example: USD
                             compare-at-price:
                               type: object
@@ -52906,9 +52836,25 @@ paths:
                               type: number
                               description: Quantity of SKU that will be tracked as items are ordered.
                               example: 10
+                            main-image:
+                              type: string
+                              description: The URL for the main image of the SKU
+                              example: 'https://www.example.com/image.jpg'
                           additionalProperties:
                             type: string
                             description: Custom fields for your SKU.
+                      example:
+                        fieldData:
+                          name: Colorful T-shirt - Default
+                          slug: colorful-t-shirt-default
+                          price:
+                            value: 2499
+                            currency: USD
+                            unit: USD
+                        sku-values:
+                          color: red
+                          size: small
+                        main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -53628,7 +53574,6 @@ paths:
                                           - royal-blue
                                           - crimson-red
                                           - forrest-green
-                                          - null
                           categories:
                             type: array
                             description: The categories your product belongs to.
@@ -53733,7 +53678,7 @@ paths:
                               additionalProperties:
                                 type: string
                               example:
-                                ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                                color: red
                             name:
                               type: string
                               description: Name of the Product
@@ -53750,11 +53695,15 @@ paths:
                                   description: Price of SKU
                                   isRequired: true
                                   type: number
-                                  example: 100
+                                  example: 2499
                                 unit:
                                   type: string
                                   isRequired: true
                                   description: Currency of Item
+                                  example: USD
+                                currency:
+                                  type: string
+                                  description: Currency of Item (alternative representation)
                                   example: USD
                             compare-at-price:
                               type: object
@@ -53823,9 +53772,25 @@ paths:
                               type: number
                               description: Quantity of SKU that will be tracked as items are ordered.
                               example: 10
+                            main-image:
+                              type: string
+                              description: The URL for the main image of the SKU
+                              example: 'https://www.example.com/image.jpg'
                           additionalProperties:
                             type: string
                             description: Custom fields for your SKU.
+                      example:
+                        fieldData:
+                          name: Colorful T-shirt - Default
+                          slug: colorful-t-shirt-default
+                          price:
+                            value: 2499
+                            currency: USD
+                            unit: USD
+                        sku-values:
+                          color: red
+                          size: small
+                        main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -54594,7 +54559,6 @@ paths:
                                         - royal-blue
                                         - crimson-red
                                         - forrest-green
-                                        - null
                         categories:
                           type: array
                           description: The categories your product belongs to.
@@ -54696,7 +54660,7 @@ paths:
                           additionalProperties:
                             type: string
                           example:
-                            ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                            color: red
                         name:
                           type: string
                           description: Name of the Product
@@ -54713,11 +54677,15 @@ paths:
                               description: Price of SKU
                               isRequired: true
                               type: number
-                              example: 100
+                              example: 2499
                             unit:
                               type: string
                               isRequired: true
                               description: Currency of Item
+                              example: USD
+                            currency:
+                              type: string
+                              description: Currency of Item (alternative representation)
                               example: USD
                         compare-at-price:
                           type: object
@@ -54786,9 +54754,25 @@ paths:
                           type: number
                           description: Quantity of SKU that will be tracked as items are ordered.
                           example: 10
+                        main-image:
+                          type: string
+                          description: The URL for the main image of the SKU
+                          example: 'https://www.example.com/image.jpg'
                       additionalProperties:
                         type: string
                         description: Custom fields for your SKU.
+                  example:
+                    fieldData:
+                      name: Colorful T-shirt - Default
+                      slug: colorful-t-shirt-default
+                      price:
+                        value: 2499
+                        currency: USD
+                        unit: USD
+                    sku-values:
+                      color: red
+                      size: small
+                    main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
       responses:
         '200':
           description: Request was successful
@@ -54950,7 +54934,6 @@ paths:
                                       - royal-blue
                                       - crimson-red
                                       - forrest-green
-                                      - null
                       categories:
                         type: array
                         description: The categories your product belongs to.
@@ -55628,7 +55611,7 @@ paths:
                             additionalProperties:
                               type: string
                             example:
-                              ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                              color: red
                           name:
                             type: string
                             description: Name of the Product
@@ -55645,11 +55628,15 @@ paths:
                                 description: Price of SKU
                                 isRequired: true
                                 type: number
-                                example: 100
+                                example: 2499
                               unit:
                                 type: string
                                 isRequired: true
                                 description: Currency of Item
+                                example: USD
+                              currency:
+                                type: string
+                                description: Currency of Item (alternative representation)
                                 example: USD
                           compare-at-price:
                             type: object
@@ -55718,9 +55705,25 @@ paths:
                             type: number
                             description: Quantity of SKU that will be tracked as items are ordered.
                             example: 10
+                          main-image:
+                            type: string
+                            description: The URL for the main image of the SKU
+                            example: 'https://www.example.com/image.jpg'
                         additionalProperties:
                           type: string
                           description: Custom fields for your SKU.
+                    example:
+                      fieldData:
+                        name: Colorful T-shirt - Default
+                        slug: colorful-t-shirt-default
+                        price:
+                          value: 2499
+                          currency: USD
+                          unit: USD
+                      sku-values:
+                        color: red
+                        size: small
+                      main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
       responses:
         '200':
           description: Request was successful
@@ -55781,7 +55784,7 @@ paths:
                               additionalProperties:
                                 type: string
                               example:
-                                ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                                color: red
                             name:
                               type: string
                               description: Name of the Product
@@ -55798,11 +55801,15 @@ paths:
                                   description: Price of SKU
                                   isRequired: true
                                   type: number
-                                  example: 100
+                                  example: 2499
                                 unit:
                                   type: string
                                   isRequired: true
                                   description: Currency of Item
+                                  example: USD
+                                currency:
+                                  type: string
+                                  description: Currency of Item (alternative representation)
                                   example: USD
                             compare-at-price:
                               type: object
@@ -55871,9 +55878,25 @@ paths:
                               type: number
                               description: Quantity of SKU that will be tracked as items are ordered.
                               example: 10
+                            main-image:
+                              type: string
+                              description: The URL for the main image of the SKU
+                              example: 'https://www.example.com/image.jpg'
                           additionalProperties:
                             type: string
                             description: Custom fields for your SKU.
+                      example:
+                        fieldData:
+                          name: Colorful T-shirt - Default
+                          slug: colorful-t-shirt-default
+                          price:
+                            value: 2499
+                            currency: USD
+                            unit: USD
+                        sku-values:
+                          color: red
+                          size: small
+                        main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -56503,7 +56526,7 @@ paths:
                           additionalProperties:
                             type: string
                           example:
-                            ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                            color: red
                         name:
                           type: string
                           description: Name of the Product
@@ -56520,11 +56543,15 @@ paths:
                               description: Price of SKU
                               isRequired: true
                               type: number
-                              example: 100
+                              example: 2499
                             unit:
                               type: string
                               isRequired: true
                               description: Currency of Item
+                              example: USD
+                            currency:
+                              type: string
+                              description: Currency of Item (alternative representation)
                               example: USD
                         compare-at-price:
                           type: object
@@ -56593,9 +56620,25 @@ paths:
                           type: number
                           description: Quantity of SKU that will be tracked as items are ordered.
                           example: 10
+                        main-image:
+                          type: string
+                          description: The URL for the main image of the SKU
+                          example: 'https://www.example.com/image.jpg'
                       additionalProperties:
                         type: string
                         description: Custom fields for your SKU.
+                  example:
+                    fieldData:
+                      name: Colorful T-shirt - Default
+                      slug: colorful-t-shirt-default
+                      price:
+                        value: 2499
+                        currency: USD
+                        unit: USD
+                    sku-values:
+                      color: red
+                      size: small
+                    main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
       responses:
         '200':
           description: Request was successful
@@ -56649,7 +56692,7 @@ paths:
                         additionalProperties:
                           type: string
                         example:
-                          ff42fee0113744f693a764e3431a9cc2: 64a74715c456e36762fc39a1
+                          color: red
                       name:
                         type: string
                         description: Name of the Product
@@ -56666,11 +56709,15 @@ paths:
                             description: Price of SKU
                             isRequired: true
                             type: number
-                            example: 100
+                            example: 2499
                           unit:
                             type: string
                             isRequired: true
                             description: Currency of Item
+                            example: USD
+                          currency:
+                            type: string
+                            description: Currency of Item (alternative representation)
                             example: USD
                       compare-at-price:
                         type: object
@@ -56739,9 +56786,25 @@ paths:
                         type: number
                         description: Quantity of SKU that will be tracked as items are ordered.
                         example: 10
+                      main-image:
+                        type: string
+                        description: The URL for the main image of the SKU
+                        example: 'https://www.example.com/image.jpg'
                     additionalProperties:
                       type: string
                       description: Custom fields for your SKU.
+                example:
+                  fieldData:
+                    name: Colorful T-shirt - Default
+                    slug: colorful-t-shirt-default
+                    price:
+                      value: 2499
+                      currency: USD
+                      unit: USD
+                  sku-values:
+                    color: red
+                    size: small
+                  main-image: 'https://rocketamp-sample-store.myshopify.com/cdn/shop/products/Gildan_2000_Antique_Cherry_Red_Front_1024x1024.jpg?v=1527232987'
                 required:
                   - id
                   - lastPublished
