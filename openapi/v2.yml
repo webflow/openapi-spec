@@ -24451,6 +24451,1886 @@ paths:
                 message: An Internal Error occurred
                 externalReference: null
                 details: []
+  '/sites/{site_id}/comments':
+    get:
+      x-fern-sdk-group-name:
+        - sites
+        - comments
+      x-fern-sdk-method-name: list-comment-threads
+      security:
+        - OAuth2:
+            - 'comments:read'
+      operationId: list-comment-threads
+      summary: List Comment Threads
+      description: |
+        List all comment threads for a site.
+
+        Required scope | `comments:read`
+      tags:
+        - Comments
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - name: sortBy
+          in: query
+          allowEmptyValue: true
+          description: Sort results by the provided value. Only allowed when sortOrder is provided.
+          required: false
+          schema:
+            type: string
+            enum:
+              - createdOn
+              - lastUpdated
+        - name: sortOrder
+          in: query
+          allowEmptyValue: true
+          description: Sorts the results by asc or desc
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  A list of comment threads on the site. Contains the content of the first reply.
+                required:
+                  - comments
+                  - pagination
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      description: |
+                        A comment thread represents a conversation between users on a specific page. Each comment thread has a unique identifier and can contain multiple comments. Retrieve comment replies using the repiles API endpoint.
+                      type: object
+                      required:
+                        - id
+                        - siteId
+                        - pageId
+                        - localeId
+                        - itemId
+                        - breakpoint
+                        - url
+                        - content
+                        - isResolved
+                        - author
+                        - mentionedUsers
+                        - createdOn
+                        - lastUpdated
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: Unique identifier for the comment thread
+                        siteId:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: The site unique identifier
+                        pageId:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: The page unique identifier
+                        localeId:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: The locale unique identifier
+                          nullable: true
+                        itemId:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: The item unique identifier
+                          nullable: true
+                        breakpoint:
+                          type: string
+                          readOnly: true
+                          example: main
+                          description: The breakpoint the comment was left on
+                        url:
+                          type: string
+                          readOnly: true
+                          example: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                          description: The URL of the page the comment was left on
+                        content:
+                          type: string
+                          example: This is a comment reply
+                          description: The content of the comment reply
+                        isResolved:
+                          type: boolean
+                          default: false
+                          description: Boolean determining if the comment thread is resolved
+                        author:
+                          type: object
+                          required:
+                            - userId
+                            - email
+                            - name
+                          properties:
+                            userId:
+                              type: string
+                              description: The unique identifier of the author
+                            email:
+                              type: string
+                              description: Email of the author
+                            name:
+                              type: string
+                              description: Name of the author
+                          example:
+                            id: 6287ec36a841b25637c663df
+                            email: email
+                            name: name
+                        mentionedUsers:
+                          type: array
+                          description: 'List of mentioned users. This is an empty array until email notifications are sent, which can take up to 5 minutes after the comment is created.'
+                          items:
+                            type: object
+                            required:
+                              - userId
+                              - email
+                              - name
+                            properties:
+                              userId:
+                                type: string
+                                description: The unique identifier of the mentioned user
+                              email:
+                                type: string
+                                description: Email of the user
+                              name:
+                                type: string
+                                description: Name of the  User
+                            example:
+                              userId: 6287ec36a841b25637c663df
+                              email: arthur.dent@heartofgold.spaceship
+                              name: Arthur Dent
+                        createdOn:
+                          type: string
+                          format: date-string
+                          readOnly: true
+                          example: '2023-03-17T18:47:35.560Z'
+                          description: The date the item was created
+                        lastUpdated:
+                          type: string
+                          format: date-string
+                          readOnly: true
+                          example: '2023-03-17T18:47:35.560Z'
+                          description: The date the item was last updated
+                      example:
+                        value:
+                          id: 679d2ddb5196117ad04d1ffa
+                          siteId: 679826b3b20b045e176bc4b5
+                          pageId: 679826b3b20b045e176bc4bc
+                          localeId: 67993753d910db250db64b3e
+                          itemId: null
+                          breakpoint: main
+                          url: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                          content: 'This comment mentions another user [[6287ec36a841b25637c663df]] '
+                          isResolved: false
+                          author:
+                            userId: 6287ec36a841b25637c663df
+                            email: ford.prefect@heartofgold.spaceship
+                            name: Ford Prefect
+                          mentionedUsers:
+                            - userId: 6287ec36a841b25637c663df
+                              email: arthur.dent@heartofgold.spaceship
+                              name: Arthur Dent
+                          createdOn: '2025-01-31T20:08:59.759Z'
+                          lastUpdated: '2025-01-31T20:08:59.759Z'
+                  pagination:
+                    type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
+                    properties:
+                      limit:
+                        type: number
+                        default: 100
+                        description: The limit specified in the request (default 100)
+                      offset:
+                        type: number
+                        default: 0
+                        description: The offset specified for pagination
+                      total:
+                        type: number
+                        description: Total number of comment threads
+                example:
+                  comments:
+                    - id: 679d2ddb5196117ad04d1ffa
+                      siteId: 679826b3b20b045e176bc4b5
+                      pageId: 679826b3b20b045e176bc4bc
+                      localeId: 67993753d910db250db64b3e
+                      itemId: null
+                      breakpoint: main
+                      url: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                      content: 'Let''s go to the pub! [[6287ec36a841b25637c663df]] '
+                      isResolved: false
+                      author:
+                        userId: 6287ec36a841b25637c663df
+                        email: ford.prefect@heartofgold.spaceship
+                        name: Ford Prefect
+                      mentionedUsers:
+                        - userId: 6287ec36a841b25637c663df
+                          email: arthur.dent@heartofgold.spaceship
+                          name: Arthur Dent
+                      createdOn: '2025-01-31T20:08:59.759Z'
+                      lastUpdated: '2025-01-31T20:08:59.759Z'
+                    - id: 679d2ddb5196117ad04d1ffc
+                      siteId: 679826b3b20b045e176bc4b5
+                      pageId: 679826b3b20b045e176bc4bc
+                      localeId: 67993753d910db250db64b3e
+                      itemId: null
+                      breakpoint: main
+                      url: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                      content: 'You have five minutes left to drink it [[6287ec36a841b25637c663df]] '
+                      isResolved: false
+                      author:
+                        userId: 6287ec36a841b25637c663df
+                        email: ford.prefect@heartofgold.spaceship
+                        name: Ford Prefect
+                      mentionedUsers:
+                        - userId: 6287ec36a841b25637c663df
+                          email: arthur.dent@heartofgold.spaceship
+                          name: Arthur Dent
+                      createdOn: '2025-01-31T20:08:59.759Z'
+                      lastUpdated: '2025-01-31T20:08:59.759Z'
+                  pagination:
+                    limit: 2
+                    offset: 0
+                    total: 2
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+  '/sites/{site_id}/comments/{comment_thread_id}':
+    get:
+      x-fern-sdk-group-name:
+        - sites
+        - comments
+      x-fern-sdk-method-name: get-comment-thread
+      security:
+        - OAuth2:
+            - 'comments:read'
+      operationId: get-comment-thread
+      summary: Get Comment Thread
+      description: |
+        Get details of a specific comment thread.
+
+        Required scope | `comments:read`
+      tags:
+        - Comments
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: comment_thread_id
+          in: path
+          description: Unique identifier for a Comment Thread
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - name: sortBy
+          in: query
+          allowEmptyValue: true
+          description: Sort results by the provided value. Only allowed when sortOrder is provided.
+          required: false
+          schema:
+            type: string
+            enum:
+              - createdOn
+              - lastUpdated
+        - name: sortOrder
+          in: query
+          allowEmptyValue: true
+          description: Sorts the results by asc or desc
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  A comment thread represents a conversation between users on a specific page. Each comment thread has a unique identifier and can contain multiple comments. Retrieve comment replies using the repiles API endpoint.
+                type: object
+                required:
+                  - id
+                  - siteId
+                  - pageId
+                  - localeId
+                  - itemId
+                  - breakpoint
+                  - url
+                  - content
+                  - isResolved
+                  - author
+                  - mentionedUsers
+                  - createdOn
+                  - lastUpdated
+                properties:
+                  id:
+                    type: string
+                    readOnly: true
+                    example: 580e64008c9a982ac9b8b754
+                    description: Unique identifier for the comment thread
+                  siteId:
+                    type: string
+                    readOnly: true
+                    example: 580e64008c9a982ac9b8b754
+                    description: The site unique identifier
+                  pageId:
+                    type: string
+                    readOnly: true
+                    example: 580e64008c9a982ac9b8b754
+                    description: The page unique identifier
+                  localeId:
+                    type: string
+                    readOnly: true
+                    example: 580e64008c9a982ac9b8b754
+                    description: The locale unique identifier
+                    nullable: true
+                  itemId:
+                    type: string
+                    readOnly: true
+                    example: 580e64008c9a982ac9b8b754
+                    description: The item unique identifier
+                    nullable: true
+                  breakpoint:
+                    type: string
+                    readOnly: true
+                    example: main
+                    description: The breakpoint the comment was left on
+                  url:
+                    type: string
+                    readOnly: true
+                    example: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                    description: The URL of the page the comment was left on
+                  content:
+                    type: string
+                    example: This is a comment reply
+                    description: The content of the comment reply
+                  isResolved:
+                    type: boolean
+                    default: false
+                    description: Boolean determining if the comment thread is resolved
+                  author:
+                    type: object
+                    required:
+                      - userId
+                      - email
+                      - name
+                    properties:
+                      userId:
+                        type: string
+                        description: The unique identifier of the author
+                      email:
+                        type: string
+                        description: Email of the author
+                      name:
+                        type: string
+                        description: Name of the author
+                    example:
+                      id: 6287ec36a841b25637c663df
+                      email: email
+                      name: name
+                  mentionedUsers:
+                    type: array
+                    description: 'List of mentioned users. This is an empty array until email notifications are sent, which can take up to 5 minutes after the comment is created.'
+                    items:
+                      type: object
+                      required:
+                        - userId
+                        - email
+                        - name
+                      properties:
+                        userId:
+                          type: string
+                          description: The unique identifier of the mentioned user
+                        email:
+                          type: string
+                          description: Email of the user
+                        name:
+                          type: string
+                          description: Name of the  User
+                      example:
+                        userId: 6287ec36a841b25637c663df
+                        email: arthur.dent@heartofgold.spaceship
+                        name: Arthur Dent
+                  createdOn:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: '2023-03-17T18:47:35.560Z'
+                    description: The date the item was created
+                  lastUpdated:
+                    type: string
+                    format: date-string
+                    readOnly: true
+                    example: '2023-03-17T18:47:35.560Z'
+                    description: The date the item was last updated
+                example:
+                  value:
+                    id: 679d2ddb5196117ad04d1ffa
+                    siteId: 679826b3b20b045e176bc4b5
+                    pageId: 679826b3b20b045e176bc4bc
+                    localeId: 67993753d910db250db64b3e
+                    itemId: null
+                    breakpoint: main
+                    url: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                    content: 'This comment mentions another user [[6287ec36a841b25637c663df]] '
+                    isResolved: false
+                    author:
+                      userId: 6287ec36a841b25637c663df
+                      email: ford.prefect@heartofgold.spaceship
+                      name: Ford Prefect
+                    mentionedUsers:
+                      - userId: 6287ec36a841b25637c663df
+                        email: arthur.dent@heartofgold.spaceship
+                        name: Arthur Dent
+                    createdOn: '2025-01-31T20:08:59.759Z'
+                    lastUpdated: '2025-01-31T20:08:59.759Z'
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
+  '/sites/{site_id}/comments/{comment_thread_id}/replies':
+    get:
+      x-fern-sdk-group-name:
+        - sites
+        - comments
+        - replies
+      x-fern-sdk-method-name: list-replies
+      security:
+        - OAuth2:
+            - 'comments:read'
+      operationId: list-comment-replies
+      summary: List Comment Replies
+      description: |
+        List all replies to a specific comment thread.
+
+        Required scope | `comments:read`
+      tags:
+        - Comments
+        - Sites
+      parameters:
+        - name: site_id
+          in: path
+          description: Unique identifier for a Site
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+            default: null
+        - name: comment_thread_id
+          in: path
+          description: Unique identifier for a Comment Thread
+          example: 580e63e98c9a982ac9b8b741
+          required: true
+          schema:
+            type: string
+            format: objectid
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          schema:
+            type: string
+        - in: query
+          example: 0
+          allowEmptyValue: true
+          name: offset
+          description: Offset used for pagination if the results have more than limit records
+          required: false
+          schema:
+            type: number
+        - in: query
+          allowEmptyValue: true
+          name: limit
+          example: 100
+          description: 'Maximum number of records to be returned (max limit: 100)'
+          required: false
+          schema:
+            type: number
+        - name: sortBy
+          in: query
+          allowEmptyValue: true
+          description: Sort results by the provided value. Only allowed when sortOrder is provided.
+          required: false
+          schema:
+            type: string
+            enum:
+              - createdOn
+              - lastUpdated
+        - name: sortOrder
+          in: query
+          allowEmptyValue: true
+          description: Sorts the results by asc or desc
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: |
+                  A list of comment replies.
+                required:
+                  - comments
+                  - pagination
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      description: |
+                        A comment thread represents a conversation between users on a specific page. Each comment thread has a unique identifier and can contain multiple comments.
+                      type: object
+                      required:
+                        - id
+                        - commentId
+                        - siteId
+                        - pageId
+                        - breakpoint
+                        - content
+                        - isResolved
+                        - author
+                        - lastUpdated
+                        - createdOn
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: Unique identifier for the comment thread
+                        commentId:
+                          type: string
+                          readOnly: true
+                          example: 679d2ddb5196117ad04d1ff8
+                          description: The comment reply unique identifier
+                        siteId:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: The site unique identifier
+                        pageId:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: The page unique identifier
+                        localeId:
+                          type: string
+                          readOnly: true
+                          example: 580e64008c9a982ac9b8b754
+                          description: The locale unique identifier
+                        breakpoint:
+                          type: string
+                          readOnly: true
+                          example: main
+                          description: The breakpoint the comment was left on
+                        content:
+                          type: string
+                          example: This is a comment reply
+                          description: The content of the comment reply
+                        isResolved:
+                          type: boolean
+                          default: false
+                          description: Boolean determining if the comment thread is resolved
+                        author:
+                          type: object
+                          required:
+                            - id
+                            - email
+                            - name
+                          properties:
+                            id:
+                              type: string
+                              description: The unique identifier of the author
+                            email:
+                              type: string
+                              description: Email of the author
+                            name:
+                              type: string
+                              description: Name of the author
+                          example:
+                            id: 6287ec36a841b25637c663df
+                            email: email
+                            name: name
+                        mentionedUsers:
+                          type: array
+                          description: List of mentioned users is an empty array until email notifications are sent.
+                          items:
+                            type: object
+                            required:
+                              - id
+                              - email
+                              - name
+                            properties:
+                              id:
+                                type: string
+                                description: The unique identifier of the mentioned user
+                              email:
+                                type: string
+                                description: Email of the user
+                              name:
+                                type: string
+                                description: Name of the  User
+                            example:
+                              id: 6287ec36a841b25637c663df
+                              email: arthur.dent@example.com
+                              name: Arthur Dent
+                        lastUpdated:
+                          type: string
+                          format: date-string
+                          readOnly: true
+                          example: '2023-03-17T18:47:35.560Z'
+                          description: The date the item was last updated
+                        createdOn:
+                          type: string
+                          format: date-string
+                          readOnly: true
+                          example: '2023-03-17T18:47:35.560Z'
+                          description: The date the item was created
+                  pagination:
+                    type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
+                    properties:
+                      limit:
+                        type: number
+                        default: 100
+                        description: The limit specified in the request (default 100)
+                      offset:
+                        type: number
+                        default: 0
+                        description: The offset specified for pagination
+                      total:
+                        type: number
+                        description: Total number of comment replies
+                example:
+                  comments:
+                    - id: 679d2ddb5196117ad04d1ffa
+                      commentId: 679d2ddb5196117ad04d1ff8
+                      siteId: 679826b3b20b045e176bc4b5
+                      pageId: 679826b3b20b045e176bc4bc
+                      localeId: 67993753d910db250db64b3e
+                      itemId: null
+                      breakpoint: main
+                      url: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                      content: 'This comment mentions another user [[6287ec36a841b25637c663df]] '
+                      isResolved: false
+                      author:
+                        userId: 6287ec36a841b25637c663df
+                        email: email
+                        name: name
+                      mentionedUsers:
+                        - userId: 6287ec36a841b25637c663df
+                          email: arthur.dent@example.com
+                          name: Arthur Dent
+                      createdOn: '2025-01-31T20:08:59.759Z'
+                      lastUpdated: '2025-01-31T20:08:59.759Z'
+                  pagination:
+                    limit: 2
+                    offset: 0
+                    total: 1
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
   '/sites/{site_id}/pages':
     get:
       x-fern-sdk-group-name: pages
