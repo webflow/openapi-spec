@@ -10209,15 +10209,13 @@ paths:
         The current restrictions on well-known files are as follows:
           - Each file must be smaller than 100kb
           - Less than 30 total files
-          - Have one of the following file extensions (or no extension)
-            - .txt
-            - .json
-            - .noext
-              - This is a special file extension that removes other extensions
-              - E.g. apple-app-site-association.noext.txt will be uploaded as apple-app-site-association
-              - This is used for uploader tools that have trouble with extensionless files
+          - Have one of the following file extensions (or no extension): `.txt`, `.json`, `.noext` 
+          
+          <Note title=".noext">
+            `.noext` is a special file extension that removes other extensions. For example, `apple-app-site-association.noext.txt` will be uploaded as `apple-app-site-association`. Use this extension for tools that have trouble uploading extensionless files.
+          </Note>
 
-        Required Scope: `site_config:write`
+        Required scope: `site_config:write`
       tags:
         - Sites
         - Site Administration
@@ -10235,11 +10233,14 @@ paths:
         content:
           application/json:
             schema:
+              type: object
+              required:
+                - fileName
+                - fileData
               properties:
                 fileName:
                   type: string
                   description: The name of the file
-                  required: true
                   examples:
                     example1:
                       summary: Apple App Site Association
@@ -10250,7 +10251,6 @@ paths:
                 fileData:
                   type: string
                   description: The contents of the file
-                  required: true
                   examples:
                     example1:
                       summary: Apple App Site Association File Example
@@ -10281,13 +10281,36 @@ paths:
                   enum:
                     - application/json
                     - text/plain
-                  examples:
-                    example1:
-                      summary: JSON
-                      value: application/json
-                    example2:
-                      summary: Plain Text
-                      value: text/plain
+                  example: application/json
+              examples:
+                appleAppSiteAssociation:
+                  summary: Apple App Site Association
+                  value:
+                    fileName: apple-app-site-association.txt
+                    fileData: |
+                      {
+                        "applinks": {
+                          "apps": [],
+                          "details": [
+                        {
+                          "appID": "ABCDE12345.com.example.app",
+                          "paths": [ "/*", "/some/path/*" ]
+                            }
+                          ]
+                        }
+                      }
+                    contentType: application/json
+                appleDeveloperMerchantIdDomainAssociation:
+                  summary: Apple Developer Merchant ID Domain Association
+                  value:
+                    fileName: apple-developer-merchantid-domain-association.txt
+                    fileData: |
+                      {
+                        "merchantId": "merchant.com.example",
+                        "merchantName": "Example Inc.",
+                        "domainAssociation": "web"
+                      }
+                    contentType: text/plain
       responses:
         '201':
           description: File uploaded successfully
@@ -10674,10 +10697,10 @@ paths:
       operationId: delete-well-known
       summary: Delete a well-known file
       description: |
-        Delete an existing well-known files from a site.
+        Delete existing well-known files from a site.
 
 
-        Required Scope: `site_config:write`
+        Required scope: `site_config:write`
       tags:
         - Sites
         - Site Administration
