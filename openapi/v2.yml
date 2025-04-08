@@ -7519,6 +7519,8 @@ paths:
       description: |
         Retrieve the robots.txt configuration for various user agents.
 
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
+
         Required scope: `site_config:read`
       tags:
         - Sites
@@ -7965,6 +7967,8 @@ paths:
       summary: Replace robots.txt
       description: |
         Replace the `robots.txt` configuration for various user agents.
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope | `site_config:write`
       tags:
@@ -8457,6 +8461,8 @@ paths:
       summary: Update robots.txt
       description: |
         Update the `robots.txt` configuration for various user agents.
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope | `site_config:write`
       tags:
@@ -8952,6 +8958,8 @@ paths:
 
         **Note:** Deleting a user-agent with no rules will make the user-agent's access unrestricted unless other directives apply.
 
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
+
         Required scope: `site_config:write`
       tags:
         - Sites
@@ -9439,7 +9447,9 @@ paths:
                 details: []
   '/sites/{site_id}/well_known':
     put:
-      x-fern-sdk-group-name: well_known
+      x-fern-sdk-group-name:
+        - sites
+        - well-known
       x-fern-sdk-method-name: put
       security:
         - OAuth2:
@@ -9457,6 +9467,8 @@ paths:
           <Note title=".noext">
             `.noext` is a special file extension that removes other extensions. For example, `apple-app-site-association.noext.txt` will be uploaded as `apple-app-site-association`. Use this extension for tools that have trouble uploading extensionless files.
           </Note>
+
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope: `site_config:write`
       tags:
@@ -9932,7 +9944,9 @@ paths:
                 externalReference: null
                 details: []
     delete:
-      x-fern-sdk-group-name: well_known
+      x-fern-sdk-group-name:
+        - sites
+        - well-known
       x-fern-sdk-method-name: delete
       security:
         - OAuth2:
@@ -9942,6 +9956,7 @@ paths:
       description: |
         Delete existing well-known files from a site.
 
+        <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
         Required scope: `site_config:write`
       tags:
@@ -11757,11 +11772,13 @@ paths:
                             - DateTime
                             - Email
                             - ExtFileRef
+                            - File
                             - Image
                             - Link
                             - MultiImage
                             - MultiReference
                             - Number
+                            - Option
                             - Phone
                             - PlainText
                             - Reference
@@ -12372,11 +12389,13 @@ paths:
                             - DateTime
                             - Email
                             - ExtFileRef
+                            - File
                             - Image
                             - Link
                             - MultiImage
                             - MultiReference
                             - Number
+                            - Option
                             - Phone
                             - PlainText
                             - Reference
@@ -14212,11 +14231,13 @@ paths:
                       - DateTime
                       - Email
                       - ExtFileRef
+                      - File
                       - Image
                       - Link
                       - MultiImage
                       - MultiReference
                       - Number
+                      - Option
                       - Phone
                       - PlainText
                       - Reference
@@ -17070,6 +17091,8 @@ paths:
         content:
           application/json:
             schema:
+              required:
+                - items
               properties:
                 items:
                   type: array
@@ -19710,6 +19733,8 @@ paths:
         content:
           application/json:
             schema:
+              required:
+                - items
               properties:
                 items:
                   type: array
