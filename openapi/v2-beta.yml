@@ -25191,6 +25191,10 @@ paths:
       description: |
         List all comment threads for a site.
 
+        <Note title="Timing of comment threads">
+          There may be a delay of up to 5 minutes before new comments appear in the system.
+        </Note>
+
         Required scope | `comments:read`
       tags:
         - Comments
@@ -25264,7 +25268,7 @@ paths:
                     type: array
                     items:
                       description: |
-                        A comment thread represents a conversation between users on a specific page. Each comment thread has a unique identifier and can contain multiple comments. Retrieve comment replies using the repiles API endpoint.
+                        A comment thread represents a conversation between users on a specific page. Each comment thread has a unique identifier and can contain multiple comments. Retrieve comment replies using the replies API endpoint.
                       type: object
                       required:
                         - id
@@ -25852,6 +25856,10 @@ paths:
       description: |
         Get details of a specific comment thread.
 
+          <Note title="Timing of comment threads">
+            There may be a delay of up to 5 minutes before new comments appear in the system.
+          </Note>
+
         Required scope | `comments:read`
       tags:
         - Comments
@@ -25924,7 +25932,7 @@ paths:
             application/json:
               schema:
                 description: |
-                  A comment thread represents a conversation between users on a specific page. Each comment thread has a unique identifier and can contain multiple comments. Retrieve comment replies using the repiles API endpoint.
+                  A comment thread represents a conversation between users on a specific page. Each comment thread has a unique identifier and can contain multiple comments. Retrieve comment replies using the replies API endpoint.
                 type: object
                 required:
                   - id
@@ -26441,8 +26449,7 @@ paths:
       x-fern-sdk-group-name:
         - sites
         - comments
-        - replies
-      x-fern-sdk-method-name: list-replies
+      x-fern-sdk-method-name: list-comment-replies
       security:
         - OAuth2:
             - 'comments:read'
@@ -26450,6 +26457,10 @@ paths:
       summary: List Comment Replies
       description: |
         List all replies to a specific comment thread.
+
+        <Note title="Timing of comment threads">
+          There may be a delay of up to 5 minutes before new comments appear in the system.
+        </Note>
 
         Required scope | `comments:read`
       tags:
@@ -42574,6 +42585,7 @@ paths:
                             - collection_item_changed
                             - collection_item_deleted
                             - collection_item_unpublished
+                            - comment_created
                         url:
                           type: string
                           example: 'https://example.com/webhook'
@@ -43071,6 +43083,7 @@ paths:
                     - collection_item_changed
                     - collection_item_deleted
                     - collection_item_unpublished
+                    - comment_created
                 url:
                   type: string
                   example: 'https://example.com/webhook'
@@ -43150,6 +43163,7 @@ paths:
                       - collection_item_changed
                       - collection_item_deleted
                       - collection_item_unpublished
+                      - comment_created
                   url:
                     type: string
                     example: 'https://example.com/webhook'
@@ -43624,6 +43638,7 @@ paths:
                       - collection_item_changed
                       - collection_item_deleted
                       - collection_item_unpublished
+                      - comment_created
                   url:
                     type: string
                     example: 'https://example.com/webhook'
@@ -73599,7 +73614,7 @@ webhooks:
   collection_item_created:
     post:
       operationId: collection_item_created
-      summary: CollectionItem Created
+      summary: Collection Item Created
       description: Information about a new collection item
       tags:
         - Items
@@ -74309,3 +74324,204 @@ webhooks:
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
+  comment_created:
+    post:
+      operationId: comment_created
+      summary: New Comment Thread
+      description: |
+        Information about a new comment thread or reply
+
+        <Note title="Timing of comment webhooks">
+          There may be a delay of up to 5 minutes before new comments appear in the system and trigger the webhook notification.
+        </Note>
+      tags:
+        - Comments
+      requestBody:
+        description: The information about the new comment thread or reply
+        content:
+          application/json:
+            schema:
+              description: The Webhook payload for when a comment thread or reply is made on a Site
+              properties:
+                triggerType:
+                  description: The type of event that triggered the request
+                  type: string
+                  example: comment_created
+                payload:
+                  description: |
+                    The comment webhook payload contains data for the thread and for replies.  Check the type to determine if the payload is for a thread or a reply.  The webhook payload may be delayed by up to 5 minutes.
+                  type: object
+                  required:
+                    - threadId
+                    - commentId
+                    - type
+                    - siteId
+                    - pageId
+                    - localeId
+                    - itemId
+                    - breakpoint
+                    - url
+                    - content
+                    - isResolved
+                    - author
+                    - mentionedUsers
+                    - createdOn
+                    - lastUpdated
+                  properties:
+                    threadId:
+                      type: string
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: Unique identifier for the comment thread
+                    commentId:
+                      type: string
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: Unique identifier for the comment reply
+                    type:
+                      type: string
+                      readOnly: true
+                      example: new_comment | reply
+                      description: The type of comment payload
+                    siteId:
+                      type: string
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: The site unique identifier
+                    pageId:
+                      type: string
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: The page unique identifier
+                    localeId:
+                      type: string
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: The locale unique identifier
+                      nullable: true
+                    itemId:
+                      type: string
+                      readOnly: true
+                      example: 580e64008c9a982ac9b8b754
+                      description: The item unique identifier
+                      nullable: true
+                    breakpoint:
+                      type: string
+                      readOnly: true
+                      example: main
+                      description: The breakpoint the comment was left on
+                    url:
+                      type: string
+                      readOnly: true
+                      example: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
+                      description: The URL of the page the comment was left on
+                    content:
+                      type: string
+                      example: This is a comment reply
+                      description: The content of the comment reply
+                    isResolved:
+                      type: boolean
+                      default: false
+                      description: Boolean determining if the comment thread is resolved
+                    author:
+                      type: object
+                      required:
+                        - userId
+                        - email
+                        - name
+                      properties:
+                        userId:
+                          type: string
+                          description: The unique identifier of the author
+                        email:
+                          type: string
+                          description: Email of the author
+                        name:
+                          type: string
+                          description: Name of the author
+                      example:
+                        id: 6287ec36a841b25637c663df
+                        email: email
+                        name: name
+                    mentionedUsers:
+                      type: array
+                      description: 'List of mentioned users. This is an empty array until email notifications are sent, which can take up to 5 minutes after the comment is created.'
+                      items:
+                        type: object
+                        required:
+                          - userId
+                          - email
+                          - name
+                        properties:
+                          userId:
+                            type: string
+                            description: The unique identifier of the mentioned user
+                          email:
+                            type: string
+                            description: Email of the user
+                          name:
+                            type: string
+                            description: Name of the  User
+                        example:
+                          userId: 6287ec36a841b25637c663df
+                          email: arthur.dent@heartofgold.spaceship
+                          name: Arthur Dent
+                    createdOn:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: '2023-03-17T18:47:35.560Z'
+                      description: The date the item was created
+                    lastUpdated:
+                      type: string
+                      format: date-string
+                      readOnly: true
+                      example: '2023-03-17T18:47:35.560Z'
+                      description: The date the item was last updated
+                  example:
+                    value:
+                      triggerType: comment_created
+                      payload:
+                        threadId: 679d2ddb5196117ad04d1ffa
+                        commentId: 679d2ddb5196117ad04d1ff8
+                        type: new_comment
+                        siteId: 679826b3b20b045e176bc4b5
+                        pageId: 679826b3b20b045e176bc4bc
+                        localeId: 67993753d910db250db64b3e
+                        breakpoint: main
+                        url: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ffa&pageId=679826b3b20b045e176bc4bc'
+                        content: 'This comment mentions another user [[6287ec36a841b25637c663df]] '
+                        isResolved: false
+                        author:
+                          userId: 6287ec36a841b25637c663df
+                          email: ford.prefect@heartofgold.spaceship
+                          name: Ford Prefect
+                        mentionedUsers:
+                          - userId: 6287ec36a841b25637c663df
+                            email: arthur.dent@heartofgold.spaceship
+                            name: Arthur Dent
+                        createdOn: '2025-01-31T20:08:59.759Z'
+                        lastUpdated: '2025-01-31T20:08:59.759Z'
+              example:
+                triggerType: comment_created
+                payload:
+                  threadId: 679d2ddb5196117ad04d1ffa
+                  commentId: 679d2ddb5196117ad04d1ff8
+                  type: new_comment
+                  siteId: 679826b3b20b045e176bc4b5
+                  pageId: 679826b3b20b045e176bc4bc
+                  localeId: 67993753d910db250db64b3e
+                  breakpoint: main
+                  url: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ffa&pageId=679826b3b20b045e176bc4bc'
+                  content: 'This comment mentions another user [[6287ec36a841b25637c663df]] '
+                  isResolved: false
+                  author:
+                    userId: 6287ec36a841b25637c663df
+                    email: ford.prefect@heartofgold.spaceship
+                    name: Ford Prefect
+                  mentionedUsers:
+                    - userId: 6287ec36a841b25637c663df
+                      email: arthur.dent@heartofgold.spaceship
+                      name: Arthur Dent
+                  createdOn: '2025-01-31T20:08:59.759Z'
+                  lastUpdated: '2025-01-31T20:08:59.759Z'
