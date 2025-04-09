@@ -53127,6 +53127,7 @@ paths:
             application/json:
               schema:
                 description: Results from product list
+                type: object
                 properties:
                   items:
                     type: array
@@ -53391,11 +53392,12 @@ paths:
                                   sku-values:
                                     type: object
                                     description: |
-                                      A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                                      A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                                     additionalProperties:
                                       type: string
                                     example:
-                                      color: red
+                                      color: blue
+                                      size: small
                                   name:
                                     type: string
                                     description: Name of the Product
@@ -53493,6 +53495,63 @@ paths:
                                     type: string
                                     description: The URL for the main image of the SKU
                                     example: 'https://www.example.com/image.jpg'
+                                  sku:
+                                    type: string
+                                    description: A unique identifier for the SKU
+                                    example: '1234567890'
+                                  sku-properties:
+                                    type: array
+                                    description: The properties of the SKU
+                                    items:
+                                      type: object
+                                      description: A variant/option type for a SKU
+                                      required:
+                                        - id
+                                        - name
+                                        - enum
+                                      properties:
+                                        id:
+                                          type: string
+                                          description: Unique identifier for a collection of Product Variants
+                                          default: null
+                                          example: Color
+                                        name:
+                                          type: string
+                                          description: Name of the collection of Product Variants
+                                          example: Color
+                                        enum:
+                                          description: The individual Product variants that are contained within the collection
+                                          type: array
+                                          items:
+                                            description: Enumerated Product variants/Options for the SKU
+                                            type: object
+                                            required:
+                                              - id
+                                              - name
+                                              - slug
+                                            properties:
+                                              id:
+                                                type: string
+                                                description: Unique identifier for a Product variant/Option
+                                                default: null
+                                                example:
+                                                  - royal-blue
+                                                  - crimson-red
+                                                  - forrest-green
+                                              name:
+                                                type: string
+                                                description: Name of the Product variant/Option
+                                                examples:
+                                                  - Royal Blue
+                                                  - Crimson Red
+                                                  - Forrest Green
+                                              slug:
+                                                type: string
+                                                description: Slug for the Product variant/Option in the Site URL structure
+                                                examples:
+                                                  - royal-blue
+                                                  - crimson-red
+                                                  - forrest-green
                                 additionalProperties:
                                   type: string
                                   description: Custom fields for your SKU.
@@ -54057,16 +54116,12 @@ paths:
       operationId: create-product
       summary: Create Product & SKU
       description: |
-        Create a new product and SKU.
+        Create a new ecommerce product and defaultSKU. A product, at minimum, must have a single SKU.
 
-        When you create a product, you will always create a SKU, since a Product Item must have, at minimum, a single SKU.
-
-        To create a Product with multiple SKUs - for example a T-shirt in sizes small, medium and large:
-          - Create parameters in `sku-properties`, also known as [product options and variants.](https://help.webflow.com/hc/en-us/articles/33961334531347-Create-product-options-and-variants).
-          - A single `sku-property` would be `color`. Within the `color` property, list the various colors of T-shirts as an array of `enum` values: `royal-blue`, `crimson-red`, and `forrest-green`. 
-          - Once, you've created a Product and its `sku-properties` with `enum` values, Webflow will create a **default SKU**, which will automatically be a combination of the first `sku-properties` you've created.
-          - In our example, the default SKU will be a Royal Blue T-Shirt, because our first `enum` of our Color `sku-property` is Royal Blue. 
-          - After you've created your product, you can create additional SKUs using the [Create SKU endpoint.](/data/reference/ecommerce/products/create-sku)
+        To create a product with multiple SKUs:
+          - First, create a list of `sku-properties`, also known as [product options](https://help.webflow.com/hc/en-us/articles/33961334531347-Create-product-options-and-variants). For example, a T-shirt product may have a "color" `sku-property`, with a list of enum values: red, yellow, and blue, another `sku-property` may be "size", with a list of enum values: small, medium, and large.
+          - Once, a product is created with a list of `sku-properties`, Webflow will create a **default SKU**, which is always a combination of the first `enum` values of each `sku-property`. (e.g. Small - Red - T-Shirt)
+          - After creation, you can create additional SKUs for the product, using the [Create SKUs endpoint.](/data/reference/ecommerce/products/create-sku)
 
         Upon creation, the default product type will be `Advanced`, which ensures all Product and SKU fields will be shown to users in the Designer.
 
@@ -54143,6 +54198,9 @@ paths:
                   example: staging
                 product:
                   type: object
+                  required:
+                    - name
+                    - slug
                   properties:
                     fieldData:
                       allOf:
@@ -54271,133 +54329,187 @@ paths:
                           additionalProperties:
                             type: string
                             description: Custom fields for your product.
-                        - required:
-                            - name
-                            - slug
                 sku:
                   type: object
+                  required:
+                    - name
+                    - slug
+                    - price
                   properties:
                     fieldData:
-                      allOf:
-                        - description: Standard and Custom fields for a SKU
+                      description: Standard and Custom fields for a SKU
+                      type: object
+                      required:
+                        - name
+                        - slug
+                        - price
+                      properties:
+                        sku-values:
                           type: object
-                          required:
-                            - name
-                            - slug
-                            - price
-                          properties:
-                            sku-values:
-                              type: object
-                              description: |
-                                A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
-                              additionalProperties:
-                                type: string
-                              example:
-                                color: red
-                            name:
-                              type: string
-                              description: Name of the Product
-                              example: Blue T-shirt
-                            slug:
-                              type: string
-                              description: URL structure of the Product in your site.
-                              example: t-shirt-blue
-                            price:
-                              type: object
-                              description: price of SKU
-                              properties:
-                                value:
-                                  description: Price of SKU
-                                  isRequired: true
-                                  type: number
-                                  example: 2499
-                                unit:
-                                  type: string
-                                  isRequired: true
-                                  description: Currency of Item
-                                  example: USD
-                                currency:
-                                  type: string
-                                  description: Currency of Item (alternative representation)
-                                  example: USD
-                            compare-at-price:
-                              type: object
-                              description: comparison price of SKU
-                              properties:
-                                value:
-                                  description: Price of SKU
-                                  type: number
-                                  example: 100
-                                unit:
-                                  type: string
-                                  description: Currency of Item
-                                  example: USD
-                            ec-sku-billing-method:
-                              description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
-                              type: string
-                              enum:
-                                - one-time
-                                - subscription
-                            ec-sku-subscription-plan:
-                              description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
-                              type: object
-                              properties:
-                                interval:
-                                  type: string
-                                  description: Interval of subscription renewal
-                                  enum:
-                                    - day
-                                    - week
-                                    - month
-                                    - year
-                                frequency:
-                                  type: number
-                                  description: Frequncy of billing within interval
-                                  example: 1
-                                trial:
-                                  type: number
-                                  description: Number of days of a trial
-                                  example: 7
-                                plans:
-                                  readOnly: true
-                                  type: array
-                                  items:
-                                    type: object
-                                    properties:
-                                      platform:
-                                        type: string
-                                        enum:
-                                          - stripe
-                                        description: The platform of the subscription plan
-                                      id:
-                                        type: string
-                                        description: The unique identifier of the plan
-                                      status:
-                                        type: string
-                                        enum:
-                                          - active
-                                          - inactive
-                                          - canceled
-                                        description: The status of the plan
-                            track-inventory:
-                              type: boolean
-                              description: A boolean indicating whether inventory for this product should be tracked.
-                              default: false
-                            quantity:
-                              type: number
-                              description: Quantity of SKU that will be tracked as items are ordered.
-                              example: 10
-                            main-image:
-                              type: string
-                              description: The URL for the main image of the SKU
-                              example: 'https://www.example.com/image.jpg'
+                          description: |
+                            A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                           additionalProperties:
                             type: string
-                            description: Custom fields for your SKU.
-                        - required:
-                            - name
-                            - slug
-                            - price
+                          example:
+                            color: blue
+                            size: small
+                        name:
+                          type: string
+                          description: Name of the Product
+                          example: Blue T-shirt
+                        slug:
+                          type: string
+                          description: URL structure of the Product in your site.
+                          example: t-shirt-blue
+                        price:
+                          type: object
+                          description: price of SKU
+                          properties:
+                            value:
+                              description: Price of SKU
+                              isRequired: true
+                              type: number
+                              example: 2499
+                            unit:
+                              type: string
+                              isRequired: true
+                              description: Currency of Item
+                              example: USD
+                            currency:
+                              type: string
+                              description: Currency of Item (alternative representation)
+                              example: USD
+                        compare-at-price:
+                          type: object
+                          description: comparison price of SKU
+                          properties:
+                            value:
+                              description: Price of SKU
+                              type: number
+                              example: 100
+                            unit:
+                              type: string
+                              description: Currency of Item
+                              example: USD
+                        ec-sku-billing-method:
+                          description: '[Billing method](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#billing-methods)for the SKU'
+                          type: string
+                          enum:
+                            - one-time
+                            - subscription
+                        ec-sku-subscription-plan:
+                          description: '[Subscription plan](https://help.webflow.com/hc/en-us/articles/33961432087955-Add-and-manage-products-and-categories#subscription) for the SKU'
+                          type: object
+                          properties:
+                            interval:
+                              type: string
+                              description: Interval of subscription renewal
+                              enum:
+                                - day
+                                - week
+                                - month
+                                - year
+                            frequency:
+                              type: number
+                              description: Frequncy of billing within interval
+                              example: 1
+                            trial:
+                              type: number
+                              description: Number of days of a trial
+                              example: 7
+                            plans:
+                              readOnly: true
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  platform:
+                                    type: string
+                                    enum:
+                                      - stripe
+                                    description: The platform of the subscription plan
+                                  id:
+                                    type: string
+                                    description: The unique identifier of the plan
+                                  status:
+                                    type: string
+                                    enum:
+                                      - active
+                                      - inactive
+                                      - canceled
+                                    description: The status of the plan
+                        track-inventory:
+                          type: boolean
+                          description: A boolean indicating whether inventory for this product should be tracked.
+                          default: false
+                        quantity:
+                          type: number
+                          description: Quantity of SKU that will be tracked as items are ordered.
+                          example: 10
+                        main-image:
+                          type: string
+                          description: The URL for the main image of the SKU
+                          example: 'https://www.example.com/image.jpg'
+                        sku:
+                          type: string
+                          description: A unique identifier for the SKU
+                          example: '1234567890'
+                        sku-properties:
+                          type: array
+                          description: The properties of the SKU
+                          items:
+                            type: object
+                            description: A variant/option type for a SKU
+                            required:
+                              - id
+                              - name
+                              - enum
+                            properties:
+                              id:
+                                type: string
+                                description: Unique identifier for a collection of Product Variants
+                                default: null
+                                example: Color
+                              name:
+                                type: string
+                                description: Name of the collection of Product Variants
+                                example: Color
+                              enum:
+                                description: The individual Product variants that are contained within the collection
+                                type: array
+                                items:
+                                  description: Enumerated Product variants/Options for the SKU
+                                  type: object
+                                  required:
+                                    - id
+                                    - name
+                                    - slug
+                                  properties:
+                                    id:
+                                      type: string
+                                      description: Unique identifier for a Product variant/Option
+                                      default: null
+                                      example:
+                                        - royal-blue
+                                        - crimson-red
+                                        - forrest-green
+                                    name:
+                                      type: string
+                                      description: Name of the Product variant/Option
+                                      examples:
+                                        - Royal Blue
+                                        - Crimson Red
+                                        - Forrest Green
+                                    slug:
+                                      type: string
+                                      description: Slug for the Product variant/Option in the Site URL structure
+                                      examples:
+                                        - royal-blue
+                                        - crimson-red
+                                        - forrest-green
+                      additionalProperties:
+                        type: string
+                        description: Custom fields for your SKU.
               required:
                 - product
                 - sku
@@ -54666,11 +54778,12 @@ paths:
                             sku-values:
                               type: object
                               description: |
-                                A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                                A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                               additionalProperties:
                                 type: string
                               example:
-                                color: red
+                                color: blue
+                                size: small
                             name:
                               type: string
                               description: Name of the Product
@@ -54768,6 +54881,63 @@ paths:
                               type: string
                               description: The URL for the main image of the SKU
                               example: 'https://www.example.com/image.jpg'
+                            sku:
+                              type: string
+                              description: A unique identifier for the SKU
+                              example: '1234567890'
+                            sku-properties:
+                              type: array
+                              description: The properties of the SKU
+                              items:
+                                type: object
+                                description: A variant/option type for a SKU
+                                required:
+                                  - id
+                                  - name
+                                  - enum
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for a collection of Product Variants
+                                    default: null
+                                    example: Color
+                                  name:
+                                    type: string
+                                    description: Name of the collection of Product Variants
+                                    example: Color
+                                  enum:
+                                    description: The individual Product variants that are contained within the collection
+                                    type: array
+                                    items:
+                                      description: Enumerated Product variants/Options for the SKU
+                                      type: object
+                                      required:
+                                        - id
+                                        - name
+                                        - slug
+                                      properties:
+                                        id:
+                                          type: string
+                                          description: Unique identifier for a Product variant/Option
+                                          default: null
+                                          example:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
+                                        name:
+                                          type: string
+                                          description: Name of the Product variant/Option
+                                          examples:
+                                            - Royal Blue
+                                            - Crimson Red
+                                            - Forrest Green
+                                        slug:
+                                          type: string
+                                          description: Slug for the Product variant/Option in the Site URL structure
+                                          examples:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
                           additionalProperties:
                             type: string
                             description: Custom fields for your SKU.
@@ -55602,11 +55772,12 @@ paths:
                             sku-values:
                               type: object
                               description: |
-                                A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                                A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                               additionalProperties:
                                 type: string
                               example:
-                                color: red
+                                color: blue
+                                size: small
                             name:
                               type: string
                               description: Name of the Product
@@ -55704,6 +55875,63 @@ paths:
                               type: string
                               description: The URL for the main image of the SKU
                               example: 'https://www.example.com/image.jpg'
+                            sku:
+                              type: string
+                              description: A unique identifier for the SKU
+                              example: '1234567890'
+                            sku-properties:
+                              type: array
+                              description: The properties of the SKU
+                              items:
+                                type: object
+                                description: A variant/option type for a SKU
+                                required:
+                                  - id
+                                  - name
+                                  - enum
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for a collection of Product Variants
+                                    default: null
+                                    example: Color
+                                  name:
+                                    type: string
+                                    description: Name of the collection of Product Variants
+                                    example: Color
+                                  enum:
+                                    description: The individual Product variants that are contained within the collection
+                                    type: array
+                                    items:
+                                      description: Enumerated Product variants/Options for the SKU
+                                      type: object
+                                      required:
+                                        - id
+                                        - name
+                                        - slug
+                                      properties:
+                                        id:
+                                          type: string
+                                          description: Unique identifier for a Product variant/Option
+                                          default: null
+                                          example:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
+                                        name:
+                                          type: string
+                                          description: Name of the Product variant/Option
+                                          examples:
+                                            - Royal Blue
+                                            - Crimson Red
+                                            - Forrest Green
+                                        slug:
+                                          type: string
+                                          description: Slug for the Product variant/Option in the Site URL structure
+                                          examples:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
                           additionalProperties:
                             type: string
                             description: Custom fields for your SKU.
@@ -56584,11 +56812,12 @@ paths:
                         sku-values:
                           type: object
                           description: |
-                            A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                            A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                           additionalProperties:
                             type: string
                           example:
-                            color: red
+                            color: blue
+                            size: small
                         name:
                           type: string
                           description: Name of the Product
@@ -56686,6 +56915,63 @@ paths:
                           type: string
                           description: The URL for the main image of the SKU
                           example: 'https://www.example.com/image.jpg'
+                        sku:
+                          type: string
+                          description: A unique identifier for the SKU
+                          example: '1234567890'
+                        sku-properties:
+                          type: array
+                          description: The properties of the SKU
+                          items:
+                            type: object
+                            description: A variant/option type for a SKU
+                            required:
+                              - id
+                              - name
+                              - enum
+                            properties:
+                              id:
+                                type: string
+                                description: Unique identifier for a collection of Product Variants
+                                default: null
+                                example: Color
+                              name:
+                                type: string
+                                description: Name of the collection of Product Variants
+                                example: Color
+                              enum:
+                                description: The individual Product variants that are contained within the collection
+                                type: array
+                                items:
+                                  description: Enumerated Product variants/Options for the SKU
+                                  type: object
+                                  required:
+                                    - id
+                                    - name
+                                    - slug
+                                  properties:
+                                    id:
+                                      type: string
+                                      description: Unique identifier for a Product variant/Option
+                                      default: null
+                                      example:
+                                        - royal-blue
+                                        - crimson-red
+                                        - forrest-green
+                                    name:
+                                      type: string
+                                      description: Name of the Product variant/Option
+                                      examples:
+                                        - Royal Blue
+                                        - Crimson Red
+                                        - Forrest Green
+                                    slug:
+                                      type: string
+                                      description: Slug for the Product variant/Option in the Site URL structure
+                                      examples:
+                                        - royal-blue
+                                        - crimson-red
+                                        - forrest-green
                       additionalProperties:
                         type: string
                         description: Custom fields for your SKU.
@@ -57443,7 +57729,7 @@ paths:
         - OAuth2:
             - 'ecommerce:write'
       operationId: create-skus
-      summary: Create SKU
+      summary: Create SKUs
       description: |
         Create additional SKUs to manage every [option and variant of your Product.](https://help.webflow.com/hc/en-us/articles/33961334531347-Create-product-options-and-variants)
 
@@ -57535,11 +57821,12 @@ paths:
                           sku-values:
                             type: object
                             description: |
-                              A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                              A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                             additionalProperties:
                               type: string
                             example:
-                              color: red
+                              color: blue
+                              size: small
                           name:
                             type: string
                             description: Name of the Product
@@ -57637,6 +57924,63 @@ paths:
                             type: string
                             description: The URL for the main image of the SKU
                             example: 'https://www.example.com/image.jpg'
+                          sku:
+                            type: string
+                            description: A unique identifier for the SKU
+                            example: '1234567890'
+                          sku-properties:
+                            type: array
+                            description: The properties of the SKU
+                            items:
+                              type: object
+                              description: A variant/option type for a SKU
+                              required:
+                                - id
+                                - name
+                                - enum
+                              properties:
+                                id:
+                                  type: string
+                                  description: Unique identifier for a collection of Product Variants
+                                  default: null
+                                  example: Color
+                                name:
+                                  type: string
+                                  description: Name of the collection of Product Variants
+                                  example: Color
+                                enum:
+                                  description: The individual Product variants that are contained within the collection
+                                  type: array
+                                  items:
+                                    description: Enumerated Product variants/Options for the SKU
+                                    type: object
+                                    required:
+                                      - id
+                                      - name
+                                      - slug
+                                    properties:
+                                      id:
+                                        type: string
+                                        description: Unique identifier for a Product variant/Option
+                                        default: null
+                                        example:
+                                          - royal-blue
+                                          - crimson-red
+                                          - forrest-green
+                                      name:
+                                        type: string
+                                        description: Name of the Product variant/Option
+                                        examples:
+                                          - Royal Blue
+                                          - Crimson Red
+                                          - Forrest Green
+                                      slug:
+                                        type: string
+                                        description: Slug for the Product variant/Option in the Site URL structure
+                                        examples:
+                                          - royal-blue
+                                          - crimson-red
+                                          - forrest-green
                         additionalProperties:
                           type: string
                           description: Custom fields for your SKU.
@@ -57708,11 +58052,12 @@ paths:
                             sku-values:
                               type: object
                               description: |
-                                A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                                A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                               additionalProperties:
                                 type: string
                               example:
-                                color: red
+                                color: blue
+                                size: small
                             name:
                               type: string
                               description: Name of the Product
@@ -57810,6 +58155,63 @@ paths:
                               type: string
                               description: The URL for the main image of the SKU
                               example: 'https://www.example.com/image.jpg'
+                            sku:
+                              type: string
+                              description: A unique identifier for the SKU
+                              example: '1234567890'
+                            sku-properties:
+                              type: array
+                              description: The properties of the SKU
+                              items:
+                                type: object
+                                description: A variant/option type for a SKU
+                                required:
+                                  - id
+                                  - name
+                                  - enum
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for a collection of Product Variants
+                                    default: null
+                                    example: Color
+                                  name:
+                                    type: string
+                                    description: Name of the collection of Product Variants
+                                    example: Color
+                                  enum:
+                                    description: The individual Product variants that are contained within the collection
+                                    type: array
+                                    items:
+                                      description: Enumerated Product variants/Options for the SKU
+                                      type: object
+                                      required:
+                                        - id
+                                        - name
+                                        - slug
+                                      properties:
+                                        id:
+                                          type: string
+                                          description: Unique identifier for a Product variant/Option
+                                          default: null
+                                          example:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
+                                        name:
+                                          type: string
+                                          description: Name of the Product variant/Option
+                                          examples:
+                                            - Royal Blue
+                                            - Crimson Red
+                                            - Forrest Green
+                                        slug:
+                                          type: string
+                                          description: Slug for the Product variant/Option in the Site URL structure
+                                          examples:
+                                            - royal-blue
+                                            - crimson-red
+                                            - forrest-green
                           additionalProperties:
                             type: string
                             description: Custom fields for your SKU.
@@ -58450,11 +58852,12 @@ paths:
                         sku-values:
                           type: object
                           description: |
-                            A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                            A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                           additionalProperties:
                             type: string
                           example:
-                            color: red
+                            color: blue
+                            size: small
                         name:
                           type: string
                           description: Name of the Product
@@ -58552,6 +58955,63 @@ paths:
                           type: string
                           description: The URL for the main image of the SKU
                           example: 'https://www.example.com/image.jpg'
+                        sku:
+                          type: string
+                          description: A unique identifier for the SKU
+                          example: '1234567890'
+                        sku-properties:
+                          type: array
+                          description: The properties of the SKU
+                          items:
+                            type: object
+                            description: A variant/option type for a SKU
+                            required:
+                              - id
+                              - name
+                              - enum
+                            properties:
+                              id:
+                                type: string
+                                description: Unique identifier for a collection of Product Variants
+                                default: null
+                                example: Color
+                              name:
+                                type: string
+                                description: Name of the collection of Product Variants
+                                example: Color
+                              enum:
+                                description: The individual Product variants that are contained within the collection
+                                type: array
+                                items:
+                                  description: Enumerated Product variants/Options for the SKU
+                                  type: object
+                                  required:
+                                    - id
+                                    - name
+                                    - slug
+                                  properties:
+                                    id:
+                                      type: string
+                                      description: Unique identifier for a Product variant/Option
+                                      default: null
+                                      example:
+                                        - royal-blue
+                                        - crimson-red
+                                        - forrest-green
+                                    name:
+                                      type: string
+                                      description: Name of the Product variant/Option
+                                      examples:
+                                        - Royal Blue
+                                        - Crimson Red
+                                        - Forrest Green
+                                    slug:
+                                      type: string
+                                      description: Slug for the Product variant/Option in the Site URL structure
+                                      examples:
+                                        - royal-blue
+                                        - crimson-red
+                                        - forrest-green
                       additionalProperties:
                         type: string
                         description: Custom fields for your SKU.
@@ -58616,11 +59076,12 @@ paths:
                       sku-values:
                         type: object
                         description: |
-                          A dictionary that maps a SKU property to a SKU value. The key of the dictionary is the SKU property ID, and the value is the SKU value ID.
+                          A mapping between SKU properties and their values, represented as key-value pairs. Each key represents a SKU Property ID (e.g. "color") and maps to its corresponding SKU Value ID (e.g. "blue"). This structure defines the specific variant combination for a SKU.
                         additionalProperties:
                           type: string
                         example:
-                          color: red
+                          color: blue
+                          size: small
                       name:
                         type: string
                         description: Name of the Product
@@ -58718,6 +59179,63 @@ paths:
                         type: string
                         description: The URL for the main image of the SKU
                         example: 'https://www.example.com/image.jpg'
+                      sku:
+                        type: string
+                        description: A unique identifier for the SKU
+                        example: '1234567890'
+                      sku-properties:
+                        type: array
+                        description: The properties of the SKU
+                        items:
+                          type: object
+                          description: A variant/option type for a SKU
+                          required:
+                            - id
+                            - name
+                            - enum
+                          properties:
+                            id:
+                              type: string
+                              description: Unique identifier for a collection of Product Variants
+                              default: null
+                              example: Color
+                            name:
+                              type: string
+                              description: Name of the collection of Product Variants
+                              example: Color
+                            enum:
+                              description: The individual Product variants that are contained within the collection
+                              type: array
+                              items:
+                                description: Enumerated Product variants/Options for the SKU
+                                type: object
+                                required:
+                                  - id
+                                  - name
+                                  - slug
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for a Product variant/Option
+                                    default: null
+                                    example:
+                                      - royal-blue
+                                      - crimson-red
+                                      - forrest-green
+                                  name:
+                                    type: string
+                                    description: Name of the Product variant/Option
+                                    examples:
+                                      - Royal Blue
+                                      - Crimson Red
+                                      - Forrest Green
+                                  slug:
+                                    type: string
+                                    description: Slug for the Product variant/Option in the Site URL structure
+                                    examples:
+                                      - royal-blue
+                                      - crimson-red
+                                      - forrest-green
                     additionalProperties:
                       type: string
                       description: Custom fields for your SKU.
