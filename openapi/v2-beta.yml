@@ -12279,7 +12279,7 @@ paths:
                               - PlainText
                               - RichText
                               - Switch
-                              - Video
+                              - VideoLink
                             description: Choose these appropriate field type for your collection data
                           displayName:
                             type: string
@@ -12541,7 +12541,7 @@ paths:
                             - Reference
                             - RichText
                             - Switch
-                            - Video
+                            - VideoLink
                           description: Choose these appropriate field type for your collection data
                         slug:
                           type: string
@@ -13158,7 +13158,7 @@ paths:
                             - Reference
                             - RichText
                             - Switch
-                            - Video
+                            - VideoLink
                           description: Choose these appropriate field type for your collection data
                         slug:
                           type: string
@@ -14039,7 +14039,7 @@ paths:
                         - PlainText
                         - RichText
                         - Switch
-                        - Video
+                        - VideoLink
                       description: Choose these appropriate field type for your collection data
                     displayName:
                       type: string
@@ -14282,7 +14282,7 @@ paths:
                           - PlainText
                           - RichText
                           - Switch
-                          - Video
+                          - VideoLink
                         description: Choose these appropriate field type for your collection data
                       displayName:
                         type: string
@@ -15000,7 +15000,7 @@ paths:
                       - Reference
                       - RichText
                       - Switch
-                      - Video
+                      - VideoLink
                     description: Choose these appropriate field type for your collection data
                   slug:
                     type: string
