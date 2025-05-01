@@ -74185,7 +74185,7 @@ webhooks:
     post:
       operationId: page_created
       summary: Page Created
-      description: Information about a new page
+      description: Information about a new pages
       tags:
         - Pages
       requestBody:
