@@ -29054,7 +29054,7 @@ paths:
       operationId: get-static-content
       summary: Get Page Content
       description: |
-        Get content from a static page. This includes text nodes, image nodes, select nodes, text input nodes, submit button nodes, and component instances with [property overrides](https://help.webflow.com/hc/en-us/articles/33961219350547-Component-properties#how-to-modify-property-values-on-component-instances).
+        Get content from a static page. This includes text nodes, image nodes, and component instances with [property overrides](https://help.webflow.com/hc/en-us/articles/33961219350547-Component-properties#how-to-modify-property-values-on-component-instances).
 
         To retrieve the static content of a component instance, use the [Get Component Content](/data/reference/pages-and-components/components/get-content) endpoint.
 
@@ -29102,6 +29102,10 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - pageId
+                  - nodes
+                  - pagination
                 description: |
                   The DOM (Document Object Model) schema represents the content structure of a web page or component. It captures various content nodes along with their associated attributes. Each node has a unique identifier and can be of different types like text, image or component-instance. The schema also provides pagination details for scenarios where the content nodes are too many to be fetched in a single request.
                 type: object
@@ -29126,25 +29130,6 @@ paths:
                       image:
                         alt: 'Marvin, the Paranoid Android'
                         assetId: 659595234426a9fcbad57043
-                      attributes: {}
-                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
-                      type: select
-                      choices:
-                        - value: Magrathea
-                          text: Magrathea
-                        - value: mostly-harmless
-                          text: Earth
-                        - value: Vogsphere
-                          text: Vogsphere
-                      attributes: {}
-                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad642
-                      type: text-input
-                      placeholder: Enter something here...
-                      attributes: {}
-                    - id: a245c12d-995b-55ee-5ec7-aa36a6cad671
-                      type: submit
-                      value: Submit
-                      waitingText: Submitting...
                       attributes: {}
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                       type: component-instance
@@ -29299,126 +29284,6 @@ paths:
                                         description: The raw text content of the text node.
                                         type: string
                                         nullable: true
-                        - description: |
-                            Represents text input and textarea elements within the DOM. It contains the placeholder text in the input. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - placeholder
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - text-input
-                              default: text-input
-                            placeholder:
-                              description: The placeholder text of the input node
-                              type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
-                        - description: |
-                            Represents select elements within the DOM. It contains the list of choices in the select. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - choices
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - select
-                              default: select
-                            choices:
-                              description: The list of choices in this select node.
-                              type: array
-                              items:
-                                type: object
-                                required:
-                                  - value
-                                  - text
-                                properties:
-                                  value:
-                                    description: The value of the choice when selected.
-                                    type: string
-                                  text:
-                                    description: The text to display for the choice.
-                                    type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
-                        - description: |
-                            Represents submit button elements within the DOM. It contains the text and waiting text of the button. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - value
-                            - waitingText
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - submit-button
-                              default: submit-button
-                            value:
-                              description: The text content of the submit button.
-                              type: string
-                            waitingText:
-                              description: The text to show while the form is submitting.
-                              type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
-                        - description: |
-                            Represents search button elements within the DOM. It contains the text of the button. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - value
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - search-button
-                              default: search-button
-                            value:
-                              description: The text content of the search button.
-                              type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
                       example:
                         pageId: 658205daa3e8206a523b5ad4
                         nodes:
@@ -29440,25 +29305,6 @@ paths:
                             image:
                               alt: 'Marvin, the Paranoid Android'
                               assetId: 659595234426a9fcbad57043
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
-                            type: select
-                            choices:
-                              - value: Magrathea
-                                text: Magrathea
-                              - value: mostly-harmless
-                                text: Earth
-                              - value: Vogsphere
-                                text: Vogsphere
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad642
-                            type: text-input
-                            placeholder: Enter something here...
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad671
-                            type: submit
-                            value: Submit
-                            waitingText: Submitting...
                             attributes: {}
                           - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                             type: component-instance
@@ -29508,6 +29354,51 @@ paths:
                     nullable: true
                     description: The date the page dom was most recently updated
                     example: '2016-10-24T19:42:38.929Z'
+              examples:
+                PageDOM:
+                  value:
+                    pageId: 658205daa3e8206a523b5ad4
+                    nodes:
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                        type: text
+                        text:
+                          html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                          text: The Hitchhiker's Guide to the Galaxy
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                        type: text
+                        text:
+                          html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                          text: null
+                        attributes:
+                          number: forty two
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                        type: image
+                        image:
+                          alt: 'Marvin, the Paranoid Android'
+                          assetId: 659595234426a9fcbad57043
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                        type: component-instance
+                        componentId: 6258612d1ee792848f805dcf
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                            type: Plain Text
+                            label: Catchphrase
+                            text:
+                              html: null
+                              text: Don't Panic!
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                            type: Rich Text
+                            label: Tagline
+                            text:
+                              html: <div><p>Always know where your towel is.</p></div>
+                              text: null
+                    pagination:
+                      limit: 4
+                      offset: 0
+                      total: 4
+                    lastUpdated: '2016-10-24T19:42:38.929Z'
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -30066,76 +29957,6 @@ paths:
                                   text: <div><h1>Time is an <em>illusion</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
                                   text: 'Life, the Universe and Everything'
-                      - x-fern-type-name: Select
-                        type: object
-                        description: Update choices on a select node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          choices:
-                            type: array
-                            description: The list of choices to set on the select node.
-                            items:
-                              type: object
-                              required:
-                                - value
-                                - text
-                              properties:
-                                value:
-                                  description: The value of the choice when selected.
-                                  type: string
-                                text:
-                                  description: The text to display for the choice.
-                                  type: string
-                        required:
-                          - nodeId
-                          - choices
-                      - x-fern-type-name: Text Input
-                        type: object
-                        description: Update placeholder text on a text input node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          placeholder:
-                            description: The placeholder text of the input node
-                            type: string
-                        required:
-                          - nodeId
-                          - placeholder
-                      - x-fern-type-name: Submit Button
-                        type: object
-                        description: Update a submit button node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          value:
-                            description: The text content of the submit button.
-                            type: string
-                          waitingText:
-                            description: The text to show while the form is submitting.
-                            type: string
-                        required:
-                          - nodeId
-                      - x-fern-type-name: Search Button
-                        type: object
-                        description: Update a search button node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          value:
-                            description: The text content of the search button.
-                            type: string
-                        required:
-                          - nodeId
-                          - value
                   minItems: 1
                   maxItems: 1000
               required:
@@ -30146,17 +29967,6 @@ paths:
                     text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
                     text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad635
-                    choices:
-                      - value: choice-1
-                        text: First choice
-                      - value: choice-2
-                        text: Second choice
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad642
-                    placeholder: Enter something here...
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad671
-                    value: Submit
-                    waitingText: Submitting...
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
                     propertyOverrides:
                       - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
@@ -31142,7 +30952,7 @@ paths:
       operationId: get-component-content
       summary: Get Component Content
       description: |
-        Get static content from a component definition. This includes text nodes, image nodes, select nodes, text input nodes, submit button nodes, and nested component instances.
+        Get static content from a component definition. This includes text nodes, image nodes and nested component instances.
         To retrieve dynamic content set by component properties, use the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint.
 
         <Note>If you do not provide a Locale ID in your request, the response will return any content that can be localized from the Primary locale.</Note>
@@ -31198,7 +31008,7 @@ paths:
             application/json:
               schema:
                 description: |
-                  The Component DOM schema represents the content structure of a component. Similar to Page DOM, it captures various content nodes and their associated attributes, but specifically for a component's structure. Each node has a unique identifier and  can contain text, images, select or text inputs, submit buttons, or nested component instances.
+                  The Component DOM schema represents the content structure of a component. Similar to Page DOM, it captures various content nodes and their associated attributes, but specifically for a component's structure. Each node has a unique identifier and  can contain text, images, or nested component instances.
                 type: object
                 example:
                   componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
@@ -31222,25 +31032,6 @@ paths:
                         alt: 'Marvin, the Paranoid Android'
                         assetId: 659595234426a9fcbad57043
                       attributes: {}
-                    - id: 6e468d51-8942-f7be-34cc-347b0e24e118
-                      type: text-input
-                      placeholder: Search…
-                      attributes: {}
-                    - id: 82cdcd0b-b9c7-0ddc-0519-bc1fa02de26e
-                      type: select
-                      choices:
-                        - text: Magrathea
-                          value: Magrathea
-                        - text: Earth
-                          value: mostly-harmless
-                        - text: Vogsphere
-                          value: Vogsphere
-                      attributes: {}
-                    - id: 9fa3a9c4-87d4-19b0-95f7-1b0b099f82ab
-                      type: submit-button
-                      waitingText: Please wait...
-                      value: Subscribe
-                      attributes: {}
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                       type: component-instance
                       componentId: 6258612d1ee792848f805dcf
@@ -31256,9 +31047,9 @@ paths:
                             html: <div><p>Always know where your towel is.</p></div>
                             text: null
                   pagination:
-                    limit: 7
+                    limit: 4
                     offset: 0
-                    total: 7
+                    total: 4
                 properties:
                   componentId:
                     type: string
@@ -31391,126 +31182,6 @@ paths:
                                         description: The raw text content of the text node.
                                         type: string
                                         nullable: true
-                        - description: |
-                            Represents text input and textarea elements within the DOM. It contains the placeholder text in the input. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - placeholder
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - text-input
-                              default: text-input
-                            placeholder:
-                              description: The placeholder text of the input node
-                              type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
-                        - description: |
-                            Represents select elements within the DOM. It contains the list of choices in the select. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - choices
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - select
-                              default: select
-                            choices:
-                              description: The list of choices in this select node.
-                              type: array
-                              items:
-                                type: object
-                                required:
-                                  - value
-                                  - text
-                                properties:
-                                  value:
-                                    description: The value of the choice when selected.
-                                    type: string
-                                  text:
-                                    description: The text to display for the choice.
-                                    type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
-                        - description: |
-                            Represents submit button elements within the DOM. It contains the text and waiting text of the button. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - value
-                            - waitingText
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - submit-button
-                              default: submit-button
-                            value:
-                              description: The text content of the submit button.
-                              type: string
-                            waitingText:
-                              description: The text to show while the form is submitting.
-                              type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
-                        - description: |
-                            Represents search button elements within the DOM. It contains the text of the button. Additional attributes can be associated with the text for styling or other purposes.
-                          type: object
-                          required:
-                            - id
-                            - type
-                            - value
-                          properties:
-                            id:
-                              type: string
-                              description: Node UUID
-                              readOnly: true
-                            type:
-                              description: The type of the node
-                              type: string
-                              enum:
-                                - search-button
-                              default: search-button
-                            value:
-                              description: The text content of the search button.
-                              type: string
-                            attributes:
-                              type: object
-                              description: The custom attributes of the node
-                              additionalProperties:
-                                type: string
                       example:
                         pageId: 658205daa3e8206a523b5ad4
                         nodes:
@@ -31532,25 +31203,6 @@ paths:
                             image:
                               alt: 'Marvin, the Paranoid Android'
                               assetId: 659595234426a9fcbad57043
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
-                            type: select
-                            choices:
-                              - value: Magrathea
-                                text: Magrathea
-                              - value: mostly-harmless
-                                text: Earth
-                              - value: Vogsphere
-                                text: Vogsphere
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad642
-                            type: text-input
-                            placeholder: Enter something here...
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad671
-                            type: submit
-                            value: Submit
-                            waitingText: Submitting...
                             attributes: {}
                           - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                             type: component-instance
@@ -31593,6 +31245,75 @@ paths:
                         type: number
                         description: The total number of records
                         example: 100
+              examples:
+                ComponentDOM:
+                  value:
+                    componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                    nodes:
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                        type: text
+                        text:
+                          html: <h1>The Hitchhiker's Guide to the Galaxy</h1>
+                          text: The Hitchhiker's Guide to the Galaxy
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad627
+                        type: text
+                        text:
+                          html: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
+                          text: null
+                        attributes:
+                          number: forty two
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad629
+                        type: image
+                        image:
+                          alt: 'Marvin, the Paranoid Android'
+                          assetId: 659595234426a9fcbad57043
+                        attributes: {}
+                      - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
+                        type: component-instance
+                        componentId: 6258612d1ee792848f805dcf
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
+                            type: Plain Text
+                            text:
+                              html: null
+                              text: Don't Panic!
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad635
+                            type: Rich Text
+                            text:
+                              html: <div><p>Always know where your towel is.</p></div>
+                              text: null
+                    pagination:
+                      limit: 4
+                      offset: 0
+                      total: 4
+                LocalizedComponentDOM:
+                  value:
+                    componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                    nodes:
+                      - id: 69118560-d0bc-15fc-bbf8-b8fe5f6535b8
+                        type: image
+                        image:
+                          alt: Pulgar del Autoestopista
+                          assetId: 66748b636b1a2661d4d1dfc3
+                        attributes: {}
+                      - id: 8ebfb409-7493-3bca-5d48-0e547befb960
+                        type: text
+                        text:
+                          html: <div>¡No te asustes!</div>
+                          text: ¡No te asustes!
+                        attributes: {}
+                      - id: 69118560-d0bc-15fc-bbf8-b8fe5f6535c2
+                        type: component-instance
+                        componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                        propertyOverrides:
+                          - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
+                            text: La Guía del Autoestopista Galáctico
+                        attributes: {}
+                    pagination:
+                      limit: 100
+                      offset: 0
+                      total: 3
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -32019,7 +31740,7 @@ paths:
           application/json:
             schema:
               description: |
-                The body for which to update the Component DOM nodes. Nodes can be of type text, select or text input, submit button, or component instances.
+                The body for which to update the Component DOM nodes. Nodes can be of type text or component instances.
               type: object
               properties:
                 nodes:
@@ -32089,76 +31810,6 @@ paths:
                                   text: <div><h1>Time is an <em>illusion</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
                                   text: 'Life, the Universe and Everything'
-                      - x-fern-type-name: Component Select
-                        type: object
-                        description: Update choices on a select node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          choices:
-                            type: array
-                            description: The list of choices to set on the select node.
-                            items:
-                              type: object
-                              required:
-                                - value
-                                - text
-                              properties:
-                                value:
-                                  description: The value of the choice when selected.
-                                  type: string
-                                text:
-                                  description: The text to display for the choice.
-                                  type: string
-                        required:
-                          - nodeId
-                          - choices
-                      - x-fern-type-name: Component Text Input
-                        type: object
-                        description: Update placeholder text on a text input node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          placeholder:
-                            description: The placeholder text of the input node
-                            type: string
-                        required:
-                          - nodeId
-                          - placeholder
-                      - x-fern-type-name: Component Submit Button
-                        type: object
-                        description: Update a submit button node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          value:
-                            description: The text content of the submit button.
-                            type: string
-                          waitingText:
-                            description: The text to show while the form is submitting.
-                            type: string
-                        required:
-                          - nodeId
-                      - x-fern-type-name: Component Search Button
-                        type: object
-                        description: Update a search button node
-                        properties:
-                          nodeId:
-                            type: string
-                            description: Node UUID
-                            example: a245c12d-995b-55ee-5ec7-aa36a6cad623
-                          value:
-                            description: The text content of the search button.
-                            type: string
-                        required:
-                          - nodeId
-                          - value
                   minItems: 1
                   maxItems: 1000
               required:
@@ -32169,17 +31820,6 @@ paths:
                     text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
                     text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad635
-                    choices:
-                      - value: choice-1
-                        text: First choice
-                      - value: choice-2
-                        text: Second choice
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad642
-                    placeholder: Enter something here...
-                  - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad671
-                    value: Submit
-                    waitingText: Submitting...
                   - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad629
                     propertyOverrides:
                       - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0

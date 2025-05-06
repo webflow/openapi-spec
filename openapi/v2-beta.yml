@@ -29831,12 +29831,10 @@ paths:
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
                       type: select
                       choices:
-                        - value: Magrathea
-                          text: Magrathea
-                        - value: mostly-harmless
-                          text: Earth
-                        - value: Vogsphere
-                          text: Vogsphere
+                        - value: choice-1
+                          text: First choice
+                        - value: choice-2
+                          text: Second choice
                       attributes: {}
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad642
                       type: text-input
@@ -30141,25 +30139,6 @@ paths:
                             image:
                               alt: 'Marvin, the Paranoid Android'
                               assetId: 659595234426a9fcbad57043
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
-                            type: select
-                            choices:
-                              - value: Magrathea
-                                text: Magrathea
-                              - value: mostly-harmless
-                                text: Earth
-                              - value: Vogsphere
-                                text: Vogsphere
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad642
-                            type: text-input
-                            placeholder: Enter something here...
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad671
-                            type: submit
-                            value: Submit
-                            waitingText: Submitting...
                             attributes: {}
                           - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                             type: component-instance
@@ -32233,25 +32212,6 @@ paths:
                             image:
                               alt: 'Marvin, the Paranoid Android'
                               assetId: 659595234426a9fcbad57043
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad635
-                            type: select
-                            choices:
-                              - value: Magrathea
-                                text: Magrathea
-                              - value: mostly-harmless
-                                text: Earth
-                              - value: Vogsphere
-                                text: Vogsphere
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad642
-                            type: text-input
-                            placeholder: Enter something here...
-                            attributes: {}
-                          - id: a245c12d-995b-55ee-5ec7-aa36a6cad671
-                            type: submit
-                            value: Submit
-                            waitingText: Submitting...
                             attributes: {}
                           - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                             type: component-instance
