@@ -7161,9 +7161,9 @@ paths:
         - OAuth2:
             - 'sites:read'
       operationId: get-redirects
-      summary: Get URL redirects
+      summary: Get 301 redirects
       description: |
-        Fetch a list of all URL redirect rules configured for a specific site.
+        Fetch a list of all 301 redirect rules configured for a specific site.
 
         Use this endpoint to review, audit, or manage the redirection rules that control how traffic is rerouted on your site.
 
@@ -7630,9 +7630,9 @@ paths:
         - OAuth2:
             - 'sites:write'
       operationId: create-redirect
-      summary: Create a URL redirect
+      summary: Create a 301 redirect
       description: |
-        Add a new URL redirection rule to a site.
+        Add a new 301 redirection rule to a site.
 
         This endpoint allows you to define a source path (`fromUrl`) and its corresponding destination path (`toUrl`), which will dictate how traffic is rerouted on your site. This is useful for managing site changes, restructuring URLs, or handling outdated links.
 
@@ -8085,9 +8085,9 @@ paths:
         - OAuth2:
             - 'sites:write'
       operationId: update-redirect
-      summary: Update URL redirect
+      summary: Update 301 redirect
       description: |
-        Update a URL redirection rule from a site.
+        Update a 301 redirection rule from a site.
 
         <Warning title="Enterprise Only">This endpoint requires an Enterprise workspace.</Warning>
 
@@ -8546,9 +8546,9 @@ paths:
         - OAuth2:
             - 'sites:write'
       operationId: delete-redirects
-      summary: Delete URL redirects
+      summary: Delete 301 redirects
       description: |
-        Remove a URL redirection rule from a site.
+        Remove a 301 redirection rule from a site.
 
         This is useful for cleaning up outdated or unnecessary redirects, ensuring that your site's routing behavior remains efficient and up-to-date.
 
