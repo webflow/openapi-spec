@@ -27325,12 +27325,6 @@ paths:
                           readOnly: true
                           default: false
                           example: false
-                        isMembersOnly:
-                          type: boolean
-                          description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                          readOnly: true
-                          default: false
-                          example: false
                         seo:
                           type: object
                           description: SEO-related fields for the Page
@@ -27905,12 +27899,6 @@ paths:
                     readOnly: true
                     default: false
                     example: false
-                  isMembersOnly:
-                    type: boolean
-                    description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                    readOnly: true
-                    default: false
-                    example: false
                   seo:
                     type: object
                     description: SEO-related fields for the Page
@@ -28464,12 +28452,6 @@ paths:
                   readOnly: true
                   default: false
                   example: false
-                isMembersOnly:
-                  type: boolean
-                  description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                  readOnly: true
-                  default: false
-                  example: false
                 seo:
                   type: object
                   description: SEO-related fields for the Page
@@ -28615,12 +28597,6 @@ paths:
                   isBranch:
                     type: boolean
                     description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
-                    readOnly: true
-                    default: false
-                    example: false
-                  isMembersOnly:
-                    type: boolean
-                    description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
                     readOnly: true
                     default: false
                     example: false

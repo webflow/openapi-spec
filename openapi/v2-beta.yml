@@ -27889,8 +27889,9 @@ paths:
                       lastUpdated: '2024-03-11T10:42:42.000Z'
                       archived: false
                       draft: false
-                      canBranch: true
-                      isBranch: false
+                      canBranch: false
+                      isBranch: true
+                      branchId: 68026fa68ef6dc744c75b833
                       seo:
                         title: The Ultimate Hitchhiker's Guide to the Galaxy
                         description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -27912,6 +27913,8 @@ paths:
                       archived: false
                       draft: false
                       canBranch: true
+                      isBranch: false
+                      branchId: null
                       seo:
                         title: Celebrate Towel Day - The Hitchhiker's Guide to the Galaxy
                         description: 'A guide to celebrating Towel Day, in honor of the most massively useful thing an interstellar hitchhiker can have.'
@@ -27945,8 +27948,9 @@ paths:
                         lastUpdated: '2024-03-11T10:42:42.000Z'
                         archived: false
                         draft: false
-                        canBranch: true
-                        isBranch: false
+                        canBranch: false
+                        isBranch: true
+                        branchId: 68026fa68ef6dc744c75b833
                         seo:
                           title: The Ultimate Hitchhiker's Guide to the Galaxy
                           description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -28016,7 +28020,7 @@ paths:
                           readOnly: true
                         canBranch:
                           type: boolean
-                          description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                          description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching). Pages that are already branches cannot be branched again.'
                           readOnly: true
                           default: false
                           example: false
@@ -28026,12 +28030,12 @@ paths:
                           readOnly: true
                           default: false
                           example: false
-                        isMembersOnly:
-                          type: boolean
-                          description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                          readOnly: true
-                          default: false
-                          example: false
+                        branchId:
+                          type: string
+                          format: objectid
+                          nullable: true
+                          description: 'If the Page is a Branch of another Page, this is the ID of the Branch'
+                          example: 68026fa68ef6dc744c75b833
                         seo:
                           type: object
                           description: SEO-related fields for the Page
@@ -28525,8 +28529,9 @@ paths:
                   lastUpdated: '2024-03-11T10:42:42.000Z'
                   archived: false
                   draft: false
-                  canBranch: true
-                  isBranch: false
+                  canBranch: false
+                  isBranch: true
+                  branchId: 68026fa68ef6dc744c75b833
                   seo:
                     title: The Ultimate Hitchhiker's Guide to the Galaxy
                     description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -28596,7 +28601,7 @@ paths:
                     readOnly: true
                   canBranch:
                     type: boolean
-                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching). Pages that are already branches cannot be branched again.'
                     readOnly: true
                     default: false
                     example: false
@@ -28606,12 +28611,12 @@ paths:
                     readOnly: true
                     default: false
                     example: false
-                  isMembersOnly:
-                    type: boolean
-                    description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                    readOnly: true
-                    default: false
-                    example: false
+                  branchId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: 'If the Page is a Branch of another Page, this is the ID of the Branch'
+                    example: 68026fa68ef6dc744c75b833
                   seo:
                     type: object
                     description: SEO-related fields for the Page
@@ -29165,12 +29170,6 @@ paths:
                   readOnly: true
                   default: false
                   example: false
-                isMembersOnly:
-                  type: boolean
-                  description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                  readOnly: true
-                  default: false
-                  example: false
                 seo:
                   type: object
                   description: SEO-related fields for the Page
@@ -29238,8 +29237,9 @@ paths:
                   lastUpdated: '2024-03-11T10:42:42.000Z'
                   archived: false
                   draft: false
-                  canBranch: true
-                  isBranch: false
+                  canBranch: false
+                  isBranch: true
+                  branchId: 68026fa68ef6dc744c75b833
                   seo:
                     title: The Ultimate Hitchhiker's Guide to the Galaxy
                     description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -29309,7 +29309,7 @@ paths:
                     readOnly: true
                   canBranch:
                     type: boolean
-                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching). Pages that are already branches cannot be branched again.'
                     readOnly: true
                     default: false
                     example: false
@@ -29319,12 +29319,12 @@ paths:
                     readOnly: true
                     default: false
                     example: false
-                  isMembersOnly:
-                    type: boolean
-                    description: 'Indicates whether the Page is restricted by [Memberships Controls](https://university.webflow.com/lesson/webflow-memberships-overview#how-to-manage-page-restrictions)'
-                    readOnly: true
-                    default: false
-                    example: false
+                  branchId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: 'If the Page is a Branch of another Page, this is the ID of the Branch'
+                    example: 68026fa68ef6dc744c75b833
                   seo:
                     type: object
                     description: SEO-related fields for the Page
@@ -29870,6 +29870,12 @@ paths:
                   pageId:
                     type: string
                     description: Page ID
+                  branchId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: 'If the page is a branch, this is the ID of the branch'
+                    example: 68026fa68ef6dc744c75b833
                   nodes:
                     type: array
                     items:
