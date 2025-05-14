@@ -2382,7 +2382,7 @@ paths:
                     type: string
                     format: uri
                     description: URL of a generated image for the given Site
-                    example: 'https://d1otoma47x30pg.cloudfront.net/580e63e98c9a982ac9b8b741/201610241243.png'
+                    example: 'https://dev-assets.website-files.com/580e63e98c9a982ac9b8b741/201610241243.png'
                   timeZone:
                     type: string
                     description: Site timezone set under Site Settings
@@ -3160,7 +3160,7 @@ paths:
                           type: string
                           format: uri
                           description: URL of a generated image for the given Site
-                          example: 'https://d1otoma47x30pg.cloudfront.net/580e63e98c9a982ac9b8b741/201610241243.png'
+                          example: 'https://dev-assets.website-files.com/580e63e98c9a982ac9b8b741/201610241243.png'
                         timeZone:
                           type: string
                           description: Site timezone set under Site Settings
@@ -3298,7 +3298,7 @@ paths:
                       displayName: Heart of Gold Spaceship
                       shortName: heart-of-gold
                       lastPublished: '2023-04-02T12:42:00.000Z'
-                      previewUrl: 'https://d1otoma47x30pg.cloudfront.net/42e63e98c9a982ac9b8b741/197910121200.png'
+                      previewUrl: 'https://dev-assets.website-files.com/42e63e98c9a982ac9b8b741/197910121200.png'
                       timeZone: DeepSpace/InfiniteImprobability
                       parentFolderId: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
                       customDomains:
@@ -3337,7 +3337,7 @@ paths:
                       displayName: Marvin's Personal Blog
                       shortName: paranoid-android
                       lastPublished: '2023-04-02T12:45:00.000Z'
-                      previewUrl: 'https://d1otoma47x30pg.cloudfront.net/42e63e98c9a982ac9b8b742/198110121200.png'
+                      previewUrl: 'https://dev-assets.website-files.com/42e63e98c9a982ac9b8b742/198110121200.png'
                       timeZone: DeepSpace/Depression
                       parentFolderId: null
                       customDomains:
@@ -3369,7 +3369,7 @@ paths:
                       displayName: Vogon Poetry Archive
                       shortName: vogon-poetry
                       lastPublished: '2023-04-02T12:50:00.000Z'
-                      previewUrl: 'https://d1otoma47x30pg.cloudfront.net/42e63e98c9a982ac9b8b743/198210121200.png'
+                      previewUrl: 'https://dev-assets.website-files.com/42e63e98c9a982ac9b8b743/198210121200.png'
                       timeZone: Vogsphere/PoetryHall
                       parentFolderId: null
                       customDomains:
@@ -3883,7 +3883,7 @@ paths:
                     type: string
                     format: uri
                     description: URL of a generated image for the given Site
-                    example: 'https://d1otoma47x30pg.cloudfront.net/580e63e98c9a982ac9b8b741/201610241243.png'
+                    example: 'https://dev-assets.website-files.com/580e63e98c9a982ac9b8b741/201610241243.png'
                   timeZone:
                     type: string
                     description: Site timezone set under Site Settings
@@ -4516,7 +4516,7 @@ paths:
                     type: string
                     format: uri
                     description: URL of a generated image for the given Site
-                    example: 'https://d1otoma47x30pg.cloudfront.net/580e63e98c9a982ac9b8b741/201610241243.png'
+                    example: 'https://dev-assets.website-files.com/580e63e98c9a982ac9b8b741/201610241243.png'
                   timeZone:
                     type: string
                     description: Site timezone set under Site Settings
@@ -39986,7 +39986,7 @@ paths:
                   parentFolder: 6436b1ce5281cace05b65aea
                   uploadUrl: 'https://s3.amazonaws.com/webflow-dev-assets/643021114e290e0d3a0602b2/64358b9544249dc43d37d2b7_Screenshot%202023-04-11%20at%209.50.42%20AM.png'
                   assetUrl: 'https://s3.amazonaws.com/webflow-prod-assets/6258612d1ee792848f805dcf/660d907ab9e91e3e9f56385e_paranoidAndroid-2024.png'
-                  hostedUrl: 'https://d1otoma47x30pg.cloudfront.net/643021114e290e0d3a0602b2/64358b9544249dc43d37d2b7_Screenshot%202023-04-11%20at%209.50.42%20AM.png'
+                  hostedUrl: 'https://dev-assets.website-files.com/643021114e290e0d3a0602b2/64358b9544249dc43d37d2b7_Screenshot%202023-04-11%20at%209.50.42%20AM.png'
                   originalFileName: file.png
                   createdOn: '2023-04-11T16:32:21.804Z'
                   lastUpdated: '2023-04-12T20:31:03.197Z'
@@ -61029,7 +61029,7 @@ paths:
                                     description: The hosted location for the Variant's image
                                     type: string
                                     format: uri
-                                    example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                                    example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                                   file:
                                     type: object
                                     properties:
@@ -61069,7 +61069,7 @@ paths:
                                               description: The hosted location for the Variant's image
                                               format: uri
                                               type: string
-                                              example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                              example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                             originalFileName:
                                               type: string
                                               example: cup.jpg
@@ -61442,7 +61442,7 @@ paths:
                             variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                             variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                             variantImage:
-                              url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                              url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                               file: null
                             variantPrice:
                               unit: USD
@@ -61465,7 +61465,7 @@ paths:
                             variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                             variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                             variantImage:
-                              url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                              url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                               file: null
                             variantPrice:
                               unit: USD
@@ -61636,7 +61636,7 @@ paths:
                           variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                           variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                           variantImage:
-                            url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                            url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                             file: null
                           variantPrice:
                             unit: USD
@@ -61659,7 +61659,7 @@ paths:
                           variantSlug: incredible-bronze-towels-sleek-frozen-incredible-metal
                           variantSKU: incredible-bronze-towels-sleek-frozen-incredible-metal
                           variantImage:
-                            url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e26729_image16.jpeg'
+                            url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e26729_image16.jpeg'
                             file: null
                           variantPrice:
                             unit: USD
@@ -61770,7 +61770,7 @@ paths:
                           variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                           variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                           variantImage:
-                            url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                            url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                             file: null
                           variantPrice:
                             unit: USD
@@ -61793,7 +61793,7 @@ paths:
                           variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                           variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                           variantImage:
-                            url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                            url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                             file: null
                           variantPrice:
                             unit: USD
@@ -62814,7 +62814,7 @@ paths:
                               description: The hosted location for the Variant's image
                               type: string
                               format: uri
-                              example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                              example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                             file:
                               type: object
                               properties:
@@ -62854,7 +62854,7 @@ paths:
                                         description: The hosted location for the Variant's image
                                         format: uri
                                         type: string
-                                        example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                        example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                       originalFileName:
                                         type: string
                                         example: cup.jpg
@@ -63227,7 +63227,7 @@ paths:
                       variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -63250,7 +63250,7 @@ paths:
                       variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -64291,7 +64291,7 @@ paths:
                               description: The hosted location for the Variant's image
                               type: string
                               format: uri
-                              example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                              example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                             file:
                               type: object
                               properties:
@@ -64331,7 +64331,7 @@ paths:
                                         description: The hosted location for the Variant's image
                                         format: uri
                                         type: string
-                                        example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                        example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                       originalFileName:
                                         type: string
                                         example: cup.jpg
@@ -64704,7 +64704,7 @@ paths:
                       variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -64727,7 +64727,7 @@ paths:
                       variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -65754,7 +65754,7 @@ paths:
                               description: The hosted location for the Variant's image
                               type: string
                               format: uri
-                              example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                              example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                             file:
                               type: object
                               properties:
@@ -65794,7 +65794,7 @@ paths:
                                         description: The hosted location for the Variant's image
                                         format: uri
                                         type: string
-                                        example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                        example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                       originalFileName:
                                         type: string
                                         example: cup.jpg
@@ -66167,7 +66167,7 @@ paths:
                       variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -66190,7 +66190,7 @@ paths:
                       variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -67206,7 +67206,7 @@ paths:
                               description: The hosted location for the Variant's image
                               type: string
                               format: uri
-                              example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                              example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                             file:
                               type: object
                               properties:
@@ -67246,7 +67246,7 @@ paths:
                                         description: The hosted location for the Variant's image
                                         format: uri
                                         type: string
-                                        example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                        example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                       originalFileName:
                                         type: string
                                         example: cup.jpg
@@ -67619,7 +67619,7 @@ paths:
                       variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -67642,7 +67642,7 @@ paths:
                       variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -68673,7 +68673,7 @@ paths:
                               description: The hosted location for the Variant's image
                               type: string
                               format: uri
-                              example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                              example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                             file:
                               type: object
                               properties:
@@ -68713,7 +68713,7 @@ paths:
                                         description: The hosted location for the Variant's image
                                         format: uri
                                         type: string
-                                        example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                        example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                       originalFileName:
                                         type: string
                                         example: cup.jpg
@@ -69086,7 +69086,7 @@ paths:
                       variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -69109,7 +69109,7 @@ paths:
                       variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -72066,7 +72066,7 @@ webhooks:
                                 description: The hosted location for the Variant's image
                                 type: string
                                 format: uri
-                                example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                                example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                               file:
                                 type: object
                                 properties:
@@ -72106,7 +72106,7 @@ webhooks:
                                           description: The hosted location for the Variant's image
                                           format: uri
                                           type: string
-                                          example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                          example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                         originalFileName:
                                           type: string
                                           example: cup.jpg
@@ -72479,7 +72479,7 @@ webhooks:
                         variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                         variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                         variantImage:
-                          url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                          url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                           file: null
                         variantPrice:
                           unit: USD
@@ -72502,7 +72502,7 @@ webhooks:
                         variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                         variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                         variantImage:
-                          url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                          url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                           file: null
                         variantPrice:
                           unit: USD
@@ -72654,7 +72654,7 @@ webhooks:
                       variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -72677,7 +72677,7 @@ webhooks:
                       variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -73153,7 +73153,7 @@ webhooks:
                                 description: The hosted location for the Variant's image
                                 type: string
                                 format: uri
-                                example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
+                                example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-unsplas.png'
                               file:
                                 type: object
                                 properties:
@@ -73193,7 +73193,7 @@ webhooks:
                                           description: The hosted location for the Variant's image
                                           format: uri
                                           type: string
-                                          example: 'https://d1otoma47x30pg.cloudfront.net/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
+                                          example: 'https://dev-assets.website-files.com/5bfedb42bab0ad90fa7dac03/5bfedb42bab0ad90fa7dad2e_5bb3d019b3465c6e8a324dd7_458036-example.png'
                                         originalFileName:
                                           type: string
                                           example: cup.jpg
@@ -73566,7 +73566,7 @@ webhooks:
                         variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                         variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                         variantImage:
-                          url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                          url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                           file: null
                         variantPrice:
                           unit: USD
@@ -73589,7 +73589,7 @@ webhooks:
                         variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                         variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                         variantImage:
-                          url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                          url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                           file: null
                         variantPrice:
                           unit: USD
@@ -73741,7 +73741,7 @@ webhooks:
                       variantSlug: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantSKU: luxurious-fresh-ball-generic-bronze-practical-plastic
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2672c_image14.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
@@ -73764,7 +73764,7 @@ webhooks:
                       variantSlug: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantSKU: recycled-steel-gloves-electronic-granite-handcrafted-grey
                       variantImage:
-                        url: 'https://d1otoma47x30pg.cloudfront.net/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
+                        url: 'https://dev-assets.website-files.com/66072f39417a2a35b2589cc7/66072fb51b89448912e2671e_image2.jpeg'
                         file: null
                       variantPrice:
                         unit: USD
