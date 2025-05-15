@@ -31354,6 +31354,15 @@ paths:
             type: string
             format: objectid
             default: null
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
         - in: query
           allowEmptyValue: true
           name: limit
@@ -31878,6 +31887,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
         - in: query
           allowEmptyValue: true
           name: limit
@@ -32715,6 +32733,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
       requestBody:
         content:
           application/json:
@@ -33392,6 +33419,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
         - in: query
           allowEmptyValue: true
           name: limit
@@ -33910,6 +33946,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
       requestBody:
         content:
           application/json:
