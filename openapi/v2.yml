@@ -16423,7 +16423,7 @@ paths:
         Create Item(s) in a Collection.
 
 
-        To create items across multiple locales, please use [this endpoint.](/v2.0.0/data/reference/cms/collection-items/staged-items/create-items)
+        To create items across multiple locales, please use [this endpoint.](/data/reference/cms/collection-items/staged-items/create-items)
 
         Required scope | `CMS:write`
       tags:
@@ -18958,7 +18958,7 @@ paths:
         Create item(s) in a collection that will be immediately published to the live site.
 
 
-        To create items across multiple locales, [please use this endpoint.](/v2.0.0/data/reference/cms/collection-items/staged-items/create-items)
+        To create items across multiple locales, [please use this endpoint.](/data/reference/cms/collection-items/staged-items/create-items)
 
 
         Required scope | `CMS:write`
