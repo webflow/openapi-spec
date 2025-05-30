@@ -472,26 +472,26 @@ paths:
                             example:
                               - 545bbecb7bdd6769632504a7
                   application:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        format: objectid
-                        example: 55131cd036c09f7d07883dfc
-                        description: Unique identifier for the Application
-                      description:
-                        type: string
-                        example: OAuth Testing Application
-                        description: Application description provided by the developer
-                      homepage:
-                        type: string
-                        format: uri
-                        example: 'https://webflow.com'
-                        description: Application homepage URL provided by the developer
-                      displayName:
-                        type: string
-                        example: Test App
-                        description: Application name provided by the developer
+                    Application:
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          example: 55131cd036c09f7d07883dfc
+                          description: Unique identifier for the Application
+                        description:
+                          type: string
+                          example: OAuth Testing Application
+                          description: Application description provided by the developer
+                        homepage:
+                          type: string
+                          format: uri
+                          example: 'https://webflow.com'
+                          description: Application homepage URL provided by the developer
+                        displayName:
+                          type: string
+                          example: Test App
+                          description: Application name provided by the developer
         '401':
           description: Provided access token is invalid or does not have access to requested resource
           x-logErrorCode: 401
@@ -1601,7 +1601,6 @@ paths:
                               type: string
                       oneOf:
                         - type: object
-                          title: User Access
                           properties:
                             eventType:
                               type: string
@@ -1614,7 +1613,6 @@ paths:
                                 - logout
                             payload:
                               x-fern-type-name: User access
-                              title: User access
                               type: object
                               properties:
                                 method:
@@ -1631,7 +1629,6 @@ paths:
                                   type: string
                                   description: The captured IP address of the user
                         - type: object
-                          title: Custom Role
                           properties:
                             eventType:
                               type: string
@@ -1645,7 +1642,6 @@ paths:
                                 - role_deleted
                             payload:
                               x-fern-type-name: Custom role
-                              title: Custom role
                               type: object
                               properties:
                                 roleName:
@@ -1655,7 +1651,6 @@ paths:
                                   type: string
                                   description: The previous name of the custom role
                         - type: object
-                          title: Workspace Membership
                           properties:
                             eventType:
                               type: string
@@ -1669,7 +1664,6 @@ paths:
                                 - user_role_updated
                             payload:
                               x-fern-type-name: Workspace membership
-                              title: Workspace membership
                               type: object
                               properties:
                                 targetUser:
@@ -1699,7 +1693,6 @@ paths:
                                   type: string
                                   description: The previous role that the user had
                         - type: object
-                          title: Site Membership
                           properties:
                             eventType:
                               type: string
@@ -1713,7 +1706,6 @@ paths:
                                 - user_role_updated
                             payload:
                               x-fern-type-name: Site membership
-                              title: Site membership
                               type: object
                               properties:
                                 site:
@@ -1752,7 +1744,6 @@ paths:
                                   type: string
                                   description: The previous role that the user had
                         - type: object
-                          title: Workspace Invitation
                           properties:
                             eventType:
                               type: string
@@ -1768,7 +1759,6 @@ paths:
                                 - invite_declined
                             payload:
                               x-fern-type-name: Workspace invitation
-                              title: Workspace invitation
                               type: object
                               properties:
                                 targetUser:
@@ -1847,7 +1837,7 @@ paths:
                           email: someone@webflow.com
                         method: sso
                         roleName: member
-                        userType: member
+                        userType: Member
                     - timestamp: '2025-04-30T00:33:31.793Z'
                       eventType: site_membership
                       eventSubType: user_added
@@ -1866,7 +1856,7 @@ paths:
                         targetUser:
                           id: 672946bf5d384ea895bb95e2
                           email: someone@webflow.com
-                        userType: member
+                        userType: Member
                   pagination:
                     total: 3
                     limit: 10
@@ -2537,8 +2527,6 @@ paths:
                     parentFolderId: 670ece123598db72d9648be1
                     customDomains: []
                     locales: null
-                    dataCollectionEnabled: true
-                    dataCollectionType: always
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -13011,7 +12999,6 @@ paths:
                     oneOf:
                       - type: object
                         x-fern-type-name: Static Field
-                        title: Static Field
                         required:
                           - type
                           - displayName
@@ -13062,7 +13049,6 @@ paths:
                           helpText: Add the body of your post here
                       - type: object
                         x-fern-type-name: Option Field
-                        title: Option Field
                         required:
                           - type
                           - displayName
@@ -13129,7 +13115,6 @@ paths:
                               - name: Product Highlight
                       - type: object
                         x-fern-type-name: Reference Field
-                        title: Reference Field
                         required:
                           - type
                           - displayName
@@ -14774,7 +14759,6 @@ paths:
               oneOf:
                 - type: object
                   x-fern-type-name: Static Field
-                  title: Static Field
                   required:
                     - type
                     - displayName
@@ -14825,7 +14809,6 @@ paths:
                     helpText: Add the body of your post here
                 - type: object
                   x-fern-type-name: Option Field
-                  title: Option Field
                   required:
                     - type
                     - displayName
@@ -14892,7 +14875,6 @@ paths:
                         - name: Product Highlight
                 - type: object
                   x-fern-type-name: Reference Field
-                  title: Reference Field
                   required:
                     - type
                     - displayName
@@ -15020,7 +15002,6 @@ paths:
                 oneOf:
                   - type: object
                     x-fern-type-name: Static Field
-                    title: Static Field
                     required:
                       - type
                       - displayName
@@ -15071,7 +15052,6 @@ paths:
                       helpText: Add the body of your post here
                   - type: object
                     x-fern-type-name: Option Field
-                    title: Option Field
                     required:
                       - type
                       - displayName
@@ -15138,7 +15118,6 @@ paths:
                           - name: Product Highlight
                   - type: object
                     x-fern-type-name: Reference Field
-                    title: Reference Field
                     required:
                       - type
                       - displayName
@@ -16679,7 +16658,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item List
                 description: Results from collection items list
                 example:
                   items:
@@ -16716,7 +16694,6 @@ paths:
                     type: array
                     description: List of Items within the collection
                     items:
-                      title: Collection Item
                       description: |
                         A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -17223,7 +17200,6 @@ paths:
             schema:
               oneOf:
                 - x-fern-type-name: Single Item
-                  title: Single Item
                   description: |
                     A new Collection Item that will be created in the draft state. 
 
@@ -17302,7 +17278,6 @@ paths:
                       color: '#db4b68'
                 - type: object
                   x-fern-type-name: Multiple Items
-                  title: Multiple Items
                   additionalProperties: false
                   properties:
                     items:
@@ -18090,7 +18065,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item
                 description: |
                   A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -18178,53 +18152,41 @@ paths:
                   value:
                     items:
                       - id: 66f6ed9576ddacf3149d5ea6
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: Ne Paniquez Pas
                           slug: ne-paniquez-pas
                           featured: false
                       - id: 66f6ed9576ddacf3149d5ea6
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: No Entrar en Pánico
                           slug: no-entrar-en-panico
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: Au Revoir et Merci pour Tous les Poissons
                           slug: au-revoir-et-merci
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: Hasta Luego y Gracias por Todo el Pescado
                           slug: hasta-luego-y-gracias
                           featured: false
-                    pagination:
-                      limit: 25
-                      offset: 0
-                      total: 4
                 MultipleItems:
                   summary: Mulitple items updated in a single locale
                   value:
@@ -19185,7 +19147,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item List
                 description: Results from collection items list
                 example:
                   items:
@@ -19222,7 +19183,6 @@ paths:
                     type: array
                     description: List of Items within the collection
                     items:
-                      title: Collection Item
                       description: |
                         A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -19732,8 +19692,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - title: Collection Item
-                  description: |
+                - description: |
                     A Collection Item represents a single entry in your collection. Each item includes:
 
                     - **System metadata** - Automatically managed fields like IDs and timestamp <br/>
@@ -19817,13 +19776,11 @@ paths:
                   x-fern-type-name: Single Live Item
                 - type: object
                   x-fern-type-name: Multiple Live Items
-                  title: Multiple Live Items
                   properties:
                     items:
                       type: array
                       description: List of collection items to create
                       items:
-                        title: Collection Item
                         description: |
                           A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -19939,7 +19896,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item
                 description: |
                   A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -20595,7 +20551,6 @@ paths:
                     type: array
                     description: List of Items within the collection
                     items:
-                      title: Collection Item
                       description: |
                         A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -20683,53 +20638,41 @@ paths:
                   value:
                     items:
                       - id: 66f6ed9576ddacf3149d5ea6
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: Ne Paniquez Pas
                           slug: ne-paniquez-pas
                           featured: false
                       - id: 66f6ed9576ddacf3149d5ea6
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: No Entrar en Pánico
                           slug: no-entrar-en-panico
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca5
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: Au Revoir et Merci pour Tous les Poissons
                           slug: au-revoir-et-merci
                           featured: false
                       - id: 66f6ed9576ddacf3149d5eaa
-                        lastPublished: '2024-09-27T17:38:29.066Z'
+                        lastPublished: null
                         lastUpdated: '2024-09-27T17:38:29.066Z'
                         createdOn: '2024-09-27T17:38:29.066Z'
                         cmsLocaleId: 66f6e966c9e1dc700a857ca4
-                        isArchived: false
-                        isDraft: false
                         fieldData:
                           name: Hasta Luego y Gracias por Todo el Pescado
                           slug: hasta-luego-y-gracias
                           featured: false
-                    pagination:
-                      limit: 25
-                      offset: 0
-                      total: 4
                 MultipleItems:
                   summary: Mulitple items updated in a single locale
                   value:
@@ -22467,7 +22410,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item
                 description: |
                   A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -23030,7 +22972,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item
                 description: |
                   A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -23962,7 +23903,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item
                 description: |
                   A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -24525,7 +24465,6 @@ paths:
           content:
             application/json:
               schema:
-                title: Collection Item
                 description: |
                   A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -25519,7 +25458,6 @@ paths:
               oneOf:
                 - type: object
                   x-fern-type-name: Item IDs
-                  title: Item IDs
                   description: An array of Item IDs in a single locale
                   properties:
                     itemIds:
@@ -25534,7 +25472,6 @@ paths:
                       - 643fd856d66b6528195ee2cc
                 - type: object
                   x-fern-type-name: Item IDs with Locales
-                  title: Item IDs with Locales
                   description: An array of Item IDs with included `cmsLocaleIds`
                   properties:
                     items:
@@ -30771,9 +30708,8 @@ paths:
                   items:
                     type: object
                     oneOf:
-                      - type: object
-                        title: Text Node
-                        x-fern-type-name: Text Node
+                      - x-fern-type-name: Text Node
+                        type: object
                         description: Update a text node
                         properties:
                           nodeId:
@@ -30793,9 +30729,8 @@ paths:
                               text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
                               text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
-                      - type: object
-                        title: Component Instance
-                        x-fern-type-name: Component Instance
+                      - x-fern-type-name: Component Instance
+                        type: object
                         description: Update text property overrides of a component instance
                         properties:
                           nodeId:
@@ -30834,9 +30769,8 @@ paths:
                                   text: <div><h1>Time is an <em>illusion</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
                                   text: 'Life, the Universe and Everything'
-                      - type: object
-                        title: Select
-                        x-fern-type-name: Select
+                      - x-fern-type-name: Select
+                        type: object
                         description: Update choices on a select node
                         properties:
                           nodeId:
@@ -30861,9 +30795,8 @@ paths:
                         required:
                           - nodeId
                           - choices
-                      - type: object
-                        title: Text Input
-                        x-fern-type-name: Text Input
+                      - x-fern-type-name: Text Input
+                        type: object
                         description: Update placeholder text on a text input node
                         properties:
                           nodeId:
@@ -30876,9 +30809,8 @@ paths:
                         required:
                           - nodeId
                           - placeholder
-                      - type: object
-                        title: Submit Button
-                        x-fern-type-name: Submit Button
+                      - x-fern-type-name: Submit Button
+                        type: object
                         description: Update a submit button node
                         properties:
                           nodeId:
@@ -30893,9 +30825,8 @@ paths:
                             type: string
                         required:
                           - nodeId
-                      - type: object
-                        title: Search Button
-                        x-fern-type-name: Search Button
+                      - x-fern-type-name: Search Button
+                        type: object
                         description: Update a search button node
                         properties:
                           nodeId:
@@ -32825,9 +32756,8 @@ paths:
                   items:
                     type: object
                     oneOf:
-                      - type: object
-                        title: Text Node
-                        x-fern-type-name: Text Node
+                      - x-fern-type-name: Component Text Node
+                        type: object
                         description: Update a text node
                         properties:
                           nodeId:
@@ -32847,9 +32777,8 @@ paths:
                               text: <h1>The Hitchhiker's Guide to the Galaxy</h1>
                             - nodeId: a245c12d-995b-55ee-5ec7-aa36a6cad627
                               text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
-                      - type: object
-                        title: Component Instance
-                        x-fern-type-name: Component Instance
+                      - x-fern-type-name: Nested Component Instance
+                        type: object
                         description: Update text property overrides of a component instance
                         properties:
                           nodeId:
@@ -32888,9 +32817,8 @@ paths:
                                   text: <div><h1>Time is an <em>illusion</em></h1></div>
                                 - propertyId: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f1
                                   text: 'Life, the Universe and Everything'
-                      - type: object
-                        title: Select
-                        x-fern-type-name: Select
+                      - x-fern-type-name: Component Select
+                        type: object
                         description: Update choices on a select node
                         properties:
                           nodeId:
@@ -32915,9 +32843,8 @@ paths:
                         required:
                           - nodeId
                           - choices
-                      - type: object
-                        title: Text Input
-                        x-fern-type-name: Text Input
+                      - x-fern-type-name: Component Text Input
+                        type: object
                         description: Update placeholder text on a text input node
                         properties:
                           nodeId:
@@ -32930,9 +32857,8 @@ paths:
                         required:
                           - nodeId
                           - placeholder
-                      - type: object
-                        title: Submit Button
-                        x-fern-type-name: Submit Button
+                      - x-fern-type-name: Component Submit Button
+                        type: object
                         description: Update a submit button node
                         properties:
                           nodeId:
@@ -32947,9 +32873,8 @@ paths:
                             type: string
                         required:
                           - nodeId
-                      - type: object
-                        title: Search Button
-                        x-fern-type-name: Search Button
+                      - x-fern-type-name: Component Search Button
+                        type: object
                         description: Update a search button node
                         properties:
                           nodeId:
@@ -39566,14 +39491,12 @@ paths:
                             type: integer
                             description: Height in pixels
                             example: 900
-                            nullable: true
                           quality:
                             type: integer
                             description: Value between 0 and 100 representing the image quality
                           error:
                             type: string
                             description: Any associated validation errors
-                            nullable: true
                     altText:
                       type: string
                       example: A red chair
@@ -40645,14 +40568,12 @@ paths:
                           type: integer
                           description: Height in pixels
                           example: 900
-                          nullable: true
                         quality:
                           type: integer
                           description: Value between 0 and 100 representing the image quality
                         error:
                           type: string
                           description: Any associated validation errors
-                          nullable: true
                   altText:
                     type: string
                     example: A red chair
@@ -41203,14 +41124,12 @@ paths:
                           type: integer
                           description: Height in pixels
                           example: 900
-                          nullable: true
                         quality:
                           type: integer
                           description: Value between 0 and 100 representing the image quality
                         error:
                           type: string
                           description: Any associated validation errors
-                          nullable: true
                   altText:
                     type: string
                     example: A red chair
@@ -54208,7 +54127,7 @@ paths:
                                               type: string
                                               description: Unique identifier for a Product variant/Option
                                               default: null
-                                              examples:
+                                              example:
                                                 - royal-blue
                                                 - crimson-red
                                                 - forrest-green
@@ -54468,7 +54387,7 @@ paths:
                                                 type: string
                                                 description: Unique identifier for a Product variant/Option
                                                 default: null
-                                                examples:
+                                                example:
                                                   - royal-blue
                                                   - crimson-red
                                                   - forrest-green
@@ -54490,11 +54409,6 @@ paths:
                                   type: string
                                   description: Custom fields for your SKU.
                             example:
-                              id: 66072fb71b89448912e2681c
-                              cmsLocaleId: 653ad57de882f528b32e810e
-                              lastPublished: '2023-03-17T18:47:35.560Z'
-                              lastUpdated: '2023-03-17T18:47:35.560Z'
-                              createdOn: '2023-03-17T18:47:35.560Z'
                               fieldData:
                                 name: Colorful T-shirt - Default
                                 slug: colorful-t-shirt-default
@@ -55197,7 +55111,7 @@ paths:
                                           type: string
                                           description: Unique identifier for a Product variant/Option
                                           default: null
-                                          examples:
+                                          example:
                                             - royal-blue
                                             - crimson-red
                                             - forrest-green
@@ -55428,7 +55342,7 @@ paths:
                                       type: string
                                       description: Unique identifier for a Product variant/Option
                                       default: null
-                                      examples:
+                                      example:
                                         - royal-blue
                                         - crimson-red
                                         - forrest-green
@@ -55599,7 +55513,7 @@ paths:
                                         type: string
                                         description: Unique identifier for a Product variant/Option
                                         default: null
-                                        examples:
+                                        example:
                                           - royal-blue
                                           - crimson-red
                                           - forrest-green
@@ -55859,7 +55773,7 @@ paths:
                                           type: string
                                           description: Unique identifier for a Product variant/Option
                                           default: null
-                                          examples:
+                                          example:
                                             - royal-blue
                                             - crimson-red
                                             - forrest-green
@@ -55881,11 +55795,6 @@ paths:
                             type: string
                             description: Custom fields for your SKU.
                       example:
-                        id: 66072fb71b89448912e2681c
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        lastPublished: '2023-03-17T18:47:35.560Z'
-                        lastUpdated: '2023-03-17T18:47:35.560Z'
-                        createdOn: '2023-03-17T18:47:35.560Z'
                         fieldData:
                           name: Colorful T-shirt - Default
                           slug: colorful-t-shirt-default
@@ -56598,7 +56507,7 @@ paths:
                                         type: string
                                         description: Unique identifier for a Product variant/Option
                                         default: null
-                                        examples:
+                                        example:
                                           - royal-blue
                                           - crimson-red
                                           - forrest-green
@@ -56858,7 +56767,7 @@ paths:
                                           type: string
                                           description: Unique identifier for a Product variant/Option
                                           default: null
-                                          examples:
+                                          example:
                                             - royal-blue
                                             - crimson-red
                                             - forrest-green
@@ -56880,11 +56789,6 @@ paths:
                             type: string
                             description: Custom fields for your SKU.
                       example:
-                        id: 66072fb71b89448912e2681c
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        lastPublished: '2023-03-17T18:47:35.560Z'
-                        lastUpdated: '2023-03-17T18:47:35.560Z'
-                        createdOn: '2023-03-17T18:47:35.560Z'
                         fieldData:
                           name: Colorful T-shirt - Default
                           slug: colorful-t-shirt-default
@@ -57646,7 +57550,7 @@ paths:
                                       type: string
                                       description: Unique identifier for a Product variant/Option
                                       default: null
-                                      examples:
+                                      example:
                                         - royal-blue
                                         - crimson-red
                                         - forrest-green
@@ -57903,7 +57807,7 @@ paths:
                                       type: string
                                       description: Unique identifier for a Product variant/Option
                                       default: null
-                                      examples:
+                                      example:
                                         - royal-blue
                                         - crimson-red
                                         - forrest-green
@@ -57925,11 +57829,6 @@ paths:
                         type: string
                         description: Custom fields for your SKU.
                   example:
-                    id: 66072fb71b89448912e2681c
-                    cmsLocaleId: 653ad57de882f528b32e810e
-                    lastPublished: '2023-03-17T18:47:35.560Z'
-                    lastUpdated: '2023-03-17T18:47:35.560Z'
-                    createdOn: '2023-03-17T18:47:35.560Z'
                     fieldData:
                       name: Colorful T-shirt - Default
                       slug: colorful-t-shirt-default
@@ -58084,7 +57983,7 @@ paths:
                                     type: string
                                     description: Unique identifier for a Product variant/Option
                                     default: null
-                                    examples:
+                                    example:
                                       - royal-blue
                                       - crimson-red
                                       - forrest-green
@@ -58917,7 +58816,7 @@ paths:
                                         type: string
                                         description: Unique identifier for a Product variant/Option
                                         default: null
-                                        examples:
+                                        example:
                                           - royal-blue
                                           - crimson-red
                                           - forrest-green
@@ -58939,11 +58838,6 @@ paths:
                           type: string
                           description: Custom fields for your SKU.
                     example:
-                      id: 66072fb71b89448912e2681c
-                      cmsLocaleId: 653ad57de882f528b32e810e
-                      lastPublished: '2023-03-17T18:47:35.560Z'
-                      lastUpdated: '2023-03-17T18:47:35.560Z'
-                      createdOn: '2023-03-17T18:47:35.560Z'
                       fieldData:
                         name: Colorful T-shirt - Default
                         slug: colorful-t-shirt-default
@@ -59153,7 +59047,7 @@ paths:
                                           type: string
                                           description: Unique identifier for a Product variant/Option
                                           default: null
-                                          examples:
+                                          example:
                                             - royal-blue
                                             - crimson-red
                                             - forrest-green
@@ -59175,11 +59069,6 @@ paths:
                             type: string
                             description: Custom fields for your SKU.
                       example:
-                        id: 66072fb71b89448912e2681c
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        lastPublished: '2023-03-17T18:47:35.560Z'
-                        lastUpdated: '2023-03-17T18:47:35.560Z'
-                        createdOn: '2023-03-17T18:47:35.560Z'
                         fieldData:
                           name: Colorful T-shirt - Default
                           slug: colorful-t-shirt-default
@@ -59958,7 +59847,7 @@ paths:
                                       type: string
                                       description: Unique identifier for a Product variant/Option
                                       default: null
-                                      examples:
+                                      example:
                                         - royal-blue
                                         - crimson-red
                                         - forrest-green
@@ -59980,11 +59869,6 @@ paths:
                         type: string
                         description: Custom fields for your SKU.
                   example:
-                    id: 66072fb71b89448912e2681c
-                    cmsLocaleId: 653ad57de882f528b32e810e
-                    lastPublished: '2023-03-17T18:47:35.560Z'
-                    lastUpdated: '2023-03-17T18:47:35.560Z'
-                    createdOn: '2023-03-17T18:47:35.560Z'
                     fieldData:
                       name: Colorful T-shirt - Default
                       slug: colorful-t-shirt-default
@@ -60187,7 +60071,7 @@ paths:
                                     type: string
                                     description: Unique identifier for a Product variant/Option
                                     default: null
-                                    examples:
+                                    example:
                                       - royal-blue
                                       - crimson-red
                                       - forrest-green
@@ -60209,11 +60093,6 @@ paths:
                       type: string
                       description: Custom fields for your SKU.
                 example:
-                  id: 66072fb71b89448912e2681c
-                  cmsLocaleId: 653ad57de882f528b32e810e
-                  lastPublished: '2023-03-17T18:47:35.560Z'
-                  lastUpdated: '2023-03-17T18:47:35.560Z'
-                  createdOn: '2023-03-17T18:47:35.560Z'
                   fieldData:
                     name: Colorful T-shirt - Default
                     slug: colorful-t-shirt-default
@@ -71716,9 +71595,7 @@ webhooks:
                       description: A list of fields from the submitted form
                       type: array
                       items:
-                        type: object
-                        properties:
-                          fieldName:
+                        - fieldName:
                             description: Form field name
                             type: string
                             example: First Name
@@ -71820,7 +71697,7 @@ webhooks:
                       items:
                         type: string
                       example:
-                        - heartofgold.webflow.io
+                        - my-website.webflow.io
                     publishedBy:
                       type: object
                       description: The name andID of the user who published the site
@@ -71832,7 +71709,7 @@ webhooks:
                   site: 62749158efef318abc8d5a0f
                   publishTime: '2024-07-26T16:43:20.440Z'
                   domains:
-                    - heartofgold.webflow.io
+                    - my-website.webflow.io
                   publishedBy:
                     displayName: Zaphod BeebleBrox
       responses:
@@ -74420,7 +74297,7 @@ webhooks:
                 triggerType:
                   type: string
                   enum:
-                    - user_account_deleted
+                    - user_account_added
                 payload:
                   allOf:
                     - description: |
@@ -74599,7 +74476,7 @@ webhooks:
                 payload:
                   oneOf:
                     - type: object
-                      title: Collection Item without Locales
+                      x-fern-type-name: Collection Item without Locales
                       required:
                         - id
                         - workspaceId
@@ -74662,7 +74539,7 @@ webhooks:
                           name: Pan-Galactic Gargle Blaster
                           slug: pan-galactic-gargle-blaster
                     - type: object
-                      title: Collection Item with Locales
+                      x-fern-type-name: Collection Item with Locales
                       required:
                         - siteId
                         - workspaceId
@@ -74904,7 +74781,7 @@ webhooks:
                 payload:
                   oneOf:
                     - type: object
-                      title: Collection Item without Locales
+                      x-fern-type-name: Collection Item without Locales
                       required:
                         - id
                         - workspaceId
@@ -74967,7 +74844,7 @@ webhooks:
                           name: Pan-Galactic Gargle Blaster
                           slug: pan-galactic-gargle-blaster
                     - type: object
-                      title: Collection Item with Locales
+                      x-fern-type-name: Collection Item with Locales
                       required:
                         - id
                         - workspaceId
