@@ -61010,7 +61010,7 @@ paths:
                                 example: 90012
                                 description: The postal code of the address
                         shippingAddress:
-                          description: A customer address
+                          description: The shipping address
                           properties:
                             type:
                               description: The type of the order address (billing or shipping)
@@ -61056,9 +61056,17 @@ paths:
                               example: 90012
                               description: The postal code of the address
                           example:
-                            $ref: ../examples/order.yml#/ShippingAddress/value
+                            type: shipping
+                            japanType: kanji
+                            addressee: Custmerio Namen
+                            line1: 123 Example Road
+                            line2: Unit 3
+                            city: Examplesville
+                            state: CA
+                            country: US
+                            postalCode: 90012
                         billingAddress:
-                          description: A customer address
+                          description: The billing address
                           properties:
                             type:
                               description: The type of the order address (billing or shipping)
@@ -61104,7 +61112,15 @@ paths:
                               example: 90012
                               description: The postal code of the address
                           example:
-                            $ref: ../examples/order.yml#/BillingAddress/value
+                            type: billing
+                            japanType: kanji
+                            addressee: Custmerio Namen
+                            line1: 123 Example Road
+                            line2: Unit 3
+                            city: Examplesville
+                            state: CA
+                            country: US
+                            postalCode: 90012
                         shippingProvider:
                           type: string
                           description: |
@@ -62795,7 +62811,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: A customer address
+                    description: The shipping address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -62841,9 +62857,17 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/ShippingAddress/value
+                      type: shipping
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   billingAddress:
-                    description: A customer address
+                    description: The billing address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -62889,7 +62913,15 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/BillingAddress/value
+                      type: billing
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   shippingProvider:
                     type: string
                     description: |
@@ -64272,7 +64304,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: A customer address
+                    description: The shipping address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -64318,9 +64350,17 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/ShippingAddress/value
+                      type: shipping
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   billingAddress:
-                    description: A customer address
+                    description: The billing address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -64366,7 +64406,15 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/BillingAddress/value
+                      type: billing
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   shippingProvider:
                     type: string
                     description: |
@@ -65735,7 +65783,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: A customer address
+                    description: The shipping address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -65781,9 +65829,17 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/ShippingAddress/value
+                      type: shipping
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   billingAddress:
-                    description: A customer address
+                    description: The billing address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -65829,7 +65885,15 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/BillingAddress/value
+                      type: billing
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   shippingProvider:
                     type: string
                     description: |
@@ -67187,7 +67251,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: A customer address
+                    description: The shipping address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -67233,9 +67297,17 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/ShippingAddress/value
+                      type: shipping
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   billingAddress:
-                    description: A customer address
+                    description: The billing address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -67281,7 +67353,15 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/BillingAddress/value
+                      type: billing
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   shippingProvider:
                     type: string
                     description: |
@@ -68654,7 +68734,7 @@ paths:
                           example: 90012
                           description: The postal code of the address
                   shippingAddress:
-                    description: A customer address
+                    description: The shipping address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -68700,9 +68780,17 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/ShippingAddress/value
+                      type: shipping
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   billingAddress:
-                    description: A customer address
+                    description: The billing address
                     properties:
                       type:
                         description: The type of the order address (billing or shipping)
@@ -68748,7 +68836,15 @@ paths:
                         example: 90012
                         description: The postal code of the address
                     example:
-                      $ref: ../examples/order.yml#/BillingAddress/value
+                      type: billing
+                      japanType: kanji
+                      addressee: Custmerio Namen
+                      line1: 123 Example Road
+                      line2: Unit 3
+                      city: Examplesville
+                      state: CA
+                      country: US
+                      postalCode: 90012
                   shippingProvider:
                     type: string
                     description: |
@@ -72049,7 +72145,7 @@ webhooks:
                             example: 90012
                             description: The postal code of the address
                     shippingAddress:
-                      description: A customer address
+                      description: The shipping address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -72095,9 +72191,17 @@ webhooks:
                           example: 90012
                           description: The postal code of the address
                       example:
-                        $ref: ../examples/order.yml#/ShippingAddress/value
+                        type: shipping
+                        japanType: kanji
+                        addressee: Custmerio Namen
+                        line1: 123 Example Road
+                        line2: Unit 3
+                        city: Examplesville
+                        state: CA
+                        country: US
+                        postalCode: 90012
                     billingAddress:
-                      description: A customer address
+                      description: The billing address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -72143,7 +72247,15 @@ webhooks:
                           example: 90012
                           description: The postal code of the address
                       example:
-                        $ref: ../examples/order.yml#/BillingAddress/value
+                        type: billing
+                        japanType: kanji
+                        addressee: Custmerio Namen
+                        line1: 123 Example Road
+                        line2: Unit 3
+                        city: Examplesville
+                        state: CA
+                        country: US
+                        postalCode: 90012
                     shippingProvider:
                       type: string
                       description: |
@@ -73136,7 +73248,7 @@ webhooks:
                             example: 90012
                             description: The postal code of the address
                     shippingAddress:
-                      description: A customer address
+                      description: The shipping address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -73182,9 +73294,17 @@ webhooks:
                           example: 90012
                           description: The postal code of the address
                       example:
-                        $ref: ../examples/order.yml#/ShippingAddress/value
+                        type: shipping
+                        japanType: kanji
+                        addressee: Custmerio Namen
+                        line1: 123 Example Road
+                        line2: Unit 3
+                        city: Examplesville
+                        state: CA
+                        country: US
+                        postalCode: 90012
                     billingAddress:
-                      description: A customer address
+                      description: The billing address
                       properties:
                         type:
                           description: The type of the order address (billing or shipping)
@@ -73230,7 +73350,15 @@ webhooks:
                           example: 90012
                           description: The postal code of the address
                       example:
-                        $ref: ../examples/order.yml#/BillingAddress/value
+                        type: billing
+                        japanType: kanji
+                        addressee: Custmerio Namen
+                        line1: 123 Example Road
+                        line2: Unit 3
+                        city: Examplesville
+                        state: CA
+                        country: US
+                        postalCode: 90012
                     shippingProvider:
                       type: string
                       description: |
