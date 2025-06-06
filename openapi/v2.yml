@@ -74127,6 +74127,11 @@ webhooks:
                           type: string
                           format: uuid
                           description: Unique identifier of the collection
+                        cmsLocaleId:
+                          type: string
+                          format: uuid
+                          description: Unique identifier of the CMS locale for this item
+                          nullable: true
                         lastPublished:
                           type: string
                           format: date-time
@@ -74157,6 +74162,7 @@ webhooks:
                         workspaceId: 625860a7a6c16d624927122f
                         siteId: 65427cf400e02b306eaa049c
                         collectionId: 664243617fcc8b464b23c4ee
+                        cmsLocaleId: 681442a144bb80bd00480fda
                         lastPublished: null
                         lastUpdated: '2023-03-17T18:47:35.560Z'
                         createdOn: '2023-03-17T18:47:35.560Z'
@@ -74185,6 +74191,11 @@ webhooks:
                           type: string
                           format: uuid
                           description: Unique identifier of the collection
+                        cmsLocaleId:
+                          type: string
+                          format: uuid
+                          description: Unique identifier of the CMS locale for this item
+                          nullable: true
                         fieldData:
                           type: object
                           description: 'Collection of localized items, keyed by locale index (0-n)'
@@ -74270,6 +74281,7 @@ webhooks:
                         siteId: 6258612d1ee792848f805dcf
                         workspaceId: 625860a7a6c16d624927122f
                         collectionId: 663a4a39d10b271e8f4b38cd
+                        cmsLocaleId: 653ad57de882f528b32e810e
                         fieldData:
                           '0':
                             _cid: 663a4a39d10b271e8f4b38cd
@@ -74432,6 +74444,11 @@ webhooks:
                           type: string
                           format: uuid
                           description: Unique identifier of the collection
+                        cmsLocaleId:
+                          type: string
+                          format: uuid
+                          description: Unique identifier of the CMS locale for this item
+                          nullable: true
                         lastPublished:
                           type: string
                           format: date-time
@@ -74462,6 +74479,7 @@ webhooks:
                         workspaceId: 625860a7a6c16d624927122f
                         siteId: 65427cf400e02b306eaa049c
                         collectionId: 664243617fcc8b464b23c4ee
+                        cmsLocaleId: 681442a144bb80bd00480fda
                         lastPublished: null
                         lastUpdated: '2023-03-17T18:47:35.560Z'
                         createdOn: '2023-03-17T18:47:35.560Z'
@@ -74495,6 +74513,11 @@ webhooks:
                           type: string
                           format: uuid
                           description: Unique identifier of the collection
+                        cmsLocaleId:
+                          type: string
+                          format: uuid
+                          description: Unique identifier of the CMS locale for this item
+                          nullable: true
                         lastPublished:
                           type: string
                           format: date-time
@@ -74530,6 +74553,7 @@ webhooks:
                         workspaceId: 625860a7a6c16d624927122f
                         siteId: 65427cf400e02b306eaa049c
                         collectionId: 664243617fcc8b464b23c4ee
+                        cmsLocaleId: 681442a144bb80bd00480fda
                         lastPublished: null
                         lastUpdated: '2023-03-17T18:47:35.560Z'
                         createdOn: '2023-03-17T18:47:35.560Z'
@@ -74584,6 +74608,36 @@ webhooks:
                       format: objectid
                       description: The ID of the collection
                       example: 664243617fcc8b464b23c4ee
+                    cmsLocaleId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the CMS locale for this item
+                      example: 681442a144bb80bd00480fda
+                    lastPublished:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    lastUpdated:
+                      type: string
+                      format: date-time
+                    createdOn:
+                      type: string
+                      format: date-time
+                    isArchived:
+                      type: boolean
+                    isDraft:
+                      type: boolean
+                    fieldData:
+                      type: object
+                      required:
+                        - name
+                        - slug
+                      properties:
+                        name:
+                          type: string
+                        slug:
+                          type: string
+                      additionalProperties: true
               example:
                 triggerType: collection_item_deleted
                 payload:
@@ -74591,6 +74645,17 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   workspaceId: 625860a7a6c16d624927122f
                   collectionId: 664243617fcc8b464b23c4ee
+                  cmsLocaleId: 681442a144bb80bd00480fda
+                  lastPublished: null
+                  lastUpdated: '2025-05-28T04:44:33.216Z'
+                  createdOn: '2025-05-28T04:27:12.667Z'
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    _locale: 681442a144bb80bd00480fda
+                    _noSearch: false
+                    name: Anna Gunn
+                    slug: anna-gunn
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -74636,6 +74701,37 @@ webhooks:
                       format: objectid
                       description: The ID of the collection
                       example: 664243617fcc8b464b23c4ee
+                    cmsLocaleId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the CMS locale for this item
+                      example: 681442a144bb80bd00480fda
+                      nullable: true
+                    lastPublished:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    lastUpdated:
+                      type: string
+                      format: date-time
+                    createdOn:
+                      type: string
+                      format: date-time
+                    isArchived:
+                      type: boolean
+                    isDraft:
+                      type: boolean
+                    fieldData:
+                      type: object
+                      required:
+                        - name
+                        - slug
+                      properties:
+                        name:
+                          type: string
+                        slug:
+                          type: string
+                      additionalProperties: true
               example:
                 triggerType: collection_item_unpublished
                 payload:
@@ -74643,6 +74739,17 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   workspaceId: 625860a7a6c16d624927122f
                   collectionId: 664243617fcc8b464b23c4ee
+                  cmsLocaleId: 681442a144bb80bd00480fda
+                  lastPublished: null
+                  lastUpdated: '2025-05-28T04:44:33.216Z'
+                  createdOn: '2025-05-28T04:27:12.667Z'
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    _locale: 681442a144bb80bd00480fda
+                    _noSearch: false
+                    name: Anna Gunn
+                    slug: anna-gunn
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
