@@ -30741,6 +30741,7 @@ paths:
         Before making updates:
         1. Use the [get page content](/data/reference/pages-and-components/pages/get-content) endpoint to identify available content nodes and their types
         2. If the page has component instances, retrieve the component's properties that you'll override using the [get component properties](/data/reference/pages-and-components/components/get-properties) endpoint
+        3. DOM elements may include a `data-w-id` attribute. This attribute is used by Webflow to maintain custom attributes across locales. Always include the original `data-w-id` value in your update requests to ensure consistent behavior across all locales.
 
         <Note>
           This endpoint is specifically for localized pages. Ensure that the specified `localeId` is a valid **secondary locale** for the site otherwise the request will fail.
