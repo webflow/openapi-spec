@@ -12515,20 +12515,163 @@ paths:
                     type: array
                     items:
                       example:
-                        id: 580e63fc8c9a982ac9b8b745
-                        displayName: Blog Posts
-                        singularName: Blog Post
-                        slug: post
-                        createdOn: '2016-10-24T19:41:48.349Z'
-                        lastUpdated: '2016-10-24T19:42:38.929Z'
+                        id: 7f15043107e2fc95644e93807ee25dd6
+                        displayName: Guide Entries
+                        singularName: Guide Entry
                         fields:
-                          - id: 23cc2d952d4e4631ffd4345d2743db4e
+                          - id: 5e2a1b3c4d5e6f7890a1b2c3
                             isEditable: true
                             isRequired: true
                             type: PlainText
                             slug: name
-                            displayName: Name
+                            displayName: Entry Title
+                            helpText: Name of the entry.
+                            validations: null
+                          - id: 5e2a1b3c4d5e6f7890a1b2c4
+                            isEditable: true
+                            isRequired: true
+                            type: PlainText
+                            slug: slug
+                            displayName: Slug
+                            helpText: Slug of the entry.
+                            validations: null
+                          - id: 6f7e8d9c0b1a2e3d4c5b6a7f
+                            isEditable: true
+                            isRequired: false
+                            type: PlainText
+                            slug: summary
+                            displayName: Summary
+                            helpText: A short summary of the entry.
+                            validations: null
+                          - id: 1a2b3c4d5e6f7a8b9c0d1e2f
+                            isEditable: true
+                            isRequired: false
+                            type: RichText
+                            slug: entry-html
+                            displayName: Entry HTML
+                            helpText: The HTML content of the entry.
+                            validations: null
+                          - id: 7e8d9c0b1a2e3d4c5b6a7f8e
+                            isEditable: true
+                            isRequired: false
+                            type: Image
+                            slug: illustration-image
+                            displayName: Illustration Image
+                            helpText: An image of the entry.
+                            validations: null
+                          - id: 2f3e4d5c6b7a8e9d0c1b2a3f
+                            isEditable: true
+                            isRequired: false
+                            type: VideoLink
+                            slug: demonstration-video
+                            displayName: Demonstration Video
+                            helpText: A video of the entry.
+                            validations: null
+                          - id: 8e9d0c1b2a3f4e5d6c7b8a9e
+                            isEditable: true
+                            isRequired: false
+                            type: Link
+                            slug: more-info-link
+                            displayName: More Info Link
+                            helpText: A link to more information about the entry.
+                            validations: null
+                          - id: 3f4e5d6c7b8a9e0d1c2b3a4f
+                            isEditable: true
+                            isRequired: false
+                            type: Number
+                            slug: importance-level
+                            displayName: Importance Level
+                            helpText: The importance level of the entry.
+                            validations:
+                              format: integer
+                              allowNegative: false
+                              allowZero: false
+                              minValue: 1
+                              maxValue: 5
+                          - id: 9e0d1c2b3a4f5e6d7c8b9a0e
+                            isEditable: true
+                            isRequired: false
+                            type: Switch
+                            slug: is-essential
+                            displayName: Is Essential
+                            helpText: Is this entry essential?
+                            validations: null
+                          - id: 4f5e6d7c8b9a0e1d2c3b4a5f
+                            isEditable: true
+                            isRequired: false
+                            type: Date
+                            slug: first-mentioned
+                            displayName: First Mentioned
+                            helpText: Date of the first mention of the subject.
+                            validations: null
+                          - id: 0e1d2c3b4a5f6e7d8c9b0a1e
+                            isEditable: true
+                            isRequired: false
+                            type: Color
+                            slug: towel-color
+                            displayName: Towel Color
+                            helpText: The color of the towel.
+                            validations: null
+                          - id: 5f6e7d8c9b0a1e2d3c4b5a6f
+                            isEditable: true
+                            isRequired: false
+                            type: Reference
+                            slug: related-entry
+                            displayName: Related Entry
+                            helpText: A related entry.
+                            validations:
+                              collectionId: 7f15043107e2fc95644e93807ee25dd6
+                          - id: 1e2d3c4b5a6f7e8d9c0b1a2f
+                            isEditable: true
+                            isRequired: false
+                            type: MultiReference
+                            slug: mentioned-in-entries
+                            displayName: Mentioned In Entries
+                            helpText: Entries that mention this subject.
+                            validations:
+                              collectionId: 7f15043107e2fc95644e93807ee25dd6
+                          - id: 6f7e8d9c0b1a2e3d4c5b6a8f
+                            isEditable: true
+                            isRequired: false
+                            type: Option
+                            slug: item-type
+                            displayName: Item Type
+                            helpText: The type of item.
+                            validations:
+                              options:
+                                - name: Survival Gear
+                                  id: 66f6e966c9e1dc700a857ca3
+                                - name: Gadget
+                                  id: 66f6e966c9e1dc700a857ca4
+                                - name: Other
+                                  id: 66f6e966c9e1dc700a857ca5
+                          - id: 2e3d4c5b6a7f8e9d0c1b2a4f
+                            isEditable: true
+                            isRequired: false
+                            type: File
+                            slug: guide-file
+                            displayName: Guide File
                             helpText: null
+                            validations: null
+                          - id: 7f8e9d0c1b2a3f4e5d6c8b9e
+                            isEditable: true
+                            isRequired: false
+                            type: Email
+                            slug: contributor-email
+                            displayName: Contributor Email
+                            helpText: null
+                            validations: null
+                          - id: 3a4f5e6d7c8b9a0e1d2c4b5f
+                            isEditable: true
+                            isRequired: false
+                            type: Phone
+                            slug: emergency-contact
+                            displayName: Emergency Contact
+                            helpText: null
+                            validations: null
+                        slug: guide-entry
+                        createdOn: '2024-04-12T12:42:00.000Z'
+                        lastUpdated: '2024-04-12T12:42:00.000Z'
                       description: A collection object
                       type: object
                       required:
@@ -12947,7 +13090,9 @@ paths:
       operationId: create-collection
       summary: Create Collection
       description: |
-        Create a Collection for a site.
+        Create a Collection for a site with collection fields.
+
+        Each collection includes the required _name_ and _slug_ fields, which are generated automatically. You can update the `displayName` of these fields, but the slug for them cannot be changed. Fields slugs are automatically converted to lowercase. Spaces in slugs are replaced with hyphens.
 
         Required scope | `cms:write`
       tags:
@@ -13215,20 +13360,163 @@ paths:
             application/json:
               schema:
                 example:
-                  id: 580e63fc8c9a982ac9b8b745
-                  displayName: Blog Posts
-                  singularName: Blog Post
-                  slug: post
-                  createdOn: '2016-10-24T19:41:48.349Z'
-                  lastUpdated: '2016-10-24T19:42:38.929Z'
+                  id: 7f15043107e2fc95644e93807ee25dd6
+                  displayName: Guide Entries
+                  singularName: Guide Entry
                   fields:
-                    - id: 23cc2d952d4e4631ffd4345d2743db4e
+                    - id: 5e2a1b3c4d5e6f7890a1b2c3
                       isEditable: true
                       isRequired: true
                       type: PlainText
                       slug: name
-                      displayName: Name
+                      displayName: Entry Title
+                      helpText: Name of the entry.
+                      validations: null
+                    - id: 5e2a1b3c4d5e6f7890a1b2c4
+                      isEditable: true
+                      isRequired: true
+                      type: PlainText
+                      slug: slug
+                      displayName: Slug
+                      helpText: Slug of the entry.
+                      validations: null
+                    - id: 6f7e8d9c0b1a2e3d4c5b6a7f
+                      isEditable: true
+                      isRequired: false
+                      type: PlainText
+                      slug: summary
+                      displayName: Summary
+                      helpText: A short summary of the entry.
+                      validations: null
+                    - id: 1a2b3c4d5e6f7a8b9c0d1e2f
+                      isEditable: true
+                      isRequired: false
+                      type: RichText
+                      slug: entry-html
+                      displayName: Entry HTML
+                      helpText: The HTML content of the entry.
+                      validations: null
+                    - id: 7e8d9c0b1a2e3d4c5b6a7f8e
+                      isEditable: true
+                      isRequired: false
+                      type: Image
+                      slug: illustration-image
+                      displayName: Illustration Image
+                      helpText: An image of the entry.
+                      validations: null
+                    - id: 2f3e4d5c6b7a8e9d0c1b2a3f
+                      isEditable: true
+                      isRequired: false
+                      type: VideoLink
+                      slug: demonstration-video
+                      displayName: Demonstration Video
+                      helpText: A video of the entry.
+                      validations: null
+                    - id: 8e9d0c1b2a3f4e5d6c7b8a9e
+                      isEditable: true
+                      isRequired: false
+                      type: Link
+                      slug: more-info-link
+                      displayName: More Info Link
+                      helpText: A link to more information about the entry.
+                      validations: null
+                    - id: 3f4e5d6c7b8a9e0d1c2b3a4f
+                      isEditable: true
+                      isRequired: false
+                      type: Number
+                      slug: importance-level
+                      displayName: Importance Level
+                      helpText: The importance level of the entry.
+                      validations:
+                        format: integer
+                        allowNegative: false
+                        allowZero: false
+                        minValue: 1
+                        maxValue: 5
+                    - id: 9e0d1c2b3a4f5e6d7c8b9a0e
+                      isEditable: true
+                      isRequired: false
+                      type: Switch
+                      slug: is-essential
+                      displayName: Is Essential
+                      helpText: Is this entry essential?
+                      validations: null
+                    - id: 4f5e6d7c8b9a0e1d2c3b4a5f
+                      isEditable: true
+                      isRequired: false
+                      type: Date
+                      slug: first-mentioned
+                      displayName: First Mentioned
+                      helpText: Date of the first mention of the subject.
+                      validations: null
+                    - id: 0e1d2c3b4a5f6e7d8c9b0a1e
+                      isEditable: true
+                      isRequired: false
+                      type: Color
+                      slug: towel-color
+                      displayName: Towel Color
+                      helpText: The color of the towel.
+                      validations: null
+                    - id: 5f6e7d8c9b0a1e2d3c4b5a6f
+                      isEditable: true
+                      isRequired: false
+                      type: Reference
+                      slug: related-entry
+                      displayName: Related Entry
+                      helpText: A related entry.
+                      validations:
+                        collectionId: 7f15043107e2fc95644e93807ee25dd6
+                    - id: 1e2d3c4b5a6f7e8d9c0b1a2f
+                      isEditable: true
+                      isRequired: false
+                      type: MultiReference
+                      slug: mentioned-in-entries
+                      displayName: Mentioned In Entries
+                      helpText: Entries that mention this subject.
+                      validations:
+                        collectionId: 7f15043107e2fc95644e93807ee25dd6
+                    - id: 6f7e8d9c0b1a2e3d4c5b6a8f
+                      isEditable: true
+                      isRequired: false
+                      type: Option
+                      slug: item-type
+                      displayName: Item Type
+                      helpText: The type of item.
+                      validations:
+                        options:
+                          - name: Survival Gear
+                            id: 66f6e966c9e1dc700a857ca3
+                          - name: Gadget
+                            id: 66f6e966c9e1dc700a857ca4
+                          - name: Other
+                            id: 66f6e966c9e1dc700a857ca5
+                    - id: 2e3d4c5b6a7f8e9d0c1b2a4f
+                      isEditable: true
+                      isRequired: false
+                      type: File
+                      slug: guide-file
+                      displayName: Guide File
                       helpText: null
+                      validations: null
+                    - id: 7f8e9d0c1b2a3f4e5d6c8b9e
+                      isEditable: true
+                      isRequired: false
+                      type: Email
+                      slug: contributor-email
+                      displayName: Contributor Email
+                      helpText: null
+                      validations: null
+                    - id: 3a4f5e6d7c8b9a0e1d2c4b5f
+                      isEditable: true
+                      isRequired: false
+                      type: Phone
+                      slug: emergency-contact
+                      displayName: Emergency Contact
+                      helpText: null
+                      validations: null
+                  slug: guide-entry
+                  createdOn: '2024-04-12T12:42:00.000Z'
+                  lastUpdated: '2024-04-12T12:42:00.000Z'
                 description: A collection object
                 type: object
                 required:
@@ -13280,6 +13568,9 @@ paths:
                         slug: post-body
                         displayName: Post Body
                         helpText: Add the body of your post here
+                        validations:
+                          maxLength: 1000
+                          minLength: 100
                       type: object
                       required:
                         - id
@@ -13329,6 +13620,21 @@ paths:
                         helpText:
                           type: string
                           description: Additional text to help anyone filling out this field
+                        validations:
+                          type: object
+                          nullable: true
+                          readOnly: true
+                          description: The validations for the field
+                          properties:
+                            additionalProperties:
+                              oneOf:
+                                - type: string
+                                - type: number
+                                - type: boolean
+                                - type: integer
+                                - type: object
+                                  properties:
+                                    additionalProperties: true
               example:
                 displayName: Blog Posts
                 singularName: Blog Post
@@ -13832,20 +14138,163 @@ paths:
             application/json:
               schema:
                 example:
-                  id: 580e63fc8c9a982ac9b8b745
-                  displayName: Blog Posts
-                  singularName: Blog Post
-                  slug: post
-                  createdOn: '2016-10-24T19:41:48.349Z'
-                  lastUpdated: '2016-10-24T19:42:38.929Z'
+                  id: 7f15043107e2fc95644e93807ee25dd6
+                  displayName: Guide Entries
+                  singularName: Guide Entry
                   fields:
-                    - id: 23cc2d952d4e4631ffd4345d2743db4e
+                    - id: 5e2a1b3c4d5e6f7890a1b2c3
                       isEditable: true
                       isRequired: true
                       type: PlainText
                       slug: name
-                      displayName: Name
+                      displayName: Entry Title
+                      helpText: Name of the entry.
+                      validations: null
+                    - id: 5e2a1b3c4d5e6f7890a1b2c4
+                      isEditable: true
+                      isRequired: true
+                      type: PlainText
+                      slug: slug
+                      displayName: Slug
+                      helpText: Slug of the entry.
+                      validations: null
+                    - id: 6f7e8d9c0b1a2e3d4c5b6a7f
+                      isEditable: true
+                      isRequired: false
+                      type: PlainText
+                      slug: summary
+                      displayName: Summary
+                      helpText: A short summary of the entry.
+                      validations: null
+                    - id: 1a2b3c4d5e6f7a8b9c0d1e2f
+                      isEditable: true
+                      isRequired: false
+                      type: RichText
+                      slug: entry-html
+                      displayName: Entry HTML
+                      helpText: The HTML content of the entry.
+                      validations: null
+                    - id: 7e8d9c0b1a2e3d4c5b6a7f8e
+                      isEditable: true
+                      isRequired: false
+                      type: Image
+                      slug: illustration-image
+                      displayName: Illustration Image
+                      helpText: An image of the entry.
+                      validations: null
+                    - id: 2f3e4d5c6b7a8e9d0c1b2a3f
+                      isEditable: true
+                      isRequired: false
+                      type: VideoLink
+                      slug: demonstration-video
+                      displayName: Demonstration Video
+                      helpText: A video of the entry.
+                      validations: null
+                    - id: 8e9d0c1b2a3f4e5d6c7b8a9e
+                      isEditable: true
+                      isRequired: false
+                      type: Link
+                      slug: more-info-link
+                      displayName: More Info Link
+                      helpText: A link to more information about the entry.
+                      validations: null
+                    - id: 3f4e5d6c7b8a9e0d1c2b3a4f
+                      isEditable: true
+                      isRequired: false
+                      type: Number
+                      slug: importance-level
+                      displayName: Importance Level
+                      helpText: The importance level of the entry.
+                      validations:
+                        format: integer
+                        allowNegative: false
+                        allowZero: false
+                        minValue: 1
+                        maxValue: 5
+                    - id: 9e0d1c2b3a4f5e6d7c8b9a0e
+                      isEditable: true
+                      isRequired: false
+                      type: Switch
+                      slug: is-essential
+                      displayName: Is Essential
+                      helpText: Is this entry essential?
+                      validations: null
+                    - id: 4f5e6d7c8b9a0e1d2c3b4a5f
+                      isEditable: true
+                      isRequired: false
+                      type: Date
+                      slug: first-mentioned
+                      displayName: First Mentioned
+                      helpText: Date of the first mention of the subject.
+                      validations: null
+                    - id: 0e1d2c3b4a5f6e7d8c9b0a1e
+                      isEditable: true
+                      isRequired: false
+                      type: Color
+                      slug: towel-color
+                      displayName: Towel Color
+                      helpText: The color of the towel.
+                      validations: null
+                    - id: 5f6e7d8c9b0a1e2d3c4b5a6f
+                      isEditable: true
+                      isRequired: false
+                      type: Reference
+                      slug: related-entry
+                      displayName: Related Entry
+                      helpText: A related entry.
+                      validations:
+                        collectionId: 7f15043107e2fc95644e93807ee25dd6
+                    - id: 1e2d3c4b5a6f7e8d9c0b1a2f
+                      isEditable: true
+                      isRequired: false
+                      type: MultiReference
+                      slug: mentioned-in-entries
+                      displayName: Mentioned In Entries
+                      helpText: Entries that mention this subject.
+                      validations:
+                        collectionId: 7f15043107e2fc95644e93807ee25dd6
+                    - id: 6f7e8d9c0b1a2e3d4c5b6a8f
+                      isEditable: true
+                      isRequired: false
+                      type: Option
+                      slug: item-type
+                      displayName: Item Type
+                      helpText: The type of item.
+                      validations:
+                        options:
+                          - name: Survival Gear
+                            id: 66f6e966c9e1dc700a857ca3
+                          - name: Gadget
+                            id: 66f6e966c9e1dc700a857ca4
+                          - name: Other
+                            id: 66f6e966c9e1dc700a857ca5
+                    - id: 2e3d4c5b6a7f8e9d0c1b2a4f
+                      isEditable: true
+                      isRequired: false
+                      type: File
+                      slug: guide-file
+                      displayName: Guide File
                       helpText: null
+                      validations: null
+                    - id: 7f8e9d0c1b2a3f4e5d6c8b9e
+                      isEditable: true
+                      isRequired: false
+                      type: Email
+                      slug: contributor-email
+                      displayName: Contributor Email
+                      helpText: null
+                      validations: null
+                    - id: 3a4f5e6d7c8b9a0e1d2c4b5f
+                      isEditable: true
+                      isRequired: false
+                      type: Phone
+                      slug: emergency-contact
+                      displayName: Emergency Contact
+                      helpText: null
+                      validations: null
+                  slug: guide-entry
+                  createdOn: '2024-04-12T12:42:00.000Z'
+                  lastUpdated: '2024-04-12T12:42:00.000Z'
                 description: A collection object
                 type: object
                 required:
@@ -13897,6 +14346,9 @@ paths:
                         slug: post-body
                         displayName: Post Body
                         helpText: Add the body of your post here
+                        validations:
+                          maxLength: 1000
+                          minLength: 100
                       type: object
                       required:
                         - id
@@ -13946,6 +14398,21 @@ paths:
                         helpText:
                           type: string
                           description: Additional text to help anyone filling out this field
+                        validations:
+                          type: object
+                          nullable: true
+                          readOnly: true
+                          description: The validations for the field
+                          properties:
+                            additionalProperties:
+                              oneOf:
+                                - type: string
+                                - type: number
+                                - type: boolean
+                                - type: integer
+                                - type: object
+                                  properties:
+                                    additionalProperties: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -14735,10 +15202,9 @@ paths:
       description: |
         Create a custom field in a collection.
 
-        Slugs must be all lowercase letters without spaces.
-        If you pass a string with uppercase letters and/or spaces to the "Slug" property, Webflow will
-        convert the slug to lowercase and replace spaces with "-."
-        This endpoint does not currently support bulk creation.
+        Field validation is currently not available through the API.
+
+        Bulk creation of fields is not supported with this endpoint. To add multiple fields at once, include them when you [create the collection.](/data/v2.0.0/reference/cms/collections/create)
 
         Required scope | `cms:write`
       tags:
@@ -15745,6 +16211,9 @@ paths:
                   slug: post-body
                   displayName: Post Body
                   helpText: Add the body of your post here
+                  validations:
+                    maxLength: 1000
+                    minLength: 100
                 type: object
                 required:
                   - id
@@ -15794,6 +16263,21 @@ paths:
                   helpText:
                     type: string
                     description: Additional text to help anyone filling out this field
+                  validations:
+                    type: object
+                    nullable: true
+                    readOnly: true
+                    description: The validations for the field
+                    properties:
+                      additionalProperties:
+                        oneOf:
+                          - type: string
+                          - type: number
+                          - type: boolean
+                          - type: integer
+                          - type: object
+                            properties:
+                              additionalProperties: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -21236,11 +21720,9 @@ paths:
         - OAuth2:
             - 'cms:write'
       operationId: delete-items-live
-      summary: Delete Live Collection Items
+      summary: Unpublish Live Collection Items
       description: |
-        Remove an item or multiple items (up to 100 items) from the live site.
-
-        Using this endpoint to delete published item(s) will unpublish the item(s) from the live site and set the item(s) `isDraft` property to `true`. 
+        Unpublish up to 100 items from the live site and set the `isDraft` property to `true`. 
 
         <Tip title="Localization Tip">Items will only be unpublished in the primary locale unless a `cmsLocaleId` is included in the request.</Tip>
 
@@ -25081,11 +25563,11 @@ paths:
         - OAuth2:
             - 'cms:write'
       operationId: delete-item-live
-      summary: Delete Live Collection Item
+      summary: Unpublish Live Collection Item
       description: |
-        Remove a live item from the site. Removing a published item will unpublish the item from the live site and set it to draft. 
+        Unpublish a live item from the site and set the `isDraft` property to `true`. 
 
-        This endpoint does not currently support bulk deletion.
+        For bulk unpublishing, please use [this endpoint.](/data/v2.0.0/reference/cms/collection-items/live-items/delete-items-live)
 
         Required scope | `CMS:write`
       tags:
@@ -54665,9 +55147,9 @@ paths:
                                                 - royal-blue
                                                 - crimson-red
                                                 - forrest-green
-                                categories:
+                                category:
                                   type: array
-                                  description: The categories your product belongs to.
+                                  description: The category your product belongs to.
                                   items:
                                     type: string
                                 tax-category:
@@ -55654,9 +56136,9 @@ paths:
                                             - royal-blue
                                             - crimson-red
                                             - forrest-green
-                            categories:
+                            category:
                               type: array
-                              description: The categories your product belongs to.
+                              description: The category your product belongs to.
                               items:
                                 type: string
                             tax-category:
@@ -56056,9 +56538,9 @@ paths:
                                           - royal-blue
                                           - crimson-red
                                           - forrest-green
-                          categories:
+                          category:
                             type: array
-                            description: The categories your product belongs to.
+                            description: The category your product belongs to.
                             items:
                               type: string
                           tax-category:
@@ -57055,9 +57537,9 @@ paths:
                                           - royal-blue
                                           - crimson-red
                                           - forrest-green
-                          categories:
+                          category:
                             type: array
-                            description: The categories your product belongs to.
+                            description: The category your product belongs to.
                             items:
                               type: string
                           tax-category:
@@ -58103,9 +58585,9 @@ paths:
                                         - royal-blue
                                         - crimson-red
                                         - forrest-green
-                        categories:
+                        category:
                           type: array
-                          description: The categories your product belongs to.
+                          description: The category your product belongs to.
                           items:
                             type: string
                         tax-category:
@@ -58541,9 +59023,9 @@ paths:
                                       - royal-blue
                                       - crimson-red
                                       - forrest-green
-                      categories:
+                      category:
                         type: array
-                        description: The categories your product belongs to.
+                        description: The category your product belongs to.
                         items:
                           type: string
                       tax-category:
