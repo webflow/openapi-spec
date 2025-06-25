@@ -16955,6 +16955,15 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: skipInvalidFiles
+          in: query
+          allowEmptyValue: true
+          description: 'When true, invalid files are skipped and processing continues. When false, the entire request fails if any file is invalid.'
+          schema:
+            type: boolean
+            default: true
+          example: true
+          required: false
       requestBody:
         description: Details of the item(s) to create
         content:
@@ -17672,6 +17681,15 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: skipInvalidFiles
+          in: query
+          allowEmptyValue: true
+          description: 'When true, invalid files are skipped and processing continues. When false, the entire request fails if any file is invalid.'
+          schema:
+            type: boolean
+            default: true
+          example: true
+          required: false
       requestBody:
         description: Details of the item to update
         content:
@@ -19647,6 +19665,15 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: skipInvalidFiles
+          in: query
+          allowEmptyValue: true
+          description: 'When true, invalid files are skipped and processing continues. When false, the entire request fails if any file is invalid.'
+          schema:
+            type: boolean
+            default: true
+          example: true
+          required: false
       requestBody:
         description: Details of the item(s) to create
         content:
@@ -20345,6 +20372,15 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: skipInvalidFiles
+          in: query
+          allowEmptyValue: true
+          description: 'When true, invalid files are skipped and processing continues. When false, the entire request fails if any file is invalid.'
+          schema:
+            type: boolean
+            default: true
+          example: true
+          required: false
       requestBody:
         description: Details of the live items to update
         content:
@@ -21607,6 +21643,15 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: skipInvalidFiles
+          in: query
+          allowEmptyValue: true
+          description: 'When true, invalid files are skipped and processing continues. When false, the entire request fails if any file is invalid.'
+          schema:
+            type: boolean
+            default: true
+          example: true
+          required: false
       requestBody:
         content:
           application/json:
@@ -22882,6 +22927,15 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: skipInvalidFiles
+          in: query
+          allowEmptyValue: true
+          description: 'When true, invalid files are skipped and processing continues. When false, the entire request fails if any file is invalid.'
+          schema:
+            type: boolean
+            default: true
+          example: true
+          required: false
       requestBody:
         description: Details of the item to update
         content:
@@ -24377,6 +24431,15 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: skipInvalidFiles
+          in: query
+          allowEmptyValue: true
+          description: 'When true, invalid files are skipped and processing continues. When false, the entire request fails if any file is invalid.'
+          schema:
+            type: boolean
+            default: true
+          example: true
+          required: false
       requestBody:
         description: Details of the item to update
         content:
