@@ -37976,6 +37976,26 @@ paths:
                         canCopy: true
                         version: 1.0.0
                         createdOn: '2022-10-26T00:28:54.191Z'
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
+                    properties:
+                      limit:
+                        type: number
+                        description: The limit used for pagination
+                        example: 100
+                      offset:
+                        type: number
+                        description: The offset used for pagination
+                        example: 0
+                      total:
+                        type: number
+                        description: The total number of records
+                        example: 100
                 example:
                   registeredScripts:
                     - id: alert
@@ -37999,6 +38019,10 @@ paths:
                       integrityHash: sha384-J+YlJ8v0gpaRoKH7SbFbEmxOZlAxLiwNjfSsBhDooGa5roXlPPpXbEevck4J7YZ+
                       createdOn: '2022-10-26T00:28:54.191Z'
                       canCopy: true
+                  pagination:
+                    limit: 100
+                    offset: 0
+                    total: 3
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
