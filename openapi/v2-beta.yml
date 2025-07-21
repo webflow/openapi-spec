@@ -17125,6 +17125,26 @@ paths:
           description: Filter by the exact slug of the item
           schema:
             type: string
+        - name: createdOn
+          in: query
+          allowEmptyValue: true
+          description: Filter by the creation date of the item(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+                description: Filter items created before this date
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+                description: Filter items created after this date
+          style: deepObject
+          explode: true
+          required: false
         - name: lastPublished
           in: query
           allowEmptyValue: true
@@ -17145,6 +17165,26 @@ paths:
           style: deepObject
           explode: true
           required: false
+        - name: lastUpdated
+          in: query
+          allowEmptyValue: true
+          description: Filter by the last updated date of the item(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+                description: Filter items last updated before this date
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+                description: Filter items last updated after this date
+          style: deepObject
+          explode: true
+          required: false
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -17153,7 +17193,9 @@ paths:
           schema:
             type: string
             enum:
+              - createdOn
               - lastPublished
+              - lastUpdated
               - name
               - slug
         - name: sortOrder
@@ -18719,7 +18761,7 @@ paths:
                       offset: 0
                       total: 4
                 MultipleItems:
-                  summary: Mulitple items updated in a single locale
+                  summary: Multiple items updated in a single locale
                   value:
                     items:
                       - id: 62b720ef280c7a7a3be8cabe
@@ -19631,6 +19673,26 @@ paths:
           description: Filter by the exact slug of the item
           schema:
             type: string
+        - name: createdOn
+          in: query
+          allowEmptyValue: true
+          description: Filter by the creation date of the item(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+                description: Filter items created before this date
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+                description: Filter items created after this date
+          style: deepObject
+          explode: true
+          required: false
         - name: lastPublished
           in: query
           allowEmptyValue: true
@@ -19651,6 +19713,26 @@ paths:
           style: deepObject
           explode: true
           required: false
+        - name: lastUpdated
+          in: query
+          allowEmptyValue: true
+          description: Filter by the last updated date of the item(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+                description: Filter items last updated before this date
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+                description: Filter items last updated after this date
+          style: deepObject
+          explode: true
+          required: false
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -19659,7 +19741,9 @@ paths:
           schema:
             type: string
             enum:
+              - createdOn
               - lastPublished
+              - lastUpdated
               - name
               - slug
         - name: sortOrder
@@ -21242,7 +21326,7 @@ paths:
                       offset: 0
                       total: 4
                 MultipleItems:
-                  summary: Mulitple items updated in a single locale
+                  summary: Multiple items updated in a single locale
                   value:
                     items:
                       - id: 62b720ef280c7a7a3be8cabe

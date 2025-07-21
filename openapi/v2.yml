@@ -20688,7 +20688,7 @@ paths:
                       offset: 0
                       total: 4
                 MultipleItems:
-                  summary: Mulitple items updated in a single locale
+                  summary: Multiple items updated in a single locale
                   value:
                     items:
                       - id: 62b720ef280c7a7a3be8cabe
@@ -21784,7 +21784,7 @@ paths:
                     name: Don’t Panic
                     slug: dont-panic
               MultipleItemsMultipleLocales:
-                summary: Create multiple items across multipel locales
+                summary: Create multiple items across multiple locales
                 value:
                   cmsLocaleIds:
                     - 66f6e966c9e1dc700a857ca3
