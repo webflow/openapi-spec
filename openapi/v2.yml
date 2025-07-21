@@ -51293,41 +51293,137 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
+              description: |
+                The fields that define the schema for a given Item are based on the Collection that Item belongs to. Beyond the user defined fields, there are a handful of additional fields that are automatically created for all items
+              example:
+                id: 6287ec36a841b25637c663df
+                isEmailVerified: true
+                lastUpdated: '2022-05-20T13:46:12.093Z'
+                invitedOn: '2022-05-20T13:46:12.093Z'
+                createdOn: '2022-05-20T13:46:12.093Z'
+                lastLogin: '2022-05-20T13:46:12.093Z'
+                status: verified
+                accessGroups:
+                  - slug: webflowers
+                    type: admin
                 data:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      description: |
-                        The name of the user
-                    accept-privacy:
-                      type: boolean
-                      description: |
-                        Boolean indicating if the user has accepted the privacy policy
-                    accept-communications:
-                      type: boolean
-                      description: |
-                        Boolean indicating if the user has accepted to receive communications
-                  additionalProperties:
-                    description: Custom user attributes
-                    type: string
+                  name: Arthur Dent
+                  email: arthur.dent@mostlyharmless.com
+                  accept-privacy: true
+                  accept-communications: true
+                  favoriteDrink: Tea
+                  currentPlanet: Somewhere in the vicinity of Betelgeuse
+              properties:
+                id:
+                  readOnly: true
+                  type: string
+                  format: objectid
+                  example: 6287ec36a841b25637c663df
+                  description: Unique identifier for the User
+                isEmailVerified:
+                  readOnly: true
+                  type: boolean
+                  description: Shows whether the user has verified their email address
+                lastUpdated:
+                  readOnly: true
+                  type: string
+                  format: date-time
+                  description: The timestamp the user was updated
+                  example: '2016-10-24T19:41:29.156Z'
+                invitedOn:
+                  readOnly: true
+                  type: string
+                  format: date-time
+                  description: The timestamp the user was invited
+                  example: '2016-10-24T19:41:29.156Z'
+                createdOn:
+                  readOnly: true
+                  type: string
+                  format: date-time
+                  description: The timestamp the user was created
+                  example: '2016-10-24T19:41:29.156Z'
+                lastLogin:
+                  readOnly: true
+                  type: string
+                  format: date-time
+                  description: The timestamp the user was logged in
+                  example: '2016-10-24T19:41:29.156Z'
+                status:
+                  readOnly: true
+                  type: string
+                  description: The status of the user
+                  enum:
+                    - invited
+                    - verified
+                    - unverified
                 accessGroups:
                   type: array
-                  description: |
-                    An array of access group slugs. Access groups are assigned to the user as type `admin` and the user remains in the group until removed.
+                  description: Access groups the user belongs to
+                  example:
+                    - slug: webflowers
+                      type: admin
+                    - slug: platinum
+                      type: ecommerce
                   items:
-                    type: string
-              example:
+                    type: object
+                    description: Access group slugs and types
+                    properties:
+                      slug:
+                        type: string
+                        description: Access group identifier for APIs
+                      type:
+                        type: string
+                        enum:
+                          - admin
+                          - ecommerce
+                        description: |
+                          The type of access group based on how it was assigned to the user.
+                          * `admin` - Assigned to the user via API or in the designer
+                          * `ecommerce` - Assigned to the user via an ecommerce purchase
                 data:
-                  name: Some One
-                  accept-privacy: false
-                  accept-communications: false
-                accessGroups:
-                  - webflowers
-                  - platinum
-                  - free-tier
+                  type: object
+                  description: An object containing the User's basic info and custom fields
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: |
+                            The name of the user
+                        email:
+                          type: string
+                          description: |
+                            The email address of the user
+                        accept-privacy:
+                          type: boolean
+                          description: |
+                            Boolean indicating if the user has accepted the privacy policy
+                        accept-communications:
+                          type: boolean
+                          description: |
+                            Boolean indicating if the user has accepted to receive communications
+                        additionalProperties:
+                          description: Custom user attributes
+                          type: string
+            example:
+              id: 6287ec36a841b25637c663df
+              isEmailVerified: true
+              lastUpdated: '2022-05-20T13:46:12.093Z'
+              invitedOn: '2022-05-20T13:46:12.093Z'
+              createdOn: '2022-05-20T13:46:12.093Z'
+              lastLogin: '2022-05-20T13:46:12.093Z'
+              status: verified
+              accessGroups:
+                - slug: webflowers
+                  type: admin
+              data:
+                name: Arthur Dent
+                email: arthur.dent@mostlyharmless.com
+                accept-privacy: true
+                accept-communications: true
+                favoriteDrink: Tea
+                currentPlanet: Somewhere in the vicinity of Betelgeuse
       responses:
         '200':
           description: Request was successful
@@ -52565,10 +52661,6 @@ paths:
               type: object
               required:
                 - email
-              example:
-                email: some.one@home.com
-                accessGroups:
-                  - webflowers
               properties:
                 email:
                   type: string
@@ -52581,6 +52673,24 @@ paths:
                     An array of access group slugs. Access groups are assigned to the user as type `admin` and the user remains in the group until removed.
                   items:
                     type: string
+            example:
+              id: 6287ec36a841b25637c663df
+              isEmailVerified: true
+              lastUpdated: '2022-05-20T13:46:12.093Z'
+              invitedOn: '2022-05-20T13:46:12.093Z'
+              createdOn: '2022-05-20T13:46:12.093Z'
+              lastLogin: '2022-05-20T13:46:12.093Z'
+              status: verified
+              accessGroups:
+                - slug: webflowers
+                  type: admin
+              data:
+                name: Arthur Dent
+                email: arthur.dent@mostlyharmless.com
+                accept-privacy: true
+                accept-communications: true
+                favoriteDrink: Tea
+                currentPlanet: Somewhere in the vicinity of Betelgeuse
       responses:
         '200':
           description: Request was successful
