@@ -28011,8 +28011,9 @@ paths:
                       lastUpdated: '2024-03-11T10:42:42.000Z'
                       archived: false
                       draft: false
-                      canBranch: true
-                      isBranch: false
+                      canBranch: false
+                      isBranch: true
+                      branchId: 68026fa68ef6dc744c75b833
                       seo:
                         title: The Ultimate Hitchhiker's Guide to the Galaxy
                         description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -28034,6 +28035,8 @@ paths:
                       archived: false
                       draft: false
                       canBranch: true
+                      isBranch: false
+                      branchId: null
                       seo:
                         title: Celebrate Towel Day - The Hitchhiker's Guide to the Galaxy
                         description: 'A guide to celebrating Towel Day, in honor of the most massively useful thing an interstellar hitchhiker can have.'
@@ -28067,8 +28070,9 @@ paths:
                         lastUpdated: '2024-03-11T10:42:42.000Z'
                         archived: false
                         draft: false
-                        canBranch: true
-                        isBranch: false
+                        canBranch: false
+                        isBranch: true
+                        branchId: 68026fa68ef6dc744c75b833
                         seo:
                           title: The Ultimate Hitchhiker's Guide to the Galaxy
                           description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -28138,7 +28142,7 @@ paths:
                           readOnly: true
                         canBranch:
                           type: boolean
-                          description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                          description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching). Pages that are already branches cannot be branched again.'
                           readOnly: true
                           default: false
                           example: false
@@ -28148,6 +28152,12 @@ paths:
                           readOnly: true
                           default: false
                           example: false
+                        branchId:
+                          type: string
+                          format: objectid
+                          nullable: true
+                          description: 'If the Page is a Branch of another Page, this is the ID of the Branch'
+                          example: 68026fa68ef6dc744c75b833
                         seo:
                           type: object
                           description: SEO-related fields for the Page
@@ -28641,8 +28651,9 @@ paths:
                   lastUpdated: '2024-03-11T10:42:42.000Z'
                   archived: false
                   draft: false
-                  canBranch: true
-                  isBranch: false
+                  canBranch: false
+                  isBranch: true
+                  branchId: 68026fa68ef6dc744c75b833
                   seo:
                     title: The Ultimate Hitchhiker's Guide to the Galaxy
                     description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -28712,7 +28723,7 @@ paths:
                     readOnly: true
                   canBranch:
                     type: boolean
-                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching). Pages that are already branches cannot be branched again.'
                     readOnly: true
                     default: false
                     example: false
@@ -28722,6 +28733,12 @@ paths:
                     readOnly: true
                     default: false
                     example: false
+                  branchId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: 'If the Page is a Branch of another Page, this is the ID of the Branch'
+                    example: 68026fa68ef6dc744c75b833
                   seo:
                     type: object
                     description: SEO-related fields for the Page
@@ -29179,23 +29196,11 @@ paths:
         content:
           application/json:
             schema:
-              description: The Page object
+              description: The values to update on the Page
               type: object
-              required:
-                - id
               example:
-                id: 6596da6045e56dee495bcbba
-                siteId: 6258612d1ee792848f805dcf
-                parentId: null
-                collectionId: null
                 title: Guide to the Galaxy
                 slug: guide-to-the-galaxy
-                createdOn: '2024-03-11T10:42:00.000Z'
-                lastUpdated: '2024-03-11T10:42:42.000Z'
-                archived: false
-                draft: false
-                canBranch: true
-                isBranch: false
                 seo:
                   title: The Ultimate Hitchhiker's Guide to the Galaxy
                   description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -29204,77 +29209,15 @@ paths:
                   titleCopied: false
                   description: Dive deep into the mysteries of the universe with your guide to everything galactic.
                   descriptionCopied: false
-                localeId: 653fd9af6a07fc9cfd7a5e57
-                publishedPath: /en-us/guide-to-the-galaxy
               properties:
-                id:
-                  type: string
-                  format: objectid
-                  readOnly: true
-                  description: Unique identifier for the Page
-                  example: 63499e4e6e9ed5abbfe42b69
-                siteId:
-                  type: string
-                  format: objectid
-                  readOnly: true
-                  description: Unique identifier for the Site
-                  example: 580e63e98c9a982ac9b8b741
                 title:
                   type: string
-                  description: Title of the Page
+                  description: Title for the page
                   example: My New Page
                 slug:
                   type: string
-                  description: slug of the Page (derived from title)
+                  description: Slug for the page
                   example: my-new-page
-                parentId:
-                  type: string
-                  format: objectid
-                  description: Identifier of the parent folder
-                  readOnly: true
-                  example: 6419db964a9c435aa3af6251
-                collectionId:
-                  type: string
-                  format: objectid
-                  readOnly: true
-                  description: 'Unique identifier for a linked Collection, value will be null if the Page is not part of a Collection.'
-                  example: 6390c49774a71f12831a08e3
-                createdOn:
-                  type: string
-                  format: date-time
-                  readOnly: true
-                  description: The date the Page was created
-                  example: '2016-10-24T19:42:38.929Z'
-                lastUpdated:
-                  type: string
-                  format: date-time
-                  readOnly: true
-                  description: The date the Page was most recently updated
-                  example: '2016-10-24T19:42:38.929Z'
-                archived:
-                  type: boolean
-                  description: Whether the Page has been archived
-                  default: false
-                  example: false
-                  readOnly: true
-                draft:
-                  type: boolean
-                  description: Whether the Page is a draft
-                  default: false
-                  example: false
-                  readOnly: true
-                canBranch:
-                  type: boolean
-                  description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
-                  readOnly: true
-                  default: false
-                  example: false
-                isBranch:
-                  type: boolean
-                  description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
-                  readOnly: true
-                  default: false
-                  example: false
                 seo:
                   type: object
                   description: SEO-related fields for the Page
@@ -29298,8 +29241,6 @@ paths:
                     titleCopied:
                       type: boolean
                       description: Indicates the Open Graph title was copied from the SEO title
-                      readOnly: true
-                      default: true
                     description:
                       type: string
                       description: The description supplied to Open Graph annotations
@@ -29307,20 +29248,6 @@ paths:
                     descriptionCopied:
                       type: boolean
                       description: Indicates the Open Graph description was copied from the SEO description
-                      readOnly: true
-                      default: true
-                localeId:
-                  description: Unique ID of the page locale
-                  type: string
-                  format: objectid
-                  nullable: true
-                  readOnly: true
-                  example: 653fd9af6a07fc9cfd7a5e57
-                publishedPath:
-                  description: Relative path of the published page URL
-                  type: string
-                  readOnly: true
-                  example: /heart-of-gold
       responses:
         '200':
           description: Request was successful
@@ -29342,8 +29269,9 @@ paths:
                   lastUpdated: '2024-03-11T10:42:42.000Z'
                   archived: false
                   draft: false
-                  canBranch: true
-                  isBranch: false
+                  canBranch: false
+                  isBranch: true
+                  branchId: 68026fa68ef6dc744c75b833
                   seo:
                     title: The Ultimate Hitchhiker's Guide to the Galaxy
                     description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
@@ -29413,7 +29341,7 @@ paths:
                     readOnly: true
                   canBranch:
                     type: boolean
-                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                    description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching). Pages that are already branches cannot be branched again.'
                     readOnly: true
                     default: false
                     example: false
@@ -29423,6 +29351,12 @@ paths:
                     readOnly: true
                     default: false
                     example: false
+                  branchId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: 'If the Page is a Branch of another Page, this is the ID of the Branch'
+                    example: 68026fa68ef6dc744c75b833
                   seo:
                     type: object
                     description: SEO-related fields for the Page
@@ -29968,6 +29902,12 @@ paths:
                   pageId:
                     type: string
                     description: Page ID
+                  branchId:
+                    type: string
+                    format: objectid
+                    nullable: true
+                    description: 'If the page is a branch, this is the ID of the branch'
+                    example: 68026fa68ef6dc744c75b833
                   nodes:
                     type: array
                     items:
@@ -31452,6 +31392,15 @@ paths:
             type: string
             format: objectid
             default: null
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
         - in: query
           allowEmptyValue: true
           name: limit
@@ -31976,6 +31925,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
         - in: query
           allowEmptyValue: true
           name: limit
@@ -32813,6 +32771,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
       requestBody:
         content:
           application/json:
@@ -33496,6 +33463,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
         - in: query
           allowEmptyValue: true
           name: limit
@@ -34014,6 +33990,15 @@ paths:
           description: 'Unique identifier for a specific locale. Applicable, when using localization.'
           schema:
             type: string
+        - name: branchId
+          in: query
+          allowEmptyValue: true
+          description: Scope the operation to work on a specific branch.
+          example: 68026fa68ef6dc744c75b833
+          required: false
+          schema:
+            type: string
+            format: objectid
       requestBody:
         content:
           application/json:
