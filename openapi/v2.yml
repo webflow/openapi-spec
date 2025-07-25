@@ -49841,11 +49841,11 @@ paths:
                         status:
                           readOnly: true
                           type: string
-                          description: The status of the user
                           enum:
                             - invited
                             - verified
                             - unverified
+                          description: The status of the user
                         accessGroups:
                           type: array
                           description: Access groups the user belongs to
@@ -50659,11 +50659,11 @@ paths:
                   status:
                     readOnly: true
                     type: string
-                    description: The status of the user
                     enum:
                       - invited
                       - verified
                       - unverified
+                    description: The status of the user
                   accessGroups:
                     type: array
                     description: Access groups the user belongs to
@@ -51336,11 +51336,11 @@ paths:
                 status:
                   readOnly: true
                   type: string
-                  description: The status of the user
                   enum:
                     - invited
                     - verified
                     - unverified
+                  description: The status of the user
                 accessGroups:
                   type: array
                   description: Access groups the user belongs to
@@ -51473,11 +51473,11 @@ paths:
                   status:
                     readOnly: true
                     type: string
-                    description: The status of the user
                     enum:
                       - invited
                       - verified
                       - unverified
+                    description: The status of the user
                   accessGroups:
                     type: array
                     description: Access groups the user belongs to
@@ -52740,11 +52740,11 @@ paths:
                   status:
                     readOnly: true
                     type: string
-                    description: The status of the user
                     enum:
                       - invited
                       - verified
                       - unverified
+                    description: The status of the user
                   accessGroups:
                     type: array
                     description: Access groups the user belongs to
@@ -74387,11 +74387,11 @@ webhooks:
                         status:
                           readOnly: true
                           type: string
-                          description: The status of the user
                           enum:
                             - invited
                             - verified
                             - unverified
+                          description: The status of the user
                         accessGroups:
                           type: array
                           description: Access groups the user belongs to
@@ -74556,11 +74556,11 @@ webhooks:
                         status:
                           readOnly: true
                           type: string
-                          description: The status of the user
                           enum:
                             - invited
                             - verified
                             - unverified
+                          description: The status of the user
                         accessGroups:
                           type: array
                           description: Access groups the user belongs to
@@ -74725,11 +74725,11 @@ webhooks:
                         status:
                           readOnly: true
                           type: string
-                          description: The status of the user
                           enum:
                             - invited
                             - verified
                             - unverified
+                          description: The status of the user
                         accessGroups:
                           type: array
                           description: Access groups the user belongs to
