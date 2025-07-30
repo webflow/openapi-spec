@@ -28543,6 +28543,68 @@ paths:
           required: false
           schema:
             type: number
+        - name: createdOn
+          in: query
+          allowEmptyValue: true
+          description: Filter by the creation date of the page(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+                description: Filter pages created before this date
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+                description: Filter pages created after this date
+          style: deepObject
+          explode: true
+          required: false
+        - name: lastUpdated
+          in: query
+          allowEmptyValue: true
+          description: Filter by the last updated date of the page(s)
+          schema:
+            type: object
+            properties:
+              lte:
+                type: string
+                format: date-time
+                example: '2024-04-22T16:00:31.000Z'
+                description: Filter pages last updated before this date
+              gte:
+                type: string
+                format: date-time
+                example: '2024-04-19T16:00:31.000Z'
+                description: Filter pages last updated after this date
+          style: deepObject
+          explode: true
+          required: false
+        - example: lastUpdated
+          name: sortBy
+          in: query
+          allowEmptyValue: true
+          description: Sort results by the provided value. Defaults to `createdOn` if not provided.
+          required: false
+          schema:
+            type: string
+            enum:
+              - createdOn
+              - lastUpdated
+        - name: sortOrder
+          in: query
+          allowEmptyValue: true
+          description: Sorts the results by asc or desc
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+          example: desc
       responses:
         '200':
           description: Request was successful
