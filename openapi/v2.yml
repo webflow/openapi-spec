@@ -16971,6 +16971,7 @@ paths:
             schema:
               oneOf:
                 - x-fern-type-name: Single Item
+                  title: Single Item
                   description: |
                     A Collection Item represents a single entry in your collection. Each item includes:
 
@@ -17047,6 +17048,7 @@ paths:
                       color: '#db4b68'
                 - type: object
                   x-fern-type-name: Multiple Items
+                  title: Multiple Items
                   additionalProperties: false
                   properties:
                     items:
