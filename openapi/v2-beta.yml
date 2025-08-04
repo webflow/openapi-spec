@@ -76162,6 +76162,9 @@ webhooks:
                       type: string
                       format: date-time
                       example: '2022-12-07T16:51:37.571Z'
+                    publishedPath:
+                      type: string
+                      example: /blog/my-new-page
               example:
                 triggerType: page_created
                 payload:
@@ -76169,6 +76172,7 @@ webhooks:
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
                   createdOn: '2024-07-26T16:32:50.903Z'
+                  publishedPath: /blog/earth
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -76210,6 +76214,9 @@ webhooks:
                       type: string
                       format: date-time
                       example: '2022-12-07T16:51:37.571Z'
+                    publishedPath:
+                      type: string
+                      example: /blog/earth
               example:
                 triggerType: page_metadata_updated
                 payload:
@@ -76217,6 +76224,7 @@ webhooks:
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
                   lastUpdated: '2024-07-26T16:32:50.903Z'
+                  publishedPath: /blog/earth
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -76257,6 +76265,9 @@ webhooks:
                       type: string
                       format: date-time
                       example: '2022-12-07T16:51:37.571Z'
+                    publishedPath:
+                      type: string
+                      example: /blog/earth
               example:
                 triggerType: page_deleted
                 payload:
@@ -76264,6 +76275,7 @@ webhooks:
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
                   deletedOn: '2024-07-26T16:32:50.903Z'
+                  publishedPath: /blog/earth
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
