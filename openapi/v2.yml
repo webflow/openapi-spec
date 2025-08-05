@@ -895,7 +895,6 @@ paths:
                           format: objectid
                           example: 589a331aa51e760df7ccb89d
                           description: Unique identifier for the Domain
-                          readOnly: true
                         url:
                           type: string
                           example: test-api-domain.com
@@ -1870,14 +1869,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   items:
                     - timestamp: '2025-04-29T20:30:06.622Z'
@@ -2438,7 +2440,6 @@ paths:
                                 format: objectid
                                 example: 589a331aa51e760df7ccb89d
                                 description: Unique identifier for the Domain
-                                readOnly: true
                               url:
                                 type: string
                                 example: test-api-domain.com
@@ -3161,7 +3162,6 @@ paths:
                           format: objectid
                           example: 589a331aa51e760df7ccb89d
                           description: Unique identifier for the Domain
-                          readOnly: true
                         url:
                           type: string
                           example: test-api-domain.com
@@ -3794,7 +3794,6 @@ paths:
                           format: objectid
                           example: 589a331aa51e760df7ccb89d
                           description: Unique identifier for the Domain
-                          readOnly: true
                         url:
                           type: string
                           example: test-api-domain.com
@@ -5023,7 +5022,6 @@ paths:
                           format: objectid
                           example: 589a331aa51e760df7ccb89d
                           description: Unique identifier for the Domain
-                          readOnly: true
                         url:
                           type: string
                           example: test-api-domain.com
@@ -5499,7 +5497,6 @@ paths:
                           format: objectid
                           example: 589a331aa51e760df7ccb89d
                           description: Unique identifier for the Domain
-                          readOnly: true
                         url:
                           type: string
                           example: test-api-domain.com
@@ -6046,14 +6043,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   redirects:
                     - id: 42e1a2b7aa1a13f768a0042a
@@ -7440,14 +7440,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   redirects:
                     - id: 42e1a2b7aa1a13f768a0042a
@@ -11294,14 +11297,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   items:
                     - id: 654c16c7b229e56bcf26872d
@@ -11925,7 +11931,6 @@ paths:
                           format: objectid
                           description: Unique identifier for a Collection
                           example: 562ac0395358780a1f5e6fbd
-                          readOnly: true
                         displayName:
                           type: string
                           example: Blog Posts
@@ -12773,7 +12778,6 @@ paths:
                     format: objectid
                     description: Unique identifier for a Collection
                     example: 562ac0395358780a1f5e6fbd
-                    readOnly: true
                   displayName:
                     type: string
                     example: Blog Posts
@@ -12825,7 +12829,6 @@ paths:
                           type: string
                           format: objectid
                           description: Unique identifier for a Field
-                          readOnly: true
                         isRequired:
                           type: boolean
                           description: define whether a field is required in a collection
@@ -13551,7 +13554,6 @@ paths:
                     format: objectid
                     description: Unique identifier for a Collection
                     example: 562ac0395358780a1f5e6fbd
-                    readOnly: true
                   displayName:
                     type: string
                     example: Blog Posts
@@ -13603,7 +13605,6 @@ paths:
                           type: string
                           format: objectid
                           description: Unique identifier for a Field
-                          readOnly: true
                         isRequired:
                           type: boolean
                           description: define whether a field is required in a collection
@@ -15468,7 +15469,6 @@ paths:
                     type: string
                     format: objectid
                     description: Unique identifier for a Field
-                    readOnly: true
                   isRequired:
                     type: boolean
                     description: define whether a field is required in a collection
@@ -21667,11 +21667,6 @@ paths:
               required:
                 - fieldData
               properties:
-                id:
-                  type: string
-                  readOnly: true
-                  example: 580e64008c9a982ac9b8b754
-                  description: Unique identifier for the Item
                 cmsLocaleIds:
                   type: array
                   description: Array of identifiers for the locales where the item will be created
@@ -21818,7 +21813,6 @@ paths:
                 properties:
                   id:
                     type: string
-                    readOnly: true
                     example: 580e64008c9a982ac9b8b754
                     description: Unique identifier for the Item
                   cmsLocaleIds:
@@ -26164,17 +26158,14 @@ paths:
                       properties:
                         id:
                           type: string
-                          readOnly: true
                           example: 580e64008c9a982ac9b8b754
                           description: Unique identifier for the comment thread
                         siteId:
                           type: string
-                          readOnly: true
                           example: 580e64008c9a982ac9b8b754
                           description: The site unique identifier
                         pageId:
                           type: string
-                          readOnly: true
                           example: 580e64008c9a982ac9b8b754
                           description: The page unique identifier
                         localeId:
@@ -26191,12 +26182,10 @@ paths:
                           nullable: true
                         breakpoint:
                           type: string
-                          readOnly: true
                           example: main
                           description: The breakpoint the comment was left on
                         url:
                           type: string
-                          readOnly: true
                           example: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
                           description: The URL of the page the comment was left on
                         content:
@@ -26253,13 +26242,11 @@ paths:
                         createdOn:
                           type: string
                           format: date-string
-                          readOnly: true
                           example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was created
                         lastUpdated:
                           type: string
                           format: date-string
-                          readOnly: true
                           example: '2023-03-17T18:47:35.560Z'
                           description: The date the item was last updated
                       example:
@@ -26828,17 +26815,14 @@ paths:
                 properties:
                   id:
                     type: string
-                    readOnly: true
                     example: 580e64008c9a982ac9b8b754
                     description: Unique identifier for the comment thread
                   siteId:
                     type: string
-                    readOnly: true
                     example: 580e64008c9a982ac9b8b754
                     description: The site unique identifier
                   pageId:
                     type: string
-                    readOnly: true
                     example: 580e64008c9a982ac9b8b754
                     description: The page unique identifier
                   localeId:
@@ -26855,12 +26839,10 @@ paths:
                     nullable: true
                   breakpoint:
                     type: string
-                    readOnly: true
                     example: main
                     description: The breakpoint the comment was left on
                   url:
                     type: string
-                    readOnly: true
                     example: 'https://webflow.com/design/site-slug-4ec832?workflow=comment&commentId=679d2ddb5196117ad04d1ff8&pageId=679826b3b20b045e176bc4bc'
                     description: The URL of the page the comment was left on
                   content:
@@ -26917,13 +26899,11 @@ paths:
                   createdOn:
                     type: string
                     format: date-string
-                    readOnly: true
                     example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was created
                   lastUpdated:
                     type: string
                     format: date-string
-                    readOnly: true
                     example: '2023-03-17T18:47:35.560Z'
                     description: The date the item was last updated
                 example:
@@ -27436,22 +27416,18 @@ paths:
                       properties:
                         id:
                           type: string
-                          readOnly: true
                           example: 580e64008c9a982ac9b8b754
                           description: Unique identifier for the comment thread
                         commentId:
                           type: string
-                          readOnly: true
                           example: 679d2ddb5196117ad04d1ff8
                           description: The comment reply unique identifier
                         siteId:
                           type: string
-                          readOnly: true
                           example: 580e64008c9a982ac9b8b754
                           description: The site unique identifier
                         pageId:
                           type: string
-                          readOnly: true
                           example: 580e64008c9a982ac9b8b754
                           description: The page unique identifier
                         localeId:
@@ -27461,7 +27437,6 @@ paths:
                           description: The locale unique identifier
                         breakpoint:
                           type: string
-                          readOnly: true
                           example: main
                           description: The breakpoint the comment was left on
                         content:
@@ -28089,7 +28064,6 @@ paths:
                         id:
                           type: string
                           format: objectid
-                          readOnly: true
                           description: Unique identifier for the Page
                           example: 63499e4e6e9ed5abbfe42b69
                         siteId:
@@ -28218,14 +28192,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -28670,7 +28647,6 @@ paths:
                   id:
                     type: string
                     format: objectid
-                    readOnly: true
                     description: Unique identifier for the Page
                     example: 63499e4e6e9ed5abbfe42b69
                   siteId:
@@ -29288,7 +29264,6 @@ paths:
                   id:
                     type: string
                     format: objectid
-                    readOnly: true
                     description: Unique identifier for the Page
                     example: 63499e4e6e9ed5abbfe42b69
                   siteId:
@@ -29931,7 +29906,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -29967,7 +29941,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               type: string
                               description: The type of the node
@@ -30001,7 +29974,6 @@ paths:
                             id:
                               type: string
                               description: The unique identifier of the component instance node
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -30057,7 +30029,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -30085,7 +30056,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -30126,7 +30096,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -30157,7 +30126,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -30244,14 +30212,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                   lastUpdated:
                     type: string
                     format: date-time
@@ -31480,7 +31451,6 @@ paths:
                       properties:
                         id:
                           type: string
-                          readOnly: true
                           description: Unique identifier for the Component
                           example: 8505ba55-ef72-629e-f85c-33e4b703d48b
                         name:
@@ -31516,14 +31486,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -32059,7 +32032,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -32095,7 +32067,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               type: string
                               description: The type of the node
@@ -32129,7 +32100,6 @@ paths:
                             id:
                               type: string
                               description: The unique identifier of the component instance node
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -32185,7 +32155,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -32213,7 +32182,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -32254,7 +32222,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -32285,7 +32252,6 @@ paths:
                             id:
                               type: string
                               description: Node UUID
-                              readOnly: true
                             type:
                               description: The type of the node
                               type: string
@@ -32372,14 +32338,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -33595,14 +33564,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -37459,14 +37431,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   registeredScripts:
                     - id: alert
@@ -38968,14 +38943,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   blocks:
                     - siteId: 6258612d1ee792848f805dcf
@@ -39569,14 +39547,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   assets:
                     - id: 63e5889e7fe4eafa7384cea4
@@ -42139,14 +42120,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -43589,14 +43573,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -45650,14 +45637,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
               example:
                 forms:
                   - displayName: Email Form
@@ -46971,14 +46961,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -49235,14 +49228,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -54664,14 +54660,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
         '400':
           description: Validation failure
           x-logErrorCode: 400
@@ -61885,14 +61884,17 @@ paths:
                         type: number
                         description: The limit used for pagination
                         example: 100
+                        readOnly: true
                       offset:
                         type: number
                         description: The offset used for pagination
                         example: 0
+                        readOnly: true
                       total:
                         type: number
                         description: The total number of records
                         example: 100
+                        readOnly: true
                 example:
                   orders:
                     - orderId: 7c1-9fd
