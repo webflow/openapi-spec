@@ -35529,9 +35529,11 @@ paths:
       operationId: delete-page-custom-code
       summary: Delete Custom Code
       description: |
-        Delete a custom code block that the App created on a page.
+        Remove all scripts from a page applied by the App. This endpoint will not remove scripts from the site's registered scripts.
 
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        To remove individual scripts applied by the App, use the [Add/Update Custom Code](/data/reference/custom-code/custom-code-pages/upsert-custom-code) endpoint.
+
+        <Note>Access to this endpoint requires a bearer token obtained from an [OAuth Code Grant Flow](/data/reference/oauth-app).</Note>
 
         Required scope | `custom_code:write`
       tags:
@@ -35936,7 +35938,7 @@ paths:
       operationId: add-custom-code-to-page
       summary: Add/Update Custom Code
       description: |
-        Apply scripts to a page.
+        Apply registered scripts to a page. If you have multiple scripts your App needs to apply or maintain on a page, ensure they are always included in the request body for this endpoint. To remove individual scripts, simply call this endpoint without the script in the request body.
 
         <Note title="Script Registration">
           To apply a script to a page, the script must first be registered to a Site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
@@ -37023,7 +37025,11 @@ paths:
       operationId: delete-site-custom-code
       summary: Delete Custom Code
       description: |
-        Remove scripts from a site applied by the App. This endpoint will not remove scripts from the site's registered scripts.
+        Remove all scripts from a site applied by the App. This endpoint will not remove scripts from the site's registered scripts.
+
+        To remove individual scripts applied by the App, use the [Add/Update Custom Code](/data/reference/custom-code/custom-code-sites/upsert-custom-code) endpoint.
+
+        <Note>Access to this endpoint requires a bearer token obtained from an [OAuth Code Grant Flow](/data/reference/oauth-app).</Note>
 
         Required scope | `custom_code:write`
       tags:
@@ -37428,7 +37434,7 @@ paths:
       operationId: add-custom-code-tosite
       summary: Add/Update Custom Code
       description: |
-        Apply registered scripts to a site.
+        Apply registered scripts to a site. If you have multiple scripts your App needs to apply or maintain on a site, ensure they are always included in the request body for this endpoint. To remove individual scripts, simply call this endpoint without the script in the request body.
 
         <Note title="Script Registration">
           To apply a script to a site or page, the script must first be registered to a site via the [Register Script](/data/reference/custom-code/custom-code/register-hosted) endpoints. Once registered, the script can be applied to a Site or Page using the appropriate endpoints. See the documentation on [working with Custom Code](/data/docs/custom-code) for more information.
@@ -55156,14 +55162,6 @@ paths:
                                                 - inactive
                                                 - canceled
                                               description: The status of the plan
-                                  track-inventory:
-                                    type: boolean
-                                    description: A boolean indicating whether inventory for this product should be tracked.
-                                    default: false
-                                  quantity:
-                                    type: number
-                                    description: Quantity of SKU that will be tracked as items are ordered.
-                                    example: 10
                                   main-image:
                                     type: string
                                     description: The URL for the main image of the SKU
@@ -56119,14 +56117,6 @@ paths:
                                       - inactive
                                       - canceled
                                     description: The status of the plan
-                        track-inventory:
-                          type: boolean
-                          description: A boolean indicating whether inventory for this product should be tracked.
-                          default: false
-                        quantity:
-                          type: number
-                          description: Quantity of SKU that will be tracked as items are ordered.
-                          example: 10
                         main-image:
                           type: string
                           description: The URL for the main image of the SKU
@@ -56550,14 +56540,6 @@ paths:
                                           - inactive
                                           - canceled
                                         description: The status of the plan
-                            track-inventory:
-                              type: boolean
-                              description: A boolean indicating whether inventory for this product should be tracked.
-                              default: false
-                            quantity:
-                              type: number
-                              description: Quantity of SKU that will be tracked as items are ordered.
-                              example: 10
                             main-image:
                               type: string
                               description: The URL for the main image of the SKU
@@ -57549,14 +57531,6 @@ paths:
                                           - inactive
                                           - canceled
                                         description: The status of the plan
-                            track-inventory:
-                              type: boolean
-                              description: A boolean indicating whether inventory for this product should be tracked.
-                              default: false
-                            quantity:
-                              type: number
-                              description: Quantity of SKU that will be tracked as items are ordered.
-                              example: 10
                             main-image:
                               type: string
                               description: The URL for the main image of the SKU
@@ -58594,14 +58568,6 @@ paths:
                                       - inactive
                                       - canceled
                                     description: The status of the plan
-                        track-inventory:
-                          type: boolean
-                          description: A boolean indicating whether inventory for this product should be tracked.
-                          default: false
-                        quantity:
-                          type: number
-                          description: Quantity of SKU that will be tracked as items are ordered.
-                          example: 10
                         main-image:
                           type: string
                           description: The URL for the main image of the SKU
@@ -59608,14 +59574,6 @@ paths:
                                         - inactive
                                         - canceled
                                       description: The status of the plan
-                          track-inventory:
-                            type: boolean
-                            description: A boolean indicating whether inventory for this product should be tracked.
-                            default: false
-                          quantity:
-                            type: number
-                            description: Quantity of SKU that will be tracked as items are ordered.
-                            example: 10
                           main-image:
                             type: string
                             description: The URL for the main image of the SKU
@@ -59844,14 +59802,6 @@ paths:
                                           - inactive
                                           - canceled
                                         description: The status of the plan
-                            track-inventory:
-                              type: boolean
-                              description: A boolean indicating whether inventory for this product should be tracked.
-                              default: false
-                            quantity:
-                              type: number
-                              description: Quantity of SKU that will be tracked as items are ordered.
-                              example: 10
                             main-image:
                               type: string
                               description: The URL for the main image of the SKU
@@ -60649,14 +60599,6 @@ paths:
                                       - inactive
                                       - canceled
                                     description: The status of the plan
-                        track-inventory:
-                          type: boolean
-                          description: A boolean indicating whether inventory for this product should be tracked.
-                          default: false
-                        quantity:
-                          type: number
-                          description: Quantity of SKU that will be tracked as items are ordered.
-                          example: 10
                         main-image:
                           type: string
                           description: The URL for the main image of the SKU
@@ -60878,14 +60820,6 @@ paths:
                                     - inactive
                                     - canceled
                                   description: The status of the plan
-                      track-inventory:
-                        type: boolean
-                        description: A boolean indicating whether inventory for this product should be tracked.
-                        default: false
-                      quantity:
-                        type: number
-                        description: Quantity of SKU that will be tracked as items are ordered.
-                        example: 10
                       main-image:
                         type: string
                         description: The URL for the main image of the SKU
@@ -70716,7 +70650,7 @@ paths:
                 message: An Internal Error occurred
                 externalReference: null
                 details: []
-  '/collections/{collection_id}/items/{item_id}/inventory':
+  '/collections/{sku_collection_id}/items/{sku_id}/inventory':
     get:
       x-fern-sdk-group-name: inventory
       x-fern-sdk-method-name: list
@@ -70732,18 +70666,18 @@ paths:
       tags:
         - Inventory
       parameters:
-        - name: collection_id
+        - name: sku_collection_id
           in: path
-          description: Unique identifier for a Collection
-          example: 580e63fc8c9a982ac9b8b745
+          description: Unique identifier for a SKU collection. Use the List Collections API to find this ID.
+          example: 6377a7c4b7a79608c34a46f7
           required: true
           schema:
             type: string
             format: objectid
-        - name: item_id
+        - name: sku_id
           in: path
-          description: Unique identifier for an Item
-          example: 580e64008c9a982ac9b8b754
+          description: Unique identifier for a SKU
+          example: 5e8518516e147040726cc415
           required: true
           schema:
             type: string
@@ -71316,18 +71250,18 @@ paths:
       tags:
         - Inventory
       parameters:
-        - name: collection_id
+        - name: sku_collection_id
           in: path
-          description: Unique identifier for a Collection
-          example: 580e63fc8c9a982ac9b8b745
+          description: Unique identifier for a SKU collection. Use the List Collections API to find this ID.
+          example: 6377a7c4b7a79608c34a46f7
           required: true
           schema:
             type: string
             format: objectid
-        - name: item_id
+        - name: sku_id
           in: path
-          description: Unique identifier for an Item
-          example: 580e64008c9a982ac9b8b754
+          description: Unique identifier for a SKU
+          example: 5e8518516e147040726cc415
           required: true
           schema:
             type: string
