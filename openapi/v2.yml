@@ -43529,6 +43529,7 @@ paths:
                             - collection_item_created
                             - collection_item_changed
                             - collection_item_deleted
+                            - collection_item_published
                             - collection_item_unpublished
                             - comment_created
                         url:
@@ -44030,6 +44031,7 @@ paths:
                     - collection_item_created
                     - collection_item_changed
                     - collection_item_deleted
+                    - collection_item_published
                     - collection_item_unpublished
                     - comment_created
                 url:
@@ -44110,6 +44112,7 @@ paths:
                       - collection_item_created
                       - collection_item_changed
                       - collection_item_deleted
+                      - collection_item_published
                       - collection_item_unpublished
                       - comment_created
                   url:
@@ -44585,6 +44588,7 @@ paths:
                       - collection_item_created
                       - collection_item_changed
                       - collection_item_deleted
+                      - collection_item_published
                       - collection_item_unpublished
                       - comment_created
                   url:
@@ -74807,238 +74811,67 @@ webhooks:
                   enum:
                     - collection_item_created
                 payload:
-                  oneOf:
-                    - type: object
-                      title: Collection Item without Locales
+                  type: object
+                  title: Collection Item without Locales
+                  required:
+                    - id
+                    - workspaceId
+                    - siteId
+                    - collectionId
+                    - fieldData
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: Unique identifier for the Item
+                    workspaceId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the workspace
+                    siteId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the site
+                    collectionId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the collection
+                    cmsLocaleId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the CMS locale for this item
+                      nullable: true
+                    lastPublished:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    lastUpdated:
+                      type: string
+                      format: date-time
+                    createdOn:
+                      type: string
+                      format: date-time
+                    isArchived:
+                      type: boolean
+                    isDraft:
+                      type: boolean
+                    fieldData:
+                      type: object
                       required:
-                        - id
-                        - workspaceId
-                        - siteId
-                        - collectionId
-                        - fieldData
+                        - name
+                        - slug
                       properties:
-                        id:
+                        name:
                           type: string
-                          format: uuid
-                          description: Unique identifier for the Item
-                        workspaceId:
+                        slug:
                           type: string
-                          format: uuid
-                          description: Unique identifier of the workspace
-                        siteId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the site
-                        collectionId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the collection
-                        cmsLocaleId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the CMS locale for this item
-                          nullable: true
-                        lastPublished:
-                          type: string
-                          format: date-time
-                          nullable: true
-                        lastUpdated:
-                          type: string
-                          format: date-time
-                        createdOn:
-                          type: string
-                          format: date-time
-                        isArchived:
-                          type: boolean
-                        isDraft:
-                          type: boolean
-                        fieldData:
-                          type: object
-                          required:
-                            - name
-                            - slug
-                          properties:
-                            name:
-                              type: string
-                            slug:
-                              type: string
-                          additionalProperties: true
-                      example:
-                        id: 580e64008c9a982ac9b8b754
-                        workspaceId: 625860a7a6c16d624927122f
-                        siteId: 65427cf400e02b306eaa049c
-                        collectionId: 664243617fcc8b464b23c4ee
-                        cmsLocaleId: 681442a144bb80bd00480fda
-                        lastPublished: null
-                        lastUpdated: '2023-03-17T18:47:35.560Z'
-                        createdOn: '2023-03-17T18:47:35.560Z'
-                        isArchived: false
-                        isDraft: false
-                        fieldData:
-                          name: Pan-Galactic Gargle Blaster
-                          slug: pan-galactic-gargle-blaster
-                    - type: object
-                      title: Collection Item with Locales
-                      required:
-                        - siteId
-                        - workspaceId
-                        - collectionId
-                        - fieldData
-                      properties:
-                        siteId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the site
-                        workspaceId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the workspace
-                        collectionId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the collection
-                        cmsLocaleId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the CMS locale for this item
-                          nullable: true
-                        fieldData:
-                          type: object
-                          description: 'Collection of localized items, keyed by locale index (0-n)'
-                          minProperties: 2
-                          maxProperties: 15
-                          additionalProperties:
-                            type: object
-                            required:
-                              - _cid
-                              - _id
-                              - _locale
-                              - _draft
-                              - _archived
-                              - name
-                              - slug
-                              - updated-on
-                              - updated-by
-                              - created-on
-                              - created-by
-                            properties:
-                              _cid:
-                                type: string
-                                format: uuid
-                                description: Collection ID the item belongs to
-                              _id:
-                                type: string
-                                format: uuid
-                                description: Unique identifier for the item
-                              _locale:
-                                type: string
-                                format: uuid
-                                description: Locale identifier for this version of the item
-                              _draft:
-                                type: boolean
-                                description: Whether the item is in draft state
-                              _archived:
-                                type: boolean
-                                description: Whether the item is archived
-                              name:
-                                type: string
-                                description: Name of the item
-                              slug:
-                                type: string
-                                description: URL-friendly version of the name
-                              updated-on:
-                                type: string
-                                format: date-time
-                                description: Timestamp of last update
-                              updated-by:
-                                type: string
-                                description: Identifier of user who last updated the item
-                              created-on:
-                                type: string
-                                format: date-time
-                                description: Timestamp of creation
-                              created-by:
-                                type: string
-                                description: Identifier of user who created the item
-                              published-on:
-                                type: string
-                                format: date-time
-                                nullable: true
-                                description: 'Timestamp of last publish, if published'
-                              published-by:
-                                type: string
-                                nullable: true
-                                description: Identifier of user who last published the item
-                            example:
-                              _cid: 663a4a39d10b271e8f4b38cd
-                              _id: 6744b7d0e4ce33f6c3fa789a
-                              _locale: 653ad57de882f528b32e810e
-                              _draft: false
-                              _archived: false
-                              name: New Item
-                              slug: new-item
-                              updated-on: '2024-11-25T17:45:52.447Z'
-                              updated-by: Person_63209baeac0b804b455624ce
-                              created-on: '2024-11-25T17:45:52.447Z'
-                              created-by: Person_63209baeac0b804b455624ce
-                              published-on: null
-                              published-by: null
-                      example:
-                        siteId: 6258612d1ee792848f805dcf
-                        workspaceId: 625860a7a6c16d624927122f
-                        collectionId: 663a4a39d10b271e8f4b38cd
-                        cmsLocaleId: 653ad57de882f528b32e810e
-                        fieldData:
-                          '0':
-                            _cid: 663a4a39d10b271e8f4b38cd
-                            _id: 6744b7d0e4ce33f6c3fa789a
-                            _locale: 653ad57de882f528b32e810e
-                            _draft: false
-                            _archived: false
-                            name: Pan-Galactic Gargle Blaster
-                            slug: pan-galactic-gargle-blaster
-                            updated-on: '2024-11-25T17:45:52.447Z'
-                            updated-by: Person_63209baeac0b804b455624ce
-                            created-on: '2024-11-25T17:45:52.447Z'
-                            created-by: Person_63209baeac0b804b455624ce
-                            published-on: null
-                            published-by: null
-                          '1':
-                            _cid: 663a4a39d10b271e8f4b38cd
-                            _id: 6744b7d0e4ce33f6c3fa789a
-                            _locale: 653fd9af6a07fc9cfd7a5e5d
-                            _draft: false
-                            _archived: false
-                            name: Pan-Galactic Gargle Blaster
-                            slug: pan-galactic-gargle-blaster
-                            updated-on: '2024-11-25T17:45:52.447Z'
-                            updated-by: Person_63209baeac0b804b455624ce
-                            created-on: '2024-11-25T17:45:52.447Z'
-                            created-by: Person_63209baeac0b804b455624ce
-                            published-on: null
-                            published-by: null
-                          '2':
-                            _cid: 663a4a39d10b271e8f4b38cd
-                            _id: 6744b7d0e4ce33f6c3fa789a
-                            _locale: 654112a3a525b2739d97664f
-                            _draft: false
-                            _archived: false
-                            name: Pan-Galactic Gargle Blaster
-                            slug: pan-galactic-gargle-blaster
-                            updated-on: '2024-11-25T17:45:52.447Z'
-                            updated-by: Person_63209baeac0b804b455624ce
-                            created-on: '2024-11-25T17:45:52.447Z'
-                            created-by: Person_63209baeac0b804b455624ce
-                            published-on: null
-                            published-by: null
-              examples:
-                ItemNoLocales:
-                  triggerType: collection_item_created
-                  payload:
+                      additionalProperties: true
+                  example:
                     id: 580e64008c9a982ac9b8b754
                     workspaceId: 625860a7a6c16d624927122f
                     siteId: 65427cf400e02b306eaa049c
                     collectionId: 664243617fcc8b464b23c4ee
+                    cmsLocaleId: 681442a144bb80bd00480fda
                     lastPublished: null
                     lastUpdated: '2023-03-17T18:47:35.560Z'
                     createdOn: '2023-03-17T18:47:35.560Z'
@@ -75047,55 +74880,21 @@ webhooks:
                     fieldData:
                       name: Pan-Galactic Gargle Blaster
                       slug: pan-galactic-gargle-blaster
-                ItemWithLocales:
-                  triggerType: collection_item_created
-                  payload:
-                    siteId: 65427cf400e02b306eaa049c
-                    workspaceId: 625860a7a6c16d624927122f
-                    collectionId: 664243617fcc8b464b23c4ee
-                    fieldData:
-                      '0':
-                        _cid: 663a4a39d10b271e8f4b38cd
-                        _id: 6744b7d0e4ce33f6c3fa789a
-                        _locale: 653ad57de882f528b32e810e
-                        _draft: false
-                        _archived: false
-                        name: New Item
-                        slug: new-item
-                        updated-on: '2024-11-25T17:45:52.447Z'
-                        updated-by: Person_63209baeac0b804b455624ce
-                        created-on: '2024-11-25T17:45:52.447Z'
-                        created-by: Person_63209baeac0b804b455624ce
-                        published-on: null
-                        published-by: null
-                      '1':
-                        _cid: 663a4a39d10b271e8f4b38cd
-                        _id: 6744b7d0e4ce33f6c3fa789a
-                        _locale: 653fd9af6a07fc9cfd7a5e5d
-                        _draft: false
-                        _archived: false
-                        name: New Item
-                        slug: new-item
-                        updated-on: '2024-11-25T17:45:52.447Z'
-                        updated-by: Person_63209baeac0b804b455624ce
-                        created-on: '2024-11-25T17:45:52.447Z'
-                        created-by: Person_63209baeac0b804b455624ce
-                        published-on: null
-                        published-by: null
-                      '2':
-                        _cid: 663a4a39d10b271e8f4b38cd
-                        _id: 6744b7d0e4ce33f6c3fa789a
-                        _locale: 654112a3a525b2739d97664f
-                        _draft: false
-                        _archived: false
-                        name: New Item
-                        slug: new-item
-                        updated-on: '2024-11-25T17:45:52.447Z'
-                        updated-by: Person_63209baeac0b804b455624ce
-                        created-on: '2024-11-25T17:45:52.447Z'
-                        created-by: Person_63209baeac0b804b455624ce
-                        published-on: null
-                        published-by: null
+              example:
+                triggerType: collection_item_created
+                payload:
+                  id: 580e64008c9a982ac9b8b754
+                  workspaceId: 625860a7a6c16d624927122f
+                  siteId: 65427cf400e02b306eaa049c
+                  collectionId: 664243617fcc8b464b23c4ee
+                  lastPublished: '2023-03-17T18:47:35.560Z'
+                  lastUpdated: '2023-03-17T18:47:35.560Z'
+                  createdOn: '2023-03-17T18:47:35.560Z'
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    name: Pan-Galactic Gargle Blaster
+                    slug: pan-galactic-gargle-blaster
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -75124,151 +74923,92 @@ webhooks:
                   enum:
                     - collection_item_changed
                 payload:
-                  oneOf:
-                    - type: object
-                      title: Collection Item without Locales
+                  type: object
+                  title: Collection Item without Locales
+                  required:
+                    - id
+                    - workspaceId
+                    - siteId
+                    - collectionId
+                    - fieldData
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: Unique identifier for the Item
+                    workspaceId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the workspace
+                    siteId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the site
+                    collectionId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the collection
+                    cmsLocaleId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the CMS locale for this item
+                      nullable: true
+                    lastPublished:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    lastUpdated:
+                      type: string
+                      format: date-time
+                    createdOn:
+                      type: string
+                      format: date-time
+                    isArchived:
+                      type: boolean
+                    isDraft:
+                      type: boolean
+                    fieldData:
+                      type: object
                       required:
-                        - id
-                        - workspaceId
-                        - siteId
-                        - collectionId
-                        - fieldData
+                        - name
+                        - slug
                       properties:
-                        id:
+                        name:
                           type: string
-                          format: uuid
-                          description: Unique identifier for the Item
-                        workspaceId:
+                        slug:
                           type: string
-                          format: uuid
-                          description: Unique identifier of the workspace
-                        siteId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the site
-                        collectionId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the collection
-                        cmsLocaleId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the CMS locale for this item
-                          nullable: true
-                        lastPublished:
-                          type: string
-                          format: date-time
-                          nullable: true
-                        lastUpdated:
-                          type: string
-                          format: date-time
-                        createdOn:
-                          type: string
-                          format: date-time
-                        isArchived:
-                          type: boolean
-                        isDraft:
-                          type: boolean
-                        fieldData:
-                          type: object
-                          required:
-                            - name
-                            - slug
-                          properties:
-                            name:
-                              type: string
-                            slug:
-                              type: string
-                          additionalProperties: true
-                      example:
-                        id: 580e64008c9a982ac9b8b754
-                        workspaceId: 625860a7a6c16d624927122f
-                        siteId: 65427cf400e02b306eaa049c
-                        collectionId: 664243617fcc8b464b23c4ee
-                        cmsLocaleId: 681442a144bb80bd00480fda
-                        lastPublished: null
-                        lastUpdated: '2023-03-17T18:47:35.560Z'
-                        createdOn: '2023-03-17T18:47:35.560Z'
-                        isArchived: false
-                        isDraft: false
-                        fieldData:
-                          name: Pan-Galactic Gargle Blaster
-                          slug: pan-galactic-gargle-blaster
-                    - type: object
-                      title: Collection Item with Locales
-                      required:
-                        - id
-                        - workspaceId
-                        - siteId
-                        - collectionId
-                        - fieldData
-                      properties:
-                        id:
-                          type: string
-                          format: uuid
-                          description: Unique identifier for the Item
-                        workspaceId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the workspace
-                        siteId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the site
-                        collectionId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the collection
-                        cmsLocaleId:
-                          type: string
-                          format: uuid
-                          description: Unique identifier of the CMS locale for this item
-                          nullable: true
-                        lastPublished:
-                          type: string
-                          format: date-time
-                          nullable: true
-                        lastUpdated:
-                          type: string
-                          format: date-time
-                        createdOn:
-                          type: string
-                          format: date-time
-                        isArchived:
-                          type: boolean
-                        isDraft:
-                          type: boolean
-                        fieldData:
-                          type: object
-                          required:
-                            - name
-                            - slug
-                            - _locale
-                          properties:
-                            name:
-                              type: string
-                            slug:
-                              type: string
-                            _locale:
-                              type: string
-                              format: uuid
-                              description: Locale identifier for this version of the item
-                          additionalProperties: true
-                      example:
-                        id: 580e64008c9a982ac9b8b754
-                        workspaceId: 625860a7a6c16d624927122f
-                        siteId: 65427cf400e02b306eaa049c
-                        collectionId: 664243617fcc8b464b23c4ee
-                        cmsLocaleId: 681442a144bb80bd00480fda
-                        lastPublished: null
-                        lastUpdated: '2023-03-17T18:47:35.560Z'
-                        createdOn: '2023-03-17T18:47:35.560Z'
-                        isArchived: false
-                        isDraft: false
-                        fieldData:
-                          _locale: 653ad57de882f528b32e810e
-                          name: Pan-Galactic Gargle Blaster
-                          slug: pan-galactic-gargle-blaster
+                      additionalProperties: true
+                  example:
+                    id: 580e64008c9a982ac9b8b754
+                    workspaceId: 625860a7a6c16d624927122f
+                    siteId: 65427cf400e02b306eaa049c
+                    collectionId: 664243617fcc8b464b23c4ee
+                    cmsLocaleId: 681442a144bb80bd00480fda
+                    lastPublished: null
+                    lastUpdated: '2023-03-17T18:47:35.560Z'
+                    createdOn: '2023-03-17T18:47:35.560Z'
+                    isArchived: false
+                    isDraft: false
+                    fieldData:
+                      name: Pan-Galactic Gargle Blaster
+                      slug: pan-galactic-gargle-blaster
+              example:
+                triggerType: collection_item_changed
+                payload:
+                  triggerType: collection_item_created
+                  payload:
+                    id: 580e64008c9a982ac9b8b754
+                    workspaceId: 625860a7a6c16d624927122f
+                    siteId: 65427cf400e02b306eaa049c
+                    collectionId: 664243617fcc8b464b23c4ee
+                    lastPublished: '2023-03-17T18:47:35.560Z'
+                    lastUpdated: '2023-03-17T18:47:35.560Z'
+                    createdOn: '2023-03-17T18:47:35.560Z'
+                    isArchived: false
+                    isDraft: false
+                    fieldData:
+                      name: Pan-Galactic Gargle Blaster
+                      slug: pan-galactic-gargle-blaster
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully
@@ -75346,6 +75086,102 @@ webhooks:
                       additionalProperties: true
               example:
                 triggerType: collection_item_deleted
+                payload:
+                  id: 66424365e972c886137a1cf1
+                  siteId: 65427cf400e02b306eaa049c
+                  workspaceId: 625860a7a6c16d624927122f
+                  collectionId: 664243617fcc8b464b23c4ee
+                  cmsLocaleId: 681442a144bb80bd00480fda
+                  lastPublished: null
+                  lastUpdated: '2025-05-28T04:44:33.216Z'
+                  createdOn: '2025-05-28T04:27:12.667Z'
+                  isArchived: false
+                  isDraft: false
+                  fieldData:
+                    name: Earth
+                    slug: earth
+                    description: Mostly harmless
+                    color: '#0000FF'
+                    type: planet
+                    galaxy: Milky Way
+      responses:
+        '200':
+          description: Return a 200 status to indicate that the data was received successfully
+  collection_item_published:
+    post:
+      operationId: collection_item_published
+      summary: Collection Item Published
+      description: Information about a collection item that was published
+      tags:
+        - Items
+        - Collections
+      requestBody:
+        description: The results from publishing the collection item
+        content:
+          application/json:
+            schema:
+              properties:
+                triggerType:
+                  description: The type of event that triggered the request
+                  type: string
+                  example: collection_item_published
+                payload:
+                  description: The payload of data sent from Webflow
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: objectid
+                      description: The ID of the collection item that was unpublished
+                      example: 6321ca84df3949bfc6752327
+                    siteId:
+                      type: string
+                      format: objectid
+                      description: The ID of the site
+                      example: 65427cf400e02b306eaa049c
+                    workspaceId:
+                      type: string
+                      format: objectid
+                      description: The ID of the workspace
+                      example: 625860a7a6c16d624927122f
+                    collectionId:
+                      type: string
+                      format: objectid
+                      description: The ID of the collection
+                      example: 664243617fcc8b464b23c4ee
+                    cmsLocaleId:
+                      type: string
+                      format: uuid
+                      description: Unique identifier of the CMS locale for this item
+                      example: 681442a144bb80bd00480fda
+                      nullable: true
+                    lastPublished:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    lastUpdated:
+                      type: string
+                      format: date-time
+                    createdOn:
+                      type: string
+                      format: date-time
+                    isArchived:
+                      type: boolean
+                    isDraft:
+                      type: boolean
+                    fieldData:
+                      type: object
+                      required:
+                        - name
+                        - slug
+                      properties:
+                        name:
+                          type: string
+                        slug:
+                          type: string
+                      additionalProperties: true
+              example:
+                triggerType: collection_item_published
                 payload:
                   id: 66424365e972c886137a1cf1
                   siteId: 65427cf400e02b306eaa049c
