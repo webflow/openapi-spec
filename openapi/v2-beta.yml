@@ -1559,7 +1559,7 @@ paths:
           schema:
             type: string
             format: date-time
-          example: '2024-04-22T16:00:31.000Z'
+          example: '2025-06-22T16:00:31Z'
         - name: to
           in: query
           required: false
@@ -1568,7 +1568,7 @@ paths:
           schema:
             type: string
             format: date-time
-          example: '2024-04-22T16:00:31.000Z'
+          example: '2025-07-22T16:00:31Z'
       responses:
         '200':
           description: A list of workspace audit logs
@@ -1685,6 +1685,7 @@ paths:
                                     - sso
                                     - dashboard
                                     - admin
+                                    - access_request
                                 userType:
                                   type: string
                                   enum:
@@ -1738,6 +1739,7 @@ paths:
                                     - scim
                                     - dashboard
                                     - admin
+                                    - access_request
                                 userType:
                                   type: string
                                   enum:
@@ -1766,6 +1768,7 @@ paths:
                                 - invite_updated
                                 - invite_canceled
                                 - invite_declined
+                                - access_request_accepted
                             payload:
                               x-fern-type-name: Workspace invitation
                               title: Workspace invitation
@@ -1797,6 +1800,17 @@ paths:
                                 previousRoleName:
                                   type: string
                                   description: The previous role that the user had
+                                targetUsers:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        example: 580e63e98c9a982ac9b8b741
+                                      email:
+                                        type: string
+                                        example: zaphod.beeblebrox@heartofgold.ship
                   pagination:
                     description: Pagination object
                     type: object
