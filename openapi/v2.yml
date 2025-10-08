@@ -1772,6 +1772,7 @@ paths:
                                 - user_added
                                 - user_removed
                                 - user_role_updated
+                                - user_granular_access_updated
                             payload:
                               x-fern-type-name: Site membership
                               title: Site membership
@@ -1813,6 +1814,19 @@ paths:
                                 previousRoleName:
                                   type: string
                                   description: The previous role that the user had
+                                granularAccess:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                    name:
+                                      type: string
+                                    type:
+                                      type: string
+                                      enum:
+                                        - cms
+                                    restricted:
+                                      type: boolean
                         - type: object
                           title: Workspace Invitation
                           properties:
@@ -1944,6 +1958,11 @@ paths:
                           id: 672946bf5d384ea895bb95e2
                           email: someone@webflow.com
                         userType: member
+                        granularAccess:
+                          id: 67dc519889286123da057175
+                          name: Blogs
+                          type: cms
+                          restricted: false
                   pagination:
                     total: 3
                     limit: 10
