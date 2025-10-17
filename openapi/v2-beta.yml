@@ -4058,6 +4058,51 @@ paths:
                       - disabled
                     description: The type of data collection enabled for the site.
                     example: always
+              examples:
+                SiteWithLocales:
+                  value:
+                    id: 42e98c9a982ac9b8b742
+                    workspaceId: 42e63e98c9a982ac9b8b742
+                    displayName: The Hitchhiker's Guide to the Galaxy
+                    shortName: hitchhikers-guide
+                    previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
+                    timeZone: Magrathea/FactoryFloor
+                    createdOn: '1979-10-12T12:00:00.000Z'
+                    lastUpdated: '2023-04-02T12:42:00.000Z'
+                    lastPublished: '2023-04-02T12:42:00.000Z'
+                    parentFolderId: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
+                    customDomains:
+                      - id: 589a331aa51e760df7ccb89d
+                        url: hitchhikersguide.galaxy
+                      - id: 589a331aa51e760df7ccb89e
+                        url: heartofgold.spaceship
+                    locales:
+                      primary:
+                        id: 653fd9af6a07fc9cfd7a5e57
+                        cmsLocaleId: 653ad57de882f528b32e810e
+                        enabled: false
+                        displayName: English (United States)
+                        displayImageId: null
+                        redirect: true
+                        subdirectory: ''
+                        tag: en-US
+                      secondary:
+                        - id: 653fd9af6a07fc9cfd7a5e56
+                          cmsLocaleId: 653fd9af6a07fc9cfd7a5e5d
+                          enabled: true
+                          displayName: French (France)
+                          displayImageId: null
+                          subdirectory: fr-fr
+                          tag: fr-FR
+                        - id: 654112a3a525b2739d97664c
+                          cmsLocaleId: 654112a3a525b2739d97664f
+                          enabled: true
+                          displayName: Spanish (Mexico)
+                          displayImageId: null
+                          subdirectory: es-mx
+                          tag: es-MX
+                    dataCollectionEnabled: true
+                    dataCollectionType: always
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -18624,11 +18669,34 @@ paths:
                         isArchived: false
                         isDraft: false
                         fieldData:
-                          name: Pan Galactic Gargle Blaster Recipe
-                          slug: pan-galactic-gargle-blaster
-                          color: '#db4b68'
-                          date: '2022-11-18T00:00:00.000Z'
-                          featured: true
+                          name: The Hitchhiker's Guide to the Galaxy
+                          slug: hitchhikers-guide-to-the-galaxy
+                          plain-text: Don't Panic.
+                          rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                          main-image:
+                            fileId: 62b720ef280c7a7a3be8cabe
+                            url: /files/62b720ef280c7a7a3be8cabe_image.png
+                          image-gallery:
+                            - fileId: 62b720ef280c7a7a3be8cabd
+                              url: /files/62b720ef280c7a7a3be8cabd_image.png
+                            - fileId: 62b720ef280c7a7a3be8cabe
+                              url: /files/62b720ef280c7a7a3be8cabe_image.png
+                          intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                          official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                          contact-email: zaphod.beeblebrox@heartofgold.gov
+                          support-phone: 424-242-4242
+                          answer-to-everything: 42
+                          release-date: '1979-10-12T00:00:00.000Z'
+                          is-featured: true
+                          brand-color: '#000000'
+                          category: 62b720ef280c7a7a3be8cabf
+                          author: 62b720ef280c7a7a3be8cab0
+                          tags:
+                            - 62b720ef280c7a7a3be8cab1
+                            - 62b720ef280c7a7a3be8cab2
+                          downloadable-asset:
+                            fileId: 62b720ef280c7a7a3be8cab3
+                            url: /files/62b720ef280c7a7a3be8cab3_document.pdf
                   pagination:
                     type: object
                     properties:
@@ -19126,11 +19194,34 @@ paths:
                     isArchived: false
                     isDraft: false
                     fieldData:
-                      name: Pan Galactic Gargle Blaster Recipe
-                      slug: pan-galactic-gargle-blaster
-                      date: '2022-11-18T00:00:00.000Z'
-                      featured: true
-                      color: '#db4b68'
+                      name: The Hitchhiker's Guide to the Galaxy
+                      slug: hitchhikers-guide-to-the-galaxy
+                      plain-text: Don't Panic.
+                      rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                      main-image:
+                        fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                      image-gallery:
+                        - fileId: 62b720ef280c7a7a3be8cabd
+                          url: /files/62b720ef280c7a7a3be8cabd_image.png
+                        - fileId: 62b720ef280c7a7a3be8cabe
+                          url: /files/62b720ef280c7a7a3be8cabe_image.png
+                      intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                      official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                      contact-email: zaphod.beeblebrox@heartofgold.gov
+                      support-phone: 424-242-4242
+                      answer-to-everything: 42
+                      release-date: '1979-10-12T00:00:00.000Z'
+                      is-featured: true
+                      brand-color: '#000000'
+                      category: 62b720ef280c7a7a3be8cabf
+                      author: 62b720ef280c7a7a3be8cab0
+                      tags:
+                        - 62b720ef280c7a7a3be8cab1
+                        - 62b720ef280c7a7a3be8cab2
+                      downloadable-asset:
+                        fileId: 62b720ef280c7a7a3be8cab3
+                        url: /files/62b720ef280c7a7a3be8cab3_document.pdf
                 - type: object
                   x-fern-type-name: Multiple Items
                   title: Multiple Items
@@ -19211,11 +19302,34 @@ paths:
                           isArchived: false
                           isDraft: false
                           fieldData:
-                            name: Pan Galactic Gargle Blaster Recipe
-                            slug: pan-galactic-gargle-blaster
-                            date: '2022-11-18T00:00:00.000Z'
-                            featured: true
-                            color: '#db4b68'
+                            name: The Hitchhiker's Guide to the Galaxy
+                            slug: hitchhikers-guide-to-the-galaxy
+                            plain-text: Don't Panic.
+                            rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                            main-image:
+                              fileId: 62b720ef280c7a7a3be8cabe
+                              url: /files/62b720ef280c7a7a3be8cabe_image.png
+                            image-gallery:
+                              - fileId: 62b720ef280c7a7a3be8cabd
+                                url: /files/62b720ef280c7a7a3be8cabd_image.png
+                              - fileId: 62b720ef280c7a7a3be8cabe
+                                url: /files/62b720ef280c7a7a3be8cabe_image.png
+                            intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                            official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                            contact-email: zaphod.beeblebrox@heartofgold.gov
+                            support-phone: 424-242-4242
+                            answer-to-everything: 42
+                            release-date: '1979-10-12T00:00:00.000Z'
+                            is-featured: true
+                            brand-color: '#000000'
+                            category: 62b720ef280c7a7a3be8cabf
+                            author: 62b720ef280c7a7a3be8cab0
+                            tags:
+                              - 62b720ef280c7a7a3be8cab1
+                              - 62b720ef280c7a7a3be8cab2
+                            downloadable-asset:
+                              fileId: 62b720ef280c7a7a3be8cab3
+                              url: /files/62b720ef280c7a7a3be8cab3_document.pdf
             examples:
               SingleItem:
                 value:
@@ -19339,11 +19453,34 @@ paths:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    color: '#db4b68'
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
               examples:
                 SingleItem:
                   value:
@@ -19865,11 +20002,34 @@ paths:
                       isArchived: false
                       isDraft: false
                       fieldData:
-                        name: Pan Galactic Gargle Blaster Recipe
-                        slug: pan-galactic-gargle-blaster
-                        color: '#db4b68'
-                        date: '2022-11-18T00:00:00.000Z'
-                        featured: true
+                        name: The Hitchhiker's Guide to the Galaxy
+                        slug: hitchhikers-guide-to-the-galaxy
+                        plain-text: Don't Panic.
+                        rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                        main-image:
+                          fileId: 62b720ef280c7a7a3be8cabe
+                          url: /files/62b720ef280c7a7a3be8cabe_image.png
+                        image-gallery:
+                          - fileId: 62b720ef280c7a7a3be8cabd
+                            url: /files/62b720ef280c7a7a3be8cabd_image.png
+                          - fileId: 62b720ef280c7a7a3be8cabe
+                            url: /files/62b720ef280c7a7a3be8cabe_image.png
+                        intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                        official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                        contact-email: zaphod.beeblebrox@heartofgold.gov
+                        support-phone: 424-242-4242
+                        answer-to-everything: 42
+                        release-date: '1979-10-12T00:00:00.000Z'
+                        is-featured: true
+                        brand-color: '#000000'
+                        category: 62b720ef280c7a7a3be8cabf
+                        author: 62b720ef280c7a7a3be8cab0
+                        tags:
+                          - 62b720ef280c7a7a3be8cab1
+                          - 62b720ef280c7a7a3be8cab2
+                        downloadable-asset:
+                          fileId: 62b720ef280c7a7a3be8cab3
+                          url: /files/62b720ef280c7a7a3be8cab3_document.pdf
             examples:
               LocalizedItems:
                 value:
@@ -19998,11 +20158,34 @@ paths:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    color: '#db4b68'
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
               examples:
                 LocalizedItems:
                   summary: Multiple items updated across multiple locales
@@ -21172,11 +21355,34 @@ paths:
                         isArchived: false
                         isDraft: false
                         fieldData:
-                          name: Pan Galactic Gargle Blaster Recipe
-                          slug: pan-galactic-gargle-blaster
-                          color: '#db4b68'
-                          date: '2022-11-18T00:00:00.000Z'
-                          featured: true
+                          name: The Hitchhiker's Guide to the Galaxy
+                          slug: hitchhikers-guide-to-the-galaxy
+                          plain-text: Don't Panic.
+                          rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                          main-image:
+                            fileId: 62b720ef280c7a7a3be8cabe
+                            url: /files/62b720ef280c7a7a3be8cabe_image.png
+                          image-gallery:
+                            - fileId: 62b720ef280c7a7a3be8cabd
+                              url: /files/62b720ef280c7a7a3be8cabd_image.png
+                            - fileId: 62b720ef280c7a7a3be8cabe
+                              url: /files/62b720ef280c7a7a3be8cabe_image.png
+                          intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                          official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                          contact-email: zaphod.beeblebrox@heartofgold.gov
+                          support-phone: 424-242-4242
+                          answer-to-everything: 42
+                          release-date: '1979-10-12T00:00:00.000Z'
+                          is-featured: true
+                          brand-color: '#000000'
+                          category: 62b720ef280c7a7a3be8cabf
+                          author: 62b720ef280c7a7a3be8cab0
+                          tags:
+                            - 62b720ef280c7a7a3be8cab1
+                            - 62b720ef280c7a7a3be8cab2
+                          downloadable-asset:
+                            fileId: 62b720ef280c7a7a3be8cab3
+                            url: /files/62b720ef280c7a7a3be8cab3_document.pdf
                   pagination:
                     type: object
                     properties:
@@ -21691,11 +21897,34 @@ paths:
                     isArchived: false
                     isDraft: false
                     fieldData:
-                      name: Pan Galactic Gargle Blaster Recipe
-                      slug: pan-galactic-gargle-blaster
-                      color: '#db4b68'
-                      date: '2022-11-18T00:00:00.000Z'
-                      featured: true
+                      name: The Hitchhiker's Guide to the Galaxy
+                      slug: hitchhikers-guide-to-the-galaxy
+                      plain-text: Don't Panic.
+                      rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                      main-image:
+                        fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                      image-gallery:
+                        - fileId: 62b720ef280c7a7a3be8cabd
+                          url: /files/62b720ef280c7a7a3be8cabd_image.png
+                        - fileId: 62b720ef280c7a7a3be8cabe
+                          url: /files/62b720ef280c7a7a3be8cabe_image.png
+                      intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                      official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                      contact-email: zaphod.beeblebrox@heartofgold.gov
+                      support-phone: 424-242-4242
+                      answer-to-everything: 42
+                      release-date: '1979-10-12T00:00:00.000Z'
+                      is-featured: true
+                      brand-color: '#000000'
+                      category: 62b720ef280c7a7a3be8cabf
+                      author: 62b720ef280c7a7a3be8cab0
+                      tags:
+                        - 62b720ef280c7a7a3be8cab1
+                        - 62b720ef280c7a7a3be8cab2
+                      downloadable-asset:
+                        fileId: 62b720ef280c7a7a3be8cab3
+                        url: /files/62b720ef280c7a7a3be8cab3_document.pdf
                   x-fern-type-name: Single Live Item
                 - type: object
                   x-fern-type-name: Multiple Live Items
@@ -21782,22 +22011,68 @@ paths:
                           isArchived: false
                           isDraft: false
                           fieldData:
-                            name: Pan Galactic Gargle Blaster Recipe
-                            slug: pan-galactic-gargle-blaster
-                            color: '#db4b68'
-                            date: '2022-11-18T00:00:00.000Z'
-                            featured: true
+                            name: The Hitchhiker's Guide to the Galaxy
+                            slug: hitchhikers-guide-to-the-galaxy
+                            plain-text: Don't Panic.
+                            rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                            main-image:
+                              fileId: 62b720ef280c7a7a3be8cabe
+                              url: /files/62b720ef280c7a7a3be8cabe_image.png
+                            image-gallery:
+                              - fileId: 62b720ef280c7a7a3be8cabd
+                                url: /files/62b720ef280c7a7a3be8cabd_image.png
+                              - fileId: 62b720ef280c7a7a3be8cabe
+                                url: /files/62b720ef280c7a7a3be8cabe_image.png
+                            intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                            official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                            contact-email: zaphod.beeblebrox@heartofgold.gov
+                            support-phone: 424-242-4242
+                            answer-to-everything: 42
+                            release-date: '1979-10-12T00:00:00.000Z'
+                            is-featured: true
+                            brand-color: '#000000'
+                            category: 62b720ef280c7a7a3be8cabf
+                            author: 62b720ef280c7a7a3be8cab0
+                            tags:
+                              - 62b720ef280c7a7a3be8cab1
+                              - 62b720ef280c7a7a3be8cab2
+                            downloadable-asset:
+                              fileId: 62b720ef280c7a7a3be8cab3
+                              url: /files/62b720ef280c7a7a3be8cab3_document.pdf
             examples:
               SingleItem:
                 value:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
-                    color: '#db4b68'
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
               MultipleItems:
                 value:
                   items:
@@ -21898,11 +22173,34 @@ paths:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    color: '#db4b68'
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -22386,11 +22684,34 @@ paths:
                       isArchived: false
                       isDraft: false
                       fieldData:
-                        name: Pan Galactic Gargle Blaster Recipe
-                        slug: pan-galactic-gargle-blaster
-                        color: '#db4b68'
-                        date: '2022-11-18T00:00:00.000Z'
-                        featured: true
+                        name: The Hitchhiker's Guide to the Galaxy
+                        slug: hitchhikers-guide-to-the-galaxy
+                        plain-text: Don't Panic.
+                        rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                        main-image:
+                          fileId: 62b720ef280c7a7a3be8cabe
+                          url: /files/62b720ef280c7a7a3be8cabe_image.png
+                        image-gallery:
+                          - fileId: 62b720ef280c7a7a3be8cabd
+                            url: /files/62b720ef280c7a7a3be8cabd_image.png
+                          - fileId: 62b720ef280c7a7a3be8cabe
+                            url: /files/62b720ef280c7a7a3be8cabe_image.png
+                        intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                        official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                        contact-email: zaphod.beeblebrox@heartofgold.gov
+                        support-phone: 424-242-4242
+                        answer-to-everything: 42
+                        release-date: '1979-10-12T00:00:00.000Z'
+                        is-featured: true
+                        brand-color: '#000000'
+                        category: 62b720ef280c7a7a3be8cabf
+                        author: 62b720ef280c7a7a3be8cab0
+                        tags:
+                          - 62b720ef280c7a7a3be8cab1
+                          - 62b720ef280c7a7a3be8cab2
+                        downloadable-asset:
+                          fileId: 62b720ef280c7a7a3be8cab3
+                          url: /files/62b720ef280c7a7a3be8cab3_document.pdf
             examples:
               LocalizedItems:
                 value:
@@ -22563,11 +22884,34 @@ paths:
                         isArchived: false
                         isDraft: false
                         fieldData:
-                          name: Pan Galactic Gargle Blaster Recipe
-                          slug: pan-galactic-gargle-blaster
-                          color: '#db4b68'
-                          date: '2022-11-18T00:00:00.000Z'
-                          featured: true
+                          name: The Hitchhiker's Guide to the Galaxy
+                          slug: hitchhikers-guide-to-the-galaxy
+                          plain-text: Don't Panic.
+                          rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                          main-image:
+                            fileId: 62b720ef280c7a7a3be8cabe
+                            url: /files/62b720ef280c7a7a3be8cabe_image.png
+                          image-gallery:
+                            - fileId: 62b720ef280c7a7a3be8cabd
+                              url: /files/62b720ef280c7a7a3be8cabd_image.png
+                            - fileId: 62b720ef280c7a7a3be8cabe
+                              url: /files/62b720ef280c7a7a3be8cabe_image.png
+                          intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                          official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                          contact-email: zaphod.beeblebrox@heartofgold.gov
+                          support-phone: 424-242-4242
+                          answer-to-everything: 42
+                          release-date: '1979-10-12T00:00:00.000Z'
+                          is-featured: true
+                          brand-color: '#000000'
+                          category: 62b720ef280c7a7a3be8cabf
+                          author: 62b720ef280c7a7a3be8cab0
+                          tags:
+                            - 62b720ef280c7a7a3be8cab1
+                            - 62b720ef280c7a7a3be8cab2
+                          downloadable-asset:
+                            fileId: 62b720ef280c7a7a3be8cab3
+                            url: /files/62b720ef280c7a7a3be8cab3_document.pdf
               examples:
                 LocalizedItems:
                   summary: Multiple items updated across multiple locales
@@ -24421,11 +24765,34 @@ paths:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    color: '#db4b68'
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -24905,11 +25272,34 @@ paths:
                 isArchived: false
                 isDraft: false
                 fieldData:
-                  name: Pan Galactic Gargle Blaster Recipe
-                  slug: pan-galactic-gargle-blaster
-                  date: '2022-11-18T00:00:00.000Z'
-                  featured: true
-                  color: '#db4b68'
+                  name: The Hitchhiker's Guide to the Galaxy
+                  slug: hitchhikers-guide-to-the-galaxy
+                  plain-text: Don't Panic.
+                  rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                  main-image:
+                    fileId: 62b720ef280c7a7a3be8cabe
+                    url: /files/62b720ef280c7a7a3be8cabe_image.png
+                  image-gallery:
+                    - fileId: 62b720ef280c7a7a3be8cabd
+                      url: /files/62b720ef280c7a7a3be8cabd_image.png
+                    - fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                  intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                  official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                  contact-email: zaphod.beeblebrox@heartofgold.gov
+                  support-phone: 424-242-4242
+                  answer-to-everything: 42
+                  release-date: '1979-10-12T00:00:00.000Z'
+                  is-featured: true
+                  brand-color: '#000000'
+                  category: 62b720ef280c7a7a3be8cabf
+                  author: 62b720ef280c7a7a3be8cab0
+                  tags:
+                    - 62b720ef280c7a7a3be8cab1
+                    - 62b720ef280c7a7a3be8cab2
+                  downloadable-asset:
+                    fileId: 62b720ef280c7a7a3be8cab3
+                    url: /files/62b720ef280c7a7a3be8cab3_document.pdf
       responses:
         '200':
           description: Request was successful
@@ -24993,11 +25383,34 @@ paths:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    color: '#db4b68'
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -25925,11 +26338,34 @@ paths:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    color: '#db4b68'
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -26409,11 +26845,34 @@ paths:
                 isArchived: false
                 isDraft: false
                 fieldData:
-                  name: Pan Galactic Gargle Blaster Recipe
-                  slug: pan-galactic-gargle-blaster
-                  date: '2022-11-18T00:00:00.000Z'
-                  featured: true
-                  color: '#db4b68'
+                  name: The Hitchhiker's Guide to the Galaxy
+                  slug: hitchhikers-guide-to-the-galaxy
+                  plain-text: Don't Panic.
+                  rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                  main-image:
+                    fileId: 62b720ef280c7a7a3be8cabe
+                    url: /files/62b720ef280c7a7a3be8cabe_image.png
+                  image-gallery:
+                    - fileId: 62b720ef280c7a7a3be8cabd
+                      url: /files/62b720ef280c7a7a3be8cabd_image.png
+                    - fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                  intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                  official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                  contact-email: zaphod.beeblebrox@heartofgold.gov
+                  support-phone: 424-242-4242
+                  answer-to-everything: 42
+                  release-date: '1979-10-12T00:00:00.000Z'
+                  is-featured: true
+                  brand-color: '#000000'
+                  category: 62b720ef280c7a7a3be8cabf
+                  author: 62b720ef280c7a7a3be8cab0
+                  tags:
+                    - 62b720ef280c7a7a3be8cab1
+                    - 62b720ef280c7a7a3be8cab2
+                  downloadable-asset:
+                    fileId: 62b720ef280c7a7a3be8cab3
+                    url: /files/62b720ef280c7a7a3be8cab3_document.pdf
       responses:
         '200':
           description: Request was successful
@@ -26497,11 +26956,34 @@ paths:
                   isArchived: false
                   isDraft: false
                   fieldData:
-                    name: Pan Galactic Gargle Blaster Recipe
-                    slug: pan-galactic-gargle-blaster
-                    color: '#db4b68'
-                    date: '2022-11-18T00:00:00.000Z'
-                    featured: true
+                    name: The Hitchhiker's Guide to the Galaxy
+                    slug: hitchhikers-guide-to-the-galaxy
+                    plain-text: Don't Panic.
+                    rich-text: <h3>A Guide to Interstellar Travel</h3><p>A towel is about the most massively useful thing an interstellar hitchhiker can have. <strong>Don't forget yours!</strong></p>
+                    main-image:
+                      fileId: 62b720ef280c7a7a3be8cabe
+                      url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    image-gallery:
+                      - fileId: 62b720ef280c7a7a3be8cabd
+                        url: /files/62b720ef280c7a7a3be8cabd_image.png
+                      - fileId: 62b720ef280c7a7a3be8cabe
+                        url: /files/62b720ef280c7a7a3be8cabe_image.png
+                    intro-video: 'https://www.youtube.com/watch?v=aJ83KAggd-4'
+                    official-site: 'https://hitchhikers.fandom.com/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy'
+                    contact-email: zaphod.beeblebrox@heartofgold.gov
+                    support-phone: 424-242-4242
+                    answer-to-everything: 42
+                    release-date: '1979-10-12T00:00:00.000Z'
+                    is-featured: true
+                    brand-color: '#000000'
+                    category: 62b720ef280c7a7a3be8cabf
+                    author: 62b720ef280c7a7a3be8cab0
+                    tags:
+                      - 62b720ef280c7a7a3be8cab1
+                      - 62b720ef280c7a7a3be8cab2
+                    downloadable-asset:
+                      fileId: 62b720ef280c7a7a3be8cab3
+                      url: /files/62b720ef280c7a7a3be8cab3_document.pdf
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -27924,7 +28406,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -28590,7 +29075,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -29185,7 +29673,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -29789,7 +30280,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -30508,7 +31002,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
       responses:
@@ -31046,10 +31543,6 @@ paths:
       description: |
         Update Page-level metadata, including SEO and Open Graph fields.
 
-        <Note>
-          Note: When updating Page Metadata in secondary locales, you may only add `slug` to the request if your Site has the [Advanced or Enterprise Localization](https://webflow.com/localization) add-on.
-        </Note>
-
         Required scope | `pages:write`
       summary: Update Page Metadata
       operationId: update-page-settings
@@ -31069,7 +31562,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
       requestBody:
@@ -31096,7 +31592,11 @@ paths:
                   example: My New Page
                 slug:
                   type: string
-                  description: Slug for the page
+                  description: |
+                    Slug for the page. 
+
+
+                    **Note:** Updating slugs in secondary locales is only supported in <a href="https://webflow.com/localization">Advanced and Enterprise localization add-on plans.</a>
                   example: my-new-page
                 seo:
                   type: object
@@ -31666,11 +32166,9 @@ paths:
       operationId: get-static-content
       summary: Get Page Content
       description: |
-        Get content from a static page. This includes text nodes, image nodes, select nodes, text input nodes, submit button nodes, and component instances with [property overrides](https://help.webflow.com/hc/en-us/articles/33961219350547-Component-properties#how-to-modify-property-values-on-component-instances).
+        Get text and component instance content from a static page.
 
-        To retrieve the static content of a component instance, use the [Get Component Content](/data/reference/pages-and-components/components/get-content) endpoint.
-
-        <Note>If you do not include a `localeId` in your request, the response will return any content that can be localized from the Primary locale.</Note>
+        <Badge intent="info">Localization</Badge> 
 
         Required scope | `pages:read`
       tags:
@@ -31689,7 +32187,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -31785,7 +32286,7 @@ paths:
                     type: string
                     format: objectid
                     nullable: true
-                    description: 'If the page is a branch, this is the ID of the branch'
+                    description: 'The unique identifier of a [specific page branch.](https://help.webflow.com/hc/en-us/articles/33961355506195-Page-branching)'
                     example: 68026fa68ef6dc744c75b833
                   nodes:
                     type: array
@@ -33814,7 +34315,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -34671,7 +35175,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -35363,7 +35870,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -35895,7 +36405,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -41301,7 +41814,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific locale.
+
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -42443,7 +42959,10 @@ paths:
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
-          description: 'Unique identifier for a specific locale. Applicable, when using localization.'
+          description: |
+            Unique identifier for a specific locale.
+
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
       responses:
