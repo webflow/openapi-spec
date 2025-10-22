@@ -30492,7 +30492,6 @@ paths:
                       properties: null
                       oneOf:
                         - title: Text Node
-                          x-fern-type-name: Text Node DOM
                           description: |
                             Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -30527,7 +30526,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Image Node
-                          x-fern-type-name: Image Node DOM
                           description: |
                             Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
                           type: object
@@ -30559,7 +30557,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Component Node
-                          x-fern-type-name: Component Node DOM
                           description: |
                             Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
                           type: object
@@ -30615,7 +30612,6 @@ paths:
                                         type: string
                                         nullable: true
                         - title: Text Input Node
-                          x-fern-type-name: Text Input Node DOM
                           description: |
                             Represents text input and textarea elements within the DOM. It contains the placeholder text in the input. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -30642,7 +30638,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Select Node
-                          x-fern-type-name: Select Node DOM
                           description: |
                             Represents select elements within the DOM. It contains the list of choices in the select. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -30681,7 +30676,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Submit Button Node
-                          x-fern-type-name: Submit Button Node DOM
                           description: |
                             Represents submit button elements within the DOM. It contains the text and waiting text of the button. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -30712,7 +30706,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Search Button Node
-                          x-fern-type-name: Search Button Node DOM
                           description: |
                             Represents search button elements within the DOM. It contains the text of the button. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -31328,7 +31321,6 @@ paths:
                     oneOf:
                       - type: object
                         title: Text Node
-                        x-fern-type-name: Text Node
                         description: Update a text node
                         properties:
                           nodeId:
@@ -31350,7 +31342,6 @@ paths:
                               text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                       - type: object
                         title: Component Instance
-                        x-fern-type-name: Component Instance
                         description: Update text property overrides of a component instance
                         properties:
                           nodeId:
@@ -31391,7 +31382,6 @@ paths:
                                   text: 'Life, the Universe and Everything'
                       - type: object
                         title: Select
-                        x-fern-type-name: Select
                         description: Update choices on a select node
                         properties:
                           nodeId:
@@ -31418,7 +31408,6 @@ paths:
                           - choices
                       - type: object
                         title: Text Input
-                        x-fern-type-name: Text Input
                         description: Update placeholder text on a text input node
                         properties:
                           nodeId:
@@ -31433,7 +31422,6 @@ paths:
                           - placeholder
                       - type: object
                         title: Submit Button
-                        x-fern-type-name: Submit Button
                         description: Update a submit button node
                         properties:
                           nodeId:
@@ -31450,7 +31438,6 @@ paths:
                           - nodeId
                       - type: object
                         title: Search Button
-                        x-fern-type-name: Search Button
                         description: Update a search button node
                         properties:
                           nodeId:
@@ -32622,7 +32609,6 @@ paths:
                       properties: null
                       oneOf:
                         - title: Text Node
-                          x-fern-type-name: Text Node DOM
                           description: |
                             Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -32657,7 +32643,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Image Node
-                          x-fern-type-name: Image Node DOM
                           description: |
                             Represents an image within the DOM. It contains details about the image, such as its alternative text (alt) for accessibility and an asset identifier for fetching the actual image resource. Additional attributes can be associated with the image for styling or other purposes.
                           type: object
@@ -32689,7 +32674,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Component Node
-                          x-fern-type-name: Component Node DOM
                           description: |
                             Represents a component instance within the DOM. It contains details about the component instance, such as its type and properties.
                           type: object
@@ -32745,7 +32729,6 @@ paths:
                                         type: string
                                         nullable: true
                         - title: Text Input Node
-                          x-fern-type-name: Text Input Node DOM
                           description: |
                             Represents text input and textarea elements within the DOM. It contains the placeholder text in the input. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -32772,7 +32755,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Select Node
-                          x-fern-type-name: Select Node DOM
                           description: |
                             Represents select elements within the DOM. It contains the list of choices in the select. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -32811,7 +32793,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Submit Button Node
-                          x-fern-type-name: Submit Button Node DOM
                           description: |
                             Represents submit button elements within the DOM. It contains the text and waiting text of the button. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -32842,7 +32823,6 @@ paths:
                               additionalProperties:
                                 type: string
                         - title: Search Button Node
-                          x-fern-type-name: Search Button Node DOM
                           description: |
                             Represents search button elements within the DOM. It contains the text of the button. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -33401,7 +33381,6 @@ paths:
                     oneOf:
                       - type: object
                         title: Text Node
-                        x-fern-type-name: Text Node
                         description: Update a text node
                         properties:
                           nodeId:
@@ -33423,7 +33402,6 @@ paths:
                               text: <div><h3>Don't Panic!</h3><p>Always know where your towel is.</p></div>
                       - type: object
                         title: Component Instance
-                        x-fern-type-name: Component Instance
                         description: Update text property overrides of a component instance
                         properties:
                           nodeId:
@@ -33464,7 +33442,6 @@ paths:
                                   text: 'Life, the Universe and Everything'
                       - type: object
                         title: Select
-                        x-fern-type-name: Select
                         description: Update choices on a select node
                         properties:
                           nodeId:
@@ -33491,7 +33468,6 @@ paths:
                           - choices
                       - type: object
                         title: Text Input
-                        x-fern-type-name: Text Input
                         description: Update placeholder text on a text input node
                         properties:
                           nodeId:
@@ -33506,7 +33482,6 @@ paths:
                           - placeholder
                       - type: object
                         title: Submit Button
-                        x-fern-type-name: Submit Button
                         description: Update a submit button node
                         properties:
                           nodeId:
@@ -33523,7 +33498,6 @@ paths:
                           - nodeId
                       - type: object
                         title: Search Button
-                        x-fern-type-name: Search Button
                         description: Update a search button node
                         properties:
                           nodeId:
