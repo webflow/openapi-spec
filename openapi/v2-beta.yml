@@ -49244,7 +49244,7 @@ paths:
                 message: An Internal Error occurred
                 externalReference: null
                 details: []
-  '/forms/{form_id}/submissions':
+  '/sites/{site_id}/forms/{form_id}/submissions':
     get:
       x-fern-sdk-group-name: forms
       x-fern-sdk-method-name: list-submissions
@@ -51507,7 +51507,9 @@ paths:
                 details: []
   '/sites/{site_id}/form_submissions':
     get:
-      x-fern-sdk-group-name: forms
+      x-fern-sdk-group-name:
+        - sites
+        - forms
       x-fern-sdk-method-name: list-submissions-by-site
       security:
         - OAuth2:
@@ -51515,9 +51517,15 @@ paths:
       operationId: list-submissions-by-site
       summary: List Form Submissions by Site
       description: |
-        List form submissions for a given site. This endpoint differs from the existing [List Form Submissions endpoint](/data/reference/forms/form-submissions/list-submissions) by accepting `siteId` as a path parameter and `elementId` as a query parameter. You can get the `elementId` from the [List forms endpoint](/data/reference/forms/forms/list).
+        List all form submissions for a given site with the ability to filter submissions by a centralized `elementId`.
 
+        Add `elementId` when you want to filter form submissions to a specific form in a site. You can get the `elementId` from the [List forms endpoint](/data/reference/forms/forms/list) (displayed as `formElementId` in the response). 
 
+        <Note title="Forms in components">
+        When a form is used in a Webflow component definition, each instance of the component will yield a unique form. Adding the `elementId` in this request ensures this API response includes all submissions from that core form, wherever that form is used in instantiated components.
+        </Note>
+
+        Use the [List Form Submissions endpoint](/data/reference/forms/form-submissions/list-submissions) to list form submissions for a given form ID.
 
         Required scope | `forms:read`
       tags:
