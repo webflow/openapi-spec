@@ -1518,7 +1518,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -1526,7 +1526,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - name: sortOrder
           in: query
           allowEmptyValue: true
@@ -1834,17 +1834,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -7320,17 +7320,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -8717,17 +8717,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -13273,7 +13273,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -13281,7 +13281,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: A list of site activity logs
@@ -13392,17 +13392,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -18445,7 +18445,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -18453,7 +18453,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - name: name
           in: query
           allowEmptyValue: true
@@ -18701,15 +18701,15 @@ paths:
                     type: object
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         default: 100
                         description: The limit specified in the request
                       offset:
-                        type: number
+                        type: integer
                         default: 0
                         description: The offset specified for pagination
                       total:
-                        type: number
+                        type: integer
                         description: Total number of items in the collection
         '400':
           description: Request body was incorrectly formatted.
@@ -21130,7 +21130,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -21138,7 +21138,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - name: name
           in: query
           allowEmptyValue: true
@@ -21386,15 +21386,15 @@ paths:
                     type: object
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         default: 100
                         description: The limit specified in the request
                       offset:
-                        type: number
+                        type: integer
                         default: 0
                         description: The offset specified for pagination
                       total:
-                        type: number
+                        type: integer
                         description: Total number of items in the collection
                 required:
                   - items
@@ -28417,7 +28417,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -28425,7 +28425,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -28601,15 +28601,15 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         default: 100
                         description: The limit specified in the request (default 100)
                       offset:
-                        type: number
+                        type: integer
                         default: 0
                         description: The offset specified for pagination
                       total:
-                        type: number
+                        type: integer
                         description: Total number of comment threads
                 example:
                   comments:
@@ -29086,7 +29086,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -29094,7 +29094,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -29684,7 +29684,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -29692,7 +29692,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -29839,15 +29839,15 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         default: 100
                         description: The limit specified in the request (default 100)
                       offset:
-                        type: number
+                        type: integer
                         default: 0
                         description: The offset specified for pagination
                       total:
-                        type: number
+                        type: integer
                         description: Total number of comment replies
                 example:
                   comments:
@@ -30291,7 +30291,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -30299,7 +30299,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - name: createdOn
           in: query
           allowEmptyValue: true
@@ -30583,17 +30583,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -32198,7 +32198,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -32206,7 +32206,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -32603,17 +32603,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -33784,7 +33784,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -33792,7 +33792,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -33872,17 +33872,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -34322,7 +34322,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -34330,7 +34330,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -34720,17 +34720,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -35864,7 +35864,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -35872,7 +35872,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -35947,17 +35947,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -39825,17 +39825,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -41259,7 +41259,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -41267,7 +41267,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -41347,17 +41347,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -41809,7 +41809,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -41817,7 +41817,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -44530,17 +44530,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -45984,17 +45984,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -47837,7 +47837,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           example: 0
           allowEmptyValue: true
@@ -47845,7 +47845,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -48051,17 +48051,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -49281,7 +49281,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -49289,7 +49289,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -49375,17 +49375,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -51556,7 +51556,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -51564,7 +51564,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -51650,17 +51650,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -52143,7 +52143,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -52151,7 +52151,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - name: sort
           in: query
           allowEmptyValue: true
@@ -52217,18 +52217,18 @@ paths:
                 description: The list users results
                 properties:
                   count:
-                    type: number
+                    type: integer
                     description: Number of users returned
                   limit:
-                    type: number
+                    type: integer
                     default: 10
                     description: The limit specified in the request
                   offset:
-                    type: number
+                    type: integer
                     default: 0
                     description: The offset specified for pagination
                   total:
-                    type: number
+                    type: integer
                     description: Total number of users in the collection
                   users:
                     type: array
@@ -55952,7 +55952,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -55960,7 +55960,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
         - name: sort
           in: query
           allowEmptyValue: true
@@ -55991,18 +55991,18 @@ paths:
                 description: The list access groups results
                 properties:
                   count:
-                    type: number
+                    type: integer
                     description: Number of access groups returned
                   limit:
-                    type: number
+                    type: integer
                     default: 10
                     description: The limit specified in the request
                   offset:
-                    type: number
+                    type: integer
                     default: 0
                     description: The offset specified for pagination
                   total:
-                    type: number
+                    type: integer
                     description: Total number of access groups in the collection
                   accessGroups:
                     type: array
@@ -56612,7 +56612,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -56620,7 +56620,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -57074,17 +57074,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
@@ -63295,7 +63295,7 @@ paths:
           description: Offset used for pagination if the results have more than limit records
           required: false
           schema:
-            type: number
+            type: integer
         - in: query
           allowEmptyValue: true
           name: limit
@@ -63303,7 +63303,7 @@ paths:
           description: 'Maximum number of records to be returned (max limit: 100)'
           required: false
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: Request was successful
@@ -64234,17 +64234,17 @@ paths:
                       - total
                     properties:
                       limit:
-                        type: number
+                        type: integer
                         description: The limit used for pagination
                         example: 100
                         readOnly: true
                       offset:
-                        type: number
+                        type: integer
                         description: The offset used for pagination
                         example: 0
                         readOnly: true
                       total:
-                        type: number
+                        type: integer
                         description: The total number of records
                         example: 100
                         readOnly: true
