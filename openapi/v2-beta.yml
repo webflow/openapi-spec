@@ -52120,7 +52120,10 @@ paths:
             - 'users:read'
       operationId: list-users
       summary: List Users
+      deprecated: true
       description: |
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This endpoint is no longer available.</Warning>
+
         Get a list of users for a site
 
         Required scope | `users:read`
@@ -53022,7 +53025,10 @@ paths:
             - 'users:read'
       operationId: get-user
       summary: Get User
+      deprecated: true
       description: |
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This endpoint is no longer available.</Warning>
+
         Get a User by ID
 
         Required scope | `users:read`
@@ -53697,8 +53703,11 @@ paths:
             - 'users:write'
       operationId: update-user
       summary: Update User
+      deprecated: true
       description: |
-        Update a User by ID 
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This endpoint is no longer available.</Warning>
+
+        Update a User by ID
 
           Required scope | `users:write`
 
@@ -54511,7 +54520,10 @@ paths:
             - 'users:write'
       operationId: delete-user
       summary: Delete User
+      deprecated: true
       description: |
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This endpoint is no longer available.</Warning>
+
         Delete a User by ID
 
         Required scope | `users:write`
@@ -55071,10 +55083,13 @@ paths:
             - 'users:write'
       operationId: invite-user
       summary: Create and Invite a User
+      deprecated: true
       description: |
-        Create and invite a user with an email address. 
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This endpoint is no longer available.</Warning>
 
-        The user will be sent and invite via email, which they will need to accept in order to join paid any paid access group. 
+        Create and invite a user with an email address.
+
+        The user will be sent and invite via email, which they will need to accept in order to join paid any paid access group.
 
         Required scope | `users:write`
       tags:
@@ -55929,7 +55944,10 @@ paths:
             - 'users:read'
       operationId: list-access-groups
       summary: List Access Groups
+      deprecated: true
       description: |
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This endpoint is no longer available.</Warning>
+
         Get a list of access groups for a site
 
         Required scope | `users:read`
@@ -76698,7 +76716,11 @@ webhooks:
     post:
       operationId: user_account_added
       summary: New User Added
-      description: Information about a new user account
+      deprecated: true
+      description: |
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This webhook is no longer available.</Warning>
+
+        Information about a new user account
       tags:
         - Users
       requestBody:
@@ -76867,7 +76889,11 @@ webhooks:
     post:
       operationId: user_account_updated
       summary: Account Updated
-      description: Information about an updated user account
+      deprecated: true
+      description: |
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This webhook is no longer available.</Warning>
+
+        Information about an updated user account
       tags:
         - Users
       requestBody:
@@ -77036,7 +77062,11 @@ webhooks:
     post:
       operationId: user_account_deleted
       summary: Account Deleted
-      description: Information about a deleted user account
+      deprecated: true
+      description: |
+        <Warning>As of **January 29, 2026**, User Accounts functionality has been disabled on all Webflow sites. This webhook is no longer available.</Warning>
+
+        Information about a deleted user account
       tags:
         - Users
       requestBody:
