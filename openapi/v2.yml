@@ -1608,6 +1608,7 @@ paths:
               - workspace_membership
               - site_membership
               - workspace_invitation
+              - workspace_setting
           example: user_access
         - name: from
           in: query
@@ -1883,6 +1884,37 @@ paths:
                                       email:
                                         type: string
                                         example: zaphod.beeblebrox@heartofgold.ship
+                        - type: object
+                          title: Setting Change
+                          properties:
+                            eventType:
+                              type: string
+                              enum:
+                                - workspace_setting
+                            eventSubType:
+                              type: string
+                              enum:
+                                - setting_updated
+                            payload:
+                              x-fern-type-name: Setting change
+                              title: Setting change
+                              type: object
+                              properties:
+                                setting:
+                                  type: string
+                                  enum:
+                                    - ai_toggle
+                                previousValue:
+                                  type: string
+                                  example: 'false'
+                                value:
+                                  type: string
+                                  example: 'true'
+                                method:
+                                  type: string
+                                  enum:
+                                    - dashboard
+                                    - admin
                   pagination:
                     description: Pagination object
                     type: object
