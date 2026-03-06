@@ -7033,7 +7033,7 @@ paths:
             default: null
         - name: redirect_id
           in: path
-          description: Unique identifier site rediect
+          description: Unique identifier site redirect
           example: 66c4cb9a20cac35ed19500e6
           required: true
           schema:
@@ -7496,7 +7496,7 @@ paths:
             default: null
         - name: redirect_id
           in: path
-          description: Unique identifier site rediect
+          description: Unique identifier site redirect
           example: 66c4cb9a20cac35ed19500e6
           required: true
           schema:
