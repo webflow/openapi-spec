@@ -30519,7 +30519,7 @@ paths:
                       type: object
                       properties: null
                       oneOf:
-                        - title: Text Node
+                        - title: Text Node DOM
                           description: |
                             Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
@@ -32636,7 +32636,7 @@ paths:
                       type: object
                       properties: null
                       oneOf:
-                        - title: Text Node
+                        - title: Text Node DOM
                           description: |
                             Represents text content within the DOM. It contains both the raw text and its HTML representation. Additional attributes can be associated with the text for styling or other purposes.
                           type: object
