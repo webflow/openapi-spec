@@ -31002,6 +31002,849 @@ paths:
                 message: An Internal Error occurred
                 externalReference: null
                 details: []
+  /pages:
+    patch:
+      x-fern-sdk-group-name: pages
+      x-fern-sdk-method-name: update-metadata-bulk
+      security:
+        - OAuth2:
+            - 'page:write'
+      operationId: update-page-metadata-bulk
+      summary: Bulk update page metadata
+      description: |
+        Bulk update page-level metadata for up to 100 pages.
+
+        Site context is inferred from the page IDs in the request. All pages must belong to the same site.
+
+        The same page ID may appear multiple times when each entry uses a different `localeId`. Duplicate `id` + `localeId` combinations return a `400` error.
+
+        <Tip title="Localization tip">Provide `localeId` to update a secondary locale. `localeId` must belong to a secondary locale for the site.</Tip>
+
+        Required scope | `pages:write`
+      tags:
+        - Pages
+      requestBody:
+        description: Details of the page metadata updates to apply
+        content:
+          application/json:
+            schema:
+              description: |
+                The page metadata updates to apply in a single bulk request.
+              type: object
+              required:
+                - pages
+              example:
+                pages:
+                  - id: 6596da6045e56dee495bcbba
+                    title: Guide to the Galaxy
+                    seo:
+                      title: The Ultimate Hitchhiker's Guide to the Galaxy
+                      description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
+                  - id: 6596da6045e56dee495bcbad
+                    slug: towel-day-celebrations
+                    openGraph:
+                      title: Towel Day - Don't Panic
+                      titleCopied: false
+                      description: 'Join the galaxy in celebrating Towel Day, the day dedicated to carrying towels everywhere in memory of Douglas Adams.'
+                      descriptionCopied: false
+              properties:
+                pages:
+                  type: array
+                  description: |
+                    List of page metadata updates to apply. Include between 1 and 100 pages per request. The same `id` may appear multiple times when each entry uses a different `localeId`.
+                  items:
+                    description: The page metadata values to update for a specific page.
+                    allOf:
+                      - description: The values to update on the Page
+                        type: object
+                        example:
+                          title: Guide to the Galaxy
+                          slug: guide-to-the-galaxy
+                          seo:
+                            title: The Ultimate Hitchhiker's Guide to the Galaxy
+                            description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
+                          openGraph:
+                            title: Explore the Cosmos with The Ultimate Guide
+                            titleCopied: false
+                            description: Dive deep into the mysteries of the universe with your guide to everything galactic.
+                            descriptionCopied: false
+                        properties:
+                          title:
+                            type: string
+                            description: Title for the page
+                            example: My New Page
+                          slug:
+                            type: string
+                            description: |
+                              Slug for the page.
+
+
+                              **Note:** Updating slugs in secondary locales is only supported in <a href="https://webflow.com/localization">Advanced and Enterprise localization add-on plans.</a>
+                            example: my-new-page
+                          seo:
+                            type: object
+                            description: SEO-related fields for the Page
+                            properties:
+                              title:
+                                type: string
+                                description: The Page title shown in search engine results
+                                example: CoffeeStyle eCommerce - Webflow HTML website template
+                              description:
+                                type: string
+                                description: The Page description shown in search engine results
+                                example: This Webflow template offers a quick start into an ecommerce / memberships site
+                          openGraph:
+                            type: object
+                            description: Open Graph fields for the Page
+                            properties:
+                              title:
+                                type: string
+                                description: The title supplied to Open Graph annotations
+                                example: My snazzy Open Graph title
+                              titleCopied:
+                                type: boolean
+                                description: Indicates the Open Graph title was copied from the SEO title
+                              description:
+                                type: string
+                                description: The description supplied to Open Graph annotations
+                                example: My informative Open Graph description
+                              descriptionCopied:
+                                type: boolean
+                                description: Indicates the Open Graph description was copied from the SEO description
+                      - type: object
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type: string
+                            format: objectid
+                            description: Unique identifier for the Page to update
+                            example: 6596da6045e56dee495bcbba
+                          localeId:
+                            type: string
+                            format: objectid
+                            description: |
+                              Unique identifier for the secondary locale to update. Omit this field to update the primary locale.
+                            example: 653fd9af6a07fc9cfd7a5e57
+                  minItems: 1
+                  maxItems: 100
+            examples:
+              MultiplePages:
+                value:
+                  pages:
+                    - id: 6596da6045e56dee495bcbba
+                      title: Guide to the Galaxy
+                      seo:
+                        title: The Ultimate Hitchhiker's Guide to the Galaxy
+                        description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
+                    - id: 6596da6045e56dee495bcbad
+                      slug: towel-day-celebrations
+                      openGraph:
+                        title: Towel Day - Don't Panic
+                        titleCopied: false
+                        description: 'Join the galaxy in celebrating Towel Day, the day dedicated to carrying towels everywhere in memory of Douglas Adams.'
+                        descriptionCopied: false
+              LocalizedPages:
+                value:
+                  pages:
+                    - id: 6596da6045e56dee495bcbba
+                      localeId: 653fd9af6a07fc9cfd7a5e57
+                      title: Guide de la galaxie
+                      slug: guide-de-la-galaxie
+                      seo:
+                        title: Le guide ultime de la galaxie
+                        description: Tout ce qu'un voyageur interstellaire doit savoir pour explorer la galaxie.
+                    - id: 6596da6045e56dee495bcbba
+                      localeId: 653fd9af6a07fc9cfd7a5e58
+                      title: Guia de la galaxia
+                      slug: guia-de-la-galaxia
+                      openGraph:
+                        title: Explora la galaxia con la guia definitiva
+                        description: Una guia en espanol para autostopistas intergalacticos.
+      responses:
+        '200':
+          description: Request was successful
+          content:
+            application/json:
+              schema:
+                description: The updated page metadata objects.
+                type: object
+                required:
+                  - pages
+                example:
+                  pages:
+                    - id: 6596da6045e56dee495bcbba
+                      siteId: 6258612d1ee792848f805dcf
+                      parentId: null
+                      collectionId: null
+                      title: Guide to the Galaxy
+                      slug: guide-to-the-galaxy
+                      createdOn: '2024-03-11T10:42:00.000Z'
+                      lastUpdated: '2024-03-11T10:55:00.000Z'
+                      archived: false
+                      draft: false
+                      canBranch: false
+                      isBranch: false
+                      branchId: null
+                      seo:
+                        title: The Ultimate Hitchhiker's Guide to the Galaxy
+                        description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
+                      openGraph:
+                        title: Explore the Cosmos with The Ultimate Guide
+                        titleCopied: false
+                        description: Dive deep into the mysteries of the universe with your guide to everything galactic.
+                        descriptionCopied: false
+                      localeId: null
+                      publishedPath: /guide-to-the-galaxy
+                    - id: 6596da6045e56dee495bcbad
+                      siteId: 6258612d1ee792848f805dcf
+                      parentId: null
+                      collectionId: null
+                      title: Towel Day Celebrations
+                      slug: towel-day-celebrations
+                      createdOn: '2024-05-25T09:00:00.000Z'
+                      lastUpdated: '2024-05-25T09:30:00.000Z'
+                      archived: false
+                      draft: false
+                      canBranch: true
+                      isBranch: false
+                      branchId: null
+                      seo:
+                        title: Celebrate Towel Day - The Hitchhiker's Guide to the Galaxy
+                        description: 'A guide to celebrating Towel Day, in honor of the most massively useful thing an interstellar hitchhiker can have.'
+                      openGraph:
+                        title: Towel Day - Don't Panic
+                        titleCopied: false
+                        description: 'Join the galaxy in celebrating Towel Day, the day dedicated to carrying towels everywhere in memory of Douglas Adams.'
+                        descriptionCopied: false
+                      localeId: null
+                      publishedPath: /towel-day-celebrations
+                properties:
+                  pages:
+                    type: array
+                    description: List of updated pages
+                    items:
+                      description: The Page object
+                      type: object
+                      required:
+                        - id
+                      example:
+                        id: 6596da6045e56dee495bcbba
+                        siteId: 6258612d1ee792848f805dcf
+                        parentId: null
+                        collectionId: null
+                        title: Guide to the Galaxy
+                        slug: guide-to-the-galaxy
+                        createdOn: '2024-03-11T10:42:00.000Z'
+                        lastUpdated: '2024-03-11T10:42:42.000Z'
+                        archived: false
+                        draft: false
+                        canBranch: false
+                        isBranch: true
+                        branchId: 68026fa68ef6dc744c75b833
+                        seo:
+                          title: The Ultimate Hitchhiker's Guide to the Galaxy
+                          description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
+                        openGraph:
+                          title: Explore the Cosmos with The Ultimate Guide
+                          titleCopied: false
+                          description: Dive deep into the mysteries of the universe with your guide to everything galactic.
+                          descriptionCopied: false
+                        localeId: 653fd9af6a07fc9cfd7a5e57
+                        publishedPath: /en-us/guide-to-the-galaxy
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          description: Unique identifier for the Page
+                          example: 63499e4e6e9ed5abbfe42b69
+                        siteId:
+                          type: string
+                          format: objectid
+                          readOnly: true
+                          description: Unique identifier for the Site
+                          example: 580e63e98c9a982ac9b8b741
+                        title:
+                          type: string
+                          description: Title of the Page
+                          example: My New Page
+                        slug:
+                          type: string
+                          description: slug of the Page (derived from title)
+                          example: my-new-page
+                        parentId:
+                          type: string
+                          format: objectid
+                          description: Identifier of the parent folder
+                          readOnly: true
+                          example: 6419db964a9c435aa3af6251
+                        collectionId:
+                          type: string
+                          format: objectid
+                          readOnly: true
+                          description: 'Unique identifier for a linked Collection, value will be null if the Page is not part of a Collection.'
+                          example: 6390c49774a71f12831a08e3
+                        createdOn:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          description: The date the Page was created
+                          example: '2016-10-24T19:42:38.929Z'
+                        lastUpdated:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          description: The date the Page was most recently updated
+                          example: '2016-10-24T19:42:38.929Z'
+                        archived:
+                          type: boolean
+                          description: Whether the Page has been archived
+                          default: false
+                          example: false
+                          readOnly: true
+                        draft:
+                          type: boolean
+                          description: Whether the Page is a draft
+                          default: false
+                          example: false
+                          readOnly: true
+                        canBranch:
+                          type: boolean
+                          description: 'Indicates whether the Page supports [Page Branching](https://university.webflow.com/lesson/page-branching). Pages that are already branches cannot be branched again.'
+                          readOnly: true
+                          default: false
+                          example: false
+                        isBranch:
+                          type: boolean
+                          description: 'Indicates whether the Page is a Branch of another Page [Page Branching](https://university.webflow.com/lesson/page-branching)'
+                          readOnly: true
+                          default: false
+                          example: false
+                        branchId:
+                          type: string
+                          format: objectid
+                          nullable: true
+                          description: 'If the Page is a Branch of another Page, this is the ID of the Branch'
+                          example: 68026fa68ef6dc744c75b833
+                        seo:
+                          type: object
+                          description: SEO-related fields for the Page
+                          properties:
+                            title:
+                              type: string
+                              description: The Page title shown in search engine results
+                              example: CoffeeStyle eCommerce - Webflow HTML website template
+                            description:
+                              type: string
+                              description: The Page description shown in search engine results
+                              example: This Webflow template offers a quick start into an ecommerce / memberships site
+                        openGraph:
+                          type: object
+                          description: Open Graph fields for the Page
+                          properties:
+                            title:
+                              type: string
+                              description: The title supplied to Open Graph annotations
+                              example: My snazzy Open Graph title
+                            titleCopied:
+                              type: boolean
+                              description: Indicates the Open Graph title was copied from the SEO title
+                              readOnly: true
+                              default: true
+                            description:
+                              type: string
+                              description: The description supplied to Open Graph annotations
+                              example: My informative Open Graph description
+                            descriptionCopied:
+                              type: boolean
+                              description: Indicates the Open Graph description was copied from the SEO description
+                              readOnly: true
+                              default: true
+                        localeId:
+                          description: Unique ID of the page locale
+                          type: string
+                          format: objectid
+                          nullable: true
+                          readOnly: true
+                          example: 653fd9af6a07fc9cfd7a5e57
+                        publishedPath:
+                          description: Relative path of the published page URL
+                          type: string
+                          readOnly: true
+                          example: /heart-of-gold
+              examples:
+                MultiplePages:
+                  value:
+                    pages:
+                      - id: 6596da6045e56dee495bcbba
+                        siteId: 6258612d1ee792848f805dcf
+                        parentId: null
+                        collectionId: null
+                        title: Guide to the Galaxy
+                        slug: guide-to-the-galaxy
+                        createdOn: '2024-03-11T10:42:00.000Z'
+                        lastUpdated: '2024-03-11T10:55:00.000Z'
+                        archived: false
+                        draft: false
+                        canBranch: false
+                        isBranch: false
+                        branchId: null
+                        seo:
+                          title: The Ultimate Hitchhiker's Guide to the Galaxy
+                          description: 'Everything you need to know about the galaxy, from avoiding Vogon poetry to the importance of towels.'
+                        openGraph:
+                          title: Explore the Cosmos with The Ultimate Guide
+                          titleCopied: false
+                          description: Dive deep into the mysteries of the universe with your guide to everything galactic.
+                          descriptionCopied: false
+                        localeId: null
+                        publishedPath: /guide-to-the-galaxy
+                      - id: 6596da6045e56dee495bcbad
+                        siteId: 6258612d1ee792848f805dcf
+                        parentId: null
+                        collectionId: null
+                        title: Towel Day Celebrations
+                        slug: towel-day-celebrations
+                        createdOn: '2024-05-25T09:00:00.000Z'
+                        lastUpdated: '2024-05-25T09:30:00.000Z'
+                        archived: false
+                        draft: false
+                        canBranch: true
+                        isBranch: false
+                        branchId: null
+                        seo:
+                          title: Celebrate Towel Day - The Hitchhiker's Guide to the Galaxy
+                          description: 'A guide to celebrating Towel Day, in honor of the most massively useful thing an interstellar hitchhiker can have.'
+                        openGraph:
+                          title: Towel Day - Don't Panic
+                          titleCopied: false
+                          description: 'Join the galaxy in celebrating Towel Day, the day dedicated to carrying towels everywhere in memory of Douglas Adams.'
+                          descriptionCopied: false
+                        localeId: null
+                        publishedPath: /towel-day-celebrations
+                LocalizedPages:
+                  value:
+                    pages:
+                      - id: 6596da6045e56dee495bcbba
+                        siteId: 6258612d1ee792848f805dcf
+                        parentId: null
+                        collectionId: null
+                        title: Guide de la galaxie
+                        slug: guide-de-la-galaxie
+                        createdOn: '2024-03-11T10:42:00.000Z'
+                        lastUpdated: '2024-03-11T11:05:00.000Z'
+                        archived: false
+                        draft: false
+                        canBranch: false
+                        isBranch: false
+                        branchId: null
+                        seo:
+                          title: Le guide ultime de la galaxie
+                          description: Tout ce qu'un voyageur interstellaire doit savoir pour explorer la galaxie.
+                        openGraph:
+                          title: Le guide ultime de la galaxie
+                          titleCopied: true
+                          description: Tout ce qu'un voyageur interstellaire doit savoir pour explorer la galaxie.
+                          descriptionCopied: true
+                        localeId: 653fd9af6a07fc9cfd7a5e57
+                        publishedPath: /fr/guide-de-la-galaxie
+                      - id: 6596da6045e56dee495bcbba
+                        siteId: 6258612d1ee792848f805dcf
+                        parentId: null
+                        collectionId: null
+                        title: Guia de la galaxia
+                        slug: guia-de-la-galaxia
+                        createdOn: '2024-03-11T10:42:00.000Z'
+                        lastUpdated: '2024-03-11T11:07:00.000Z'
+                        archived: false
+                        draft: false
+                        canBranch: false
+                        isBranch: false
+                        branchId: null
+                        seo:
+                          title: La guia definitiva de la galaxia
+                          description: Todo lo que un autoestopista intergalactico necesita saber para explorar la galaxia.
+                        openGraph:
+                          title: Explora la galaxia con la guia definitiva
+                          titleCopied: false
+                          description: Una guia en espanol para autostopistas intergalacticos.
+                          descriptionCopied: false
+                        localeId: 653fd9af6a07fc9cfd7a5e58
+                        publishedPath: /es/guia-de-la-galaxia
+        '400':
+          description: Request body was incorrectly formatted.
+          x-logErrorCode: 400
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: bad_request
+                message: 'Bad Request: Request is malformed'
+                externalReference: null
+                details: []
+        '401':
+          description: Provided access token is invalid or does not have access to requested resource
+          x-logErrorCode: 401
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: not_authorized
+                message: Request not authorized
+                externalReference: null
+                details: []
+        '404':
+          description: Requested resource not found
+          x-logErrorCode: 404
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: resource_not_found
+                message: 'Requested resource not found: The site cannot be found'
+                externalReference: null
+                details: []
+        '429':
+          description: The rate limit of the provided access_token has been reached. Please have your application respect the X-RateLimit-Remaining header we include on API responses.
+          x-logErrorCode: 429
+          headers:
+            X-RateLimit-Remaining:
+              description: Contains the number of available requests remaining in the current minute
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              description: Contains your current overall rate limit per minute
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: too_many_requests
+                message: Too many requests
+                externalReference: null
+                details: []
+        '500':
+          description: We had a problem with our server. Try again later.
+          content:
+            application/json:
+              x-logErrorCode: 500
+              schema:
+                type: object
+                example:
+                  code: not_authorized
+                  message: Request not authorized
+                  externalReference: null
+                  details: []
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                    example: not_authorized
+                    enum:
+                      - bad_request
+                      - collection_not_found
+                      - conflict
+                      - duplicate_collection
+                      - duplicate_user_email
+                      - ecommerce_not_enabled
+                      - forbidden
+                      - forms_require_republish
+                      - incompatible_webhook_filter
+                      - internal_error
+                      - invalid_auth_version
+                      - invalid_credentials
+                      - invalid_domain
+                      - invalid_user_email
+                      - item_not_found
+                      - missing_scopes
+                      - no_domains
+                      - not_authorized
+                      - not_enterprise_plan_site
+                      - not_enterprise_plan_workspace
+                      - order_not_found
+                      - resource_not_found
+                      - too_many_requests
+                      - unsupported_version
+                      - unsupported_webhook_trigger_type
+                      - user_limit_reached
+                      - user_not_found
+                      - users_not_enabled
+                      - validation_error
+                  message:
+                    type: string
+                    description: Error message
+                    example: Request not authorized
+                  externalReference:
+                    type: string
+                    description: Link to more information
+                    example: ''
+                  details:
+                    type: array
+                    description: Array of errors
+                    items:
+                      - type: string
+                        example: Invalid email address
+                        description: Error message
+                      - type: object
+                        example:
+                          field: email
+                          message: Invalid email address
+                        description: Error message
+                    example: []
+              example:
+                code: internal_error
+                message: An Internal Error occurred
+                externalReference: null
+                details: []
   '/pages/{page_id}':
     get:
       x-fern-sdk-group-name: pages
