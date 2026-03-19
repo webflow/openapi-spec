@@ -22233,7 +22233,7 @@ paths:
                       name: Don’t Panic
                       slug: dont-panic
                 MultipleItemsMultipleLocales:
-                  summary: Create multiple items across multipel locales
+                  summary: Create multiple items across multiple locales
                   value:
                     cmsLocaleIds:
                       - 66f6e966c9e1dc700a857ca3
