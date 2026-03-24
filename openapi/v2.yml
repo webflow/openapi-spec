@@ -30569,7 +30569,7 @@ paths:
                       attributes: {}
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                       type: component-instance
-                      componentId: 6258612d1ee792848f805dcf
+                      componentId: e3410077-d7db-43e6-8889-0d7f61184424
                       propertyOverrides:
                         - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
                           type: Plain Text
@@ -30697,35 +30697,43 @@ paths:
                               description: List of component properties with overrides for a component instance.
                               type: array
                               items:
-                                description: |
-                                  Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
                                 type: object
-                                properties:
-                                  propertyId:
-                                    type: string
-                                    description: The ID of the property.
-                                    example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                                  type:
-                                    description: The type of the property.
-                                    type: string
-                                    enum:
-                                      - Plain Text
-                                      - Rich Text
-                                      - Alt Text
-                                  label:
-                                    description: The label of the property in the UI.
-                                    type: string
-                                  text:
-                                    description: Represents text content within the DOM. It contains both the raw text and its HTML representation.
+                                oneOf:
+                                  - title: Component Property Text
+                                    description: |
+                                      A text-based component property containing raw text and HTML representation.
+                                    type: object
+                                    required:
+                                      - propertyId
+                                      - type
+                                      - label
+                                      - text
                                     properties:
-                                      html:
-                                        description: The HTML content of the text node.
+                                      propertyId:
                                         type: string
-                                        nullable: true
+                                        description: The ID of the property.
+                                        example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                      type:
+                                        description: The type of the property.
+                                        type: string
+                                        enum:
+                                          - Plain Text
+                                          - Rich Text
+                                          - Alt Text
+                                      label:
+                                        description: The label of the property in the UI.
+                                        type: string
                                       text:
-                                        description: The raw text content of the text node.
-                                        type: string
-                                        nullable: true
+                                        description: Represents text content within the DOM. It contains both the raw text and its HTML representation.
+                                        properties:
+                                          html:
+                                            description: The HTML content of the text node.
+                                            type: string
+                                            nullable: true
+                                          text:
+                                            description: The raw text content of the text node.
+                                            type: string
+                                            nullable: true
                         - title: Text Input Node
                           description: |
                             Represents text input and textarea elements within the DOM. It contains the placeholder text in the input. Additional attributes can be associated with the text for styling or other purposes.
@@ -30887,7 +30895,7 @@ paths:
                             attributes: {}
                           - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                             type: component-instance
-                            componentId: 6258612d1ee792848f805dcf
+                            componentId: e3410077-d7db-43e6-8889-0d7f61184424
                             propertyOverrides:
                               - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
                                 type: Plain Text
@@ -32653,7 +32661,7 @@ paths:
                   The Component DOM schema represents the content structure of a component. Similar to Page DOM, it captures various content nodes and their associated attributes, but specifically for a component's structure. Each node has a unique identifier and can contain text, images, select or text inputs, submit buttons, or nested component instances.
                 type: object
                 example:
-                  componentId: 69118560-d0bc-15fc-bbf8-b8fe5f6535b5
+                  componentId: 69118560-d0bc-4fbb-8bfe-5f6535b50001
                   nodes:
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad623
                       type: text
@@ -32695,7 +32703,7 @@ paths:
                       attributes: {}
                     - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                       type: component-instance
-                      componentId: 6258612d1ee792848f805dcf
+                      componentId: 6258612d-1ee7-4284-8f80-5dcf12345678
                       propertyOverrides:
                         - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
                           type: Plain Text
@@ -32814,35 +32822,43 @@ paths:
                               description: List of component properties with overrides for a component instance.
                               type: array
                               items:
-                                description: |
-                                  Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
                                 type: object
-                                properties:
-                                  propertyId:
-                                    type: string
-                                    description: The ID of the property.
-                                    example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                                  type:
-                                    description: The type of the property.
-                                    type: string
-                                    enum:
-                                      - Plain Text
-                                      - Rich Text
-                                      - Alt Text
-                                  label:
-                                    description: The label of the property in the UI.
-                                    type: string
-                                  text:
-                                    description: Represents text content within the DOM. It contains both the raw text and its HTML representation.
+                                oneOf:
+                                  - title: Component Property Text
+                                    description: |
+                                      A text-based component property containing raw text and HTML representation.
+                                    type: object
+                                    required:
+                                      - propertyId
+                                      - type
+                                      - label
+                                      - text
                                     properties:
-                                      html:
-                                        description: The HTML content of the text node.
+                                      propertyId:
                                         type: string
-                                        nullable: true
+                                        description: The ID of the property.
+                                        example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                                      type:
+                                        description: The type of the property.
+                                        type: string
+                                        enum:
+                                          - Plain Text
+                                          - Rich Text
+                                          - Alt Text
+                                      label:
+                                        description: The label of the property in the UI.
+                                        type: string
                                       text:
-                                        description: The raw text content of the text node.
-                                        type: string
-                                        nullable: true
+                                        description: Represents text content within the DOM. It contains both the raw text and its HTML representation.
+                                        properties:
+                                          html:
+                                            description: The HTML content of the text node.
+                                            type: string
+                                            nullable: true
+                                          text:
+                                            description: The raw text content of the text node.
+                                            type: string
+                                            nullable: true
                         - title: Text Input Node
                           description: |
                             Represents text input and textarea elements within the DOM. It contains the placeholder text in the input. Additional attributes can be associated with the text for styling or other purposes.
@@ -33004,7 +33020,7 @@ paths:
                             attributes: {}
                           - id: a245c12d-995b-55ee-5ec7-aa36a6cad631
                             type: component-instance
-                            componentId: 6258612d1ee792848f805dcf
+                            componentId: e3410077-d7db-43e6-8889-0d7f61184424
                             propertyOverrides:
                               - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad633
                                 type: Plain Text
@@ -34195,7 +34211,7 @@ paths:
                   The Component Properties schema represents a list of properties that store text content. Each property has a unique identifier and can be of different types like plain text or rich text. The schema also provides pagination details for scenarios where there more properties than the limit.
                 type: object
                 example:
-                  componentId: 658205daa3e8206a523b5ad4
+                  componentId: 658205da-a3e8-4206-a523-b5ad4fabcdef
                   properties:
                     - propertyId: a245c12d-995b-55ee-5ec7-aa36a6cad623
                       label: Title
@@ -34221,35 +34237,43 @@ paths:
                   properties:
                     type: array
                     items:
-                      description: |
-                        Represents a property of a component instance in the DOM. A property contains a list of both the raw text and the HTML representation, allowing for flexibility in rendering and processing. Additional attributes can be associated with the text for styling or other purposes.
                       type: object
-                      properties:
-                        propertyId:
-                          type: string
-                          description: The ID of the property.
-                          example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
-                        type:
-                          description: The type of the property.
-                          type: string
-                          enum:
-                            - Plain Text
-                            - Rich Text
-                            - Alt Text
-                        label:
-                          description: The label of the property in the UI.
-                          type: string
-                        text:
-                          description: Represents text content within the DOM. It contains both the raw text and its HTML representation.
+                      oneOf:
+                        - title: Component Property Text
+                          description: |
+                            A text-based component property containing raw text and HTML representation.
+                          type: object
+                          required:
+                            - propertyId
+                            - type
+                            - label
+                            - text
                           properties:
-                            html:
-                              description: The HTML content of the text node.
+                            propertyId:
                               type: string
-                              nullable: true
+                              description: The ID of the property.
+                              example: 7dd14c08-2e96-8d3d-2b19-b5c03642a0f0
+                            type:
+                              description: The type of the property.
+                              type: string
+                              enum:
+                                - Plain Text
+                                - Rich Text
+                                - Alt Text
+                            label:
+                              description: The label of the property in the UI.
+                              type: string
                             text:
-                              description: The raw text content of the text node.
-                              type: string
-                              nullable: true
+                              description: Represents text content within the DOM. It contains both the raw text and its HTML representation.
+                              properties:
+                                html:
+                                  description: The HTML content of the text node.
+                                  type: string
+                                  nullable: true
+                                text:
+                                  description: The raw text content of the text node.
+                                  type: string
+                                  nullable: true
                   pagination:
                     description: Pagination object
                     type: object
