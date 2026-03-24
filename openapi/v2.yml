@@ -795,7 +795,7 @@ paths:
                   displayName: The Hitchhiker's Guide to the Galaxy
                   shortName: hitchhikers-guide
                   previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
-                  timeZone: Magrathea/FactoryFloor
+                  timeZone: America/Los_Angeles
                   createdOn: '1979-10-12T12:00:00.000Z'
                   lastUpdated: '2023-04-02T12:42:00.000Z'
                   lastPublished: '2023-04-02T12:42:00.000Z'
@@ -1006,11 +1006,11 @@ paths:
                     workspaceId: 625860a7a6c16d624927122f
                     displayName: The Hitchiker's Guide
                     shortName: hitchikers-guide
-                    previewUrl: null
-                    timeZone: null
+                    previewUrl: 'https://preview.mysite.com'
+                    timeZone: America/Los_Angeles
                     createdOn: '2024-10-15T20:24:38.134Z'
                     lastUpdated: '2024-10-15T20:24:38.326Z'
-                    lastPublished: null
+                    lastPublished: '2024-11-15T20:24:38.326Z'
                     parentFolderId: 670ece123598db72d9648be1
                     customDomains: []
                     locales: null
@@ -2403,7 +2403,7 @@ paths:
                         displayName: The Hitchhiker's Guide to the Galaxy
                         shortName: hitchhikers-guide
                         previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
-                        timeZone: Magrathea/FactoryFloor
+                        timeZone: America/Los_Angeles
                         createdOn: '1979-10-12T12:00:00.000Z'
                         lastUpdated: '2023-04-02T12:42:00.000Z'
                         lastPublished: '2023-04-02T12:42:00.000Z'
@@ -2618,7 +2618,7 @@ paths:
                       shortName: heart-of-gold
                       lastPublished: '2023-04-02T12:42:00.000Z'
                       previewUrl: 'https://dev-assets.website-files.com/42e63e98c9a982ac9b8b741/197910121200.png'
-                      timeZone: DeepSpace/InfiniteImprobability
+                      timeZone: America/Los_Angeles
                       parentFolderId: 1as2d3f4g5h6j7k8l9z0x1c2v3b4n5m6
                       customDomains:
                         - id: 589a331aa51e760df7ccb89e
@@ -2657,7 +2657,7 @@ paths:
                       shortName: paranoid-android
                       lastPublished: '2023-04-02T12:45:00.000Z'
                       previewUrl: 'https://dev-assets.website-files.com/42e63e98c9a982ac9b8b742/198110121200.png'
-                      timeZone: DeepSpace/Depression
+                      timeZone: America/Los_Angeles
                       parentFolderId: null
                       customDomains:
                         - id: 589a331aa51e760df7ccb89f
@@ -2689,7 +2689,7 @@ paths:
                       shortName: vogon-poetry
                       lastPublished: '2023-04-02T12:50:00.000Z'
                       previewUrl: 'https://dev-assets.website-files.com/42e63e98c9a982ac9b8b743/198210121200.png'
-                      timeZone: Vogsphere/PoetryHall
+                      timeZone: America/Los_Angeles
                       parentFolderId: null
                       customDomains:
                         - id: 589a331aa51e760df7ccb8a0
@@ -3125,7 +3125,7 @@ paths:
                   displayName: The Hitchhiker's Guide to the Galaxy
                   shortName: hitchhikers-guide
                   previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
-                  timeZone: Magrathea/FactoryFloor
+                  timeZone: America/Los_Angeles
                   createdOn: '1979-10-12T12:00:00.000Z'
                   lastUpdated: '2023-04-02T12:42:00.000Z'
                   lastPublished: '2023-04-02T12:42:00.000Z'
@@ -3339,7 +3339,7 @@ paths:
                     displayName: The Hitchhiker's Guide to the Galaxy
                     shortName: hitchhikers-guide
                     previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
-                    timeZone: Magrathea/FactoryFloor
+                    timeZone: America/Los_Angeles
                     createdOn: '1979-10-12T12:00:00.000Z'
                     lastUpdated: '2023-04-02T12:42:00.000Z'
                     lastPublished: '2023-04-02T12:42:00.000Z'
@@ -3802,7 +3802,7 @@ paths:
                   displayName: The Hitchhiker's Guide to the Galaxy
                   shortName: hitchhikers-guide
                   previewUrl: 'https://screenshots.webflow.com/sites/6258612d1ee792848f805dcf/20231219211811_d5990556c743f33b7071300a03bf67e6.png'
-                  timeZone: Magrathea/FactoryFloor
+                  timeZone: America/Los_Angeles
                   createdOn: '1979-10-12T12:00:00.000Z'
                   lastUpdated: '2023-04-02T12:42:00.000Z'
                   lastPublished: '2023-04-02T12:42:00.000Z'
@@ -11959,7 +11959,7 @@ paths:
                           - id: 4f5e6d7c8b9a0e1d2c3b4a5f
                             isEditable: true
                             isRequired: false
-                            type: Date
+                            type: DateTime
                             slug: first-mentioned
                             displayName: First Mentioned
                             helpText: Date of the first mention of the subject.
@@ -12803,7 +12803,7 @@ paths:
                     - id: 4f5e6d7c8b9a0e1d2c3b4a5f
                       isEditable: true
                       isRequired: false
-                      type: Date
+                      type: DateTime
                       slug: first-mentioned
                       displayName: First Mentioned
                       helpText: Date of the first mention of the subject.
@@ -13579,7 +13579,7 @@ paths:
                     - id: 4f5e6d7c8b9a0e1d2c3b4a5f
                       isEditable: true
                       isRequired: false
-                      type: Date
+                      type: DateTime
                       slug: first-mentioned
                       displayName: First Mentioned
                       helpText: Date of the first mention of the subject.
@@ -60127,7 +60127,7 @@ paths:
                                   description: CA Taxes (6.25%)
                                   price:
                                     unit: USD
-                                    value: 344
+                                    value: '344'
                                     string: $3.44
                                 properties:
                                   type:
@@ -60209,15 +60209,15 @@ paths:
                         disputeLastStatus: charge_refunded
                         customerPaid:
                           unit: USD
-                          value: 11873
+                          value: '11873'
                           string: $ 118.73 USD
                         netAmount:
                           unit: USD
-                          value: 11262
+                          value: '11262'
                           string: $ 112.62 USD
                         applicationFee:
                           unit: USD
-                          value: 237
+                          value: '237'
                           string: $ 2.37 USD
                         allAddresses:
                           - type: billing
@@ -60256,7 +60256,7 @@ paths:
                           - count: 1
                             rowTotal:
                               unit: USD
-                              value: 5561
+                              value: '5561'
                               string: $ 55.61 USD
                             productId: 66072fb61b89448912e26791
                             productName: Luxurious Fresh Ball
@@ -60270,7 +60270,7 @@ paths:
                               file: null
                             variantPrice:
                               unit: USD
-                              value: 5561
+                              value: '5561'
                               string: $ 55.61 USD
                             weight: 11
                             height: 70
@@ -60279,7 +60279,7 @@ paths:
                           - count: 1
                             rowTotal:
                               unit: USD
-                              value: 5344
+                              value: '5344'
                               string: $ 53.44 USD
                             productId: 66072fb61b89448912e26799
                             productName: Recycled Steel Gloves
@@ -60293,7 +60293,7 @@ paths:
                               file: null
                             variantPrice:
                               unit: USD
-                              value: 5344
+                              value: '5344'
                               string: $ 53.44 USD
                             weight: 38
                             height: 85
@@ -60335,7 +60335,7 @@ paths:
                         totals:
                           subtotal:
                             unit: USD
-                            value: 10905
+                            value: '10905'
                             string: $ 109.05 USD
                           extras:
                             - type: tax
@@ -60343,25 +60343,25 @@ paths:
                               description: NY Taxes (4.00%)
                               price:
                                 unit: USD
-                                value: 436
+                                value: '436'
                                 string: $ 4.36 USD
                             - type: tax
                               name: City Taxes
                               description: NEW YORK Taxes (4.88%)
                               price:
                                 unit: USD
-                                value: 532
+                                value: '532'
                                 string: $ 5.32 USD
                             - type: shipping
                               name: Flat
                               description: ''
                               price:
                                 unit: USD
-                                value: 0
+                                value: '0'
                                 string: $ 0.00 USD
                           total:
                             unit: USD
-                            value: 11873
+                            value: '11873'
                             string: $ 118.73 USD
                         isCustomerDeleted: false
                         isShippingRequired: true
@@ -60406,15 +60406,15 @@ paths:
                       disputeLastStatus: null
                       customerPaid:
                         unit: USD
-                        value: 21155
+                        value: '21155'
                         string: $ 211.55 USD
                       netAmount:
                         unit: USD
-                        value: 20089
+                        value: '20089'
                         string: $ 200.89 USD
                       applicationFee:
                         unit: USD
-                        value: 423
+                        value: '423'
                         string: $ 4.23 USD
                       allAddresses:
                         - type: billing
@@ -60453,7 +60453,7 @@ paths:
                         - count: 2
                           rowTotal:
                             unit: USD
-                            value: 11122
+                            value: '11122'
                             string: $ 111.22 USD
                           productId: 66072fb61b89448912e26791
                           productName: Luxurious Fresh Ball
@@ -60467,7 +60467,7 @@ paths:
                             file: null
                           variantPrice:
                             unit: USD
-                            value: 5561
+                            value: '5561'
                             string: $ 55.61 USD
                           weight: 11
                           height: 70
@@ -60476,7 +60476,7 @@ paths:
                         - count: 1
                           rowTotal:
                             unit: USD
-                            value: 8309
+                            value: '8309'
                             string: $ 83.09 USD
                           productId: 66072fb61b89448912e2678b
                           productName: Incredible Bronze Towels
@@ -60490,7 +60490,7 @@ paths:
                             file: null
                           variantPrice:
                             unit: USD
-                            value: 8309
+                            value: '8309'
                             string: $ 83.09 USD
                           weight: null
                           height: 72
@@ -60541,15 +60541,15 @@ paths:
                       disputeLastStatus: null
                       customerPaid:
                         unit: USD
-                        value: 11873
+                        value: '11873'
                         string: $ 118.73 USD
                       netAmount:
                         unit: USD
-                        value: 11262
+                        value: '11262'
                         string: $ 112.62 USD
                       applicationFee:
                         unit: USD
-                        value: 237
+                        value: '237'
                         string: $ 2.37 USD
                       allAddresses:
                         - type: billing
@@ -60587,7 +60587,7 @@ paths:
                         - count: 1
                           rowTotal:
                             unit: USD
-                            value: 5561
+                            value: '5561'
                             string: $ 55.61 USD
                           productId: 66072fb61b89448912e26791
                           productName: Luxurious Fresh Ball
@@ -60601,7 +60601,7 @@ paths:
                             file: null
                           variantPrice:
                             unit: USD
-                            value: 5561
+                            value: '5561'
                             string: $ 55.61 USD
                           weight: 11
                           height: 70
@@ -60610,7 +60610,7 @@ paths:
                         - count: 1
                           rowTotal:
                             unit: USD
-                            value: 5344
+                            value: '5344'
                             string: $ 53.44 USD
                           productId: 66072fb61b89448912e26799
                           productName: Recycled Steel Gloves
@@ -60624,7 +60624,7 @@ paths:
                             file: null
                           variantPrice:
                             unit: USD
-                            value: 5344
+                            value: '5344'
                             string: $ 53.44 USD
                           weight: 38
                           height: 85
@@ -60666,7 +60666,7 @@ paths:
                       totals:
                         subtotal:
                           unit: USD
-                          value: 10905
+                          value: '10905'
                           string: $ 109.05 USD
                         extras:
                           - type: tax
@@ -60674,25 +60674,25 @@ paths:
                             description: NY Taxes (4.00%)
                             price:
                               unit: USD
-                              value: 436
+                              value: '436'
                               string: $ 4.36 USD
                           - type: tax
                             name: City Taxes
                             description: NEW YORK Taxes (4.88%)
                             price:
                               unit: USD
-                              value: 532
+                              value: '532'
                               string: $ 5.32 USD
                           - type: shipping
                             name: Flat
                             description: ''
                             price:
                               unit: USD
-                              value: 0
+                              value: '0'
                               string: $ 0.00 USD
                         total:
                           unit: USD
-                          value: 11873
+                          value: '11873'
                           string: $ 118.73 USD
                       isCustomerDeleted: false
                       isShippingRequired: true
@@ -61931,7 +61931,7 @@ paths:
                             description: CA Taxes (6.25%)
                             price:
                               unit: USD
-                              value: 344
+                              value: '344'
                               string: $3.44
                           properties:
                             type:
@@ -62013,15 +62013,15 @@ paths:
                   disputeLastStatus: charge_refunded
                   customerPaid:
                     unit: USD
-                    value: 11873
+                    value: '11873'
                     string: $ 118.73 USD
                   netAmount:
                     unit: USD
-                    value: 11262
+                    value: '11262'
                     string: $ 112.62 USD
                   applicationFee:
                     unit: USD
-                    value: 237
+                    value: '237'
                     string: $ 2.37 USD
                   allAddresses:
                     - type: billing
@@ -62060,7 +62060,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       productId: 66072fb61b89448912e26791
                       productName: Luxurious Fresh Ball
@@ -62074,7 +62074,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       weight: 11
                       height: 70
@@ -62083,7 +62083,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       productId: 66072fb61b89448912e26799
                       productName: Recycled Steel Gloves
@@ -62097,7 +62097,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       weight: 38
                       height: 85
@@ -62139,7 +62139,7 @@ paths:
                   totals:
                     subtotal:
                       unit: USD
-                      value: 10905
+                      value: '10905'
                       string: $ 109.05 USD
                     extras:
                       - type: tax
@@ -62147,25 +62147,25 @@ paths:
                         description: NY Taxes (4.00%)
                         price:
                           unit: USD
-                          value: 436
+                          value: '436'
                           string: $ 4.36 USD
                       - type: tax
                         name: City Taxes
                         description: NEW YORK Taxes (4.88%)
                         price:
                           unit: USD
-                          value: 532
+                          value: '532'
                           string: $ 5.32 USD
                       - type: shipping
                         name: Flat
                         description: ''
                         price:
                           unit: USD
-                          value: 0
+                          value: '0'
                           string: $ 0.00 USD
                     total:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                   isCustomerDeleted: false
                   isShippingRequired: true
@@ -63424,7 +63424,7 @@ paths:
                             description: CA Taxes (6.25%)
                             price:
                               unit: USD
-                              value: 344
+                              value: '344'
                               string: $3.44
                           properties:
                             type:
@@ -63506,15 +63506,15 @@ paths:
                   disputeLastStatus: charge_refunded
                   customerPaid:
                     unit: USD
-                    value: 11873
+                    value: '11873'
                     string: $ 118.73 USD
                   netAmount:
                     unit: USD
-                    value: 11262
+                    value: '11262'
                     string: $ 112.62 USD
                   applicationFee:
                     unit: USD
-                    value: 237
+                    value: '237'
                     string: $ 2.37 USD
                   allAddresses:
                     - type: billing
@@ -63553,7 +63553,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       productId: 66072fb61b89448912e26791
                       productName: Luxurious Fresh Ball
@@ -63567,7 +63567,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       weight: 11
                       height: 70
@@ -63576,7 +63576,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       productId: 66072fb61b89448912e26799
                       productName: Recycled Steel Gloves
@@ -63590,7 +63590,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       weight: 38
                       height: 85
@@ -63632,7 +63632,7 @@ paths:
                   totals:
                     subtotal:
                       unit: USD
-                      value: 10905
+                      value: '10905'
                       string: $ 109.05 USD
                     extras:
                       - type: tax
@@ -63640,25 +63640,25 @@ paths:
                         description: NY Taxes (4.00%)
                         price:
                           unit: USD
-                          value: 436
+                          value: '436'
                           string: $ 4.36 USD
                       - type: tax
                         name: City Taxes
                         description: NEW YORK Taxes (4.88%)
                         price:
                           unit: USD
-                          value: 532
+                          value: '532'
                           string: $ 5.32 USD
                       - type: shipping
                         name: Flat
                         description: ''
                         price:
                           unit: USD
-                          value: 0
+                          value: '0'
                           string: $ 0.00 USD
                     total:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                   isCustomerDeleted: false
                   isShippingRequired: true
@@ -64903,7 +64903,7 @@ paths:
                             description: CA Taxes (6.25%)
                             price:
                               unit: USD
-                              value: 344
+                              value: '344'
                               string: $3.44
                           properties:
                             type:
@@ -64985,15 +64985,15 @@ paths:
                   disputeLastStatus: charge_refunded
                   customerPaid:
                     unit: USD
-                    value: 11873
+                    value: '11873'
                     string: $ 118.73 USD
                   netAmount:
                     unit: USD
-                    value: 11262
+                    value: '11262'
                     string: $ 112.62 USD
                   applicationFee:
                     unit: USD
-                    value: 237
+                    value: '237'
                     string: $ 2.37 USD
                   allAddresses:
                     - type: billing
@@ -65032,7 +65032,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       productId: 66072fb61b89448912e26791
                       productName: Luxurious Fresh Ball
@@ -65046,7 +65046,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       weight: 11
                       height: 70
@@ -65055,7 +65055,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       productId: 66072fb61b89448912e26799
                       productName: Recycled Steel Gloves
@@ -65069,7 +65069,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       weight: 38
                       height: 85
@@ -65111,7 +65111,7 @@ paths:
                   totals:
                     subtotal:
                       unit: USD
-                      value: 10905
+                      value: '10905'
                       string: $ 109.05 USD
                     extras:
                       - type: tax
@@ -65119,25 +65119,25 @@ paths:
                         description: NY Taxes (4.00%)
                         price:
                           unit: USD
-                          value: 436
+                          value: '436'
                           string: $ 4.36 USD
                       - type: tax
                         name: City Taxes
                         description: NEW YORK Taxes (4.88%)
                         price:
                           unit: USD
-                          value: 532
+                          value: '532'
                           string: $ 5.32 USD
                       - type: shipping
                         name: Flat
                         description: ''
                         price:
                           unit: USD
-                          value: 0
+                          value: '0'
                           string: $ 0.00 USD
                     total:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                   isCustomerDeleted: false
                   isShippingRequired: true
@@ -66371,7 +66371,7 @@ paths:
                             description: CA Taxes (6.25%)
                             price:
                               unit: USD
-                              value: 344
+                              value: '344'
                               string: $3.44
                           properties:
                             type:
@@ -66453,15 +66453,15 @@ paths:
                   disputeLastStatus: charge_refunded
                   customerPaid:
                     unit: USD
-                    value: 11873
+                    value: '11873'
                     string: $ 118.73 USD
                   netAmount:
                     unit: USD
-                    value: 11262
+                    value: '11262'
                     string: $ 112.62 USD
                   applicationFee:
                     unit: USD
-                    value: 237
+                    value: '237'
                     string: $ 2.37 USD
                   allAddresses:
                     - type: billing
@@ -66500,7 +66500,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       productId: 66072fb61b89448912e26791
                       productName: Luxurious Fresh Ball
@@ -66514,7 +66514,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       weight: 11
                       height: 70
@@ -66523,7 +66523,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       productId: 66072fb61b89448912e26799
                       productName: Recycled Steel Gloves
@@ -66537,7 +66537,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       weight: 38
                       height: 85
@@ -66579,7 +66579,7 @@ paths:
                   totals:
                     subtotal:
                       unit: USD
-                      value: 10905
+                      value: '10905'
                       string: $ 109.05 USD
                     extras:
                       - type: tax
@@ -66587,25 +66587,25 @@ paths:
                         description: NY Taxes (4.00%)
                         price:
                           unit: USD
-                          value: 436
+                          value: '436'
                           string: $ 4.36 USD
                       - type: tax
                         name: City Taxes
                         description: NEW YORK Taxes (4.88%)
                         price:
                           unit: USD
-                          value: 532
+                          value: '532'
                           string: $ 5.32 USD
                       - type: shipping
                         name: Flat
                         description: ''
                         price:
                           unit: USD
-                          value: 0
+                          value: '0'
                           string: $ 0.00 USD
                     total:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                   isCustomerDeleted: false
                   isShippingRequired: true
@@ -67854,7 +67854,7 @@ paths:
                             description: CA Taxes (6.25%)
                             price:
                               unit: USD
-                              value: 344
+                              value: '344'
                               string: $3.44
                           properties:
                             type:
@@ -67936,15 +67936,15 @@ paths:
                   disputeLastStatus: charge_refunded
                   customerPaid:
                     unit: USD
-                    value: 11873
+                    value: '11873'
                     string: $ 118.73 USD
                   netAmount:
                     unit: USD
-                    value: 11262
+                    value: '11262'
                     string: $ 112.62 USD
                   applicationFee:
                     unit: USD
-                    value: 237
+                    value: '237'
                     string: $ 2.37 USD
                   allAddresses:
                     - type: billing
@@ -67983,7 +67983,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       productId: 66072fb61b89448912e26791
                       productName: Luxurious Fresh Ball
@@ -67997,7 +67997,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       weight: 11
                       height: 70
@@ -68006,7 +68006,7 @@ paths:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       productId: 66072fb61b89448912e26799
                       productName: Recycled Steel Gloves
@@ -68020,7 +68020,7 @@ paths:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       weight: 38
                       height: 85
@@ -68062,7 +68062,7 @@ paths:
                   totals:
                     subtotal:
                       unit: USD
-                      value: 10905
+                      value: '10905'
                       string: $ 109.05 USD
                     extras:
                       - type: tax
@@ -68070,25 +68070,25 @@ paths:
                         description: NY Taxes (4.00%)
                         price:
                           unit: USD
-                          value: 436
+                          value: '436'
                           string: $ 4.36 USD
                       - type: tax
                         name: City Taxes
                         description: NEW YORK Taxes (4.88%)
                         price:
                           unit: USD
-                          value: 532
+                          value: '532'
                           string: $ 5.32 USD
                       - type: shipping
                         name: Flat
                         description: ''
                         price:
                           unit: USD
-                          value: 0
+                          value: '0'
                           string: $ 0.00 USD
                     total:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                   isCustomerDeleted: false
                   isShippingRequired: true
@@ -71265,7 +71265,7 @@ webhooks:
                               description: CA Taxes (6.25%)
                               price:
                                 unit: USD
-                                value: 344
+                                value: '344'
                                 string: $3.44
                             properties:
                               type:
@@ -71347,15 +71347,15 @@ webhooks:
                     disputeLastStatus: charge_refunded
                     customerPaid:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                     netAmount:
                       unit: USD
-                      value: 11262
+                      value: '11262'
                       string: $ 112.62 USD
                     applicationFee:
                       unit: USD
-                      value: 237
+                      value: '237'
                       string: $ 2.37 USD
                     allAddresses:
                       - type: billing
@@ -71394,7 +71394,7 @@ webhooks:
                       - count: 1
                         rowTotal:
                           unit: USD
-                          value: 5561
+                          value: '5561'
                           string: $ 55.61 USD
                         productId: 66072fb61b89448912e26791
                         productName: Luxurious Fresh Ball
@@ -71408,7 +71408,7 @@ webhooks:
                           file: null
                         variantPrice:
                           unit: USD
-                          value: 5561
+                          value: '5561'
                           string: $ 55.61 USD
                         weight: 11
                         height: 70
@@ -71417,7 +71417,7 @@ webhooks:
                       - count: 1
                         rowTotal:
                           unit: USD
-                          value: 5344
+                          value: '5344'
                           string: $ 53.44 USD
                         productId: 66072fb61b89448912e26799
                         productName: Recycled Steel Gloves
@@ -71431,7 +71431,7 @@ webhooks:
                           file: null
                         variantPrice:
                           unit: USD
-                          value: 5344
+                          value: '5344'
                           string: $ 53.44 USD
                         weight: 38
                         height: 85
@@ -71473,7 +71473,7 @@ webhooks:
                     totals:
                       subtotal:
                         unit: USD
-                        value: 10905
+                        value: '10905'
                         string: $ 109.05 USD
                       extras:
                         - type: tax
@@ -71481,25 +71481,25 @@ webhooks:
                           description: NY Taxes (4.00%)
                           price:
                             unit: USD
-                            value: 436
+                            value: '436'
                             string: $ 4.36 USD
                         - type: tax
                           name: City Taxes
                           description: NEW YORK Taxes (4.88%)
                           price:
                             unit: USD
-                            value: 532
+                            value: '532'
                             string: $ 5.32 USD
                         - type: shipping
                           name: Flat
                           description: ''
                           price:
                             unit: USD
-                            value: 0
+                            value: '0'
                             string: $ 0.00 USD
                       total:
                         unit: USD
-                        value: 11873
+                        value: '11873'
                         string: $ 118.73 USD
                     isCustomerDeleted: false
                     isShippingRequired: true
@@ -71522,15 +71522,15 @@ webhooks:
                   disputeLastStatus: null
                   customerPaid:
                     unit: USD
-                    value: 11873
+                    value: '11873'
                     string: $ 118.73 USD
                   netAmount:
                     unit: USD
-                    value: 11262
+                    value: '11262'
                     string: $ 112.62 USD
                   applicationFee:
                     unit: USD
-                    value: 237
+                    value: '237'
                     string: $ 2.37 USD
                   allAddresses:
                     - type: billing
@@ -71569,7 +71569,7 @@ webhooks:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       productId: 66072fb61b89448912e26791
                       productName: Luxurious Fresh Ball
@@ -71583,7 +71583,7 @@ webhooks:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       weight: 11
                       height: 70
@@ -71592,7 +71592,7 @@ webhooks:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       productId: 66072fb61b89448912e26799
                       productName: Recycled Steel Gloves
@@ -71606,7 +71606,7 @@ webhooks:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       weight: 38
                       height: 85
@@ -71648,7 +71648,7 @@ webhooks:
                   totals:
                     subtotal:
                       unit: USD
-                      value: 10905
+                      value: '10905'
                       string: $ 109.05 USD
                     extras:
                       - type: tax
@@ -71656,25 +71656,25 @@ webhooks:
                         description: NY Taxes (4.00%)
                         price:
                           unit: USD
-                          value: 436
+                          value: '436'
                           string: $ 4.36 USD
                       - type: tax
                         name: City Taxes
                         description: NEW YORK Taxes (4.88%)
                         price:
                           unit: USD
-                          value: 532
+                          value: '532'
                           string: $ 5.32 USD
                       - type: shipping
                         name: Flat
                         description: ''
                         price:
                           unit: USD
-                          value: 0
+                          value: '0'
                           string: $ 0.00 USD
                     total:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                   isCustomerDeleted: false
                   isShippingRequired: true
@@ -72368,7 +72368,7 @@ webhooks:
                               description: CA Taxes (6.25%)
                               price:
                                 unit: USD
-                                value: 344
+                                value: '344'
                                 string: $3.44
                             properties:
                               type:
@@ -72450,15 +72450,15 @@ webhooks:
                     disputeLastStatus: charge_refunded
                     customerPaid:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                     netAmount:
                       unit: USD
-                      value: 11262
+                      value: '11262'
                       string: $ 112.62 USD
                     applicationFee:
                       unit: USD
-                      value: 237
+                      value: '237'
                       string: $ 2.37 USD
                     allAddresses:
                       - type: billing
@@ -72497,7 +72497,7 @@ webhooks:
                       - count: 1
                         rowTotal:
                           unit: USD
-                          value: 5561
+                          value: '5561'
                           string: $ 55.61 USD
                         productId: 66072fb61b89448912e26791
                         productName: Luxurious Fresh Ball
@@ -72511,7 +72511,7 @@ webhooks:
                           file: null
                         variantPrice:
                           unit: USD
-                          value: 5561
+                          value: '5561'
                           string: $ 55.61 USD
                         weight: 11
                         height: 70
@@ -72520,7 +72520,7 @@ webhooks:
                       - count: 1
                         rowTotal:
                           unit: USD
-                          value: 5344
+                          value: '5344'
                           string: $ 53.44 USD
                         productId: 66072fb61b89448912e26799
                         productName: Recycled Steel Gloves
@@ -72534,7 +72534,7 @@ webhooks:
                           file: null
                         variantPrice:
                           unit: USD
-                          value: 5344
+                          value: '5344'
                           string: $ 53.44 USD
                         weight: 38
                         height: 85
@@ -72576,7 +72576,7 @@ webhooks:
                     totals:
                       subtotal:
                         unit: USD
-                        value: 10905
+                        value: '10905'
                         string: $ 109.05 USD
                       extras:
                         - type: tax
@@ -72584,25 +72584,25 @@ webhooks:
                           description: NY Taxes (4.00%)
                           price:
                             unit: USD
-                            value: 436
+                            value: '436'
                             string: $ 4.36 USD
                         - type: tax
                           name: City Taxes
                           description: NEW YORK Taxes (4.88%)
                           price:
                             unit: USD
-                            value: 532
+                            value: '532'
                             string: $ 5.32 USD
                         - type: shipping
                           name: Flat
                           description: ''
                           price:
                             unit: USD
-                            value: 0
+                            value: '0'
                             string: $ 0.00 USD
                       total:
                         unit: USD
-                        value: 11873
+                        value: '11873'
                         string: $ 118.73 USD
                     isCustomerDeleted: false
                     isShippingRequired: true
@@ -72625,15 +72625,15 @@ webhooks:
                   disputeLastStatus: charge_refunded
                   customerPaid:
                     unit: USD
-                    value: 11873
+                    value: '11873'
                     string: $ 118.73 USD
                   netAmount:
                     unit: USD
-                    value: 11262
+                    value: '11262'
                     string: $ 112.62 USD
                   applicationFee:
                     unit: USD
-                    value: 237
+                    value: '237'
                     string: $ 2.37 USD
                   allAddresses:
                     - type: billing
@@ -72672,7 +72672,7 @@ webhooks:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       productId: 66072fb61b89448912e26791
                       productName: Luxurious Fresh Ball
@@ -72686,7 +72686,7 @@ webhooks:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5561
+                        value: '5561'
                         string: $ 55.61 USD
                       weight: 11
                       height: 70
@@ -72695,7 +72695,7 @@ webhooks:
                     - count: 1
                       rowTotal:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       productId: 66072fb61b89448912e26799
                       productName: Recycled Steel Gloves
@@ -72709,7 +72709,7 @@ webhooks:
                         file: null
                       variantPrice:
                         unit: USD
-                        value: 5344
+                        value: '5344'
                         string: $ 53.44 USD
                       weight: 38
                       height: 85
@@ -72751,7 +72751,7 @@ webhooks:
                   totals:
                     subtotal:
                       unit: USD
-                      value: 10905
+                      value: '10905'
                       string: $ 109.05 USD
                     extras:
                       - type: tax
@@ -72759,25 +72759,25 @@ webhooks:
                         description: NY Taxes (4.00%)
                         price:
                           unit: USD
-                          value: 436
+                          value: '436'
                           string: $ 4.36 USD
                       - type: tax
                         name: City Taxes
                         description: NEW YORK Taxes (4.88%)
                         price:
                           unit: USD
-                          value: 532
+                          value: '532'
                           string: $ 5.32 USD
                       - type: shipping
                         name: Flat
                         description: ''
                         price:
                           unit: USD
-                          value: 0
+                          value: '0'
                           string: $ 0.00 USD
                     total:
                       unit: USD
-                      value: 11873
+                      value: '11873'
                       string: $ 118.73 USD
                   isCustomerDeleted: false
                   isShippingRequired: true
