@@ -28441,7 +28441,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -29110,7 +29110,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -29708,7 +29708,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -30315,7 +30315,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -31880,7 +31880,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
       responses:
@@ -32440,7 +32440,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
       requestBody:
@@ -33065,7 +33065,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -35396,7 +35396,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -36453,7 +36453,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -37142,7 +37142,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -37685,7 +37685,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -43082,7 +43082,7 @@ paths:
       operationId: list-assets
       summary: List Assets
       description: |
-        List assets for a given site
+        List of assets uploaded to a site
 
         Required scope | `assets:read`
       tags:
@@ -43097,12 +43097,12 @@ paths:
             type: string
             format: objectid
             default: null
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
           description: |
-            Unique identifier for a specific locale.
+            Unique identifier for a specific Locale.
 
             [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
@@ -43129,8 +43129,173 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - assets
+                  - pagination
+                type: object
                 description: A list of assets
-                type: array
+                properties:
+                  assets:
+                    type: array
+                    items:
+                      description: Asset details
+                      example:
+                        id: 63e5889e7fe4eafa7384cea4
+                        originalFileName: Candy-Wrapper.svg
+                        displayName: 63e5889e7fe4eafa7384cea4_Candy-Wrapper.png
+                        contentType: image/png
+                        size: 2212772
+                        siteId: 63938b302ea6b0aa6f3d8745
+                        createdOn: '2023-02-09T23:58:22.294Z'
+                        lastUpdated: '2023-03-01T23:42:57.862Z'
+                        hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/63938b302ea6b0aa6f3d8745/63e5889e7fe4eafa7384cea4_Vectors-Wrapper.svg'
+                        variants:
+                          - hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/6258612d1ee792848f805dcf/660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png'
+                            originalFileName: Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                            displayName: 660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
+                            format: png
+                            width: 500
+                            height: null
+                            quality: 100
+                            error: null
+                        altText: A single candy wrapper
+                      required:
+                        - id
+                        - contentType
+                        - size
+                        - siteId
+                        - hostedUrl
+                        - originalFileName
+                        - displayName
+                        - lastUpdated
+                        - createdOn
+                        - variants
+                        - altText
+                      properties:
+                        id:
+                          type: string
+                          format: objectid
+                          example: 55131cd036c09f7d07883dfc
+                          description: Unique identifier for this asset
+                          readOnly: true
+                        contentType:
+                          type: string
+                          example: image/png
+                          format: mime-type
+                          description: File format type
+                          readOnly: true
+                        size:
+                          type: integer
+                          description: size in bytes
+                          example: 1500
+                          readOnly: true
+                        siteId:
+                          type: string
+                          format: objectid
+                          example: 62749158efef318abc8d5a0f
+                          description: Unique identifier for the site that hosts this asset
+                          readOnly: true
+                        hostedUrl:
+                          type: string
+                          format: uri
+                          example: example.com/hostedimage.png
+                          description: Link to the asset
+                          readOnly: true
+                        originalFileName:
+                          type: string
+                          example: image.png
+                          description: Original file name at the time of upload
+                          readOnly: true
+                        displayName:
+                          type: string
+                          example: example-image-123.png
+                          description: Display name of the asset
+                        lastUpdated:
+                          type: string
+                          format: date-time
+                          example: '2016-09-06T21:12:22.148Z'
+                          description: Date the asset metadata was last updated
+                          readOnly: true
+                        createdOn:
+                          type: string
+                          format: date-time
+                          example: '2016-09-02T23:26:22.241Z'
+                          description: Date the asset metadata was created
+                          readOnly: true
+                        variants:
+                          description: 'A list of [asset variants](https://help.webflow.com/hc/en-us/articles/33961378697107-Responsive-images) created by Webflow to serve your site responsively.'
+                          type: array
+                          items:
+                            description: Asset variant details
+                            required:
+                              - hostedUrl
+                              - originalFileName
+                              - displayName
+                              - format
+                              - width
+                              - height
+                              - quality
+                            properties:
+                              hostedUrl:
+                                type: string
+                                format: uri
+                                example: example.com/hostedimage.png
+                                description: URL of where the asset variant is hosted
+                              originalFileName:
+                                type: string
+                                example: image.png
+                                description: Original file name of the variant
+                              displayName:
+                                type: string
+                                example: A brown dog
+                                description: Display name of the variant
+                              format:
+                                type: string
+                                description: format of the variant
+                              width:
+                                type: integer
+                                description: Width in pixels
+                                example: 1500
+                              height:
+                                type: integer
+                                description: Height in pixels
+                                example: 900
+                                nullable: true
+                              quality:
+                                type: integer
+                                description: Value between 0 and 100 representing the image quality
+                              error:
+                                type: string
+                                description: Any associated validation errors
+                                nullable: true
+                        altText:
+                          type: string
+                          example: A red chair
+                          nullable: true
+                          description: The visual description of the asset
+                  pagination:
+                    description: Pagination object
+                    type: object
+                    required:
+                      - limit
+                      - offset
+                      - total
+                    properties:
+                      limit:
+                        type: integer
+                        description: The limit used for pagination
+                        example: 100
+                        readOnly: true
+                      offset:
+                        type: integer
+                        description: The offset used for pagination
+                        example: 0
+                        readOnly: true
+                      total:
+                        type: integer
+                        description: The total number of records
+                        example: 100
+                        readOnly: true
                 example:
                   assets:
                     - id: 63e5889e7fe4eafa7384cea4
@@ -43175,142 +43340,6 @@ paths:
                     total: 2
                     offset: 0
                     limit: 2
-                items:
-                  description: Asset details
-                  example:
-                    id: 63e5889e7fe4eafa7384cea4
-                    originalFileName: Candy-Wrapper.svg
-                    displayName: 63e5889e7fe4eafa7384cea4_Candy-Wrapper.png
-                    contentType: image/png
-                    size: 2212772
-                    siteId: 63938b302ea6b0aa6f3d8745
-                    createdOn: '2023-02-09T23:58:22.294Z'
-                    lastUpdated: '2023-03-01T23:42:57.862Z'
-                    hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/63938b302ea6b0aa6f3d8745/63e5889e7fe4eafa7384cea4_Vectors-Wrapper.svg'
-                    variants:
-                      - hostedUrl: 'https://s3.amazonaws.com/webflow-prod-assets/6258612d1ee792848f805dcf/660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png'
-                        originalFileName: Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
-                        displayName: 660d83ce30f3a599ddb0bdb3_Screenshot%202024-03-20%20at%209.03.24%E2%80%AFPM-p-500.png
-                        format: png
-                        width: 500
-                        height: null
-                        quality: 100
-                        error: null
-                    altText: A single candy wrapper
-                  required:
-                    - id
-                    - contentType
-                    - size
-                    - siteId
-                    - hostedUrl
-                    - originalFileName
-                    - displayName
-                    - lastUpdated
-                    - createdOn
-                    - variants
-                    - altText
-                  properties:
-                    id:
-                      type: string
-                      format: objectid
-                      example: 55131cd036c09f7d07883dfc
-                      description: Unique identifier for this asset
-                      readOnly: true
-                    contentType:
-                      type: string
-                      example: image/png
-                      format: mime-type
-                      description: File format type
-                      readOnly: true
-                    size:
-                      type: integer
-                      description: size in bytes
-                      example: 1500
-                      readOnly: true
-                    siteId:
-                      type: string
-                      format: objectid
-                      example: 62749158efef318abc8d5a0f
-                      description: Unique identifier for the site that hosts this asset
-                      readOnly: true
-                    hostedUrl:
-                      type: string
-                      format: uri
-                      example: example.com/hostedimage.png
-                      description: Link to the asset
-                      readOnly: true
-                    originalFileName:
-                      type: string
-                      example: image.png
-                      description: Original file name at the time of upload
-                      readOnly: true
-                    displayName:
-                      type: string
-                      example: example-image-123.png
-                      description: Display name of the asset
-                    lastUpdated:
-                      type: string
-                      format: date-time
-                      example: '2016-09-06T21:12:22.148Z'
-                      description: Date the asset metadata was last updated
-                      readOnly: true
-                    createdOn:
-                      type: string
-                      format: date-time
-                      example: '2016-09-02T23:26:22.241Z'
-                      description: Date the asset metadata was created
-                      readOnly: true
-                    variants:
-                      description: 'A list of [asset variants](https://help.webflow.com/hc/en-us/articles/33961378697107-Responsive-images) created by Webflow to serve your site responsively.'
-                      type: array
-                      items:
-                        description: Asset variant details
-                        required:
-                          - hostedUrl
-                          - originalFileName
-                          - displayName
-                          - format
-                          - width
-                          - height
-                          - quality
-                        properties:
-                          hostedUrl:
-                            type: string
-                            format: uri
-                            example: example.com/hostedimage.png
-                            description: URL of where the asset variant is hosted
-                          originalFileName:
-                            type: string
-                            example: image.png
-                            description: Original file name of the variant
-                          displayName:
-                            type: string
-                            example: A brown dog
-                            description: Display name of the variant
-                          format:
-                            type: string
-                            description: format of the variant
-                          width:
-                            type: integer
-                            description: Width in pixels
-                            example: 1500
-                          height:
-                            type: integer
-                            description: Height in pixels
-                            example: 900
-                            nullable: true
-                          quality:
-                            type: integer
-                            description: Value between 0 and 100 representing the image quality
-                          error:
-                            type: string
-                            description: Any associated validation errors
-                            nullable: true
-                    altText:
-                      type: string
-                      example: A red chair
-                      nullable: true
-                      description: The visual description of the asset
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -43692,15 +43721,20 @@ paths:
         - OAuth2:
             - 'assets:write'
       operationId: create-asset
-      summary: Create Asset Metadata
+      summary: Upload Asset
       description: |
-        Create a new asset entry.
+        The first step in uploading an asset to a site.
+
 
         This endpoint generates a response with the following information: `uploadUrl` and `uploadDetails`.
-        You can use these two properties to [upload the file to Amazon s3 by making a POST](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)
-        request to the `uploadUrl` with the `uploadDetails` object as your header information in the request.
 
-        Required scope | `assets:write`
+
+        Use these properties in the header of a [POST request to Amazson s3](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html) to complete the upload.
+
+
+        To learn more about how to upload assets to Webflow, see our [assets guide](/data/docs/working-with-assets).
+
+         Required scope | `assets:write`
       tags:
         - Assets
       parameters:
@@ -43727,7 +43761,7 @@ paths:
                 fileName:
                   type: string
                   example: file.png
-                  description: file name including file extension
+                  description: File name including file extension. File names must be less than 100 characters.
                 fileHash:
                   type: string
                   example: 3c7d87c9575702bc3b1e991f4d3c638e
@@ -44228,7 +44262,7 @@ paths:
       operationId: get-asset
       summary: Get Asset
       description: |
-        Get an Asset
+        Get details about an asset
 
         Required scope | `assets:read`
       tags:
@@ -44242,12 +44276,12 @@ paths:
           schema:
             type: string
             format: objectid
-        - name: locale
+        - name: localeId
           in: query
           allowEmptyValue: true
           example: 65427cf400e02b306eaa04a0
           description: |
-            Unique identifier for a specific locale.
+            Unique identifier for a specific Locale.
 
             [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
@@ -44776,7 +44810,7 @@ paths:
       operationId: patch-asset
       summary: Update Asset
       description: |
-        Update an Asset
+        Update details of an Asset.
 
         Required scope | `assets:write`
       tags:
@@ -44790,6 +44824,16 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
+          schema:
+            type: string
       requestBody:
         description: Information about the asset to update
         required: true
@@ -44798,18 +44842,14 @@ paths:
             schema:
               description: The request to update an asset
               properties:
-                localeId:
-                  type: string
-                  example: 65427cf400e02b306eaa04a0
-                  description: 'Unique identifier for a specific locale. Applicable, when using localization.'
                 displayName:
                   type: string
-                  example: bulldoze.png
-                  description: A human readable name for the asset
+                  example: dog.png
+                  description: A human readable name for the asset. This value is not localizable.
                 altText:
                   type: string
-                  example: Arthur Dent's House Before Bulldozed for a Bypass
-                  description: Alternate text describing the file
+                  example: A golden retriever playing with a red ball in the park
+                  description: Alternate text describing the image
       responses:
         '200':
           description: Request was successful
@@ -45336,7 +45376,7 @@ paths:
       description: |
         Delete an Asset
 
-        Required scope: `assets:write`
+        Required Scope: `assets: write`
       tags:
         - Assets
       parameters:

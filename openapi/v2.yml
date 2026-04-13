@@ -26781,7 +26781,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -27450,7 +27450,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -28048,7 +28048,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -28655,7 +28655,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -29315,7 +29315,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
       responses:
@@ -29875,7 +29875,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
       requestBody:
@@ -30500,7 +30500,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - in: query
@@ -32623,7 +32623,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -33484,7 +33484,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -34173,7 +34173,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -34716,7 +34716,7 @@ paths:
           description: |
             Unique identifier for a specific Locale.
 
-            [Lear more about localization.](/data/v2.0.0/docs/working-with-localization)
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
           schema:
             type: string
         - name: branchId
@@ -40128,6 +40128,16 @@ paths:
             type: string
             format: objectid
             default: null
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
+          schema:
+            type: string
         - in: query
           example: 0
           allowEmptyValue: true
@@ -40774,7 +40784,7 @@ paths:
         content:
           application/json:
             schema:
-              description: The request to create a webhook
+              description: The request to create an asset
               required:
                 - fileName
                 - fileHash
@@ -41297,6 +41307,16 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
+          schema:
+            type: string
       responses:
         '200':
           description: Request was successful
@@ -41835,6 +41855,16 @@ paths:
           schema:
             type: string
             format: objectid
+        - name: localeId
+          in: query
+          allowEmptyValue: true
+          example: 65427cf400e02b306eaa04a0
+          description: |
+            Unique identifier for a specific Locale.
+
+            [Learn more about localization.](/data/v2.0.0/docs/working-with-localization)
+          schema:
+            type: string
       requestBody:
         description: Information about the asset to update
         required: true
@@ -41843,14 +41873,14 @@ paths:
             schema:
               description: The request to update an asset
               properties:
-                localeId:
-                  type: string
-                  example: 65427cf400e02b306eaa04a0
-                  description: 'Unique identifier for a specific locale. Applicable, when using localization.'
                 displayName:
                   type: string
-                  example: bulldoze.png
-                  description: A human readable name for the asset
+                  example: dog.png
+                  description: A human readable name for the asset. This value is not localizable.
+                altText:
+                  type: string
+                  example: A golden retriever playing with a red ball in the park
+                  description: Alternate text describing the image
       responses:
         '200':
           description: Request was successful
