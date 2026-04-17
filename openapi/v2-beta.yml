@@ -71287,7 +71287,7 @@ webhooks:
                         - heartofgold.webflow.io
                     publishedBy:
                       type: object
-                      description: The name andID of the user who published the site
+                      description: The name and ID of the user who published the site
                       example:
                         displayName: Zaphod BeebleBrox
               example:
@@ -74074,7 +74074,7 @@ webhooks:
     post:
       operationId: page_created
       summary: Page Created
-      description: Information about a new pages
+      description: Information about a new page
       tags:
         - Pages
       requestBody:
