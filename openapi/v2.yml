@@ -73590,7 +73590,6 @@ webhooks:
                     - siteId
                     - pageId
                     - localeId
-                    - itemId
                     - breakpoint
                     - url
                     - content
@@ -73624,18 +73623,12 @@ webhooks:
                       type: string
                       readOnly: true
                       example: 580e64008c9a982ac9b8b754
-                      description: The page unique identifier
+                      description: 'The page unique identifier, or for CMS item comments, the template page ID'
                     localeId:
                       type: string
                       readOnly: true
                       example: 580e64008c9a982ac9b8b754
                       description: The locale unique identifier
-                      nullable: true
-                    itemId:
-                      type: string
-                      readOnly: true
-                      example: 580e64008c9a982ac9b8b754
-                      description: The item unique identifier
                       nullable: true
                     breakpoint:
                       type: string
