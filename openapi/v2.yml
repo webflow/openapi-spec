@@ -41944,6 +41944,18 @@ paths:
           required: false
           schema:
             type: integer
+        - in: query
+          allowEmptyValue: true
+          name: folderId
+          example: 6258612d1ee792848f805dcf
+          description: |
+            Optional asset folder ID. When provided, results are filtered to
+            assets within the folder *and all of its descendant folders*. The
+            `pagination.total` reflects the filtered count.
+          required: false
+          schema:
+            type: string
+            format: objectid
       responses:
         '200':
           description: Request was successful
@@ -41980,6 +41992,7 @@ paths:
                             quality: 100
                             error: null
                         altText: A single candy wrapper
+                        folderId: 6258612d1ee792848f805dcf
                       required:
                         - id
                         - contentType
@@ -41992,6 +42005,7 @@ paths:
                         - createdOn
                         - variants
                         - altText
+                        - folderId
                       properties:
                         id:
                           type: string
@@ -42094,6 +42108,15 @@ paths:
                           example: A red chair
                           nullable: true
                           description: The visual description of the asset
+                        folderId:
+                          type: string
+                          format: objectid
+                          example: 6258612d1ee792848f805dcf
+                          nullable: true
+                          description: |
+                            The ID of the asset folder this asset belongs to,
+                            or `null` if the asset is not in any folder.
+                          readOnly: true
                   pagination:
                     description: Pagination object
                     type: object
@@ -42138,6 +42161,7 @@ paths:
                           quality: 100
                           error: null
                       altText: A single candy wrapper
+                      folderId: 6258612d1ee792848f805dcf
                     - id: 63e5889e7fe4eafa7384cea5
                       originalFileName: Gum-Wrapper.svg
                       displayName: 63e5889e7fe4eafa7384cea5_Gum-Wrapper.png
@@ -42157,6 +42181,7 @@ paths:
                           quality: 100
                           error: null
                       altText: A single gum wrapper
+                      folderId: null
                   pagination:
                     total: 2
                     offset: 0
