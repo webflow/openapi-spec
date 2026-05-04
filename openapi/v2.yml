@@ -75236,6 +75236,23 @@ webhooks:
                     pageTitle:
                       type: string
                       example: My New Page
+                    pageName:
+                      type: string
+                      nullable: true
+                      description: 'The display name of the page, or null if not set'
+                      example: My New Page
+                    archived:
+                      type: boolean
+                      description: Whether the page is archived
+                      example: false
+                    draft:
+                      type: boolean
+                      description: Whether the page is a draft
+                      example: false
+                    isBranch:
+                      type: boolean
+                      description: Whether the page belongs to a branch
+                      example: false
                     createdOn:
                       type: string
                       format: date-time
@@ -75249,6 +75266,10 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
+                  pageName: Heart of Gold Specs
+                  archived: false
+                  draft: false
+                  isBranch: false
                   createdOn: '2024-07-26T16:32:50.903Z'
                   publishedPath: /blog/earth
       responses:
@@ -75288,6 +75309,23 @@ webhooks:
                     pageTitle:
                       type: string
                       example: My New Page
+                    pageName:
+                      type: string
+                      nullable: true
+                      description: 'The display name of the page, or null if not set'
+                      example: My New Page
+                    archived:
+                      type: boolean
+                      description: Whether the page is archived
+                      example: false
+                    draft:
+                      type: boolean
+                      description: Whether the page is a draft
+                      example: false
+                    isBranch:
+                      type: boolean
+                      description: Whether the page belongs to a branch
+                      example: false
                     lastUpdated:
                       type: string
                       format: date-time
@@ -75301,6 +75339,10 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
+                  pageName: Heart of Gold Specs
+                  archived: false
+                  draft: false
+                  isBranch: false
                   lastUpdated: '2024-07-26T16:32:50.903Z'
                   publishedPath: /blog/earth
       responses:
@@ -75339,6 +75381,23 @@ webhooks:
                     pageTitle:
                       type: string
                       example: My New Page
+                    pageName:
+                      type: string
+                      nullable: true
+                      description: 'The display name of the page, or null if not set'
+                      example: My New Page
+                    archived:
+                      type: boolean
+                      description: Whether the page is archived
+                      example: false
+                    draft:
+                      type: boolean
+                      description: Whether the page is a draft
+                      example: false
+                    isBranch:
+                      type: boolean
+                      description: Whether the page belongs to a branch
+                      example: false
                     deletedOn:
                       type: string
                       format: date-time
@@ -75352,6 +75411,10 @@ webhooks:
                   siteId: 65427cf400e02b306eaa049c
                   pageId: 66a3cfb276641574f5d58311
                   pageTitle: Heart of Gold Specs
+                  pageName: Heart of Gold Specs
+                  archived: false
+                  draft: false
+                  isBranch: false
                   deletedOn: '2024-07-26T16:32:50.903Z'
                   publishedPath: /blog/earth
       responses:
