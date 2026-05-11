@@ -383,7 +383,7 @@ paths:
       description: |
         Information about the authorization token
 
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/data-clients/getting-started).</Note>
       tags:
         - Meta
       responses:
@@ -721,7 +721,7 @@ paths:
       summary: Resolve ID Token
       description: |
         Information about the authorized user derived from the resolved ID Token
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/data-clients/getting-started).</Note>
 
         Required Scope | `authorized_user:read`
       tags:
@@ -1076,7 +1076,7 @@ paths:
       summary: Get app subscriptions
       description: |
         Information about subscriptions for a specific authorization token
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/data-clients/getting-started).</Note>
         Required Scope | `app_subscriptions:read`
       tags:
         - Meta
@@ -50556,7 +50556,7 @@ paths:
 
         Limit of 75 registrations per `triggerType`, per site.
 
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/data-clients/getting-started).</Note>
         Required scope | `sites:write`
       tags:
         - Webhooks

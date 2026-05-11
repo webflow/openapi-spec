@@ -396,7 +396,7 @@ paths:
       description: |
         Information about the authorization token
 
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/data-clients/getting-started).</Note>
       tags:
         - Meta
       responses:
@@ -46561,7 +46561,7 @@ paths:
 
         Limit of 75 registrations per `triggerType`, per site.
 
-        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/getting-started-data-clients).</Note>
+        <Note>Access to this endpoint requires a bearer token from a [Data Client App](/data/docs/data-clients/getting-started).</Note>
         Required scope | `sites:write`
       tags:
         - Webhooks
