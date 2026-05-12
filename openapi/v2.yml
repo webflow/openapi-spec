@@ -41961,6 +41961,16 @@ paths:
           required: false
           schema:
             type: integer
+        - name: folderId
+          in: query
+          allowEmptyValue: true
+          description: |
+            Filter assets to those in the specified folder and all descendant folders.
+            Must be a 24-character hex ObjectId.
+          required: false
+          schema:
+            type: string
+            format: objectid
       responses:
         '200':
           description: Request was successful
@@ -42111,6 +42121,14 @@ paths:
                           example: A red chair
                           nullable: true
                           description: The visual description of the asset
+                        folderId:
+                          type: string
+                          format: objectid
+                          example: 6390c49774a71f99f21a08eb
+                          nullable: true
+                          description: |
+                            The ID of the folder the asset belongs to, or `null` if the asset is at the site root.
+                            This field is present only in list responses (`GET /sites/{site_id}/assets`).
                   pagination:
                     description: Pagination object
                     type: object
@@ -42155,6 +42173,7 @@ paths:
                           quality: 100
                           error: null
                       altText: A single candy wrapper
+                      folderId: 6390c49774a71f99f21a08eb
                     - id: 63e5889e7fe4eafa7384cea5
                       originalFileName: Gum-Wrapper.svg
                       displayName: 63e5889e7fe4eafa7384cea5_Gum-Wrapper.png
@@ -42174,6 +42193,7 @@ paths:
                           quality: 100
                           error: null
                       altText: A single gum wrapper
+                      folderId: null
                   pagination:
                     total: 2
                     offset: 0
@@ -43265,6 +43285,14 @@ paths:
                     example: A red chair
                     nullable: true
                     description: The visual description of the asset
+                  folderId:
+                    type: string
+                    format: objectid
+                    example: 6390c49774a71f99f21a08eb
+                    nullable: true
+                    description: |
+                      The ID of the folder the asset belongs to, or `null` if the asset is at the site root.
+                      This field is present only in list responses (`GET /sites/{site_id}/assets`).
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -43829,6 +43857,14 @@ paths:
                     example: A red chair
                     nullable: true
                     description: The visual description of the asset
+                  folderId:
+                    type: string
+                    format: objectid
+                    example: 6390c49774a71f99f21a08eb
+                    nullable: true
+                    description: |
+                      The ID of the folder the asset belongs to, or `null` if the asset is at the site root.
+                      This field is present only in list responses (`GET /sites/{site_id}/assets`).
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
