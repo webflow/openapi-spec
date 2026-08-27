@@ -34714,6 +34714,13 @@ paths:
       description: |
         List of all Items within a Collection.
 
+        <Note>
+          This endpoint supports:
+
+          - Custom `filter[...]` queries support up to 10 filter terms and 2 text-search terms per request.
+          - Custom `sort[...]` queries support up to 3 sort fields per request.
+        </Note>
+
         Required scope | `CMS:read`
       tags:
         - Items
@@ -34822,6 +34829,113 @@ paths:
           style: deepObject
           explode: true
           required: false
+        - name: filter
+          in: query
+          allowEmptyValue: true
+          description: |
+            Filter collection items by custom field values. Use bracket notation:
+            `filter[<fieldSlug>][<operator>]=<value>`.
+
+            Example: `filter[price][gte]=10&filter[price][lte]=100&filter[name][contains]=shirt`.
+
+            Filters are combined with AND. You can combine custom field filters with top-level filters such as `name`, `slug`, `createdOn`, `lastPublished`, and `lastUpdated`. OR logic and nested filter groups are not supported on GET requests.
+
+            More filter terms can increase request latency.
+
+            Supported operators by field type:
+
+            | Field type | Supported operators |
+            | --- | --- |
+            | `id` | `eq`, `ne`, `in`, `nin` |
+            | `PlainText` | `eq`, `ne`, `in`, `nin`, `contains`, `ncontains`, `exists` |
+            | `Number` | `eq`, `ne`, `gt`, `gte`, `lt`, `lte`, `in`, `nin`, `exists` |
+            | `Switch` | `eq`, `ne`, `in`, `nin`, `exists` |
+            | `DateTime` | `eq`, `ne`, `gt`, `gte`, `lt`, `lte`, `in`, `nin`, `exists` |
+            | `Email`, `Phone`, `Link` | `eq`, `ne`, `in`, `nin`, `contains`, `ncontains`, `exists` |
+            | `Color` | `eq`, `ne`, `in`, `nin`, `exists` |
+            | `Reference` | `eq`, `ne`, `in`, `nin`, `exists` |
+            | `Option` | `eq`, `ne`, `in`, `nin` |
+            | `RichText`, `Image`, `MultiImage`, `VideoLink`, `MultiReference` | `exists` |
+
+            `contains` and `ncontains` are case-insensitive. `ncontains` also matches items where the field is empty or not set.
+
+            `exists=true` matches items where the field has a value. `exists=false` matches items where the field is missing or null. For `Switch` fields, `false` is still a set value.
+
+            Value formats:
+
+            | Field type | Value format |
+            | --- | --- |
+            | `Number` | A valid number, such as `10` or `12.5` |
+            | `Switch` | `true` or `false` |
+            | `DateTime` | ISO 8601 date-time string |
+            | `id`, `Reference` | 24-character item ID |
+            | `Option` | Option ID |
+            | `in`, `nin` | Comma-separated list, up to 100 values |
+
+            Invalid fields, invalid values, and operators that do not apply to a field type return a `400 BadArgument` response.
+          required: false
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+              additionalProperties: false
+              minProperties: 1
+              properties:
+                eq:
+                  type: string
+                  maxLength: 256
+                ne:
+                  type: string
+                  maxLength: 256
+                gt:
+                  type: string
+                  maxLength: 256
+                gte:
+                  type: string
+                  maxLength: 256
+                lt:
+                  type: string
+                  maxLength: 256
+                lte:
+                  type: string
+                  maxLength: 256
+                in:
+                  oneOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 25699
+                    - type: array
+                      minItems: 1
+                      maxItems: 100
+                      items:
+                        type: string
+                        maxLength: 256
+                nin:
+                  oneOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 25699
+                    - type: array
+                      minItems: 1
+                      maxItems: 100
+                      items:
+                        type: string
+                        maxLength: 256
+                contains:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                ncontains:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                exists:
+                  type: string
+                  enum:
+                    - 'true'
+                    - 'false'
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -34845,6 +34959,26 @@ paths:
             enum:
               - asc
               - desc
+        - name: sort
+          in: query
+          allowEmptyValue: true
+          description: |
+            Sort collection items by custom fields using bracket notation: `sort[<fieldSlug>]=<asc|desc>`.
+
+            - Example: `sort[price]=desc`
+            - Multiple sort fields are applied in query-string order. When `sort[...]` is provided, it takes precedence over `sortBy` and `sortOrder`.
+            - Sortable field types: `PlainText`, `Email`, `Phone`, `Number`, `DateTime`, and `Switch`.
+            - Unknown fields, invalid sort directions, and non-sortable field types return a `400 BadArgument` response.
+          required: false
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+              enum:
+                - asc
+                - desc
         - name: translatable
           in: query
           allowEmptyValue: true
@@ -37835,6 +37969,13 @@ paths:
           Serving data to applications in real-time? Use the Content Delivery API at `api-cdn.webflow.com` for better performance. The CDN-backed endpoint is optimized for high-volume reads, while the Data API is designed for writes and management operations.
         </Tip>
 
+        <Note>
+          This endpoint supports:
+
+          - Custom `filter[...]` queries support up to 10 filter terms and 2 text-search terms per request.
+          - Custom `sort[...]` queries support up to 3 sort fields per request.
+        </Note>
+
         Required scope | `CMS:read`
       tags:
         - Items
@@ -37943,6 +38084,113 @@ paths:
           style: deepObject
           explode: true
           required: false
+        - name: filter
+          in: query
+          allowEmptyValue: true
+          description: |
+            Filter collection items by custom field values. Use bracket notation:
+            `filter[<fieldSlug>][<operator>]=<value>`.
+
+            Example: `filter[price][gte]=10&filter[price][lte]=100&filter[name][contains]=shirt`.
+
+            Filters are combined with AND. You can combine custom field filters with top-level filters such as `name`, `slug`, `createdOn`, `lastPublished`, and `lastUpdated`. OR logic and nested filter groups are not supported on GET requests.
+
+            More filter terms can increase request latency.
+
+            Supported operators by field type:
+
+            | Field type | Supported operators |
+            | --- | --- |
+            | `id` | `eq`, `ne`, `in`, `nin` |
+            | `PlainText` | `eq`, `ne`, `in`, `nin`, `contains`, `ncontains`, `exists` |
+            | `Number` | `eq`, `ne`, `gt`, `gte`, `lt`, `lte`, `in`, `nin`, `exists` |
+            | `Switch` | `eq`, `ne`, `in`, `nin`, `exists` |
+            | `DateTime` | `eq`, `ne`, `gt`, `gte`, `lt`, `lte`, `in`, `nin`, `exists` |
+            | `Email`, `Phone`, `Link` | `eq`, `ne`, `in`, `nin`, `contains`, `ncontains`, `exists` |
+            | `Color` | `eq`, `ne`, `in`, `nin`, `exists` |
+            | `Reference` | `eq`, `ne`, `in`, `nin`, `exists` |
+            | `Option` | `eq`, `ne`, `in`, `nin` |
+            | `RichText`, `Image`, `MultiImage`, `VideoLink`, `MultiReference` | `exists` |
+
+            `contains` and `ncontains` are case-insensitive. `ncontains` also matches items where the field is empty or not set.
+
+            `exists=true` matches items where the field has a value. `exists=false` matches items where the field is missing or null. For `Switch` fields, `false` is still a set value.
+
+            Value formats:
+
+            | Field type | Value format |
+            | --- | --- |
+            | `Number` | A valid number, such as `10` or `12.5` |
+            | `Switch` | `true` or `false` |
+            | `DateTime` | ISO 8601 date-time string |
+            | `id`, `Reference` | 24-character item ID |
+            | `Option` | Option ID |
+            | `in`, `nin` | Comma-separated list, up to 100 values |
+
+            Invalid fields, invalid values, and operators that do not apply to a field type return a `400 BadArgument` response.
+          required: false
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+              additionalProperties: false
+              minProperties: 1
+              properties:
+                eq:
+                  type: string
+                  maxLength: 256
+                ne:
+                  type: string
+                  maxLength: 256
+                gt:
+                  type: string
+                  maxLength: 256
+                gte:
+                  type: string
+                  maxLength: 256
+                lt:
+                  type: string
+                  maxLength: 256
+                lte:
+                  type: string
+                  maxLength: 256
+                in:
+                  oneOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 25699
+                    - type: array
+                      minItems: 1
+                      maxItems: 100
+                      items:
+                        type: string
+                        maxLength: 256
+                nin:
+                  oneOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 25699
+                    - type: array
+                      minItems: 1
+                      maxItems: 100
+                      items:
+                        type: string
+                        maxLength: 256
+                contains:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                ncontains:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                exists:
+                  type: string
+                  enum:
+                    - 'true'
+                    - 'false'
         - name: sortBy
           in: query
           allowEmptyValue: true
@@ -37966,6 +38214,26 @@ paths:
             enum:
               - asc
               - desc
+        - name: sort
+          in: query
+          allowEmptyValue: true
+          description: |
+            Sort collection items by custom fields using bracket notation: `sort[<fieldSlug>]=<asc|desc>`.
+
+            - Example: `sort[price]=desc`
+            - Multiple sort fields are applied in query-string order. When `sort[...]` is provided, it takes precedence over `sortBy` and `sortOrder`.
+            - Sortable field types: `PlainText`, `Email`, `Phone`, `Number`, `DateTime`, and `Switch`.
+            - Unknown fields, invalid sort directions, and non-sortable field types return a `400 BadArgument` response.
+          required: false
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+              enum:
+                - asc
+                - desc
         - name: translatable
           in: query
           allowEmptyValue: true
@@ -41638,7 +41906,7 @@ paths:
         - name: cmsLocaleId
           in: query
           allowEmptyValue: true
-          description: 'Unique identifier for a CMS Locale. This UID is different from the Site locale identifier and is listed as `cmsLocaleId` in the Sites response. To query multiple locales, input a comma separated string.'
+          description: 'Unique identifier for a CMS Locale. This UID is different from the Site locale identifier and is listed as `cmsLocaleId` in the Sites response. This endpoint returns a single item, so it accepts one locale. To retrieve an item in several locales, use [List Collection Items](/data/reference/cms/collection-items/staged-items/list-items) with `filter[id][eq]` and a comma separated `cmsLocaleId`.'
           schema:
             type: string
         - name: translatable
@@ -43334,7 +43602,7 @@ paths:
         - name: cmsLocaleId
           in: query
           allowEmptyValue: true
-          description: 'Unique identifier for a CMS Locale. This UID is different from the Site locale identifier and is listed as `cmsLocaleId` in the Sites response. To query multiple locales, input a comma separated string.'
+          description: 'Unique identifier for a CMS Locale. This UID is different from the Site locale identifier and is listed as `cmsLocaleId` in the Sites response. This endpoint returns a single item, so it accepts one locale. To retrieve an item in several locales, use [List Collection Items](/data/reference/cms/collection-items/staged-items/list-items) with `filter[id][eq]` and a comma separated `cmsLocaleId`.'
           schema:
             type: string
         - name: translatable
