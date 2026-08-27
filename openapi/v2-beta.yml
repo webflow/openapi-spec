@@ -37781,6 +37781,35 @@ paths:
 
         Create Item(s) in a Collection.
 
+        This endpoint accepts two request shapes, and a request must use one or the other:
+
+        - **Single item** — send `fieldData` at the top level. Set `cmsLocaleId` to create the item in a specific locale.
+        - **Multiple items** — send an `items` array with at least one entry. Each entry needs its own `fieldData`, and can set its own `cmsLocaleId`, `isDraft`, and `isArchived`. The API ignores any other property on an entry.
+
+        ```json
+        {
+          "items": [
+            {
+              "isArchived": false,
+              "isDraft": false,
+              "fieldData": {
+                "name": "Senior Data Analyst",
+                "slug": "senior-data-analyst"
+              }
+            },
+            {
+              "isArchived": false,
+              "isDraft": false,
+              "fieldData": {
+                "name": "Product Manager",
+                "slug": "product-manager"
+              }
+            }
+          ]
+        }
+        ```
+
+        A request that carries both `fieldData` and `items` returns a `400`.
 
         To create items across multiple locales, please use [this endpoint.](/data/v2.0.0-beta/reference/cms/collection-items/staged-items/create-items)
 
@@ -37915,7 +37944,8 @@ paths:
                   properties:
                     items:
                       type: array
-                      description: An array of items to create
+                      minItems: 1
+                      description: The items to create. Each entry needs its own `fieldData`. Don't send a top-level `fieldData` with this shape.
                       items:
                         description: |
                           A new Collection Item that will be created in the draft state.
@@ -38030,37 +38060,6 @@ paths:
                     date: '2022-11-18T00:00:00.000Z'
                     featured: true
                     color: '#db4b68'
-              MultipleItems:
-                value:
-                  items:
-                    - id: 62b720ef280c7a7a3be8cabe
-                      lastPublished: null
-                      lastUpdated: '2022-06-25T14:51:27.809Z'
-                      createdOn: '2022-06-25T14:51:27.809Z'
-                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
-                      isArchived: false
-                      isDraft: true
-                      fieldData:
-                        name: Senior Data Analyst
-                        slug: senior-data-analyst
-                        url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
-                        department: Data
-                    - id: 62c880ef281c7b7b4cf9dabc
-                      lastPublished: null
-                      lastUpdated: '2023-04-10T11:45:30.567Z'
-                      createdOn: '2023-04-10T11:45:30.567Z'
-                      cmsLocaleId: 66f6e966c9e1dc700a857ca3
-                      isArchived: false
-                      isDraft: true
-                      fieldData:
-                        name: Product Manager
-                        slug: product-manager
-                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
-                        department: Product
-                  pagination:
-                    limit: 25
-                    offset: 0
-                    total: 2
       responses:
         '202':
           description: Request was successful
@@ -38189,37 +38188,6 @@ paths:
                       color: '#db4b68'
                       date: '2022-11-18T00:00:00.000Z'
                       featured: true
-                MultipleItems:
-                  value:
-                    items:
-                      - id: 62b720ef280c7a7a3be8cabe
-                        lastPublished: null
-                        lastUpdated: '2022-06-25T14:51:27.809Z'
-                        createdOn: '2022-06-25T14:51:27.809Z'
-                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
-                        isArchived: false
-                        isDraft: true
-                        fieldData:
-                          name: Senior Data Analyst
-                          slug: senior-data-analyst
-                          url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
-                          department: Data
-                      - id: 62c880ef281c7b7b4cf9dabc
-                        lastPublished: null
-                        lastUpdated: '2023-04-10T11:45:30.567Z'
-                        createdOn: '2023-04-10T11:45:30.567Z'
-                        cmsLocaleId: 66f6e966c9e1dc700a857ca3
-                        isArchived: false
-                        isDraft: true
-                        fieldData:
-                          name: Product Manager
-                          slug: product-manager
-                          url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
-                          department: Product
-                    pagination:
-                      limit: 25
-                      offset: 0
-                      total: 2
         '400':
           description: Request body was incorrectly formatted.
           x-logErrorCode: 400
@@ -40801,8 +40769,37 @@ paths:
 
         Create item(s) in a collection that will be immediately published to the live site.
 
+        This endpoint accepts two request shapes, and a request must use one or the other:
 
-        To create items across multiple locales, [please use this endpoint.](/data/reference/cms/collection-items/staged-items/create-items)
+        - **Single item** — send `fieldData` at the top level. Set `cmsLocaleId` to create the item in a specific locale.
+        - **Multiple items** — send an `items` array with at least one entry. Each entry needs its own `fieldData`, and can set its own `cmsLocaleId`, `isDraft`, and `isArchived`. The API ignores any other property on an entry.
+
+        ```json
+        {
+          "items": [
+            {
+              "isArchived": false,
+              "isDraft": false,
+              "fieldData": {
+                "name": "Senior Data Analyst",
+                "slug": "senior-data-analyst"
+              }
+            },
+            {
+              "isArchived": false,
+              "isDraft": false,
+              "fieldData": {
+                "name": "Product Manager",
+                "slug": "product-manager"
+              }
+            }
+          ]
+        }
+        ```
+
+        A request that carries both `fieldData` and `items` returns a `400`.
+
+        To create items across multiple locales, [please use this endpoint.](/data/v2.0.0-beta/reference/cms/collection-items/staged-items/create-items)
 
 
         Required scope | `CMS:write`
@@ -40946,7 +40943,8 @@ paths:
                   properties:
                     items:
                       type: array
-                      description: List of collection items to create
+                      minItems: 1
+                      description: The items to create. Each entry needs its own `fieldData`. Don't send a top-level `fieldData` with this shape.
                       items:
                         title: Collection Item
                         description: |
@@ -41087,23 +41085,6 @@ paths:
                     downloadable-asset:
                       fileId: 62b720ef280c7a7a3be8cab3
                       url: /files/62b720ef280c7a7a3be8cab3_document.pdf
-              MultipleItems:
-                value:
-                  items:
-                    - isArchived: false
-                      isDraft: false
-                      fieldData:
-                        name: Senior Data Analyst
-                        slug: senior-data-analyst
-                        url: 'https://boards.greenhouse.io/webflow/jobs/26567701'
-                        department: Data
-                    - isArchived: false
-                      isDraft: false
-                      fieldData:
-                        name: Product Manager
-                        slug: product-manager
-                        url: 'https://boards.greenhouse.io/webflow/jobs/31234567'
-                        department: Product
       responses:
         '202':
           description: Request was successful
