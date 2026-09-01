@@ -35092,7 +35092,8 @@ paths:
                         isDraft:
                           type: boolean
                           default: false
-                          description: Boolean determining if the Item is set to draft
+                          description: |
+                            Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                         fieldData:
                           type: object
                           required:
@@ -35693,7 +35694,8 @@ paths:
                       type: boolean
                       default: true
                       example: true
-                      description: Boolean determining if the Item is in a draft state.
+                      description: |
+                        Whether the item is created in a draft state. A new item has never been published, so `isDraft: true` gives it a `Draft` status. Set `isDraft: false` to queue the item to publish on the next site publish.
                     fieldData:
                       type: object
                       required:
@@ -35800,7 +35802,8 @@ paths:
                             type: boolean
                             default: true
                             example: true
-                            description: Boolean determining if the Item is in a draft state.
+                            description: |
+                              Whether the item is created in a draft state. A new item has never been published, so `isDraft: true` gives it a `Draft` status. Set `isDraft: false` to queue the item to publish on the next site publish.
                           fieldData:
                             type: object
                             required:
@@ -35940,7 +35943,8 @@ paths:
                   isDraft:
                     type: boolean
                     default: false
-                    description: Boolean determining if the Item is set to draft
+                    description: |
+                      Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                   fieldData:
                     type: object
                     required:
@@ -36462,6 +36466,15 @@ paths:
 
         <Tip title="Localization Tip">Items will only be updated in the primary locale, unless a `cmsLocaleId` is included in the request.</Tip>
 
+        <Note title="Draft status behavior">
+          `isDraft: true` doesn't unpublish an item. The resulting status depends on whether the item has been published before:
+
+          - **Item that has never been published:** the item gets a `Draft` status.
+          - **Already-published item:** the item gets a `Changes in draft` status. The live item stays published, and your changes are held back until you publish them.
+
+          Setting `isDraft: false` queues the item to publish on the next site publish. To remove an item from the live site, use [Unpublish Live Collection Items](/data/reference/cms/collection-items/live-items/delete-items-live). For the full status mapping, see [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing).
+        </Note>
+
         Required scope | `CMS:write`
       tags:
         - Items
@@ -36530,7 +36543,13 @@ paths:
                         description: Boolean determining if the Item is set to archived
                       isDraft:
                         type: boolean
-                        description: Boolean determining if the Item is set to draft
+                        description: |
+                          Sets the item's draft state. The resulting status depends on whether the item has been published before:
+
+                          - **Item that has never been published:** `isDraft: true` results in a `Draft` status.
+                          - **Already-published item:** `isDraft: true` results in a `Changes in draft` status. The live item stays published, and your changes are held back until you publish them.
+
+                          Setting `isDraft: true` never unpublishes an item. To remove an item from the live site, use [Unpublish Live Collection Items](/data/reference/cms/collection-items/live-items/delete-items-live).
                       fieldData:
                         type: object
                         properties:
@@ -36692,7 +36711,8 @@ paths:
                       isDraft:
                         type: boolean
                         default: false
-                        description: Boolean determining if the Item is set to draft
+                        description: |
+                          Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                       fieldData:
                         type: object
                         required:
@@ -36834,7 +36854,8 @@ paths:
                             isDraft:
                               type: boolean
                               default: false
-                              description: Boolean determining if the Item is set to draft
+                              description: |
+                                Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                             fieldData:
                               type: object
                               required:
@@ -38344,7 +38365,8 @@ paths:
                         isDraft:
                           type: boolean
                           default: false
-                          description: Boolean determining if the Item is set to draft
+                          description: |
+                            Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                         fieldData:
                           type: object
                           required:
@@ -38949,7 +38971,8 @@ paths:
                     isDraft:
                       type: boolean
                       default: false
-                      description: Boolean determining if the Item is set to draft
+                      description: |
+                        Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                     fieldData:
                       type: object
                       required:
@@ -39064,7 +39087,8 @@ paths:
                           isDraft:
                             type: boolean
                             default: false
-                            description: Boolean determining if the Item is set to draft
+                            description: |
+                              Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                           fieldData:
                             type: object
                             required:
@@ -39209,7 +39233,8 @@ paths:
                   isDraft:
                     type: boolean
                     default: false
-                    description: Boolean determining if the Item is set to draft
+                    description: |
+                      Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                   fieldData:
                     type: object
                     required:
@@ -39758,7 +39783,13 @@ paths:
                         description: Boolean determining if the Item is set to archived
                       isDraft:
                         type: boolean
-                        description: Boolean determining if the Item is set to draft
+                        description: |
+                          Sets the item's draft state. The resulting status depends on whether the item has been published before:
+
+                          - **Item that has never been published:** `isDraft: true` results in a `Draft` status.
+                          - **Already-published item:** `isDraft: true` results in a `Changes in draft` status. The live item stays published, and your changes are held back until you publish them.
+
+                          Setting `isDraft: true` never unpublishes an item. To remove an item from the live site, use [Unpublish Live Collection Items](/data/reference/cms/collection-items/live-items/delete-items-live).
                       fieldData:
                         type: object
                         properties:
@@ -39955,7 +39986,8 @@ paths:
                         isDraft:
                           type: boolean
                           default: false
-                          description: Boolean determining if the Item is set to draft
+                          description: |
+                            Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                         fieldData:
                           type: object
                           required:
@@ -41304,7 +41336,8 @@ paths:
                   isDraft:
                     type: boolean
                     default: false
-                    description: Boolean determining if the Item is set to draft
+                    description: |
+                      Whether the item is created in a draft state. A new item has never been published, so `isDraft: true` gives it a `Draft` status. Set `isDraft: false` to queue the item to publish on the next site publish.
                   fieldData:
                     type: object
                     properties:
@@ -41982,7 +42015,8 @@ paths:
                   isDraft:
                     type: boolean
                     default: false
-                    description: Boolean determining if the Item is set to draft
+                    description: |
+                      Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                   fieldData:
                     type: object
                     required:
@@ -42461,6 +42495,15 @@ paths:
       description: |
         Update a selected Item in a Collection.
 
+        <Note title="Draft status behavior">
+          `isDraft: true` doesn't unpublish an item. The resulting status depends on whether the item has been published before:
+
+          - **Item that has never been published:** the item gets a `Draft` status.
+          - **Already-published item:** the item gets a `Changes in draft` status. The live item stays published, and your changes are held back until you publish them.
+
+          Setting `isDraft: false` queues the item to publish on the next site publish. To remove an item from the live site, use [Unpublish Live Collection Items](/data/reference/cms/collection-items/live-items/delete-items-live). For the full status mapping, see [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing).
+        </Note>
+
         Required scope | `CMS:write`
       tags:
         - Items
@@ -42532,7 +42575,13 @@ paths:
                   description: Boolean determining if the Item is set to archived
                 isDraft:
                   type: boolean
-                  description: Boolean determining if the Item is set to draft
+                  description: |
+                    Sets the item's draft state. The resulting status depends on whether the item has been published before:
+
+                    - **Item that has never been published:** `isDraft: true` results in a `Draft` status.
+                    - **Already-published item:** `isDraft: true` results in a `Changes in draft` status. The live item stays published, and your changes are held back until you publish them.
+
+                    Setting `isDraft: true` never unpublishes an item. To remove an item from the live site, use [Unpublish Live Collection Items](/data/reference/cms/collection-items/live-items/delete-items-live).
                 fieldData:
                   type: object
                   properties:
@@ -42635,7 +42684,8 @@ paths:
                   isDraft:
                     type: boolean
                     default: false
-                    description: Boolean determining if the Item is set to draft
+                    description: |
+                      Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                   fieldData:
                     type: object
                     required:
@@ -43678,7 +43728,8 @@ paths:
                   isDraft:
                     type: boolean
                     default: false
-                    description: Boolean determining if the Item is set to draft
+                    description: |
+                      Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                   fieldData:
                     type: object
                     required:
@@ -44228,7 +44279,13 @@ paths:
                   description: Boolean determining if the Item is set to archived
                 isDraft:
                   type: boolean
-                  description: Boolean determining if the Item is set to draft
+                  description: |
+                    Sets the item's draft state. The resulting status depends on whether the item has been published before:
+
+                    - **Item that has never been published:** `isDraft: true` results in a `Draft` status.
+                    - **Already-published item:** `isDraft: true` results in a `Changes in draft` status. The live item stays published, and your changes are held back until you publish them.
+
+                    Setting `isDraft: true` never unpublishes an item. To remove an item from the live site, use [Unpublish Live Collection Items](/data/reference/cms/collection-items/live-items/delete-items-live).
                 fieldData:
                   type: object
                   properties:
@@ -44331,7 +44388,8 @@ paths:
                   isDraft:
                     type: boolean
                     default: false
-                    description: Boolean determining if the Item is set to draft
+                    description: |
+                      Whether the item is in a draft state. Together with `lastPublished`, this determines the status shown in the Webflow UI. See [Publishing with the CMS API](/data/docs/working-with-the-cms/publishing) for the full mapping.
                   fieldData:
                     type: object
                     required:
