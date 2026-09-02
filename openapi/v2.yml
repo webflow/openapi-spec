@@ -34712,6 +34712,16 @@ paths:
       operationId: list-collection-items
       summary: List Collection Items
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         List of all Items within a Collection.
 
         <Note>
@@ -35584,6 +35594,16 @@ paths:
       operationId: create-item
       summary: Create Collection Item(s)
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Create Item(s) in a Collection.
 
         This endpoint accepts two request shapes, and a request must use one or the other:
@@ -36460,6 +36480,16 @@ paths:
       operationId: update-items
       summary: Update Collection Items
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Update a single item or multiple items in a Collection.
 
         The limit for this endpoint is 100 items.
@@ -37984,6 +38014,16 @@ paths:
       operationId: list-collection-items-live
       summary: List Live Collection Items
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         List all published items in a collection.
 
         <Tip title="Serve data with the Content Delivery API">
@@ -38860,6 +38900,16 @@ paths:
       operationId: create-item-live
       summary: Create Live Collection Item(s)
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Create item(s) in a collection that will be immediately published to the live site.
 
         This endpoint accepts two request shapes, and a request must use one or the other:
@@ -39711,6 +39761,16 @@ paths:
       operationId: update-items-live
       summary: Update Live Collection Items
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Update a single published item or multiple published items (up to 100) in a Collection
 
         <Tip title="Localization Tip">Items will only be updated in the primary locale, unless a `cmsLocaleId` is included in the request.</Tip>
@@ -41109,6 +41169,16 @@ paths:
       operationId: create-items
       summary: Create Collection Items
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Create an item or multiple items in a CMS Collection across multiple corresponding locales.
 
         <Note>
@@ -41912,6 +41982,16 @@ paths:
       operationId: Get-Item
       summary: Get Collection Item
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Get details of a selected Collection Item.
 
         Required scope | `CMS:read`
@@ -42493,6 +42573,16 @@ paths:
       operationId: update-item
       summary: Update Collection Item
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Update a selected Item in a Collection.
 
         <Note title="Draft status behavior">
@@ -43621,6 +43711,16 @@ paths:
       operationId: get-item-live
       summary: Get Live Collection Item
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Get details of a selected Collection live Item.
 
         <Tip title="Serve data with the Content Delivery API">
@@ -44206,6 +44306,16 @@ paths:
       operationId: update-item-live
       summary: Update Live Collection Item
       description: |
+        <Tip title="Components in Rich Text">
+          Rich Text field values may contain Webflow component instances as `<wf-component>` markup. On read they appear inline in the field's HTML; on write, the same markup creates or updates the instance.
+
+          Scalar props are `prop-<propId>="…"` attributes on the `<wf-component>`. Text and rich-text props are nested `<wf-prop name="<propId>" type="text|richtext">…</wf-prop>` children.
+
+          A write is rejected with a `400` if a component can't be resolved, contains a Collection List, populates a Slot (a component with an unpopulated Slot is allowed), includes an unknown prop, or creates a new instance in a secondary locale.
+
+          `component-id` and each `prop-<propId>` are specific to your site's component definition — obtain them by listing your site's components (`GET /v2/sites/{site_id}/components`, plus `/components/{component_id}/properties` for prop IDs) or by reading an item that already contains the component and reusing the returned markup. Omit `data-w-id` when creating an instance (the server assigns it); keep it when updating one.
+        </Tip>
+
         Update a selected live Item in a Collection. The updates for this Item will be published to the live site.
 
         Required scope | `CMS:write`
